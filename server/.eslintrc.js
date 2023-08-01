@@ -8,5 +8,16 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 12,
   },
-  rules: {},
-}
+  rules: {
+    'no-console': 'warn',
+    'prefer-const': 'warn',
+    indent: ['warn', 2],
+    'import/order': [
+      'warn',
+      {
+        groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index', 'object', 'type'],
+        'newlines-between': 'always-and-inside-groups',
+      },
+    ],
+  },
+};
