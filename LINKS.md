@@ -40,3 +40,4 @@
 - **[react-redux]**https://react-redux.js.org
 - **[redux-toolkit]**https://redux-toolkit.js.org
 - **[redux-persist]**https://github.com/rt2zz/redux-persist
+- **[concurrently]**https://www.npmjs.com/package/concurrently
