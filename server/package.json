@@ -1,7 +1,7 @@
 {
   "name": "mern_starter",
-  "version": "1.0.0",
   "description": "server",
+  "version": "1.0.0",
   "private": true,
   "engines": {
     "node": ">=17.9.1"
@@ -9,7 +9,7 @@
   "scripts": {
     "start": "node -r dotenv/config src/server.js",
     "dev": "nodemon -r dotenv/config src/server.js",
-    "watch": "nodemon -r dotenv/config src/server.js --watch",
+    "watch": "node -r dotenv/config src/server.js --watch",
     "lint": "eslint . --ext js",
     "lint:fix": "npm run lint -- --fix"
   },
