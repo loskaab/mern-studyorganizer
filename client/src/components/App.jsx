@@ -1,34 +1,34 @@
-import { useState } from 'react';
+import { useEffect, lazy } from 'react';
+import { Route, Routes, Navigate } from 'react-router-dom';
 
-import reactLogo from 'img/react.svg';
-import viteLogo from 'img/vite.svg';
-import 'components/App.css';
-import { Home } from 'components/Home/Home';
+import Layout from 'components/Layout/Layout';
+import Home from 'pages/Home/Home';
+const Items = lazy(() => import('pages/Items/Items'));
+const ItemDetails = lazy(() => import('pages/ItemDetails/ItemDetails'));
+const Signin = lazy(() => import('pages/Signin/Signin'));
+const Signup = lazy(() => import('pages/Signup/Signup'));
+const UserProfile = lazy(() => import('pages/UserProfile/UserProfile'));
 
-function App() {
-  const [count, setCount] = useState(0);
+import loadWebFonts from 'styles/Fonts';
+
+const App = () => {
+  useEffect(() => {
+    loadWebFonts();
+  }, []);
 
   return (
-    <>
-      <Home />
-      <div>
-        <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank" rel="noreferrer">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount(count => count + 1)}>count is {count}</button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">Click on the Vite and React logos to learn more</p>
-    </>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Home />} />
+        <Route path="items" element={<Items />} />
+        <Route path="items/:id" element={<ItemDetails />} />
+        <Route path="auth/signin" element={<Signin />} />
+        <Route path="auth/signup" element={<Signup />} />
+        <Route path="users" element={<UserProfile />} />
+      </Route>
+      <Route path="*" element={<Navigate to="/" />} />
+    </Routes>
   );
-}
+};
 
 export default App;

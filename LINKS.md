@@ -1,7 +1,10 @@
 # **[mern_starter](https://github.com/Belka-S/mern_starter)**
 
 - **[react]**https://react.dev/
-- **[reactrouter]**https://reactrouter.com/en/main
+- **[normalize.css]**https://www.npmjs.com/package/normalize.css
+- **[typefaces]**https://github.com/KyleAMathews/typefaces/tree/master/packages
+- **[webfontloader]**https://github.com/typekit/webfontloader
+- **[reactrouter]**https://www.npmjs.com/package/react-router-dom
 - **[prop-types]**https://github.com/facebook/prop-types
 - **[styled-components]**https://styled-components.com/docs/basics
 - **[react-icons]**https://react-icons.github.io/react-icons/
@@ -18,8 +21,7 @@
 - **[yup]**https://github.com/jquense/yup
 - **[yup-phone]**https://yup-phone.js.org
 - **[react-modal]**https://github.com/reactjs/react-modal
-- **[typefaces]**https://github.com/KyleAMathews/typefaces/tree/master/packages
-- **[webfontloader]**https://github.com/typekit/webfontloader
+
 - **[react-player]**https://github.com/CookPete/react-player
 - **[react-hot-toast]**https://react-hot-toast.com/
 - **[infinite-scroll]**https://github.com/danbovey/react-infinite-scroller
@@ -34,10 +36,26 @@
 - **[]**
 - **[]**
 - **[]**
-- **[]**
 - **[zustand]**https://github.com/pmndrs/zustand
 - **[redux]**https://redux.js.org
 - **[react-redux]**https://react-redux.js.org
 - **[redux-toolkit]**https://redux-toolkit.js.org
 - **[redux-persist]**https://github.com/rt2zz/redux-persist
 - **[concurrently]**https://www.npmjs.com/package/concurrently
+
+- **[multer-storage-cloudinary]**https://www.npmjs.com/package/multer-storage-cloudinary
+- **[]**
+- **[]**
+- **[]**
+- **[]**
+- **[]**
+- **[]**
+- **[]**
+- **[]**
+- **[]**
+- **[]**
+- **[]**
+- **[]**
+- **[]**
+- **[]**
+- **[]**

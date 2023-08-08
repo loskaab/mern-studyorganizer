@@ -4,7 +4,7 @@ const cloudinary = require('cloudinary').v2;
 
 const { HttpError } = require('./HttpError');
 
-const { CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET } = process.env;
+const { APP_NAME, CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET } = process.env;
 
 cloudinary.config({
   cloud_name: CLOUD_NAME,
@@ -14,7 +14,7 @@ cloudinary.config({
 });
 
 const options = {
-  folder: 'MERN/Avatars',
+  folder: `${APP_NAME}/Avatars`,
   use_filename: true,
   unique_filename: true,
   overwrite: true,
