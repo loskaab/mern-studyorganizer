@@ -4,8 +4,7 @@ import regExp from 'services/regExp';
 
 // Avatar
 const MAX_SIZE = 1024 * 1024;
-const MB = 1024 * 1024;
-// const kB = 1024;
+const MB = 1024 * 1024; // const kB = 1024;
 const avatar = yup
   .mixed()
   .test('type', 'is invalid!', files =>
@@ -21,7 +20,7 @@ const name = yup
   .required('is required!')
   .min(4, 'is too short!')
   .max(20, 'is too long!')
-  .matches(regExp.name, 'only letters, numbers, underscores, dashes!');
+  .matches(regExp.name, 'letters, numbers, underscores, dashes');
 
 // Email
 const email = yup.string().required('is required!').matches(regExp.email, 'is invalid!');
@@ -57,11 +56,13 @@ const country = yup
 // WhatsApp
 const whatsapp = yup
   .string()
+  .min(6, 'is too short!')
   .matches(regExp.phone, { message: 'is invalid!', excludeEmptyString: true });
 
 //Telegram
 const telegram = yup
   .string()
+  .min(6, 'is too short!')
   .matches(regExp.telegramPhone, { message: 'is invalid!', excludeEmptyString: true });
 
 // ---------------------------------Schemas------------------------------ //

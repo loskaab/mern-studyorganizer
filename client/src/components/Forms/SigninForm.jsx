@@ -14,7 +14,6 @@ const SignupForm = () => {
   } = useForm({ mode: 'onBlur', resolver: yupResolver(schemas.signin) });
 
   const onSubmit = data => {
-    console.log('qwe');
     console.log(data);
     return data;
   };
