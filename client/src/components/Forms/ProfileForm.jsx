@@ -1,3 +1,4 @@
+import { useCallback } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
@@ -16,9 +17,11 @@ const ProfileForm = () => {
   } = useForm({ mode: 'onBlur', resolver: yupResolver(schemas.profile) });
 
   // Avatar image
-  const files = watch('avatar');
-  previewAavatarImage(files);
-  const isNewAvatar = () => files?.length > 0;
+  const isNewAvatar = useCallback(() => {
+    const avatarValue = watch('avatar');
+    previewAavatarImage(avatarValue);
+    return avatarValue?.length > 0;
+  }, [watch]);
 
   // Submit form
   const onSubmit = data => {

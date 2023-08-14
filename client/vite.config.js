@@ -20,5 +20,7 @@ export default defineConfig({
     alias: { ...dirPaths }, // src: '/src', components: '/src/components',
   },
   server: { open: '/', port: 3000 },
-  // base: '/mern_starter/',
+  base: '/mern_starter/',
 });
+
+// "preview": "vite preview --base=/mern_starter/",
