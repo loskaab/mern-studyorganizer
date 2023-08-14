@@ -1,8 +1,8 @@
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 
-import NavBar from 'components/NavBar/NavBar';
-import AuthBar from 'components/AuthBar/AuthBar';
+import NavBar from 'components/HeadBar/NavBar';
+import AuthBar from 'components/HeadBar/AuthBar';
 import SideBar from 'components/SideBar/SideBar';
 import mernLogo from 'images/favicon.png';
 import clN from 'services/classNames';

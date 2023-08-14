@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 
-import { backdrop } from './Modal.module.scss';
+import { backdrop, modal } from './Modal.module.scss';
 
 const modalRoot = document.querySelector('#modal-root');
 
@@ -21,7 +21,7 @@ const Modal = ({ toggleModal, children }) => {
 
   return createPortal(
     <div className={backdrop} onClick={handleBackdropClick}>
-      <div>{children}</div>
+      <div className={modal}>{children}</div>
     </div>,
     modalRoot,
   );

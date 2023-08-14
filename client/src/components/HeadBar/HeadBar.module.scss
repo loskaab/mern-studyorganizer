@@ -1,10 +1,14 @@
-.nav_link {
+.navlink {
   display: inline-block;
 
-  font-weight: 900;
+  font-weight: 700;
   color: #1c2025;
 
   &:global(.active) {
     color: #007fff;
   }
+}
+
+.active {
+  color: #007fff;
 }

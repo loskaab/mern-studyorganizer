@@ -5,9 +5,9 @@ import Layout from 'components/Layout/Layout';
 import Home from 'pages/Home/Home';
 const Items = lazy(() => import('pages/Items/Items'));
 const ItemDetails = lazy(() => import('pages/ItemDetails/ItemDetails'));
-const Signin = lazy(() => import('pages/Signin/Signin'));
-const Signup = lazy(() => import('pages/Signup/Signup'));
-const UserProfile = lazy(() => import('pages/UserProfile/UserProfile'));
+const Signin = lazy(() => import('pages/Sign/Signin'));
+const Signup = lazy(() => import('pages/Sign/Signup'));
+const UserProfile = lazy(() => import('pages/Profile/Profile'));
 
 import loadWebFonts from 'styles/Fonts';
 

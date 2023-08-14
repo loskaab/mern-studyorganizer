@@ -16,7 +16,7 @@ const country = /[a-zA-Z]{2,}/;
 // letters, numbers, dashes
 const cryptoRandomUUID = /^[a-zA-Zа-яА-Я0-9]+(([-][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я0-9]*)*$/;
 
-module.exports = {
+export default {
   name,
   email,
   phone,

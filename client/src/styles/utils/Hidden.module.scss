@@ -1,4 +1,4 @@
-.visually-hidden {
+.visuallyHidden {
   position: absolute;
 
   width: 1px;
@@ -13,7 +13,7 @@
   overflow: hidden;
 }
 
-.is-hidden {
+.isHidden {
   opacity: 0;
   pointer-events: none;
 }

@@ -8,7 +8,7 @@ const { SECRET_KEY } = process.env;
 
 const login = ctrlWrapper(async (req, res) => {
   const { email, password } = req.body;
-  
+
   const user = await User.findOne({ email });
   if (!user) throw new HttpError(401);
 
@@ -19,7 +19,7 @@ const login = ctrlWrapper(async (req, res) => {
     throw new HttpError(401, `Email not verified, check ${email}!`);
   }
 
-  const isPassword = bcrypt.compare(password, user.password);
+  const isPassword = await bcrypt.compare(password, user.password);
   if (!isPassword) throw new HttpError(401);
 
   const token = jwt.sign({ id: user._id }, SECRET_KEY, { expiresIn: '6h' });

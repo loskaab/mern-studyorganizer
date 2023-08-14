@@ -1,0 +1,119 @@
+// Common styles
+label {
+  width: 100%;
+  font-size: 16px;
+  font-weight: 500;
+
+  & span {
+    color: #e74a3b;
+    font-size: 14px;
+    font-style: italic;
+  }
+}
+
+input {
+  height: 46px;
+  width: 100%;
+  padding: 0 12px;
+  display: flex;
+  outline: none;
+  border: 1px solid #d9d9d9;
+  transition: border-color 0.25s;
+  border-radius: 8px;
+  font-weight: 700;
+
+  // validation
+  &.valid {
+    @extend %hover_focus;
+
+    border-color: #3cbc81;
+  }
+
+  &:placeholder-shown {
+    border-color: #d9d9d9;
+  }
+
+  &.invalid {
+    @extend %hover_focus;
+
+    border-color: #e74a3b;
+  }
+}
+
+%hover_focus {
+  &:hover,
+  &:focus {
+    border-color: #007fff;
+  }
+}
+
+// Manage profile
+.form_profile {
+  display: grid;
+  justify-items: center;
+  align-items: end;
+  grid-template-rows: auto;
+  gap: 10px 40px;
+
+  @media screen and (min-width: 768px) {
+    grid-template-columns: repeat(auto-fill, minmax(calc(50% - 40px), 1fr));
+    grid-template-areas:
+      'avatar .'
+      'avatar .'
+      'avatar .'
+      '. .'
+      '. .'
+      '. .'
+      'button button';
+
+    & .avatar {
+      grid-area: avatar;
+    }
+
+    & button {
+      grid-area: button;
+      max-width: calc(50% - 20px);
+      margin-top: 25px;
+    }
+  }
+
+  & .avatar {
+    & input {
+      @extend %hover_focus;
+
+      margin: 0 auto;
+      width: 200px;
+      height: 200px;
+      cursor: pointer;
+      color: transparent;
+      background-color: #fff;
+      border-radius: 50%;
+      // &::-webkit-file-upload-button
+      &::file-selector-button {
+        display: none;
+      }
+    }
+  }
+
+  & button {
+    margin-top: 25px;
+    width: 100%;
+  }
+}
+
+// Sign up // Sign in
+.form_sign {
+  display: grid;
+  gap: 10px;
+
+  .pass_forgot {
+    & div {
+      display: flex;
+      align-items: baseline;
+    }
+
+    & button {
+      margin-left: auto;
+    }
+  }
+}

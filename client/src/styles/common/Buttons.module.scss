@@ -1,35 +1,72 @@
 %btn {
+  padding: 5px;
+
   border: 1px solid transparent;
   border-radius: 8px;
   cursor: pointer;
+  background-color: transparent;
   transition: background-color 0.25s;
+  color: #000;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+// Header
+.btn_nav {
+  @extend %btn;
 
   &:hover,
   :focus {
     background-color: #dae2ed;
   }
 }
-
-.btn {
-  @extend %btn;
-
-  padding: 5px;
-}
-
-.btn_avatar {
-  @extend %btn;
+.btn_user {
+  @extend .btn_nav;
 
   width: 36px;
   height: 36px;
-
   border-radius: 50%;
+  background-color: #fff;
 }
 
+// Modal
+.btn_modal {
+  padding: 0 24px;
+
+  cursor: pointer;
+  color: #000;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.8;
+
+  &:hover,
+  :focus {
+    font-weight: 700;
+    color: #007fff;
+  }
+}
+
+// Sign up // Sign in // Profile
 .btn_link {
   display: block;
 
   text-decoration: underline;
   border: 1px solid transparent;
   background-color: transparent;
-  color: #007fff;
+  color: #0072e5;
+  font-size: 14px;
+}
+.btn_submit {
+  @extend %btn;
+
+  height: 46px;
+  padding: 0 12px;
+
+  background-color: #0072e5;
+  color: #fff;
+
+  &:hover,
+  :focus {
+    background-color: #007fff;
+  }
 }
