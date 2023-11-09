@@ -7,6 +7,23 @@ import clN from 'services/classNames';
 import { btn_nav, btn_user, btn_modal } from 'styles/common/Buttons.module.scss';
 import { navlink, active } from './HeadBar.module.scss';
 
+// вместо clN
+// import css from "./Alert.module.css";
+// export const Alert = ({ variant, children }) => {
+// return <p className={clsx(css.alert, css[variant])}>{children}</p>;
+// };
+import clsx from 'clsx';
+
+// композиция классов composess
+// .alert {
+//   margin: 8px;
+//   padding: 12px 16px;
+// };
+// .info {
+//   composes: alert;
+//   background-color: blue;
+// }
+
 const AuthBar = () => {
   const [isModal, setIsModal] = useState(false);
   const { pathname } = useLocation();

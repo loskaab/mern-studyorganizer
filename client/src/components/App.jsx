@@ -11,6 +11,8 @@ const UserProfile = lazy(() => import('pages/Profile/Profile'));
 
 import loadWebFonts from 'styles/Fonts';
 
+const { MODE, PROD, DEV, BASE_URL, VITE_BASE_URL_DEV, VITE_BASE_URL_PROD } = import.meta.env;
+
 const App = () => {
   useEffect(() => {
     loadWebFonts();
@@ -18,10 +20,12 @@ const App = () => {
 
   return (
     <Routes>
+      {/* SharedLayout ???? */}
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
         <Route path="items" element={<Items />} />
         <Route path="items/:id" element={<ItemDetails />} />
+        {/* вложить все в роут Аус */}
         <Route path="auth/signin" element={<Signin />} />
         <Route path="auth/signup" element={<Signup />} />
         <Route path="users" element={<UserProfile />} />

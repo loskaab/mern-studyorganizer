@@ -1,8 +1,8 @@
 const { Router } = require('express');
 
-const ctrl = require('../controllers');
-const validateBody = require('../validation');
-const { authenticate, parse, upload } = require('../middlewares');
+const ctrl = require('../../controllers');
+const validateBody = require('../../validation');
+const { authenticate, parse, upload } = require('../../middlewares');
 
 const router = Router();
 

@@ -12,6 +12,7 @@ const Layout = () => {
   return (
     <>
       <header className={clN(css.container, css.header)}>
+        {/* винести в компонент Лого */}
         <a href="https://github.com/Belka-S/mern_starter" target="_blank" rel="noopener noreferrer">
           <img src={mernLogo} height="36" width="36" alt="MERN logo" />
         </a>

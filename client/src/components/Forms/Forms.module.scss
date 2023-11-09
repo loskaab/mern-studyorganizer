@@ -1,4 +1,12 @@
 // Common styles
+
+%hover_focus {
+  &:hover,
+  &:focus {
+    border-color: #007fff;
+  }
+}
+
 label {
   width: 100%;
   font-size: 16px;
@@ -37,13 +45,6 @@ input {
     @extend %hover_focus;
 
     border-color: #e74a3b;
-  }
-}
-
-%hover_focus {
-  &:hover,
-  &:focus {
-    border-color: #007fff;
   }
 }
 

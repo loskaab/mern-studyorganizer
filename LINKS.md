@@ -21,7 +21,7 @@
 - **[yup]**https://github.com/jquense/yup
 - **[yup-phone]**https://yup-phone.js.org
 - **[react-modal]**https://github.com/reactjs/react-modal
-
+- **[react-slick]**https://react-slick.neostack.com
 - **[react-player]**https://github.com/CookPete/react-player
 - **[react-hot-toast]**https://react-hot-toast.com/
 - **[infinite-scroll]**https://github.com/danbovey/react-infinite-scroller

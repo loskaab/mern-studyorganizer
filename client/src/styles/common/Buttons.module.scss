@@ -42,7 +42,7 @@
   &:hover,
   :focus {
     font-weight: 700;
-    color: #007fff;
+    color: var(--accent-base-color);
   }
 }
 
@@ -53,7 +53,7 @@
   text-decoration: underline;
   border: 1px solid transparent;
   background-color: transparent;
-  color: #0072e5;
+  color: var(--accent-base-color);
   font-size: 14px;
 }
 .btn_submit {
@@ -62,11 +62,11 @@
   height: 46px;
   padding: 0 12px;
 
-  background-color: #0072e5;
+  background-color: var(--accent-light-color);
   color: #fff;
 
   &:hover,
   :focus {
-    background-color: #007fff;
+    background-color: var(--accent-base-color);
   }
 }
