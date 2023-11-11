@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
-import schemas from 'services/yupSchemas';
+import schemas from 'utils/validation/yupSchemas';
 // eslint-disable-next-line import/order
 import { btn_submit } from 'styles/common/Buttons.module.scss';
 import css from './Forms.module.scss';

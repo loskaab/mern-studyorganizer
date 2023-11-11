@@ -1,7 +1,9 @@
 import { useEffect, lazy } from 'react';
 import { Route, Routes, Navigate } from 'react-router-dom';
 
-import Layout from 'components/Layout/Layout';
+import { loadWebFonts } from 'styles/loadWebFonts';
+
+import Layout from 'layouts/SharedLayout/SharedLayout';
 import Home from 'pages/Home/Home';
 const Items = lazy(() => import('pages/Items/Items'));
 const ItemDetails = lazy(() => import('pages/ItemDetails/ItemDetails'));
@@ -9,9 +11,7 @@ const Signin = lazy(() => import('pages/Sign/Signin'));
 const Signup = lazy(() => import('pages/Sign/Signup'));
 const UserProfile = lazy(() => import('pages/Profile/Profile'));
 
-import loadWebFonts from 'styles/Fonts';
-
-const { MODE, PROD, DEV, BASE_URL, VITE_BASE_URL_DEV, VITE_BASE_URL_PROD } = import.meta.env;
+// const { MODE, PROD, DEV, BASE_URL, VITE_BASE_URL_DEV, VITE_BASE_URL_PROD } = import.meta.env;
 
 const App = () => {
   useEffect(() => {

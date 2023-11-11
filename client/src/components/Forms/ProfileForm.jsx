@@ -2,8 +2,8 @@ import { useCallback } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
-import schemas from 'services/yupSchemas';
-import previewAavatarImage from 'services/previewAavatarImage';
+import schemas from 'utils/validation/yupSchemas';
+import previewAavatarImage from 'utils/helpers/previewAavatarImage';
 // eslint-disable-next-line import/order
 import { btn_submit } from 'styles/common/Buttons.module.scss';
 import css from './Forms.module.scss';

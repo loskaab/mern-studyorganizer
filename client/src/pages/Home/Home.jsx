@@ -1,4 +1,4 @@
-import mernLogo from 'images/mern.png';
+import mernLogo from 'assets/images/mern.png';
 
 import css from './Home.module.scss';
 

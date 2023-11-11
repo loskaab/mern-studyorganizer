@@ -21,6 +21,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.45.4",
+    "react-loader-spinner": "^5.4.5",
     "react-router-dom": "^6.14.2",
     "webfontloader": "^1.6.28",
     "yup": "^1.2.0"
@@ -39,18 +40,5 @@
     "eslint-plugin-react-refresh": "^0.4.3",
     "sass": "^1.64.2",
     "vite": "^4.4.5"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all",
-      "not ie <= 11"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
   }
 }

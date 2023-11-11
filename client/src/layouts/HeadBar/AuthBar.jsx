@@ -1,18 +1,18 @@
 import { useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
+import classNames from 'classnames/bind';
+// import clsx from 'clsx';
 
-import Modal from 'components/Modal/Modal';
-import clN from 'services/classNames';
+import Modal from 'components/shared/Modal/Modal';
 // eslint-disable-next-line import/order
 import { btn_nav, btn_user, btn_modal } from 'styles/common/Buttons.module.scss';
 import { navlink, active } from './HeadBar.module.scss';
 
-// вместо clN
+// вместо classNames
 // import css from "./Alert.module.css";
 // export const Alert = ({ variant, children }) => {
 // return <p className={clsx(css.alert, css[variant])}>{children}</p>;
 // };
-import clsx from 'clsx';
 
 // композиция классов composess
 // .alert {
@@ -45,7 +45,7 @@ const AuthBar = () => {
   return (
     <div>
       <NavLink
-        className={clN(btn_nav, navlink, pathname === '/auth/signup' && active)}
+        className={classNames(btn_nav, navlink, pathname === '/auth/signup' && active)}
         to="/auth/signin"
       >
         Log in

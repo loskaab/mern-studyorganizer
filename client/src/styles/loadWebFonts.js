@@ -6,6 +6,4 @@ const families = [
   'IBM Plex Sans:400,500,700',
 ];
 
-const loadWebFonts = () => WebFont.load({ google: { families } });
-
-export default loadWebFonts;
+export const loadWebFonts = () => WebFont.load({ google: { families } });

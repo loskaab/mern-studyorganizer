@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
-import reactLogo from 'images/react.svg';
-import viteLogo from 'images/vite.svg';
+import reactLogo from 'assets/icons/react.svg';
+import viteLogo from 'assets/icons/vite.svg';
 
 import css from './SideBar.module.scss';
 

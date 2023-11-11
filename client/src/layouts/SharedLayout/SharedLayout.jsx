@@ -1,17 +1,17 @@
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
+import classNames from 'classnames/bind';
 
-import NavBar from 'components/HeadBar/NavBar';
-import AuthBar from 'components/HeadBar/AuthBar';
-import SideBar from 'components/SideBar/SideBar';
-import mernLogo from 'images/favicon.png';
-import clN from 'services/classNames';
-import css from 'components/Layout/Layout.module.scss';
+import NavBar from 'layouts/HeadBar/NavBar';
+import AuthBar from 'layouts/HeadBar/AuthBar';
+import SideBar from 'layouts/SideBar/SideBar';
+import mernLogo from 'assets/icons/favicon.png';
+import css from 'layouts/SharedLayout/SharedLayout.module.scss';
 
 const Layout = () => {
   return (
     <>
-      <header className={clN(css.container, css.header)}>
+      <header className={classNames(css.container, css.header)}>
         {/* винести в компонент Лого */}
         <a href="https://github.com/Belka-S/mern_starter" target="_blank" rel="noopener noreferrer">
           <img src={mernLogo} height="36" width="36" alt="MERN logo" />
@@ -21,7 +21,7 @@ const Layout = () => {
         <AuthBar />
       </header>
 
-      <main className={clN(css.container, css.inline)}>
+      <main className={classNames(css.container, css.inline)}>
         <SideBar />
 
         <Suspense fallback={<div>Loading...</div>}>

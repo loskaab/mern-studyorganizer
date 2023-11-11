@@ -1,6 +1,6 @@
 import * as yup from 'yup';
 
-import regExp from 'services/regExp';
+import regExp from 'utils/constants/regExp';
 
 // Avatar
 const MAX_SIZE = 1024 * 1024;
