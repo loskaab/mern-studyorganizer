@@ -1,3 +1,9 @@
+// Module css, scss sintax:
+// @include check;
+// background-color: $main-color;
+
+$main-color: teal;
+
 @mixin check {
   outline: solid 1px tomato;
 }
@@ -17,5 +23,3 @@
     @content;
   }
 }
-
-$main-color: teal;

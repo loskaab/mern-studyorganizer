@@ -1,35 +1,36 @@
-import { Suspense } from 'react';
+// import classNames from 'classnames/bind';
+import { Suspense, useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom';
-import classNames from 'classnames/bind';
 
-import NavBar from 'layouts/HeadBar/NavBar';
-import AuthBar from 'layouts/HeadBar/AuthBar';
+import Container from 'components/shared/Container/Container';
+import GridWrap from 'components/shared/GridWrap/GridWrap';
+import OvalLoader from 'components/shared/Loader/OvalLoader';
+import Header from 'layouts/Header/Header';
 import SideBar from 'layouts/SideBar/SideBar';
-import mernLogo from 'assets/icons/favicon.png';
-import css from 'layouts/SharedLayout/SharedLayout.module.scss';
 
-const Layout = () => {
+const SharedLayout = () => {
+  const [gridHeight, setGridHeight] = useState('');
+
+  const windowHeight = window.innerHeight;
+  const headerHeight = document.querySelector('header')?.offsetHeight;
+
+  useEffect(() => {
+    setGridHeight(`calc(${windowHeight}px - ${headerHeight}px - 19px)`);
+  }, [headerHeight, windowHeight]);
+
   return (
-    <>
-      <header className={classNames(css.container, css.header)}>
-        {/* винести в компонент Лого */}
-        <a href="https://github.com/Belka-S/mern_starter" target="_blank" rel="noopener noreferrer">
-          <img src={mernLogo} height="36" width="36" alt="MERN logo" />
-        </a>
+    <Container $p="0">
+      <Header />
 
-        <NavBar />
-        <AuthBar />
-      </header>
-
-      <main className={classNames(css.container, css.inline)}>
+      <GridWrap $h={gridHeight} $gtc="2fr 3fr">
         <SideBar />
 
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<OvalLoader />}>
           <Outlet />
         </Suspense>
-      </main>
-    </>
+      </GridWrap>
+    </Container>
   );
 };
 
-export default Layout;
+export default SharedLayout;

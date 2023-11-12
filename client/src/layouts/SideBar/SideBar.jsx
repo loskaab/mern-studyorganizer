@@ -1,26 +1,27 @@
 import { useState } from 'react';
 
+import { LinkReact, LinkVite } from './SideBar.styled';
 import reactLogo from 'assets/icons/react.svg';
 import viteLogo from 'assets/icons/vite.svg';
-
-import css from './SideBar.module.scss';
+import Button from 'components/shared/Button/Button';
+import Container from 'components/shared/Container/Container';
 
 const SideBar = () => {
   const [count, setCount] = useState(0);
 
   return (
-    <div className={css.sidebar}>
+    <Container $p="0 20px" $d="flex" $fd="column" $jc="center" $ai="center">
       <h2>React + Vite</h2>
       <div>
-        <a href="https://react.dev" target="_blank" rel="noreferrer">
-          <img src={reactLogo} className={css.react} alt="React logo" />
-        </a>
-        <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
-          <img src={viteLogo} className={css.vite} alt="Vite logo" />
-        </a>
+        <LinkReact href="https://react.dev" target="_blank" rel="noreferrer">
+          <img src={reactLogo} alt="React logo" />
+        </LinkReact>
+        <LinkVite href="https://vitejs.dev" target="_blank" rel="noreferrer">
+          <img src={viteLogo} alt="Vite logo" />
+        </LinkVite>
       </div>
-      <button onClick={() => setCount(count => count + 1)}>Count {count}</button>
-    </div>
+      <Button onClick={() => setCount(count => count + 1)}>Count {count}</Button>
+    </Container>
   );
 };
 

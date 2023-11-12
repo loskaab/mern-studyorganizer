@@ -1,6 +1,5 @@
-import mernLogo from 'assets/images/mern.png';
-
 import css from './Home.module.scss';
+import mernLogo from 'assets/images/mern.png';
 
 const Home = () => {
   return (

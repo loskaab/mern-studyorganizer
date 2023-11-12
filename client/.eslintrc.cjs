@@ -1,6 +1,6 @@
 module.exports = {
   root: true,
-  env: { browser: true, es2020: true },
+  env: { browser: true, es2021: true },
   extends: [
     'eslint:recommended',
     'plugin:react/recommended',
@@ -18,6 +18,7 @@ module.exports = {
         extensions: ['.js', '.jsx'],
       },
     },
+    'import/ignore': ['styled-components'],
   },
   plugins: ['react-refresh'],
   rules: {
@@ -28,8 +29,12 @@ module.exports = {
     'import/order': [
       'warn',
       {
-        groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index', 'object', 'type'],
-        'newlines-between': 'always-and-inside-groups',
+        'newlines-between': 'always',
+        groups: [['builtin'], ['external'], ['parent', 'internal', 'sibling', 'index', 'unknown']],
+        alphabetize: {
+          order: 'asc',
+          caseInsensitive: true,
+        },
       },
     ],
   },

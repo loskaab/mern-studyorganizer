@@ -1,12 +1,12 @@
 export const themes = Object.freeze({
   colors: {
-    background: '#e0e2e8',
-    accent: '#2374ef',
-    hovered: '#206bdd',
-
     black: '#343434',
     white: '#FFFFFF',
     ligthBlue: '#ddf0ff83',
+
+    background: '#f9f9f9',
+    accent: '#2374ef',
+    hovered: '#206bdd',
 
     error: '#E74A3B',
     success: '#3CBC81',
@@ -34,10 +34,9 @@ export const themes = Object.freeze({
     b: 700,
   },
   breakpoints: {
-    xs: '320px',
-    s: '375px',
-    m: '768px',
-    l: '1280px',
+    mobile: '320px',
+    tablet: '768px',
+    desktop: '1280px',
   },
   animations: {
     cubicBezier: 'cubic-bezier(0, 0.5, 1.3, 2)',

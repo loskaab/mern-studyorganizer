@@ -1,12 +1,13 @@
 import { useEffect, lazy } from 'react';
 import { Route, Routes, Navigate } from 'react-router-dom';
 
+import SharedLayout from 'layouts/SharedLayout/SharedLayout';
+import Home from 'pages/Home/Home';
 import { loadWebFonts } from 'styles/loadWebFonts';
 
-import Layout from 'layouts/SharedLayout/SharedLayout';
-import Home from 'pages/Home/Home';
-const Items = lazy(() => import('pages/Items/Items'));
-const ItemDetails = lazy(() => import('pages/ItemDetails/ItemDetails'));
+const Cluster = lazy(() => import('pages/Cluster/Cluster'));
+const ClusterElement = lazy(() => import('pages/ClusterElement/ClusterElement'));
+const Profile = lazy(() => import('pages/Profile/Profile'));
 const Signin = lazy(() => import('pages/Sign/Signin'));
 const Signup = lazy(() => import('pages/Sign/Signup'));
 const UserProfile = lazy(() => import('pages/Profile/Profile'));
@@ -20,12 +21,11 @@ const App = () => {
 
   return (
     <Routes>
-      {/* SharedLayout ???? */}
-      <Route path="/" element={<Layout />}>
+      <Route path="/" element={<SharedLayout />}>
         <Route index element={<Home />} />
-        <Route path="items" element={<Items />} />
-        <Route path="items/:id" element={<ItemDetails />} />
-        {/* вложить все в роут Аус */}
+        <Route path="cluster" element={<Cluster />} />
+        <Route path="cluster/:id" element={<ClusterElement />} />
+        <Route path="profile" element={<Profile />} />
         <Route path="auth/signin" element={<Signin />} />
         <Route path="auth/signup" element={<Signup />} />
         <Route path="users" element={<UserProfile />} />
