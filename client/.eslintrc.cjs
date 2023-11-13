@@ -21,21 +21,44 @@ module.exports = {
     'import/ignore': ['styled-components'],
   },
   plugins: ['react-refresh'],
+
   rules: {
-    'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
+    indent: ['warn', 2, { SwitchCase: 1, ignoredNodes: [] }],
+    quotes: ['error', 'single'],
+    semi: ['error', 'always'],
+    'jsx-quotes': ['error', 'prefer-double'],
+    'import/no-absolute-path': 'off',
+    'multiline-ternary': 'off',
     'no-console': 'warn',
-    'prefer-const': 'warn',
-    indent: ['warn', 2],
+    'no-unused-vars': 'warn',
+    'space-before-function-paren': [
+      'error',
+      { anonymous: 'always', named: 'never', asyncArrow: 'always' },
+    ],
     'import/order': [
       'warn',
       {
-        'newlines-between': 'always',
-        groups: [['builtin'], ['external'], ['parent', 'internal', 'sibling', 'index', 'unknown']],
-        alphabetize: {
-          order: 'asc',
-          caseInsensitive: true,
-        },
+        groups: ['builtin', 'external', 'parent', 'internal', 'sibling', 'index', 'object', 'type'],
+        'newlines-between': 'always-and-inside-groups',
       },
     ],
   },
 };
+
+// rules: {
+//   indent: ['warn', 2, { SwitchCase: [1, 2] }],
+//   'no-console': 'warn',
+//   'prefer-const': 'warn',
+//   'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
+//   'import/order': [
+//     'warn',
+//     {
+//       'newlines-between': 'always',
+//       groups: [['builtin'], ['external'], ['parent', 'internal', 'sibling', 'index', 'unknown']],
+//       alphabetize: {
+//         order: 'asc',
+//         caseInsensitive: true,
+//       },
+//     },
+//   ],
+// },

@@ -1,9 +1,10 @@
-import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useForm } from 'react-hook-form';
 
-import schemas from 'utils/validation/yupSchemas';
-// eslint-disable-next-line import/order
 import { btn_submit, btn_link } from 'styles/common/Buttons.module.scss';
+
+import { signinSchema } from 'utils/validation/userSchema';
+
 import css from './Forms.module.scss';
 
 const SignupForm = () => {
@@ -11,7 +12,7 @@ const SignupForm = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({ mode: 'onBlur', resolver: yupResolver(schemas.signin) });
+  } = useForm({ mode: 'onBlur', resolver: yupResolver(signinSchema) });
 
   const onSubmit = data => {
     console.log(data);

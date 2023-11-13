@@ -1,12 +1,12 @@
+import { yupResolver } from '@hookform/resolvers/yup';
 import { useCallback } from 'react';
 import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
 
-import schemas from 'utils/validation/yupSchemas';
-import previewAavatarImage from 'utils/helpers/previewAavatarImage';
-// eslint-disable-next-line import/order
-import { btn_submit } from 'styles/common/Buttons.module.scss';
 import css from './Forms.module.scss';
+import { btn_submit } from 'styles/common/Buttons.module.scss';
+import previewAavatarImage from 'utils/helpers/previewAavatarImage';
+import schemas from 'utils/validation/yupSchemas';
+
 
 const ProfileForm = () => {
   const {

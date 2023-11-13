@@ -9,12 +9,15 @@ export const StyledHeader = styled.header`
   left: 0;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 8px 20px;
+  justify-content: start;
+  padding: 6px 20px;
   z-index: 10;
-
   border-bottom: 1px solid ${themes.colors.border};
   background-color: ${themes.colors.background};
+
+  & > a {
+    margin-right: 20px;
+  }
 `;
 
 export const NavLink = styled(Link)`
@@ -32,9 +35,9 @@ export const NavLink = styled(Link)`
 `;
 
 export const Div = styled.div`
+  margin-left: auto;
   display: flex;
   align-items: center;
-
   font-size: 16px;
   font-weight: 700;
 
