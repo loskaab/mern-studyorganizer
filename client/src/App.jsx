@@ -11,7 +11,7 @@ const ProfilePage = lazy(() => import('pages/ProfilePage'));
 const ClusterPage = lazy(() => import('pages/ClusterPage'));
 const ClusterElemPage = lazy(() => import('pages/ClusterElemPage'));
 
-// const { MODE, PROD, DEV, BASE_URL, VITE_APP_DEV_BACK_URL, VITE__APP_PROD_BACK_URL } = import.meta.env;
+// const { MODE, PROD, DEV, BASE_URL, VITE_DEV_BACK_URL, VITE__APP_PROD_BACK_URL } = import.meta.env;
 
 const App = () => {
   useEffect(() => {

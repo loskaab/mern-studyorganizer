@@ -1,5 +1,4 @@
 import Container from 'components/shared/Container/Container';
-import SigninForm from 'components/AuthForms/SigninForm';
 
 const ClusterPage = () => {
   return (

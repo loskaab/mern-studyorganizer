@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
 import { Fragment } from 'react';
 import { Formik } from 'formik';
-// import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
-// import { refreshUserThunk, verifyEmailThunk } from 'store/auth/authOperations';
 import { verifySchema } from 'utils/validation';
+import { refreshUserThunk, verifyEmailThunk } from 'store/auth/authOperations';
 
 import SignBtn from './AuthBtns/SignBtn';
 import {
@@ -19,7 +19,7 @@ import {
 } from './AuthForms.styled';
 
 const VerifyForm = ({ userEmail }) => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const isValid = ({ values, errors }) => {
     const noValue = !Object.values(values)[0] && 'noValue';
@@ -30,10 +30,10 @@ const VerifyForm = ({ userEmail }) => {
   const isDisabled = ({ errors }) => Object.keys(errors).length;
 
   const onSubmit = (values, actions) => {
-    // dispatch(verifyEmailThunk(values))
-    //   .unwrap() // .then(pld =>  console.log(pld))
-    //   .catch(err => console.log(err))
-    //   .then(() => dispatch(refreshUserThunk()));
+    dispatch(verifyEmailThunk(values))
+      .unwrap() // .then(pld =>  console.log(pld))
+      .catch(err => console.log(err))
+      .then(() => dispatch(refreshUserThunk()));
 
     actions.resetForm();
   };

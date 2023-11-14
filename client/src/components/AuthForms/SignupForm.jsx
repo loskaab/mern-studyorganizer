@@ -1,11 +1,11 @@
 import { Formik } from 'formik';
 import PropTypes from 'prop-types';
 import { Fragment, useState } from 'react';
+import { useDispatch } from 'react-redux';
 
-// import { useDispatch } from 'react-redux';
-// import { registerThunk } from 'store/auth/authOperations';
 import LinkRoute from 'components/AuthForms/AuthLinks/LinkRoute';
 import { signupSchema } from 'utils/validation';
+import { registerThunk } from 'store/auth/authOperations';
 
 import GoogleBtn from './AuthBtns/GoogleBtn';
 import IconBtn from './IconBtn/IconBtn';
@@ -24,7 +24,7 @@ import {
 const initialValues = { name: '', email: '', password: '' };
 
 const SignupForm = ({ setIsVerify }) => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const [toggle, setToggle] = useState('password');
 
   const isValid = ({ values, errors, key }) => {
@@ -40,11 +40,11 @@ const SignupForm = ({ setIsVerify }) => {
   };
 
   const onSubmit = (values, actions) => {
-    // dispatch(registerThunk(values))
-    //   .unwrap()
-    //   .then(pld => setIsVerify(!pld.result.user.verifiedEmail))
-    //   .catch(err => console.log(err));
-    // console.log(setIsVerify);
+    dispatch(registerThunk(values))
+      .unwrap()
+      .then(pld => setIsVerify(!pld.result.user.verifiedEmail))
+      .catch(err => console.log(err));
+
     actions.resetForm();
   };
 
