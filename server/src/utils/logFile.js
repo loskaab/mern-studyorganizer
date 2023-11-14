@@ -1,5 +1,6 @@
-const moment = require('moment');
 const fs = require('fs/promises');
+
+const moment = require('moment');
 
 const logFile = (req, res, next) => {
   const { method, url } = req;

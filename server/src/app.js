@@ -5,6 +5,7 @@ const cors = require('cors');
 const logger = require('morgan');
 
 const routes = require('./routes');
+const { logFile } = require('./utils');
 const { missingRouteHandler, globalErrorHandler } = require('./middlewares');
 
 const app = express();
@@ -12,6 +13,7 @@ const options = app.get('env') === 'development' ? 'dev' : 'short';
 
 // Logging
 app.use(logger(options));
+app.use(logFile);
 
 // Enable CORS
 app.use(cors({ origin: '*' }));
