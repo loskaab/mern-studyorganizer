@@ -1,24 +1,25 @@
-const fs = require('fs/promises');
-
 const cloudinary = require('cloudinary').v2;
+const fs = require('fs/promises');
 
 const { HttpError } = require('./HttpError');
 
-const { APP_NAME, CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET } = process.env;
+const { CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_SECRET_KEY } = process.env;
 
 cloudinary.config({
-  cloud_name: CLOUD_NAME,
+  cloud_name: CLOUDINARY_CLOUD_NAME,
   api_key: CLOUDINARY_API_KEY,
-  api_secret: CLOUDINARY_API_SECRET,
-  secure: true,
+  api_secret: CLOUDINARY_SECRET_KEY,
 });
 
 const options = {
-  folder: `${APP_NAME}/Avatars`,
-  use_filename: true,
+  folder: 'PhoneBook/Avatars',
+  use_filename: false,
   unique_filename: true,
   overwrite: true,
-  transformation: [{ width: 250, height: 250, gravity: 'faces', crop: 'fill' }, { radius: 'max' }],
+  transformation: [
+    { width: 200, height: 200, gravity: 'faces', crop: 'thumb', zoom: 0.75 },
+    { radius: 'max' },
+  ],
 };
 
 const upload = async imagePath => {
@@ -27,7 +28,7 @@ const upload = async imagePath => {
     await fs.unlink(imagePath);
     return image;
   } catch (error) {
-    throw new HttpError(404, error.message);
+    throw HttpError(404, error.message);
   }
 };
 
@@ -35,7 +36,6 @@ const destroy = async avatarId => {
   try {
     return await cloudinary.uploader.destroy(avatarId);
   } catch (error) {
-    // eslint-disable-next-line no-console
     console.error(error.message);
   }
 };

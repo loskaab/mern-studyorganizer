@@ -1,6 +1,9 @@
+const isUnuqueConflict = ({ name, code }) => name === 'MongoServerError' && code === 11000;
+
 const mongooseError = (error, data, next) => {
-  const { name, code } = error;
-  error.status = name === 'MongoServerError' && code === 11000 ? 409 : 400;
+  console.log('error: ', error.message);
+
+  error.status = isUnuqueConflict(error) ? 409 : 400;
   next();
 };
 
