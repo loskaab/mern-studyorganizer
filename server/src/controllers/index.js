@@ -1,5 +1,5 @@
 const auth = require('./auth');
 const users = require('./users');
-const items = require('./items');
+const elements = require('./elements');
 
-module.exports = { auth, users, items };
+module.exports = { auth, users, elements };
