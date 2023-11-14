@@ -1,12 +1,12 @@
 import { Formik } from 'formik';
 import PropTypes from 'prop-types';
-// import { toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import { Fragment, useState } from 'react';
-// import { useDispatch } from 'react-redux';
-// import { loginThunk } from 'store/auth/authOperations';
+import { useDispatch } from 'react-redux';
 
 import LinkRoute from 'components/AuthForms/AuthLinks/LinkRoute';
 import { signinSchema } from 'utils/validation';
+import { loginThunk } from 'store/auth/authOperations';
 
 import GoogleBtn from './AuthBtns/GoogleBtn';
 import LinkBtn from './AuthLinks/LinkBtn';
@@ -26,7 +26,7 @@ import {
 const initialValues = { email: '', password: '' };
 
 const SigninForm = ({ setIsVerify, setIsForgot, setEmail }) => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const [toggle, setToggle] = useState('password');
 
   const isValid = ({ values, errors, key }) => {
@@ -47,11 +47,10 @@ const SigninForm = ({ setIsVerify, setIsForgot, setEmail }) => {
   };
 
   const onSubmit = (values, actions) => {
-    // dispatch(loginThunk(values))
-    //   .unwrap()
-    //   .then(pld => setIsVerify(!pld.result.user.verifiedEmail))
-    //   .catch(err => err.includes('401') && toast.error('Unauthorized'));
-    console.log(setIsVerify);
+    dispatch(loginThunk(values))
+      .unwrap()
+      .then(pld => setIsVerify(!pld.result.user.verifiedEmail))
+      .catch(err => err.includes('401') && toast.error('Unauthorized'));
     actions.resetForm();
   };
 

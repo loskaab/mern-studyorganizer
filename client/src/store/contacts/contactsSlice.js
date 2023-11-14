@@ -1,4 +1,5 @@
 import { createSlice, isAnyOf, combineReducers } from '@reduxjs/toolkit';
+
 import * as OPS from './contactsOperations';
 
 const thunkArr = [

@@ -13,8 +13,8 @@ const SignBtn = ({ onClick, disabled, children }) => {
 export default SignBtn;
 
 SignButton.propTypes = {
-  onClick: PropTypes.func.isRequired,
-  disabled: PropTypes.bool,
+  onClick: PropTypes.func,
+  disabled: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]),
   children: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.node,

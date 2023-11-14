@@ -1,35 +1,59 @@
 import { useEffect, lazy } from 'react';
+import { useDispatch } from 'react-redux';
 import { Route, Routes, Navigate } from 'react-router-dom';
+
+import { loadWebFonts } from 'styles/loadWebFonts';
+import { refreshUserThunk } from 'store/auth/authOperations';
+import { useAuth } from 'utils/hooks/useAuth';
+import PublicRoutes from 'routes/PublicRoutes';
+import PrivateRoutes from 'routes/PrivateRoutes';
 
 import SharedLayout from 'layouts/SharedLayout/SharedLayout';
 import HomePage from 'pages/HomePage';
-import { loadWebFonts } from 'styles/loadWebFonts';
-
 const SignupPage = lazy(() => import('pages/SignupPage'));
 const SigninPage = lazy(() => import('pages/SigninPage'));
 const ProfilePage = lazy(() => import('pages/ProfilePage'));
 const ClusterPage = lazy(() => import('pages/ClusterPage'));
 const ClusterElemPage = lazy(() => import('pages/ClusterElemPage'));
-
-// const { MODE, PROD, DEV, BASE_URL, VITE_DEV_BACK_URL, VITE__APP_PROD_BACK_URL } = import.meta.env;
+import Toast from 'components/shared/Toast/Toast';
+import OvalLoader from 'components/shared/Loader/OvalLoader';
 
 const App = () => {
+  const dispatch = useDispatch();
+  const { isRefreshing, isLoading } = useAuth();
+
   useEffect(() => {
     loadWebFonts();
   }, []);
 
+  useEffect(() => {
+    dispatch(refreshUserThunk());
+  }, [dispatch]);
+
   return (
-    <Routes>
-      <Route path="/" element={<SharedLayout />}>
-        <Route index element={<HomePage />} />
-        <Route path="signup" element={<SignupPage />} />
-        <Route path="signin" element={<SigninPage />} />
-        <Route path="profile" element={<ProfilePage />} />
-        <Route path="cluster" element={<ClusterPage />} />
-        <Route path="cluster/:id" element={<ClusterElemPage />} />
-      </Route>
-      <Route path="*" element={<Navigate to="/" />} />
-    </Routes>
+    <>
+      {!(isRefreshing || isLoading) && (
+        <Routes>
+          <Route path="/" element={<SharedLayout />}>
+            <Route element={<PublicRoutes />}>
+              <Route index element={<HomePage />} />
+              <Route path="signup" element={<SignupPage />} />
+              <Route path="signin" element={<SigninPage />} />
+            </Route>
+            <Route element={<PrivateRoutes />}>
+              <Route path="cluster" element={<ClusterPage />} />
+              <Route path="cluster/:id" element={<ClusterElemPage />} />
+              <Route path="profile" element={<ProfilePage />} />
+            </Route>
+          </Route>
+          <Route path="*" element={<Navigate to="/" />} />
+        </Routes>
+      )}
+
+      {(isRefreshing || isLoading) && <OvalLoader />}
+
+      <Toast />
+    </>
   );
 };
 

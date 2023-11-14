@@ -15,7 +15,7 @@ export default Button;
 Button.propTypes = {
   onClick: PropTypes.func,
   type: PropTypes.string,
-  disabled: PropTypes.bool,
+  disabled: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]),
   children: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.node,

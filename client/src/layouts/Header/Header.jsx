@@ -1,33 +1,29 @@
-// import { Suspense } from 'react';
-// import { Outlet } from 'react-router-dom';
-// import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
-// import { logoutThunk } from 'store/auth/authOperations';
 // import { cleanElements, setActiveElement } from 'store/elements/elementsSlice';
 // import { setFilterValue } from 'store/elements/elementsSlice';
-// import { useAuth } from 'utils/hooks/useAuth';
-import { useNavigate } from 'react-router-dom';
-
+import { logoutThunk } from 'store/auth/authOperations';
+import { useAuth } from 'utils/hooks/useAuth';
 import mernLogo from 'assets/icons/favicon.png';
 import Button from 'components/shared/Button/Button';
 
 import { StyledHeader, NavLink, Div } from './Header.styled';
-// import OvalLoader from 'components/shared/Loader/OvalLoader';
 
 const Header = () => {
   const navigate = useNavigate();
-  // const dispatch = useDispatch();
-  // const { isLoggedIn, user } = useAuth();
+  const dispatch = useDispatch();
+  const { isLoggedIn, user } = useAuth();
 
   const handleLogIn = () => {
     navigate('/signin', { replace: true });
   };
 
   const handleLogOut = () => {
-    //   dispatch(logoutThunk());
-    //   dispatch(cleanElements());
-    //   dispatch(setActiveElement(null));
-    //   dispatch(setFilterValue(''));
+    dispatch(logoutThunk());
+    // dispatch(cleanElements());
+    // dispatch(setActiveElement(null));
+    // dispatch(setFilterValue(''));
   };
 
   return (
@@ -37,17 +33,16 @@ const Header = () => {
       </a>
 
       <nav>
-        <NavLink to="/">Home</NavLink>
-        <NavLink to="/profile">Profile</NavLink>
-        <NavLink to="/cluster">Cluster</NavLink>
+        {!isLoggedIn && <NavLink to="/">Home</NavLink>}
+        {isLoggedIn && <NavLink to="/cluster">Cluster</NavLink>}
+        {isLoggedIn && <NavLink to="/profile">Profile</NavLink>}
       </nav>
-      {/* {isLoggedIn && ( */}
+
       <Div>
-        {/* <p>{user.email}</p> */}
-        <Button onClick={handleLogIn}>Log in</Button>
-        <Button onClick={handleLogOut}>Log out</Button>
+        {isLoggedIn && <p>{user.email}</p>}
+        {isLoggedIn && <Button onClick={handleLogOut}>Log out</Button>}
+        {!isLoggedIn && <Button onClick={handleLogIn}>Log in</Button>}
       </Div>
-      {/* )} */}
     </StyledHeader>
   );
 };
