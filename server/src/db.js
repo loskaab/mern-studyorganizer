@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
 
-const { DB_NAME, DB_USER, DB_PATH, DB_PASSWORD } = process.env;
+const { APP_NAME, MDB_USER, MDB_PATH, MDB_PASSWORD } = process.env;
 
 const DB_HOST =
-  `mongodb+srv://${DB_USER}:${DB_PASSWORD}` +
-  `@${DB_PATH}.mongodb.net/${DB_NAME}?retryWrites=true&w=majority`;
+  `mongodb+srv://${MDB_USER}:${MDB_PASSWORD}` +
+  `@${MDB_PATH}.mongodb.net/${APP_NAME}_DB?retryWrites=true&w=majority`;
 
 const connectDB = (uri, options = {}) => mongoose.connect(uri, options);
 
