@@ -1,36 +1,67 @@
 const Joi = require('joi');
 
-const { validate } = require('../decorators');
-const { regExp, joiError } = require('../utils');
+const { joiError, regExp } = require('../utils');
+const { validateBody } = require('../decorators');
 
-const register = validate(
+const registerSchema = validateBody(
   Joi.object({
     name: Joi.string().min(4).required(),
-    email: Joi.string().pattern(regExp.email).required().error(joiError.email),
-    password: Joi.string().min(6).required(),
+    email: Joi.string().pattern(regExp.EMAIL.pattern).required().error(joiError.email),
+    password: Joi.string().min(6).required().error(joiError.password),
   }),
 );
 
-const login = validate(
+const updateSchema = validateBody(
   Joi.object({
-    email: Joi.string().pattern(regExp.email).required().error(joiError.email),
-    password: Joi.string().min(6).required(),
+    name: Joi.string().min(4),
+    email: Joi.string().pattern(regExp.EMAIL.pattern).error(joiError.email),
+    whatsApp: Joi.string().pattern(regExp.PHONE.pattern).allow(''),
+    telegram: Joi.string().pattern(regExp.TELEGRAM.pattern).allow(''),
+    location: Joi.string().pattern(regExp.ADDRESS.pattern).allow(''),
+    socialLink: Joi.string().pattern(regExp.HTTP_LINK.pattern).allow(''),
+    birthday: Joi.string().pattern(regExp.DATE.pattern).allow(''),
+    about: Joi.string().allow(''),
   }),
 );
 
-const verifyEmail = validate(
+const loginSchema = validateBody(
   Joi.object({
-    email: Joi.string().pattern(regExp.email).required().error(joiError.email),
-    verificationCode: Joi.string().required(),
+    email: Joi.string().email(regExp.EMAIL.pattern).required().error(joiError.email),
+    password: Joi.string().min(6).required().error(joiError.password),
   }),
 );
 
-const sendFeedback = validate(
+const verifySchema = validateBody(
   Joi.object({
-    name: Joi.string().min(4).required(),
-    email: Joi.string().pattern(regExp.email).required().error(joiError.email),
-    text: Joi.string().min(6).required(),
+    verificationCode: Joi.number().required(),
   }),
 );
 
-module.exports = { register, login, verifyEmail, sendFeedback };
+const forgotSchema = validateBody(
+  Joi.object({
+    email: Joi.string().email(regExp.EMAIL.pattern).required().error(joiError.email),
+  }),
+);
+
+const resetSchema = validateBody(
+  Joi.object({
+    id: Joi.string().required(),
+    pwdToken: Joi.string().required(),
+    newPass: Joi.string().min(6).required().error(joiError.password),
+    confirmPass: Joi.any()
+      .equal(Joi.ref('newPass'))
+      .required()
+      .label('Confirm password')
+      .error(joiError.password),
+    // .messages({ 'any.only': '{{#label}} does not match' }),
+  }),
+);
+
+module.exports = {
+  registerSchema,
+  loginSchema,
+  updateSchema,
+  verifySchema,
+  forgotSchema,
+  resetSchema,
+};
