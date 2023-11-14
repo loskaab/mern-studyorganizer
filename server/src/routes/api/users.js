@@ -1,22 +1,19 @@
-const { Router } = require('express');
+const express = require('express');
 
 const ctrl = require('../../controllers');
-const validateBody = require('../../validation');
-const { authenticate, parse, upload } = require('../../middlewares');
+const validate = require('../../validation');
+const { authenticate, upload } = require('../../middlewares');
 
-const router = Router();
+const router = express.Router();
 
-router.get('/current', authenticate, ctrl.users.getCurrent);
-router.post('/verify', parse.json, validateBody.users.verifyEmail, ctrl.users.verifyEmail);
-router.patch('/avatar', parse.json, authenticate, upload.single('avatar'), ctrl.users.updateAvatar);
-router.delete('/current', authenticate, ctrl.users.deleteCurrent);
+router.use(authenticate);
 
-router.get('/feedback', ctrl.users.renderFeedbackHtml);
-router.post(
-  '/feedback',
-  parse.urlencoded,
-  validateBody.users.sendFeedback,
-  ctrl.users.sendFeedback,
+router.patch(
+  '/update',
+  upload.single('avatar'),
+  validate.users.updateSchema,
+  ctrl.users.updateProfile,
 );
+router.delete('/delete', ctrl.users.deleteProfile);
 
 module.exports = router;

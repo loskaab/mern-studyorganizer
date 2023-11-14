@@ -1,13 +1,13 @@
 const { Router } = require('express');
 
+const router = Router();
+
 const authRouter = require('./api/auth');
 const usersRouter = require('./api/users');
-const itemsRouter = require('./api/items');
-
-const router = Router();
+const elementsRouter = require('./api/elements');
 
 router.use('/auth', authRouter);
 router.use('/users', usersRouter);
-router.use('/items', itemsRouter);
+router.use('/elements', elementsRouter);
 
 module.exports = router;
