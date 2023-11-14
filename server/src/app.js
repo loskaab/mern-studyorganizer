@@ -18,6 +18,12 @@ app.use(logFile);
 // Enable CORS
 app.use(cors({ origin: '*' }));
 
+// Parse JSON
+app.use(express.json());
+
+// Parse application/x-www-form-urlencoded
+app.use(express.urlencoded({ extended: false }));
+
 // Serve static files
 app.use(express.static(path.join(process.cwd(), 'public')));
 

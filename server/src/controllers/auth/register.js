@@ -1,5 +1,6 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+
 // const gravatar = require('gravatar');
 const { User } = require('../../models');
 const { HttpError, randomNumber, sendMail, createMsg } = require('../../utils');
