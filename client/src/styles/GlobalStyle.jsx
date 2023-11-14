@@ -10,7 +10,7 @@ import { themes } from 'styles/themes';
 
 export const GlobalStyle = createGlobalStyle`
 
-// --------------- Common Elements --------------- //
+// --------------- Common --------------- //
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',

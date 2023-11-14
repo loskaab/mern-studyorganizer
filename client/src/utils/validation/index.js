@@ -1,2 +1,2 @@
 export * from './userSchema';
-export * from './contactSchema';
+export * from './elementSchema';

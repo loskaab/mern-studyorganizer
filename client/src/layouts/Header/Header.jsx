@@ -3,8 +3,8 @@
 // import { useDispatch } from 'react-redux';
 
 // import { logoutThunk } from 'store/auth/authOperations';
-// import { cleanContacts, setActiveContact } from 'store/contacts/contactsSlice';
-// import { setFilterValue } from 'store/contacts/contactsSlice';
+// import { cleanElements, setActiveElement } from 'store/elements/elementsSlice';
+// import { setFilterValue } from 'store/elements/elementsSlice';
 // import { useAuth } from 'utils/hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 
@@ -25,8 +25,8 @@ const Header = () => {
 
   const handleLogOut = () => {
     //   dispatch(logoutThunk());
-    //   dispatch(cleanContacts());
-    //   dispatch(setActiveContact(null));
+    //   dispatch(cleanElements());
+    //   dispatch(setActiveElement(null));
     //   dispatch(setFilterValue(''));
   };
 

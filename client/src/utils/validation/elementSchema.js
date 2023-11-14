@@ -4,7 +4,7 @@ import { regExp } from 'utils/constants';
 
 const pattern = regExp => [regExp.pattern, regExp.msg];
 
-export const contactSchema = Yup.object().shape({
+export const elementSchema = Yup.object().shape({
   firstName: Yup.string()
     .required('Required')
     .matches(...pattern(regExp.NAME)),
