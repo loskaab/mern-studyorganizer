@@ -11,6 +11,9 @@ export const Form = styled(FormikForm)`
 
   border-radius: ${themes.radius.m};
   background-color: ${themes.colors.white};
+
+  box-shadow: 0 3px 5px -1px rgb(0 0 0/20%), 0 6px 10px 0 rgb(0 0 0/14%),
+    0 1px 18px 0 rgb(0 0 0/12%);
 `;
 
 export const Label = styled.label`

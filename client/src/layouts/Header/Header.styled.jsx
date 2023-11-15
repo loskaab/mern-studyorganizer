@@ -13,7 +13,7 @@ export const StyledHeader = styled.header`
   padding: 6px 20px;
   z-index: 10;
   background-color: ${themes.colors.background};
-  border-bottom: 1px solid ${themes.colors.border};
+  border-bottom: 1px solid #dbdbdb;
 
   & > a {
     margin-right: 20px;

@@ -13,8 +13,9 @@ const ClusterPage = () => {
       $jc="center"
     >
       <h1>Cluster</h1>
-      <ControlBar $x="right" $y="bottom" $gtc="1fr">
+      <ControlBar $x="right" $y="bottom" $gtc="1fr 1fr">
         <Button $s="m">Edit</Button>
+        <Button $s="m">Add</Button>
       </ControlBar>
     </Container>
   );

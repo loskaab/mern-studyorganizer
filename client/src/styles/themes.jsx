@@ -6,7 +6,7 @@ export const themes = Object.freeze({
 
     background: '#f9f9f9',
     accent: '#2374ef',
-    hovered: '#206bdd',
+    hovered: '#1f68d7',
 
     error: '#E74A3B',
     success: '#3CBC81',

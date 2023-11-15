@@ -16,8 +16,8 @@ const ProfilePage = () => {
       <h1>Profile</h1>
       {/* <ProfileForm /> */}
       <ControlBar $x="right" $y="bottom" $gtc="1fr 1fr">
-        <Button $s="m">Delete</Button>
         <Button $s="m">Edit</Button>
+        <Button $s="m">Delete</Button>
       </ControlBar>
     </Container>
   );

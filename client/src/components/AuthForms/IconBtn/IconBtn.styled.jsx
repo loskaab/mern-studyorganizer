@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import { themes } from 'styles/themes';
 
 export const Button = styled.button`
@@ -6,6 +7,8 @@ export const Button = styled.button`
   position: absolute;
   top: 50%;
   left: 10px;
+  display: flex;
+  align-items: center;
 
   transform: translateY(-50%);
 
