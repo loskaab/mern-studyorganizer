@@ -12,8 +12,8 @@ export const StyledHeader = styled.header`
   justify-content: start;
   padding: 6px 20px;
   z-index: 10;
-  border-bottom: 1px solid ${themes.colors.border};
   background-color: ${themes.colors.background};
+  border-bottom: 1px solid ${themes.colors.border};
 
   & > a {
     margin-right: 20px;

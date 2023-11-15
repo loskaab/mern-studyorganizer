@@ -24,6 +24,7 @@
 - **[react-slick]**https://react-slick.neostack.com
 - **[react-player]**https://github.com/CookPete/react-player
 - **[react-hot-toast]**https://react-hot-toast.com/
+- **[react-toastify]**https://fkhadra.github.io/react-toastify/introduction
 - **[infinite-scroll]**https://github.com/danbovey/react-infinite-scroller
 - **[mockapi]**https://mockapi.io/projects
 - **[loader-spinner]**https://mhnpd.github.io/react-loader-spinner/docs/components/oval

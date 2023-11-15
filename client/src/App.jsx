@@ -14,7 +14,7 @@ const SignupPage = lazy(() => import('pages/SignupPage'));
 const SigninPage = lazy(() => import('pages/SigninPage'));
 const ProfilePage = lazy(() => import('pages/ProfilePage'));
 const ClusterPage = lazy(() => import('pages/ClusterPage'));
-const ClusterElemPage = lazy(() => import('pages/ClusterElemPage'));
+const ElementPage = lazy(() => import('pages/ElementPage'));
 import Toast from 'components/shared/Toast/Toast';
 import OvalLoader from 'components/shared/Loader/OvalLoader';
 
@@ -42,7 +42,7 @@ const App = () => {
             </Route>
             <Route element={<PrivateRoutes />}>
               <Route path="cluster" element={<ClusterPage />} />
-              <Route path="cluster/:id" element={<ClusterElemPage />} />
+              <Route path="cluster/:id" element={<ElementPage />} />
               <Route path="profile" element={<ProfilePage />} />
             </Route>
           </Route>

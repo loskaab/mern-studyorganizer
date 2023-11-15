@@ -1,5 +1,6 @@
-import { LinkMern } from './MainLayout.styled';
 import mernLogo from 'assets/images/mern.png';
+
+import { LinkMern } from './MainLayout.styled';
 
 const MainLayout = () => {
   return (

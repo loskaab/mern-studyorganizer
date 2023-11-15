@@ -12,12 +12,12 @@ const CommonStyles = css`
   font-family: 'Roboto', sans-serif;
   font-size: 14px;
 
-  @media screen and (width >= 768px) {
+  @media screen and (width > ${themes.breakpoints.tablet}) {
     font-size: 16px;
   }
 
   border: 1px solid;
-  border-radius: ${themes.radius.s};
+  border-radius: 20px;
   transition: border-color 250ms, background-color 250ms, color 250ms;
 `;
 
@@ -51,9 +51,9 @@ export const IconLink = styled.a`
   margin-top: 18px;
   padding-inline: 10px;
 
-  font-weight: 400;
-  border-color: ${themes.colors.border};
-  color: ${themes.colors.black};
+  font-weight: 500;
+  border-color: ${themes.colors.accent};
+  color: ${themes.colors.accent};
   background-color: ${themes.colors.white};
 
   &:hover,

@@ -17,6 +17,16 @@ export const themes = Object.freeze({
 
     backdrop: 'rgba(23, 24, 32, 0.5)',
   },
+  indent: {
+    s: '10px',
+    m: '20px',
+    l: '40px',
+  },
+  radius: {
+    s: '5px',
+    m: '8px',
+    l: '12px',
+  },
   fontSizes: {
     micro: '10px',
     xs: '12px',
@@ -45,10 +55,5 @@ export const themes = Object.freeze({
     auth: '0px 47px 355px rgba(0, 0, 0, 0.07), 0px 9.4px 57.6875px rgba(0, 0, 0, 0.035)',
     modal:
       '0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.15), 0px 1px 3px 0px rgba(0, 0, 0, 0.1)',
-  },
-  radius: {
-    s: '5px',
-    m: '8px',
-    l: '12px',
   },
 });

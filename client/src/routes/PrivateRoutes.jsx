@@ -13,7 +13,7 @@ const PrivateRoutes = () => {
       <Outlet />
     </Suspense>
   ) : (
-    <Navigate to="/signin" state={location} />
+    <Navigate to="/" state={location} />
   );
 };
 

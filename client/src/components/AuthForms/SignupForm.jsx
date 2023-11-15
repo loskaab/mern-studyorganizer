@@ -81,7 +81,7 @@ const SignupForm = ({ setIsVerify }) => {
 
           <SignBtn disabled={isDisabled({ values, errors })}>Sign up</SignBtn>
 
-          <GoogleBtn />
+          <GoogleBtn>Sign up with Google</GoogleBtn>
         </Form>
       )}
     </Formik>
