@@ -2,9 +2,9 @@ import PropTypes from 'prop-types';
 
 import { Btn } from './Button.styled';
 
-const Button = ({ onClick, type = 'button', disabled, children }) => {
+const Button = ({ $s, $w, onClick, type = 'button', disabled, children }) => {
   return (
-    <Btn onClick={onClick} type={type} disabled={disabled}>
+    <Btn $s={$s} $w={$w} onClick={onClick} type={type} disabled={disabled}>
       {children}
     </Btn>
   );
@@ -13,6 +13,8 @@ const Button = ({ onClick, type = 'button', disabled, children }) => {
 export default Button;
 
 Button.propTypes = {
+  $s: PropTypes.string,
+  $w: PropTypes.string,
   onClick: PropTypes.func,
   type: PropTypes.string,
   disabled: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]),
