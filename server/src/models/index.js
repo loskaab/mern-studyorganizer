@@ -1,5 +1,5 @@
+const { Cluster } = require('./cluster');
+const { Element } = require('./element');
 const { User } = require('./user');
-const { Contact } = require('./contact');
-//
 
-module.exports = { User, Contact };
+module.exports = { Cluster, Element, User };

@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { Route, Routes, Navigate } from 'react-router-dom';
 
 import { loadWebFonts } from 'styles/loadWebFonts';
-import { refreshUserThunk } from 'store/auth/authOperations';
+import { refreshUserThunk } from 'store/auth/authThunks';
 import { useAuth } from 'utils/hooks/useAuth';
 import PublicRoutes from 'routes/PublicRoutes';
 import PrivateRoutes from 'routes/PrivateRoutes';
@@ -13,8 +13,8 @@ import HomePage from 'pages/HomePage';
 const SignupPage = lazy(() => import('pages/SignupPage'));
 const SigninPage = lazy(() => import('pages/SigninPage'));
 const ProfilePage = lazy(() => import('pages/ProfilePage'));
-const ClusterPage = lazy(() => import('pages/ClusterPage'));
-const ElementPage = lazy(() => import('pages/ElementPage'));
+const ClustersPage = lazy(() => import('pages/ClustersPage'));
+const ElementsPage = lazy(() => import('pages/ElementsPage'));
 import Toast from 'components/shared/Toast/Toast';
 import OvalLoader from 'components/shared/Loader/OvalLoader';
 
@@ -41,8 +41,8 @@ const App = () => {
               <Route path="signin" element={<SigninPage />} />
             </Route>
             <Route element={<PrivateRoutes />}>
-              <Route path="cluster" element={<ClusterPage />} />
-              <Route path="cluster/:id" element={<ElementPage />} />
+              <Route path="cluster" element={<ClustersPage />} />
+              <Route path="cluster/:id" element={<ElementsPage />} />
               <Route path="profile" element={<ProfilePage />} />
             </Route>
           </Route>

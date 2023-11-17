@@ -1,12 +1,12 @@
 import Button from 'components/shared/Button/Button';
-import Container from 'components/shared/Container/Container';
+import FlexWrap from 'components/shared/FlexWrap/FlexWrap';
 import ControlBar from 'components/shared/ControlBar/ControlBar';
 import { themes } from 'styles/themes';
 // import ProfileForm from 'components/Forms/ProfileForm';
 
 const ProfilePage = () => {
   return (
-    <Container
+    <FlexWrap
       $p={`${themes.indent.s} ${themes.indent.m}`}
       $d="flex"
       $fd="column"
@@ -19,7 +19,7 @@ const ProfilePage = () => {
         <Button $s="m">Edit</Button>
         <Button $s="m">Delete</Button>
       </ControlBar>
-    </Container>
+    </FlexWrap>
   );
 };
 

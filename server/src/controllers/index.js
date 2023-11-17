@@ -1,5 +1,6 @@
 const auth = require('./auth');
-const users = require('./users');
+const clusters = require('./clusters');
 const elements = require('./elements');
+const users = require('./users');
 
-module.exports = { auth, users, elements };
+module.exports = { auth, clusters, elements, users };

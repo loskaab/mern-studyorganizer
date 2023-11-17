@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 
 import LinkRoute from 'components/AuthForms/AuthLinks/LinkRoute';
 import { signinSchema } from 'utils/validation';
-import { loginThunk } from 'store/auth/authOperations';
+import { loginThunk } from 'store/auth/authThunks';
 
 import GoogleBtn from './AuthBtns/GoogleBtn';
 import LinkBtn from './AuthLinks/LinkBtn';
@@ -18,7 +18,7 @@ import {
   ErrorMsg,
   Label,
   FieldWrap,
-  Tittle,
+  Title,
   SuccessIcon,
   ErrorIcon,
 } from './AuthForms.styled';
@@ -55,13 +55,17 @@ const SigninForm = ({ setIsVerify, setIsForgot, setEmail }) => {
   };
 
   return (
-    <Formik initialValues={initialValues} validationSchema={signinSchema} onSubmit={onSubmit}>
+    <Formik
+      initialValues={initialValues}
+      validationSchema={signinSchema}
+      onSubmit={onSubmit}
+    >
       {({ values, errors }) => (
         <Form>
-          <Tittle>
+          <Title>
             <h2>Sign in</h2>
             <LinkRoute to="/signup">Don`t have an account?</LinkRoute>
-          </Tittle>
+          </Title>
 
           {Object.keys(initialValues).map(key => (
             <Fragment key={key}>
@@ -70,7 +74,9 @@ const SigninForm = ({ setIsVerify, setIsForgot, setEmail }) => {
                 <pre> </pre>
                 <ErrorMsg name={key} component="span" />
                 {key === 'password' && (
-                  <LinkBtn onClick={() => onClick(values)}>Forgot your pass?</LinkBtn>
+                  <LinkBtn onClick={() => onClick(values)}>
+                    Forgot your pass?
+                  </LinkBtn>
                 )}
               </Label>
 
@@ -81,7 +87,9 @@ const SigninForm = ({ setIsVerify, setIsForgot, setEmail }) => {
                   validation={isValid({ values, errors, key })}
                 />
 
-                {key === 'password' && <IconBtn toggle={toggle} setToggle={setToggle} />}
+                {key === 'password' && (
+                  <IconBtn toggle={toggle} setToggle={setToggle} />
+                )}
                 {values[key] && errors[key] && <ErrorIcon />}
                 {values[key] && !errors[key] && <SuccessIcon />}
               </FieldWrap>

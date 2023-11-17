@@ -1,13 +1,13 @@
-const { Contact } = require('../../models');
+const { Element } = require('../../models');
 const { HttpError, filterValues } = require('../../utils');
 const { ctrlWrapper } = require('../../decorators');
 
 const add = ctrlWrapper(async (req, res) => {
   const { _id: owner } = req.user;
-  const newContact = await Contact.create({ ...req.body, owner });
-  if (!newContact) throw HttpError(403);
+  const newElement = await Element.create({ ...req.body, owner });
+  if (!newElement) throw HttpError(403);
 
-  res.status(201).json({ message: 'Created', result: { contact: filterValues(newContact) } });
+  res.status(201).json({ message: 'Created', result: { element: filterValues(newElement) } });
 });
 
 module.exports = add;

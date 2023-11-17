@@ -29,11 +29,11 @@ const TELEGRAM_PHONE = {
     /(.*\B@(?=\w{5,32}\b)[a-zA-Z0-9]+(?:_[a-zA-Z0-9]+)*$)|(^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[\s]?[0-9])+$)/,
 };
 
-const HTTP_LINK = {
-  name: 'HTTP_LINK',
+const HTTP = {
+  name: 'HTTP',
   msg: 'http(s)://.../...',
   pattern:
-    /^(http(s)?:\/\/)?(([_.-][a-zA-Zа-яА-Я])?[a-zA-Zа-яА-Я0-9]*)+\/(([_-][a-zA-Zа-яА-Я])?[a-zA-Zа-яА-Я0-9]*)*$/,
+    /^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)/,
 };
 
 const LINKEDIN = {
@@ -70,7 +70,7 @@ export {
   PHONE,
   TELEGRAM,
   TELEGRAM_PHONE,
-  HTTP_LINK,
+  HTTP,
   LINKEDIN,
   GITHUB,
   DATE,

@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 
 import LinkRoute from 'components/AuthForms/AuthLinks/LinkRoute';
 import { signupSchema } from 'utils/validation';
-import { registerThunk } from 'store/auth/authOperations';
+import { registerThunk } from 'store/auth/authThunks';
 
 import GoogleBtn from './AuthBtns/GoogleBtn';
 import IconBtn from './IconBtn/IconBtn';
@@ -16,7 +16,7 @@ import {
   ErrorMsg,
   Label,
   FieldWrap,
-  Tittle,
+  Title,
   SuccessIcon,
   ErrorIcon,
 } from './AuthForms.styled';
@@ -49,13 +49,17 @@ const SignupForm = ({ setIsVerify }) => {
   };
 
   return (
-    <Formik initialValues={initialValues} validationSchema={signupSchema} onSubmit={onSubmit}>
+    <Formik
+      initialValues={initialValues}
+      validationSchema={signupSchema}
+      onSubmit={onSubmit}
+    >
       {({ values, errors }) => (
         <Form>
-          <Tittle>
+          <Title>
             <h2>Sign up</h2>
             <LinkRoute to="/signin">Have an account?</LinkRoute>
-          </Tittle>
+          </Title>
 
           {Object.keys(initialValues).map(key => (
             <Fragment key={key}>
@@ -72,7 +76,9 @@ const SignupForm = ({ setIsVerify }) => {
                   validation={isValid({ values, errors, key })}
                 />
 
-                {key === 'password' && <IconBtn toggle={toggle} setToggle={setToggle} />}
+                {key === 'password' && (
+                  <IconBtn toggle={toggle} setToggle={setToggle} />
+                )}
                 {values[key] && errors[key] && <ErrorIcon />}
                 {values[key] && !errors[key] && <SuccessIcon />}
               </FieldWrap>

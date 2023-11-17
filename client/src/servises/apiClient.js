@@ -24,7 +24,7 @@ apiClient.interceptors.response.use(
   response => {
     const { message, result } = response.data;
 
-    !result?.contacts && message && toast.success(message);
+    !result?.clusters && !result?.elements && message && toast.success(message);
 
     !message &&
       result?.user?.verificationCode === 'google' &&
@@ -52,7 +52,6 @@ apiClient.interceptors.response.use(
 
         return apiClient(error.config);
       } catch (error) {
-        console.log('error: ', error);
         return Promise.reject(error);
       }
     }

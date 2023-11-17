@@ -4,7 +4,7 @@ import { Formik } from 'formik';
 import { useDispatch } from 'react-redux';
 
 import { verifySchema } from 'utils/validation';
-import { refreshUserThunk, verifyEmailThunk } from 'store/auth/authOperations';
+import { refreshUserThunk, verifyEmailThunk } from 'store/auth/authThunks';
 
 import SignBtn from './AuthBtns/SignBtn';
 import {
@@ -13,7 +13,7 @@ import {
   Label,
   Field,
   FieldWrap,
-  Tittle,
+  Title,
   SuccessIcon,
   ErrorIcon,
 } from './AuthForms.styled';
@@ -46,9 +46,9 @@ const VerifyForm = ({ userEmail }) => {
     >
       {({ values, errors }) => (
         <Form>
-          <Tittle>
+          <Title>
             <h2>Verify: {userEmail}</h2>
-          </Tittle>
+          </Title>
 
           <Fragment>
             <Label>
@@ -57,7 +57,11 @@ const VerifyForm = ({ userEmail }) => {
               <ErrorMsg name="verificationCode" component="span" />
             </Label>
             <FieldWrap>
-              <Field type="text" name="verificationCode" validation={isValid({ values, errors })} />
+              <Field
+                type="text"
+                name="verificationCode"
+                validation={isValid({ values, errors })}
+              />
 
               {isValid({ values, errors }) === 'error' && <ErrorIcon />}
               {isValid({ values, errors }) === 'success' && <SuccessIcon />}

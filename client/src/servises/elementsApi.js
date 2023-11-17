@@ -1,0 +1,21 @@
+import { apiClient } from './apiClient';
+
+export const fetchElements = async () => {
+  const { data } = await apiClient.get('/elements');
+  return data;
+};
+
+export const addElement = async element => {
+  const { data } = await apiClient.post('/elements', element);
+  return data;
+};
+
+export const updateElement = async ({ id, element }) => {
+  const { data } = await apiClient.put(`/elements/${id}`, element);
+  return data;
+};
+
+export const deleteElement = async id => {
+  const { data } = await apiClient.delete(`/elements/${id}`);
+  return data;
+};

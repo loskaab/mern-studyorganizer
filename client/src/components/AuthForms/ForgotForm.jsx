@@ -13,7 +13,7 @@ import {
   Label,
   Field,
   FieldWrap,
-  Tittle,
+  Title,
   SuccessIcon,
   ErrorIcon,
 } from './AuthForms.styled';
@@ -41,9 +41,9 @@ const ForgotForm = ({ setIsForgot, email }) => {
     <Formik initialValues={{ email }} validationSchema={forgotSchema} onSubmit={onSubmit}>
       {({ values, errors }) => (
         <Form>
-          <Tittle>
+          <Title>
             <h2>Get reset link</h2>
-          </Tittle>
+          </Title>
 
           <Fragment>
             <Label>

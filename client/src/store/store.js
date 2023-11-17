@@ -11,8 +11,9 @@ import {
   REGISTER,
 } from 'redux-persist';
 
-import { contactsReducer } from './contacts/contactsSlice';
 import { authReducer } from './auth/authSlice';
+import { clustersReducer } from './clusters/clustersSlice';
+import { elementsReducer } from './elements/elementsSlice';
 
 // ----------------persistReducer---------------- //
 
@@ -22,15 +23,22 @@ const authPersistConfig = {
   whitelist: ['user'],
 };
 
-const contactsPersistConfig = {
-  key: 'contacts',
+const eclustersPersistConfig = {
+  key: 'eclusters',
+  storage,
+  whitelist: ['filter', 'activeItem'],
+};
+
+const elementsPersistConfig = {
+  key: 'elements',
   storage,
   whitelist: ['filter', 'activeItem'],
 };
 
 const rootReducer = combineReducers({
   auth: persistReducer(authPersistConfig, authReducer),
-  contacts: persistReducer(contactsPersistConfig, contactsReducer),
+  clusters: persistReducer(eclustersPersistConfig, clustersReducer),
+  elements: persistReducer(elementsPersistConfig, elementsReducer),
 });
 
 // ----------------configureStore---------------- //

@@ -14,7 +14,7 @@ import {
   Label,
   Field,
   FieldWrap,
-  Tittle,
+  Title,
   SuccessIcon,
   ErrorIcon,
 } from './AuthForms.styled';
@@ -49,9 +49,9 @@ const ResetForm = ({ id, pwdToken }) => {
     <Formik initialValues={initialValues} validationSchema={resetSchema} onSubmit={onSubmit}>
       {({ values, errors }) => (
         <Form>
-          <Tittle>
+          <Title>
             <h2>Reset password</h2>
-          </Tittle>
+          </Title>
 
           {Object.keys(initialValues).map(key => (
             <Fragment key={key}>

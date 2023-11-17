@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 
-import * as selectors from 'store/seletors';
+import * as selectors from 'store/auth/authSelectors';
 
 export const useAuth = () => {
   const user = useSelector(selectors.selectUser);

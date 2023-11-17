@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import SignupForm from 'components/AuthForms/SignupForm';
 import VerifyForm from 'components/AuthForms/VerifyForm';
-import Container from 'components/shared/Container/Container';
+import FlexWrap from 'components/shared/FlexWrap/FlexWrap';
 import Modal from 'components/shared/Modal/Modal';
 import { useAuth } from 'utils/hooks';
 
@@ -11,7 +11,7 @@ const SignupPage = () => {
   const { user } = useAuth();
 
   return (
-    <Container $w="400px" $p="0" $d="flex" $fd="column" $jc="center">
+    <FlexWrap $w="400px" $p="0" $d="flex" $fd="column" $jc="center">
       <SignupForm setIsVerify={setIsVerify} />
 
       {isVerify && (
@@ -19,7 +19,7 @@ const SignupPage = () => {
           <VerifyForm userEmail={user.email} />
         </Modal>
       )}
-    </Container>
+    </FlexWrap>
   );
 };
 

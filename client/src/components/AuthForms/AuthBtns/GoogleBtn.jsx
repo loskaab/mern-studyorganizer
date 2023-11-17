@@ -3,17 +3,17 @@ import { FcGoogle } from 'react-icons/fc';
 import { MdArrowForwardIos } from 'react-icons/md';
 
 import { baseURL } from 'servises/baseURL';
-import Container from 'components/shared/Container/Container';
+import FlexWrap from 'components/shared/FlexWrap/FlexWrap';
 
 import { IconLink } from './AuthBtns.styled';
 
 const GoogleBtn = ({ children }) => (
   <IconLink href={`${baseURL}/auth/google`}>
-    <Container $p="0" $d="flex" $ai="center" $jc="space-between">
+    <FlexWrap $p="0" $d="flex" $ai="center" $jc="space-between">
       <FcGoogle size="20px" />
       {children}
       <MdArrowForwardIos size="16px" />
-    </Container>
+    </FlexWrap>
   </IconLink>
 );
 

@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 
 // import { cleanElements, setActiveElement } from 'store/elements/elementsSlice';
 // import { setFilterValue } from 'store/elements/elementsSlice';
-import { logoutThunk } from 'store/auth/authOperations';
+import { logoutThunk } from 'store/auth/authThunks';
 import { useAuth } from 'utils/hooks/useAuth';
 import mernLogo from 'assets/icons/favicon.png';
 import Button from 'components/shared/Button/Button';
@@ -28,14 +28,18 @@ const Header = () => {
 
   return (
     <StyledHeader>
-      <a href="https://github.com/Belka-S/mern_starter" target="_blank" rel="noopener noreferrer">
+      <a
+        href="https://github.com/Belka-S/mern_starter"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         <img src={mernLogo} height="32" width="32" alt="MERN logo" />
       </a>
 
       <nav>
         {!isLoggedIn && <NavLink to="/">Home</NavLink>}
-        {isLoggedIn && <NavLink to="/cluster">Cluster</NavLink>}
         {isLoggedIn && <NavLink to="/profile">Profile</NavLink>}
+        {isLoggedIn && <NavLink to="/cluster">Clusters</NavLink>}
       </nav>
 
       <Div>

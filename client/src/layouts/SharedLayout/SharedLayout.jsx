@@ -2,7 +2,7 @@
 import { Suspense, useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom';
 
-import Container from 'components/shared/Container/Container';
+import FlexWrap from 'components/shared/FlexWrap/FlexWrap';
 import GridWrap from 'components/shared/GridWrap/GridWrap';
 import OvalLoader from 'components/shared/Loader/OvalLoader';
 import Header from 'layouts/Header/Header';
@@ -19,17 +19,17 @@ const SharedLayout = () => {
   }, [headerHeight, windowHeight]);
 
   return (
-    <Container $p="0">
+    <FlexWrap $p="0">
       <Header />
 
-      <GridWrap $h={gridHeight} $gtc="2fr 3fr">
+      <GridWrap $h={gridHeight} $cg="0" $gtc="40% 60%">
         <SideBar />
 
         <Suspense fallback={<OvalLoader />}>
           <Outlet />
         </Suspense>
       </GridWrap>
-    </Container>
+    </FlexWrap>
   );
 };
 

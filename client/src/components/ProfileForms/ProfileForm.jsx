@@ -2,11 +2,11 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useCallback } from 'react';
 import { useForm } from 'react-hook-form';
 
-import css from './Forms.module.scss';
+// import schemas from 'utils/validation/yupSchemas';
 import { btn_submit } from 'styles/common/Buttons.module.scss';
-import previewAavatarImage from 'utils/helpers/previewAavatarImage';
-import schemas from 'utils/validation/yupSchemas';
+import { previewImage } from 'utils/helpers/previewImage';
 
+import css from './Forms.module.scss';
 
 const ProfileForm = () => {
   const {
@@ -19,7 +19,7 @@ const ProfileForm = () => {
   // Avatar image
   const isNewAvatar = useCallback(() => {
     const avatarValue = watch('avatar');
-    previewAavatarImage(avatarValue);
+    previewImage(avatarValue);
     return avatarValue?.length > 0;
   }, [watch]);
 

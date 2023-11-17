@@ -21,10 +21,10 @@ const MB = 1024 * 1024; // const kB = 1024;
 
 const avatar = Yup.mixed()
   .test('size', ` max file size: ${MAX_SIZE / MB}MB`, file =>
-    !file ? true : file.size <= MAX_SIZE
+    !file ? true : file.size <= MAX_SIZE,
   )
   .test('type', 'invalid file type', file =>
-    !file ? true : file.type.includes('image')
+    !file ? true : file.type.includes('image'),
   );
 
 export const signupSchema = Yup.object().shape({ name, email, password });
@@ -42,7 +42,7 @@ export const profileSchema = Yup.object().shape({
   whatsApp: Yup.string().matches(...pattern(regExp.PHONE)),
   telegram: Yup.string().matches(...pattern(regExp.TELEGRAM)),
   location: Yup.string().matches(...pattern(regExp.ADDRESS)),
-  socialLink: Yup.string().matches(...pattern(regExp.HTTP_LINK)),
+  socialLink: Yup.string().matches(...pattern(regExp.HTTP)),
   birthday: Yup.string().matches(...pattern(regExp.DATE)),
   about: Yup.string(),
 });

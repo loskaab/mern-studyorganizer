@@ -29,7 +29,7 @@ export const Label = styled.label`
   // &::first-letter { text-transform: uppercase; }
 `;
 
-const FieldStyles = css`
+const baseFieldStyles = css`
   margin-bottom: 20px;
   width: 100%;
 
@@ -39,12 +39,12 @@ const FieldStyles = css`
 `;
 
 export const FieldWrap = styled.div`
-  ${FieldStyles}
+  ${baseFieldStyles}
   position: relative;
 `;
 
 export const Field = styled(FormikField)`
-  ${FieldStyles}
+  ${baseFieldStyles}
 
   padding: 10px 12px;
   padding-left: ${({ name }) => name.toLowerCase().includes('pass') && '38px'};
@@ -84,7 +84,7 @@ function validateHoverFocus({ validation }) {
   }
 }
 
-export const Tittle = styled.div`
+export const Title = styled.div`
   margin-bottom: 25px;
   display: flex;
   justify-content: space-between;

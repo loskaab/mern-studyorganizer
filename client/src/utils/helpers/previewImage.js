@@ -1,4 +1,4 @@
-const previewAavatarImage = files => {
+export const previewImage = files => {
   if (!files || !files[0]) return;
 
   const imageUrl = URL.createObjectURL(files[0]);
@@ -8,5 +8,3 @@ const previewAavatarImage = files => {
   avatarEl.style.backgroundSize = 'cover';
   avatarEl.style.backgroundPosition = 'center';
 };
-
-export default previewAavatarImage;

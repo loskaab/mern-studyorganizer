@@ -1,19 +1,19 @@
 import { createSlice, isAnyOf, combineReducers } from '@reduxjs/toolkit';
 
-import * as OPS from 'store/auth/authOperations';
+import * as TNK from 'store/auth/authThunks';
 
 import { initialState } from './initialState';
 
 const thunkArr = [
-  OPS.registerThunk,
-  OPS.loginThunk,
-  OPS.logoutThunk,
-  OPS.verifyEmailThunk,
-  OPS.forgotPassThunk,
-  OPS.resetPassThunk,
-  OPS.updateUserThunk,
-  OPS.deleteUserThunk,
-  OPS.refreshUserThunk,
+  TNK.registerThunk,
+  TNK.loginThunk,
+  TNK.logoutThunk,
+  TNK.verifyEmailThunk,
+  TNK.forgotPassThunk,
+  TNK.resetPassThunk,
+  TNK.updateUserThunk,
+  TNK.deleteUserThunk,
+  TNK.refreshUserThunk,
 ];
 const fn = type => thunkArr.map(el => el[type]);
 
@@ -36,19 +36,19 @@ const authUserSlice = createSlice({
   extraReducers: builder => {
     builder
       // auth
-      .addCase(OPS.registerThunk.fulfilled, handleLoginSucsess)
-      .addCase(OPS.loginThunk.fulfilled, handleLoginSucsess)
-      .addCase(OPS.logoutThunk.fulfilled, handleLogoutSucsess)
+      .addCase(TNK.registerThunk.fulfilled, handleLoginSucsess)
+      .addCase(TNK.loginThunk.fulfilled, handleLoginSucsess)
+      .addCase(TNK.logoutThunk.fulfilled, handleLogoutSucsess)
       // auth from localStorage
-      .addCase(OPS.refreshUserThunk.fulfilled, handleLoginSucsess)
+      .addCase(TNK.refreshUserThunk.fulfilled, handleLoginSucsess)
       // verify email
-      .addCase(OPS.verifyEmailThunk.fulfilled, handleLoginSucsess)
+      .addCase(TNK.verifyEmailThunk.fulfilled, handleLoginSucsess)
       // reset password
-      .addCase(OPS.forgotPassThunk.fulfilled, handleLogoutSucsess)
-      .addCase(OPS.resetPassThunk.fulfilled, handleLogoutSucsess)
+      .addCase(TNK.forgotPassThunk.fulfilled, handleLogoutSucsess)
+      .addCase(TNK.resetPassThunk.fulfilled, handleLogoutSucsess)
       // update profile
-      .addCase(OPS.updateUserThunk.fulfilled, handleLoginSucsess)
-      .addCase(OPS.deleteUserThunk.fulfilled, handleLogoutSucsess);
+      .addCase(TNK.updateUserThunk.fulfilled, handleLoginSucsess)
+      .addCase(TNK.deleteUserThunk.fulfilled, handleLogoutSucsess);
   },
 });
 

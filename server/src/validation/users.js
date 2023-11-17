@@ -1,7 +1,7 @@
 const Joi = require('joi');
 
-const { joiError, regExp } = require('../utils');
 const { validateBody } = require('../decorators');
+const { joiError, regExp } = require('../utils');
 
 const registerSchema = validateBody(
   Joi.object({
@@ -18,7 +18,7 @@ const updateSchema = validateBody(
     whatsApp: Joi.string().pattern(regExp.PHONE.pattern).allow(''),
     telegram: Joi.string().pattern(regExp.TELEGRAM.pattern).allow(''),
     location: Joi.string().pattern(regExp.ADDRESS.pattern).allow(''),
-    socialLink: Joi.string().pattern(regExp.HTTP_LINK.pattern).allow(''),
+    socialLink: Joi.string().pattern(regExp.HTTP.pattern).allow(''),
     birthday: Joi.string().pattern(regExp.DATE.pattern).allow(''),
     about: Joi.string().allow(''),
   }),
