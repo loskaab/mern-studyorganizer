@@ -32,7 +32,7 @@ jobs:
 
    - name: Copy index.html to 404.html
      run:
-      cd ./client/dist/index.html
+      cp ./client/dist/index.html
       ./client/dist/404.html
 
    - name: Upload production-ready build files
