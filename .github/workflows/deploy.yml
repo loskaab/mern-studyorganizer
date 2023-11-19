@@ -26,10 +26,9 @@ jobs:
    - name: Build project
      run: npm run build
      env:
+      working-directory: './client'
       VITE_BACK_URL_PROD:
        ${{ vars.VITE_BACK_URL_PROD }}
-     with:
-      working-directory: './client'
 
    - name: Copy index.html to 404.html
      run:
