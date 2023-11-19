@@ -1,4 +1,9 @@
 export const themes = Object.freeze({
+  breakpoints: {
+    mobile: '320px',
+    tablet: '768px',
+    desktop: '1280px',
+  },
   colors: {
     black: '#343434',
     white: '#FFFFFF',
@@ -13,6 +18,7 @@ export const themes = Object.freeze({
     noValue: '#343434',
 
     border: '#b1b1b1',
+    divider: '#dbdbdb',
     placeholder: '#5c5858',
 
     backdrop: 'rgba(23, 24, 32, 0.5)',
@@ -43,17 +49,13 @@ export const themes = Object.freeze({
     sb: 600,
     b: 700,
   },
-  breakpoints: {
-    mobile: '320px',
-    tablet: '768px',
-    desktop: '1280px',
-  },
+
   animations: {
     cubicBezier: 'cubic-bezier(0, 0.5, 1.3, 2)',
   },
   shadows: {
-    auth: '0px 47px 355px rgba(0, 0, 0, 0.07), 0px 9.4px 57.6875px rgba(0, 0, 0, 0.035)',
-    modal:
+    auth: '0 3px 5px -1px rgb(0 0 0/20%), 0 6px 10px 0 rgb(0 0 0/14%), 0 1px 18px 0 rgb(0 0 0/12%)',
+    button:
       '0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.15), 0px 1px 3px 0px rgba(0, 0, 0, 0.1)',
   },
 });

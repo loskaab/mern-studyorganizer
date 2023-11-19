@@ -1,10 +1,9 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
 
 import { themes } from 'styles/themes';
-import { readClipboard } from 'utils/helpers';
-import { addClusterThunk } from 'store/clusters/clustersThunks';
 
+import { readClipboard } from 'utils/helpers';
 import Button from 'components/shared/Button/Button';
 import FlexWrap from 'components/shared/FlexWrap/FlexWrap';
 import ClustersList from 'components/ClustersList/ClustersList';
@@ -13,17 +12,18 @@ import Modal from 'components/shared/Modal/Modal';
 import ClusterForm from 'components/ClusterForm/ClusterForm';
 
 const ClustersPage = () => {
-  const dispatch = useDispatch();
   const [isModal, setIsModal] = useState(false);
+  const [clipboardText, setClipboerdText] = useState('');
 
-  const handleAddCluster = async () => {
-    // const text = window.getSelection().toString();
-    // text && (await writeClipboard(text));
-
-    setIsModal(false);
-
-    const clipboardText = await readClipboard();
-    dispatch(addClusterThunk({ cluster: clipboardText }));
+  const addCluster = async () => {
+    // const text = window.getSelection().toString(); text && (await writeClipboard(text));
+    setClipboerdText(await readClipboard());
+    // console.log(await readClipboard());
+    if (clipboardText.length < 10) {
+      toast.error('Coopy valid cluster');
+    } else {
+      setIsModal(true);
+    }
   };
 
   return (
@@ -31,15 +31,15 @@ const ClustersPage = () => {
       <ClustersList />
 
       <ControlBar $x="right" $y="bottom" $gtc="1fr 1fr">
-        <Button $s="m">Edit</Button>
-        <Button $s="m" onClick={() => setIsModal(true)}>
+        <Button $size="m">Edit</Button>
+        <Button $size="m" onClick={addCluster}>
           Add
         </Button>
       </ControlBar>
 
       {isModal && (
-        <Modal onClick={handleAddCluster}>
-          <ClusterForm />
+        <Modal onClick={() => setIsModal(false)}>
+          <ClusterForm clipboardText={clipboardText} setIsModal={setIsModal} />
         </Modal>
       )}
     </FlexWrap>

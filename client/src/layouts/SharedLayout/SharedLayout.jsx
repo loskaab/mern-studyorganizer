@@ -2,34 +2,43 @@
 import { Suspense, useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom';
 
-import FlexWrap from 'components/shared/FlexWrap/FlexWrap';
 import GridWrap from 'components/shared/GridWrap/GridWrap';
 import OvalLoader from 'components/shared/Loader/OvalLoader';
 import Header from 'layouts/Header/Header';
 import SideBar from 'layouts/SideBar/SideBar';
 
 const SharedLayout = () => {
-  const [gridHeight, setGridHeight] = useState('');
+  const [offsetY, setOffsetY] = useState('');
+  const [barHeight, setBarHeight] = useState('');
 
+  const barWidth = '40%';
+
+  const headerEl = document.querySelector('header');
+  const headerHeight = headerEl?.offsetHeight;
   const windowHeight = window.innerHeight;
-  const headerHeight = document.querySelector('header')?.offsetHeight;
 
   useEffect(() => {
-    setGridHeight(`calc(${windowHeight}px - ${headerHeight}px - 19px)`);
+    setOffsetY(`${headerHeight}px`);
+    setBarHeight(`calc(${windowHeight}px - ${headerHeight}px)`);
   }, [headerHeight, windowHeight]);
 
   return (
-    <FlexWrap $p="0">
+    <>
       <Header />
+      <SideBar
+        $side="left"
+        $barWidth={barWidth}
+        $barHeight={barHeight}
+        $offsetY={offsetY}
+      />
 
-      <GridWrap $h={gridHeight} $cg="0" $gtc="40% 60%">
-        <SideBar />
-
+      <GridWrap $gtc={`${barWidth} calc(100% - ${barWidth})`} $cg="0">
+        <div style={{ height: barHeight }}></div>
         <Suspense fallback={<OvalLoader />}>
           <Outlet />
         </Suspense>
       </GridWrap>
-    </FlexWrap>
+    </>
   );
 };
 

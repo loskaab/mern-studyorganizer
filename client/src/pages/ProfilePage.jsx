@@ -8,7 +8,6 @@ const ProfilePage = () => {
   return (
     <FlexWrap
       $p={`${themes.indent.s} ${themes.indent.m}`}
-      $d="flex"
       $fd="column"
       $ai="center"
       $jc="center"
@@ -16,8 +15,8 @@ const ProfilePage = () => {
       <h1>Profile</h1>
       {/* <ProfileForm /> */}
       <ControlBar $x="right" $y="bottom" $gtc="1fr 1fr">
-        <Button $s="m">Edit</Button>
-        <Button $s="m">Delete</Button>
+        <Button $size="m">Edit</Button>
+        <Button $size="m">Delete</Button>
       </ControlBar>
     </FlexWrap>
   );

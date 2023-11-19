@@ -2,6 +2,7 @@ import styled, { css } from 'styled-components';
 
 import { themes } from 'styles/themes';
 
+// Size styles
 const smallStyles = css`
   min-width: 60px;
   padding: 2px 8px;
@@ -39,19 +40,11 @@ const largeStyles = css`
   }
 `;
 
-export const Btn = styled.button`
-  width: ${({ $w }) => $w};
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  font-family: 'Roboto', sans-serif;
+// Color styles
+const transparentStyles = css`
   font-weight: 500;
-
   color: ${themes.colors.accent};
-  border: 1px solid ${themes.colors.accent};
   background-color: ${themes.colors.white};
-  transition: color 250ms, border-color 250ms, background-color 250ms;
 
   &:hover,
   &:focus {
@@ -61,14 +54,50 @@ export const Btn = styled.button`
   }
 
   &:disabled {
+    border-color: ${themes.colors.accent};
+    background-color: ${themes.colors.white};
+  }
+`;
+
+const coloredStyles = css`
+  font-weight: 700;
+  color: ${themes.colors.white};
+  background-color: ${themes.colors.accent};
+
+  &:hover,
+  &:focus {
+    border-color: ${themes.colors.hovered};
+    background-color: ${themes.colors.hovered};
+  }
+
+  &:disabled {
+    border-color: ${themes.colors.accent};
+    background-color: ${themes.colors.accent};
+  }
+`;
+
+// Base styles
+const baseStyles = css`
+  width: ${({ $w }) => $w};
+  height: ${({ $h }) => $h};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-family: 'Roboto', sans-serif;
+
+  border: 1px solid ${themes.colors.accent};
+  transition: color 250ms, border-color 250ms, background-color 250ms;
+
+  &:disabled {
     cursor: auto;
     color: ${themes.colors.border};
     border-color: ${themes.colors.border};
-    background-color: ${themes.colors.white};
+    background-color: ${themes.colors.accent};
   }
 
-  ${({ $s = 's' }) => {
-    switch ($s) {
+  ${({ $size = 's' }) => {
+    switch ($size) {
       case 's':
         return smallStyles;
       case 'm':
@@ -79,4 +108,15 @@ export const Btn = styled.button`
         break;
     }
   }}
+`;
+
+// Buttons
+export const TransparentBtn = styled.button`
+  ${baseStyles}
+  ${transparentStyles}
+`;
+
+export const AccentBtn = styled.button`
+  ${baseStyles}
+  ${coloredStyles}
 `;

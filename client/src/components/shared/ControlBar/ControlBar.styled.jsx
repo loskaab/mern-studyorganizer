@@ -13,12 +13,19 @@ export const ControlDiv = styled.div`
   display: grid;
   justify-items: center;
 
-  grid-template-columns: repeat(auto-fit, minmax(${({ $mm = '300px' }) => $mm}, 1fr));
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(${({ $mm = '300px' }) => $mm}, 1fr)
+  );
 
   grid-row-gap: ${({ $rg = '10px' }) => $rg};
   grid-column-gap: ${({ $cg = '20px' }) => $cg};
 
   @media screen and (width >= ${themes.breakpoints.tablet}) {
     grid-template-columns: ${({ $gtc }) => $gtc};
+  }
+
+  & button {
+    box-shadow: ${themes.shadows.button};
   }
 `;

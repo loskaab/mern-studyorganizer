@@ -4,7 +4,6 @@ const { mongooseError, regExp } = require('../utils');
 
 const required = [true, 'Required field!'];
 const regex = field => [regExp[field].pattern, `Invalid ${field.toLowerCase()}!`];
-const groupList = ['common', 'study', 'health', 'sport'];
 
 const clusterSchema = new Schema(
   {
@@ -12,7 +11,7 @@ const clusterSchema = new Schema(
     title: { type: String, default: '' },
     checked: { type: Boolean, default: false },
     favorite: { type: Boolean, default: false },
-    group: { type: String, enum: groupList, default: 'common' },
+    group: { type: String, default: 'common' },
 
     owner: { type: Schema.Types.ObjectId, ref: 'User', required: true },
   },

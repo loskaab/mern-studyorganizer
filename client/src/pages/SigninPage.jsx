@@ -14,7 +14,7 @@ const SigninPage = () => {
   const { user } = useAuth();
 
   return (
-    <FlexWrap $w="400px" $p="0" $d="flex" $fd="column" $jc="center">
+    <FlexWrap $w="400px" $p="0" $fd="column" $jc="center">
       <SigninForm
         setIsVerify={setIsVerify}
         setIsForgot={setIsForgot}

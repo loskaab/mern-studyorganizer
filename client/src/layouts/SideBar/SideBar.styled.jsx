@@ -1,5 +1,25 @@
 import styled, { css } from 'styled-components';
 
+import { themes } from 'styles/themes';
+
+export const SideBarDiv = styled.div`
+  height: ${({ $barHeight }) => $barHeight};
+  width: ${({ $barWidth }) => $barWidth};
+  padding-inline: ${themes.indent.m};
+  padding-block: ${themes.indent.s};
+  position: fixed;
+  top: ${({ $offsetY }) => $offsetY};
+  ${({ $side }) => `${$side}: 0`};
+
+  z-index: 100;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid ${themes.colors.divider};
+`;
+
 const baseLogo = css`
   height: 6em;
   padding: 1em;
@@ -26,7 +46,6 @@ export const LinkReact = styled.a`
 
   & img {
     ${baseLogo}
-
     animation: logo-spin infinite 20s linear;
 
     &:hover {

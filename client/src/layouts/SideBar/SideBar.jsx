@@ -1,23 +1,21 @@
+import PropTypes from 'prop-types';
 import { useState } from 'react';
 
-import FlexWrap from 'components/shared/FlexWrap/FlexWrap';
 import Button from 'components/shared/Button/Button';
 import reactLogo from 'assets/icons/react.svg';
 import viteLogo from 'assets/icons/vite.svg';
-import { themes } from 'styles/themes';
 
-import { LinkReact, LinkVite } from './SideBar.styled';
+import { SideBarDiv, LinkReact, LinkVite } from './SideBar.styled';
 
-const SideBar = () => {
+const SideBar = ({ $side, $barWidth, $barHeight, $offsetY }) => {
   const [count, setCount] = useState(0);
 
   return (
-    <FlexWrap
-      $p={`${themes.indent.s} ${themes.indent.m}`}
-      $d="flex"
-      $fd="column"
-      $jc="center"
-      $ai="center"
+    <SideBarDiv
+      $side={$side}
+      $barWidth={$barWidth}
+      $barHeight={$barHeight}
+      $offsetY={$offsetY}
     >
       <h2 style={{ fontFamily: '"Montserrat", sans-serif' }}>React + Vite</h2>
       <div>
@@ -31,8 +29,15 @@ const SideBar = () => {
       <Button onClick={() => setCount(count => count + 1)}>
         Count {count}
       </Button>
-    </FlexWrap>
+    </SideBarDiv>
   );
 };
 
 export default SideBar;
+
+SideBar.propTypes = {
+  $side: PropTypes.string,
+  $barWidth: PropTypes.string,
+  $barHeight: PropTypes.string,
+  $offsetY: PropTypes.string,
+};

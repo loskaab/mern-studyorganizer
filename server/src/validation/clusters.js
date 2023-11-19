@@ -2,7 +2,6 @@ const Joi = require('joi');
 
 const { validateBody } = require('../decorators');
 const { regExp } = require('../utils');
-const groupList = ['common', 'study', 'health', 'sport'];
 
 const addSchema = validateBody(
   Joi.object({
@@ -10,7 +9,7 @@ const addSchema = validateBody(
     title: Joi.string().allow(''),
     checked: Joi.boolean(),
     favorite: Joi.boolean(),
-    group: Joi.string().valid(...groupList),
+    group: Joi.string(),
   }),
 );
 

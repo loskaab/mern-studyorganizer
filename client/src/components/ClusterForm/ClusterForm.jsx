@@ -1,44 +1,74 @@
+import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
-import Button from 'components/shared/Button/Button';
+import { addClusterThunk } from 'store/clusters/clustersThunks';
+import { useClusters } from 'utils/hooks';
 import { clusterSchema } from 'utils/validation';
+import ButtonClr from 'components/shared/Button/ButtonClr';
 
-import { Form, Label, Input } from './ClusterForm.styled';
+import { Form, Label, Input, SelectWrap, Hidden } from './ClusterForm.styled';
 
-const ClusterForm = () => {
+const ClusterForm = ({ clipboardText, setIsModal }) => {
+  const dispatch = useDispatch();
+  const { allClusters } = useClusters();
+
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
-  } = useForm({ mode: 'onBlur', resolver: yupResolver(clusterSchema) });
+  } = useForm({
+    mode: 'onBlur',
+    resolver: yupResolver(clusterSchema),
+    defaultValues: { cluster: clipboardText },
+  });
 
-  const onSubmit = data => console.log(data);
+  const onSubmit = data => {
+    dispatch(addClusterThunk(data));
+    setIsModal(false);
+  };
 
-  console.log(watch('title')); // watch input value by passing the name of it
+  const clusterImage = text => {
+    const image = `${allClusters.length}. `.padStart(4, '0') + text;
+    return image.length <= 50 ? image : image.substring(0, 40).concat('...');
+  };
 
   return (
-    /* "handleSubmit" will validate your inputs before invoking "onSubmit" */
     <Form onSubmit={handleSubmit(onSubmit)}>
       <Label>
-        Cluster: <span> {errors.cluster?.message}</span>
-        <Input placeholder="" {...register('cluster')} />
-      </Label>
-      <Label>
-        Title: <span> {errors.title?.message}</span>
-        <Input placeholder="" {...register('title')} />
-      </Label>
-      <Label>
-        Group: <span> {errors.group?.message}</span>
-        <Input placeholder="" {...register('group')} />
+        {clusterImage(clipboardText)} <br />
+        <span>{errors.cluster?.message}</span>
+        <Hidden {...register('cluster')} />
       </Label>
 
-      <Button type="submit" $s="m">
+      <Label>
+        Title: <span> {errors.title?.message}</span>
+        <Input {...register('title')} />
+      </Label>
+
+      <Label>
+        Group: <span> {errors.group?.message}</span>
+        <SelectWrap>
+          <select name="pets" id="pet-select" {...register('group')}>
+            <option value="common">Common</option>
+            <option value="study">Study</option>
+            <option value="work">Work</option>
+          </select>
+          <span></span>
+        </SelectWrap>
+      </Label>
+
+      <ButtonClr type="submit" $size="l" $h="41px">
         Submit
-      </Button>
+      </ButtonClr>
     </Form>
   );
 };
 
 export default ClusterForm;
+
+ClusterForm.propTypes = {
+  clipboardText: PropTypes.string.isRequired,
+  setIsModal: PropTypes.func.isRequired,
+};

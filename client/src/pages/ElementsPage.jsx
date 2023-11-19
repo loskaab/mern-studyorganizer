@@ -6,7 +6,6 @@ const ElementsPage = () => {
   return (
     <FlexWrap
       $p={`${themes.indent.s} ${themes.indent.m}`}
-      $d="flex"
       $fd="column"
       $ai="center"
       $jc="center"

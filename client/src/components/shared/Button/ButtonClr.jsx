@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 
-import { TransparentBtn } from './Button.styled';
+import { AccentBtn } from './Button.styled';
 
-const Button = ({
+const ButtonClr = ({
   $w,
   $h,
   $size,
@@ -12,7 +12,7 @@ const Button = ({
   children,
 }) => {
   return (
-    <TransparentBtn
+    <AccentBtn
       $w={$w}
       $h={$h}
       $size={$size}
@@ -21,13 +21,13 @@ const Button = ({
       disabled={disabled}
     >
       {children}
-    </TransparentBtn>
+    </AccentBtn>
   );
 };
 
-export default Button;
+export default ButtonClr;
 
-Button.propTypes = {
+ButtonClr.propTypes = {
   $w: PropTypes.string,
   $h: PropTypes.string,
   $size: PropTypes.string,

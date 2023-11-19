@@ -9,7 +9,7 @@ export const FlexDiv = styled.div`
   height: ${({ $h }) => $h};
   position: relative;
 
-  display: ${({ $d }) => $d};
+  display: ${({ $d = 'flex' }) => $d};
   flex-direction: ${({ $fd }) => $fd};
   align-items: ${({ $ai }) => $ai};
   justify-content: ${({ $jc }) => $jc};

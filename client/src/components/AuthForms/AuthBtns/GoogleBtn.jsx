@@ -9,7 +9,7 @@ import { IconLink } from './AuthBtns.styled';
 
 const GoogleBtn = ({ children }) => (
   <IconLink href={`${baseURL}/auth/google`}>
-    <FlexWrap $p="0" $d="flex" $ai="center" $jc="space-between">
+    <FlexWrap $p="0" $ai="center" $jc="space-between">
       <FcGoogle size="20px" />
       {children}
       <MdArrowForwardIos size="16px" />
