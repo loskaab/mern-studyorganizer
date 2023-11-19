@@ -25,8 +25,8 @@ jobs:
 
    - name: Build project
      run: npm run build
+     working-directory: './client'
      env:
-      working-directory: './client'
       VITE_BACK_URL_PROD:
        ${{ vars.VITE_BACK_URL_PROD }}
 
