@@ -28,7 +28,7 @@ jobs:
      env:
       VITE_BACK_URL_PROD:
        ${{ vars.VITE_BACK_URL_PROD }}
-       working-directory: './client'
+      working-directory: './client'
 
    - name: Copy index.html to 404.html
      run:
