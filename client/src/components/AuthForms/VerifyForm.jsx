@@ -60,7 +60,7 @@ const VerifyForm = ({ userEmail }) => {
               <Field
                 type="text"
                 name="verificationCode"
-                validation={isValid({ values, errors })}
+                $validation={isValid({ values, errors })}
               />
 
               {isValid({ values, errors }) === 'error' && <ErrorIcon />}

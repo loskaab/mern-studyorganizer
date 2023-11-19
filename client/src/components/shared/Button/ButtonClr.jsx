@@ -5,7 +5,7 @@ import { AccentBtn } from './Button.styled';
 const ButtonClr = ({
   $w,
   $h,
-  $size,
+  $s,
   onClick,
   type = 'button',
   disabled,
@@ -15,7 +15,7 @@ const ButtonClr = ({
     <AccentBtn
       $w={$w}
       $h={$h}
-      $size={$size}
+      $s={$s}
       onClick={onClick}
       type={type}
       disabled={disabled}
@@ -30,7 +30,7 @@ export default ButtonClr;
 ButtonClr.propTypes = {
   $w: PropTypes.string,
   $h: PropTypes.string,
-  $size: PropTypes.string,
+  $s: PropTypes.string,
   onClick: PropTypes.func,
   type: PropTypes.string,
   disabled: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]),

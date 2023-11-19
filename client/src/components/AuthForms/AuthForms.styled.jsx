@@ -56,12 +56,12 @@ export const Field = styled(FormikField)`
   outline: 0.5px solid transparent;
   transition: border-color 250ms linear, outline-color 250ms linear;
 
-  border-color: ${({ validation }) => {
-    switch (validation) {
+  border-color: ${({ $validation }) => {
+    switch ($validation) {
       case 'noValue':
         return themes.colors.border;
-      case validation:
-        return themes.colors[validation];
+      case $validation:
+        return themes.colors[$validation];
       default:
         break;
     }
@@ -74,10 +74,10 @@ export const Field = styled(FormikField)`
   }
 `;
 
-function validateHoverFocus({ validation }) {
-  switch (validation) {
-    case validation:
-      return themes.colors[validation];
+function validateHoverFocus({ $validation }) {
+  switch ($validation) {
+    case $validation:
+      return themes.colors[$validation];
     default:
       break;
   }

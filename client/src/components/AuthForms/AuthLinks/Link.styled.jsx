@@ -9,7 +9,7 @@ const CommonStyles = css`
   color: ${themes.colors.accent};
   text-decoration: underline;
   font-family: 'Roboto', sans-serif;
-  font-size: ${({ fs = '14px' }) => fs};
+  font-size: ${({ $fs = '14px' }) => $fs};
   font-weight: 400;
 `;
 

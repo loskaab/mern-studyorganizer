@@ -59,7 +59,7 @@ const ClusterForm = ({ clipboardText, setIsModal }) => {
         </SelectWrap>
       </Label>
 
-      <ButtonClr type="submit" $size="l" $h="41px">
+      <ButtonClr type="submit" $s="l" $h="41px">
         Submit
       </ButtonClr>
     </Form>

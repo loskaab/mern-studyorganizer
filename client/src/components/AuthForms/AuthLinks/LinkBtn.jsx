@@ -2,9 +2,9 @@ import PropTypes from 'prop-types';
 
 import { Btn } from './Link.styled';
 
-const LinkBtn = ({ onClick, fs, children }) => {
+const LinkBtn = ({ $fs, onClick, children }) => {
   return (
-    <Btn type="button" onClick={onClick} fs={fs}>
+    <Btn type="button" $fs={$fs} onClick={onClick}>
       {children}
     </Btn>
   );
@@ -12,9 +12,9 @@ const LinkBtn = ({ onClick, fs, children }) => {
 
 export default LinkBtn;
 
-Btn.propTypes = {
+LinkBtn.propTypes = {
+  $fs: PropTypes.string,
   onClick: PropTypes.func.isRequired,
-  fs: PropTypes.string,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,

@@ -96,8 +96,8 @@ const baseStyles = css`
     background-color: ${themes.colors.accent};
   }
 
-  ${({ $size = 's' }) => {
-    switch ($size) {
+  ${({ $s = 's' }) => {
+    switch ($s) {
       case 's':
         return smallStyles;
       case 'm':

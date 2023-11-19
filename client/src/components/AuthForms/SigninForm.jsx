@@ -84,7 +84,7 @@ const SigninForm = ({ setIsVerify, setIsForgot, setEmail }) => {
                 <Field
                   type={key === 'password' ? toggle : key}
                   name={key}
-                  validation={isValid({ values, errors, key })}
+                  $validation={isValid({ values, errors, key })}
                 />
 
                 {key === 'password' && (

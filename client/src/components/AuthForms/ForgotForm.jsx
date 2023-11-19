@@ -38,7 +38,11 @@ const ForgotForm = ({ setIsForgot, email }) => {
   };
 
   return (
-    <Formik initialValues={{ email }} validationSchema={forgotSchema} onSubmit={onSubmit}>
+    <Formik
+      initialValues={{ email }}
+      validationSchema={forgotSchema}
+      onSubmit={onSubmit}
+    >
       {({ values, errors }) => (
         <Form>
           <Title>
@@ -53,7 +57,11 @@ const ForgotForm = ({ setIsForgot, email }) => {
             </Label>
 
             <FieldWrap>
-              <Field type="email" name="email" validation={isValid({ values, errors })} />
+              <Field
+                type="email"
+                name="email"
+                $validation={isValid({ values, errors })}
+              />
 
               {isValid({ values, errors }) === 'error' && <ErrorIcon />}
               {isValid({ values, errors }) === 'success' && <SuccessIcon />}

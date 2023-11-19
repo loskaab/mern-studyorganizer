@@ -46,7 +46,11 @@ const ResetForm = ({ id, pwdToken }) => {
   };
 
   return (
-    <Formik initialValues={initialValues} validationSchema={resetSchema} onSubmit={onSubmit}>
+    <Formik
+      initialValues={initialValues}
+      validationSchema={resetSchema}
+      onSubmit={onSubmit}
+    >
       {({ values, errors }) => (
         <Form>
           <Title>
@@ -56,13 +60,18 @@ const ResetForm = ({ id, pwdToken }) => {
           {Object.keys(initialValues).map(key => (
             <Fragment key={key}>
               <Label>
-                {key.at(0).toUpperCase() + key.replace('Pass', ' password:').substring(1)}
+                {key.at(0).toUpperCase() +
+                  key.replace('Pass', ' password:').substring(1)}
                 <pre> </pre>
                 <ErrorMsg name={key} component="span" />
               </Label>
 
               <FieldWrap>
-                <Field type={toggle} name={key} validation={isValid({ values, errors, key })} />
+                <Field
+                  type={toggle}
+                  name={key}
+                  $validation={isValid({ values, errors, key })}
+                />
 
                 <IconBtn toggle={toggle} setToggle={setToggle} />
                 {values[key] && errors[key] && <ErrorIcon />}

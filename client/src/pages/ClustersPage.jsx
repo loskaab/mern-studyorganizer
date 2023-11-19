@@ -20,7 +20,7 @@ const ClustersPage = () => {
     setClipboerdText(await readClipboard());
     // console.log(await readClipboard());
     if (clipboardText.length < 10) {
-      toast.error('Coopy valid cluster');
+      toast.error('Copy valid cluster');
     } else {
       setIsModal(true);
     }
@@ -31,8 +31,8 @@ const ClustersPage = () => {
       <ClustersList />
 
       <ControlBar $x="right" $y="bottom" $gtc="1fr 1fr">
-        <Button $size="m">Edit</Button>
-        <Button $size="m" onClick={addCluster}>
+        <Button $s="m">Edit</Button>
+        <Button $s="m" onClick={addCluster}>
           Add
         </Button>
       </ControlBar>

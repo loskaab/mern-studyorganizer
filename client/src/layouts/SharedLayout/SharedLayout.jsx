@@ -8,23 +8,22 @@ import Header from 'layouts/Header/Header';
 import SideBar from 'layouts/SideBar/SideBar';
 
 const SharedLayout = () => {
-  const [offsetY, setOffsetY] = useState('');
-  const [barHeight, setBarHeight] = useState('');
-
-  const barWidth = '40%';
+  const [offsetY, setOffsetY] = useState('45px');
+  const [barHeight, setBarHeight] = useState(`calc(100vh - ${offsetY})`);
 
   const headerEl = document.querySelector('header');
   const headerHeight = headerEl?.offsetHeight;
-  const windowHeight = window.innerHeight;
+  const barWidth = '40%';
 
   useEffect(() => {
     setOffsetY(`${headerHeight}px`);
-    setBarHeight(`calc(${windowHeight}px - ${headerHeight}px)`);
-  }, [headerHeight, windowHeight]);
+    setBarHeight(`calc(100vh - ${headerHeight}px)`);
+  }, [headerHeight]);
 
   return (
     <>
       <Header />
+
       <SideBar
         $side="left"
         $barWidth={barWidth}

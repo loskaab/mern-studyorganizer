@@ -5,7 +5,7 @@ import { TransparentBtn } from './Button.styled';
 const Button = ({
   $w,
   $h,
-  $size,
+  $s,
   onClick,
   type = 'button',
   disabled,
@@ -15,7 +15,7 @@ const Button = ({
     <TransparentBtn
       $w={$w}
       $h={$h}
-      $size={$size}
+      $s={$s}
       onClick={onClick}
       type={type}
       disabled={disabled}
@@ -30,7 +30,7 @@ export default Button;
 Button.propTypes = {
   $w: PropTypes.string,
   $h: PropTypes.string,
-  $size: PropTypes.string,
+  $s: PropTypes.string,
   onClick: PropTypes.func,
   type: PropTypes.string,
   disabled: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]),

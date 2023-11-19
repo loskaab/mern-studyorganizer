@@ -2,9 +2,9 @@ import PropTypes from 'prop-types';
 
 import { Link } from './Link.styled';
 
-const LinkRoute = ({ to, fs, children }) => {
+const LinkRoute = ({ $fs, to, children }) => {
   return (
-    <Link to={to} fs={fs}>
+    <Link $fs={$fs} to={to}>
       {children}
     </Link>
   );
@@ -12,9 +12,9 @@ const LinkRoute = ({ to, fs, children }) => {
 
 export default LinkRoute;
 
-Link.propTypes = {
+LinkRoute.propTypes = {
+  $fs: PropTypes.string,
   to: PropTypes.string.isRequired,
-  fs: PropTypes.string,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
