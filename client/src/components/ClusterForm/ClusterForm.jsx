@@ -4,8 +4,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import { addClusterThunk } from 'store/clusters/clustersThunks';
-import { useClusters } from 'utils/hooks';
-import { clusterSchema } from 'utils/validation';
+import { titleSchema } from 'utils/validation';
 import ButtonClr from 'components/shared/Button/ButtonClr';
 
 import { Form, Label, Input, SelectWrap, Hidden } from './ClusterForm.styled';
@@ -14,7 +13,6 @@ export const clusterGroups = ['common', 'study', 'work'];
 
 const ClusterForm = ({ clipboardText, setIsModal }) => {
   const dispatch = useDispatch();
-  const { allClusters } = useClusters();
 
   const {
     register,
@@ -22,7 +20,7 @@ const ClusterForm = ({ clipboardText, setIsModal }) => {
     formState: { errors },
   } = useForm({
     mode: 'onBlur',
-    resolver: yupResolver(clusterSchema),
+    resolver: yupResolver(titleSchema),
     defaultValues: { cluster: clipboardText },
   });
 
@@ -37,8 +35,7 @@ const ClusterForm = ({ clipboardText, setIsModal }) => {
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
       <Label>
-        {clusterImage(clipboardText)} <br />
-        <span>{errors.cluster?.message}</span>
+        {clusterImage(clipboardText)}
         <Hidden {...register('cluster')} />
       </Label>
 

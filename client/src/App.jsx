@@ -8,6 +8,8 @@ import { useAuth } from 'utils/hooks/useAuth';
 import PublicRoutes from 'routes/PublicRoutes';
 import PrivateRoutes from 'routes/PrivateRoutes';
 
+import Toast from 'components/shared/Toast/Toast';
+import OvalLoader from 'components/shared/Loader/OvalLoader';
 import SharedLayout from 'layouts/SharedLayout/SharedLayout';
 import HomePage from 'pages/HomePage';
 const SignupPage = lazy(() => import('pages/SignupPage'));
@@ -15,8 +17,6 @@ const SigninPage = lazy(() => import('pages/SigninPage'));
 const ProfilePage = lazy(() => import('pages/ProfilePage'));
 const ClustersPage = lazy(() => import('pages/ClustersPage'));
 const ElementsPage = lazy(() => import('pages/ElementsPage'));
-import Toast from 'components/shared/Toast/Toast';
-import OvalLoader from 'components/shared/Loader/OvalLoader';
 
 const App = () => {
   const dispatch = useDispatch();

@@ -4,6 +4,7 @@ import { toast } from 'react-toastify';
 import { themes } from 'styles/themes';
 
 import { readClipboard } from 'utils/helpers';
+import { clusterSchema } from 'utils/validation';
 import Button from 'components/shared/Button/Button';
 import FlexWrap from 'components/shared/FlexWrap/FlexWrap';
 import ClustersList from 'components/ClustersList/ClustersList';
@@ -16,14 +17,16 @@ const ClustersPage = () => {
   const [isModal, setIsModal] = useState(false);
   const [clipboardText, setClipboerdText] = useState('');
 
-  const addCluster = async () => {
+  const addCluster = async e => {
     // const text = window.getSelection().toString(); text && (await writeClipboard(text));
-    setClipboerdText(await readClipboard());
-    // console.log(await readClipboard());
-    if (clipboardText.length < 10) {
-      toast.error('Copy valid cluster');
-    } else {
+    const cluster = await readClipboard();
+    try {
+      await clusterSchema.validate({ cluster });
+      setClipboerdText(cluster);
       setIsModal(true);
+    } catch (err) {
+      e.target.blur();
+      toast.error(`Invalid cluster, ${err.message}`);
     }
   };
 
@@ -34,10 +37,10 @@ const ClustersPage = () => {
       <ControlBar $w="60%" $x="right" $y="bottom" $gtc="3fr 1fr 1fr 1fr">
         <ClustersFilter />
         <span></span>
-        <Button $s="m">Edit</Button>
         <Button $s="m" onClick={addCluster}>
           Add
         </Button>
+        <Button $s="m">Edit</Button>
       </ControlBar>
 
       {isModal && (

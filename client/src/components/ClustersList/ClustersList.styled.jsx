@@ -10,7 +10,7 @@ export const List = styled.ol`
 const baseStyle = css`
   display: grid;
   grid-column-gap: 5px;
-  grid-template-columns: 6fr 10fr 1fr;
+  grid-template-columns: 10fr 20fr 1fr;
   grid-template-areas: 'title title title';
   align-items: baseline;
 
@@ -45,7 +45,9 @@ export const LiContent = styled.li`
   ${baseStyle}
 
   & h3 {
+    margin-right: 15px;
     font-size: 18px;
+    justify-self: right;
   }
 
   & a::before {
