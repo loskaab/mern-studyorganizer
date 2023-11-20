@@ -8,7 +8,7 @@ const groupList = ['small', 'middle', 'large'];
 const elementSchema = new Schema(
   {
     element: { type: String, required },
-    title: { type: String, default: '' },
+    title: { type: String, default: '', required },
     checked: { type: Boolean, default: false },
     favorite: { type: Boolean, default: false },
     group: { type: String, enum: groupList, default: 'middle' },

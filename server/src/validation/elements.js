@@ -6,7 +6,7 @@ const groupList = ['small', 'middle', 'large'];
 const addSchema = validateBody(
   Joi.object({
     element: Joi.string().required(),
-    title: Joi.string().allow(''),
+    title: Joi.string().required(),
     checked: Joi.boolean(),
     favorite: Joi.boolean(),
     group: Joi.string().valid(...groupList),

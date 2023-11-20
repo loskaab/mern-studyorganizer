@@ -1,37 +1,42 @@
-import { useEffect } from 'react';
+import { Fragment, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { fetchClustersThunk } from 'store/clusters/clustersThunks';
 import { useClusters } from 'utils/hooks';
+import { getUnique } from 'utils/helpers';
 
-import { List, Li, HeadLi } from './ClustersList.styled';
+import Li from './Li/Li';
+import { List, LiHead } from './ClustersList.styled';
 
 const ClustersList = () => {
   const dispatch = useDispatch();
-  const { allClusters } = useClusters();
+  const { allClusters, clustersFilter } = useClusters();
 
-  const clusterImage = cluster =>
-    cluster.length <= 50 ? cluster : cluster.substring(0, 49).concat('...');
+  const filtredClusters = allClusters.filter(el => {
+    return (
+      el.cluster.toLowerCase().includes(clustersFilter) ||
+      el.title.toLowerCase().includes(clustersFilter) ||
+      el.group.toLowerCase().includes(clustersFilter)
+    );
+  });
+  const filtredGroups = getUnique(filtredClusters, 'group');
 
   useEffect(() => {
     dispatch(fetchClustersThunk());
   }, [dispatch]);
 
   return (
-    <List reversed>
-      <HeadLi>
-        <span>Title</span>
-        <span>Cluster</span>
-        <span>Result</span>
-      </HeadLi>
-      {allClusters.map(el => (
-        <Li key={el._id}>
-          <h2>{el.title}</h2>
-          <a href={el.cluster} target="_blank" rel="noopener noreferrer">
-            {clusterImage(el.cluster)}
-          </a>
-          {el.checked && <span>Checked</span>}
-        </Li>
+    <List>
+      {filtredGroups.map(group => (
+        <Fragment key={group}>
+          <LiHead>
+            <h2>{group}</h2>
+          </LiHead>
+
+          {filtredClusters.map(
+            el => el.group === group && <Li key={el._id} $el={el} />,
+          )}
+        </Fragment>
       ))}
     </List>
   );

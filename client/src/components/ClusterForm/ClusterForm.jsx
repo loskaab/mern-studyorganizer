@@ -10,6 +10,8 @@ import ButtonClr from 'components/shared/Button/ButtonClr';
 
 import { Form, Label, Input, SelectWrap, Hidden } from './ClusterForm.styled';
 
+export const clusterGroups = ['common', 'study', 'work'];
+
 const ClusterForm = ({ clipboardText, setIsModal }) => {
   const dispatch = useDispatch();
   const { allClusters } = useClusters();
@@ -29,10 +31,8 @@ const ClusterForm = ({ clipboardText, setIsModal }) => {
     setIsModal(false);
   };
 
-  const clusterImage = text => {
-    const image = `${allClusters.length}. `.padStart(4, '0') + text;
-    return image.length <= 50 ? image : image.substring(0, 40).concat('...');
-  };
+  const clusterImage = text =>
+    text.length <= 50 ? text : text.substring(0, 40).concat('...');
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
@@ -51,9 +51,11 @@ const ClusterForm = ({ clipboardText, setIsModal }) => {
         Group: <span> {errors.group?.message}</span>
         <SelectWrap>
           <select name="pets" id="pet-select" {...register('group')}>
-            <option value="common">Common</option>
-            <option value="study">Study</option>
-            <option value="work">Work</option>
+            {clusterGroups.map(el => (
+              <option key={el} value={el}>
+                {el}
+              </option>
+            ))}
           </select>
           <span></span>
         </SelectWrap>

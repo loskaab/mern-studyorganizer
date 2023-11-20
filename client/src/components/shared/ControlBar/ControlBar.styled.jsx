@@ -11,6 +11,7 @@ export const ControlDiv = styled.div`
   ${({ $y = 'top' }) => `${$y}: 0`};
 
   display: grid;
+  align-items: center;
   justify-items: center;
 
   grid-template-columns: repeat(
@@ -25,7 +26,7 @@ export const ControlDiv = styled.div`
     grid-template-columns: ${({ $gtc }) => $gtc};
   }
 
-  & button {
+  & > button {
     box-shadow: ${themes.shadows.button};
   }
 `;

@@ -10,6 +10,7 @@ import ClustersList from 'components/ClustersList/ClustersList';
 import ControlBar from 'components/shared/ControlBar/ControlBar';
 import Modal from 'components/shared/Modal/Modal';
 import ClusterForm from 'components/ClusterForm/ClusterForm';
+import ClustersFilter from 'components/Filters/ClustersFilter';
 
 const ClustersPage = () => {
   const [isModal, setIsModal] = useState(false);
@@ -30,7 +31,9 @@ const ClustersPage = () => {
     <FlexWrap $p={`${themes.indent.s} ${themes.indent.m}`}>
       <ClustersList />
 
-      <ControlBar $x="right" $y="bottom" $gtc="1fr 1fr">
+      <ControlBar $w="60%" $x="right" $y="bottom" $gtc="3fr 1fr 1fr 1fr">
+        <ClustersFilter />
+        <span></span>
         <Button $s="m">Edit</Button>
         <Button $s="m" onClick={addCluster}>
           Add

@@ -24,7 +24,7 @@ const authPersistConfig = {
 };
 
 const eclustersPersistConfig = {
-  key: 'eclusters',
+  key: 'clusters',
   storage,
   whitelist: ['filter', 'activeItem'],
 };

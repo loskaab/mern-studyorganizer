@@ -1,20 +1,27 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { BsSearch } from 'react-icons/bs';
+import { IoClose } from 'react-icons/io5';
 
 import { selectElementsFilter } from 'store/elements/elementsSelectors';
 import { setElementsFilter } from 'store/elements/elementsSlice';
 
-import { Div, Button } from './Filter.styled';
+import { FilterDiv, Button } from './Filters.styled';
 
-const Filter = () => {
+const ElementsFilter = () => {
   const filterValue = useSelector(selectElementsFilter);
   const dispatch = useDispatch();
 
+  // Serch on icon click
   const handleClick = e => e.target.previousElementSibling.focus();
-  const handleSearch = e => dispatch(setElementsFilter(e.target.value));
+  // Serch on change
+  const handleSearch = e => {
+    const filterValue = e.target.value.toLowerCase();
+    dispatch(setElementsFilter(filterValue));
+  };
+  const handleClean = () => dispatch(setElementsFilter(''));
 
   return (
-    <Div>
+    <FilterDiv>
       <input
         type="text"
         name="filter"
@@ -22,10 +29,16 @@ const Filter = () => {
         value={filterValue}
         onChange={handleSearch}
       />
+
       <BsSearch size="16" onClick={handleClick} />
-      {filterValue && <Button onClick={handleSearch}>✕</Button>}
-    </Div>
+
+      {filterValue && (
+        <Button onClick={handleClean}>
+          <IoClose size="16" />
+        </Button>
+      )}
+    </FilterDiv>
   );
 };
 
-export default Filter;
+export default ElementsFilter;

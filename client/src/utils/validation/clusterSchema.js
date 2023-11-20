@@ -7,8 +7,8 @@ const pattern = regExp => [regExp.pattern, `pattern: ${regExp.msg}`];
 
 export const clusterSchema = Yup.object().shape({
   cluster: Yup.string()
-    .required('required')
-    .matches(...pattern(regExp.HTTP)),
-  title: Yup.string().max(20, 'is too long'),
+    .matches(...pattern(regExp.HTTP))
+    .required('required'),
+  title: Yup.string().max(20, 'is too long').required('required'),
   group: Yup.string(),
 });
