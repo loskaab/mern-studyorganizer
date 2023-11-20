@@ -50,7 +50,7 @@ const clusterFilterSlice = createSlice({
   name: 'filter',
   initialState: '',
   reducers: {
-    setFilterValue: (_, action) => action.payload,
+    setClustersFilter: (_, action) => action.payload,
   },
 });
 
@@ -97,4 +97,4 @@ export const clustersReducer = combineReducers({
 
 export const { cleanCluster } = clusterItemsSlice.actions;
 export const { setActiveCluster } = clusterActiveItemSlice.actions;
-export const { setFilterValue } = clusterFilterSlice.actions;
+export const { setClustersFilter } = clusterFilterSlice.actions;

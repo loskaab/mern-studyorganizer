@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 // import { cleanElements, setActiveElement } from 'store/elements/elementsSlice';
-// import { setFilterValue } from 'store/elements/elementsSlice';
+// import { setElementsFilter } from 'store/elements/elementsSlice';
 import { logoutThunk } from 'store/auth/authThunks';
 import { useAuth } from 'utils/hooks/useAuth';
 import mernLogo from 'assets/icons/favicon.png';
@@ -23,7 +23,7 @@ const Header = () => {
     dispatch(logoutThunk());
     // dispatch(cleanElements());
     // dispatch(setActiveElement(null));
-    // dispatch(setFilterValue(''));
+    // dispatch(setElementsFilter(''));
   };
 
   return (

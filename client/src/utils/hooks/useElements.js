@@ -5,7 +5,7 @@ import * as selectors from 'store/elements/elementsSelectors';
 export const useElements = () => {
   const allElements = useSelector(selectors.selectElements);
   const activeElement = useSelector(selectors.selectActiveElement);
-  const filterValue = useSelector(selectors.selectFilterValue);
+  const filterValue = useSelector(selectors.selectElementsFilter);
 
   const error = useSelector(selectors.selectError);
   const isLoading = useSelector(selectors.selectIsLoading);

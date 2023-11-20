@@ -50,7 +50,7 @@ const elementFilterSlice = createSlice({
   name: 'filter',
   initialState: '',
   reducers: {
-    setFilterValue: (_, action) => action.payload,
+    setElementsFilter: (_, action) => action.payload,
   },
 });
 
@@ -97,4 +97,4 @@ export const elementsReducer = combineReducers({
 
 export const { cleanElement } = elementItemsSlice.actions;
 export const { setActiveElement } = elementActiveItemSlice.actions;
-export const { setFilterValue } = elementFilterSlice.actions;
+export const { setElementsFilter } = elementFilterSlice.actions;
