@@ -12,11 +12,11 @@ const ClustersList = () => {
   const dispatch = useDispatch();
   const { allClusters, clustersFilter } = useClusters();
 
-  const filtredClusters = allClusters.filter(el => {
+  const filtredClusters = allClusters.filter(({ cluster, title, group }) => {
     return (
-      el.cluster.toLowerCase().includes(clustersFilter) ||
-      el.title.toLowerCase().includes(clustersFilter) ||
-      el.group.toLowerCase().includes(clustersFilter)
+      cluster.toLowerCase().includes(clustersFilter) ||
+      title.toLowerCase().includes(clustersFilter) ||
+      group.toLowerCase().includes(clustersFilter)
     );
   });
   const filtredGroups = getUnique(filtredClusters, 'group');
@@ -34,7 +34,7 @@ const ClustersList = () => {
           </LiHead>
 
           {filtredClusters.map(
-            el => el.group === group && <Li key={el._id} $el={el} />,
+            el => el.group === group && <Li key={el._id} el={el} />,
           )}
         </Fragment>
       ))}

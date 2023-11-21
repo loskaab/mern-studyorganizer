@@ -8,7 +8,8 @@ export const GridDiv = styled.div`
   /* max-width: 1280px; */
   position: relative;
   display: grid;
-  justify-items: center;
+  align-items: ${({ $ai }) => $ai};
+  justify-items: ${({ $jc }) => $jc};
 
   grid-template-columns: repeat(
     auto-fit,

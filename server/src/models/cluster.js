@@ -9,7 +9,6 @@ const clusterSchema = new Schema(
   {
     cluster: { type: String, match: regex(regExp.HTTP.name), required },
     title: { type: String, default: '', required },
-    checked: { type: Boolean, default: false },
     favorite: { type: Boolean, default: false },
     group: { type: String, default: 'common' },
 

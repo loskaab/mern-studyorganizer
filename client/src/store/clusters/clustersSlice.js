@@ -24,6 +24,12 @@ const handleUpdateCluster = (state, action) => {
   state.splice(index, 1, cluster);
 };
 
+const handleUpdateClusterFavorite = (state, action) => {
+  const { cluster } = action.payload.result;
+  const index = state.findIndex(el => el._id === cluster._id);
+  state.splice(index, 1, cluster);
+};
+
 const handleDeleteCluster = (state, action) => {
   const { cluster } = action.payload.result;
   return state.filter(el => el._id !== cluster._id);
@@ -34,13 +40,17 @@ const clusterItemsSlice = createSlice({
   name: 'items',
   initialState: [],
   reducers: {
-    cleanCluster: state => [],
+    cleanCluster: () => [],
   },
   extraReducers: builder => {
     builder
       .addCase(TNK.fetchClustersThunk.fulfilled, handleFetchClusters)
       .addCase(TNK.addClusterThunk.fulfilled, handleAddCluster)
       .addCase(TNK.updateClusterThunk.fulfilled, handleUpdateCluster)
+      .addCase(
+        TNK.updateClusterFavoriteThunk.fulfilled,
+        handleUpdateClusterFavorite,
+      )
       .addCase(TNK.deleteClusterThunk.fulfilled, handleDeleteCluster);
   },
 });
@@ -69,9 +79,9 @@ const clusterIsLoadingSlice = createSlice({
   initialState: false,
   extraReducers: builder => {
     builder
-      .addMatcher(isAnyOf(...fn('pending')), state => true)
-      .addMatcher(isAnyOf(...fn('fulfilled')), state => false)
-      .addMatcher(isAnyOf(...fn('rejected')), state => false);
+      .addMatcher(isAnyOf(...fn('pending')), () => true)
+      .addMatcher(isAnyOf(...fn('fulfilled')), () => false)
+      .addMatcher(isAnyOf(...fn('rejected')), () => false);
   },
 });
 
@@ -81,8 +91,8 @@ const clusterErrorSlice = createSlice({
   initialState: false,
   extraReducers: builder => {
     builder
-      .addMatcher(isAnyOf(...fn('pending')), state => false)
-      .addMatcher(isAnyOf(...fn('fulfilled')), state => false)
+      .addMatcher(isAnyOf(...fn('pending')), () => false)
+      .addMatcher(isAnyOf(...fn('fulfilled')), () => false)
       .addMatcher(isAnyOf(...fn('rejected')), (_, action) => action.payload);
   },
 });

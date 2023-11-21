@@ -7,17 +7,13 @@ import viteLogo from 'assets/icons/vite.svg';
 
 import { SideBarDiv, LinkReact, LinkVite } from './SideBar.styled';
 
-const SideBar = ({ $side, $barWidth, $barHeight, $offsetY }) => {
+const SideBar = ({ $side, $width, $height, $offY }) => {
   const [count, setCount] = useState(0);
 
   return (
-    <SideBarDiv
-      $side={$side}
-      $barWidth={$barWidth}
-      $barHeight={$barHeight}
-      $offsetY={$offsetY}
-    >
+    <SideBarDiv $side={$side} $width={$width} $height={$height} $offY={$offY}>
       <h2 style={{ fontFamily: '"Montserrat", sans-serif' }}>React + Vite</h2>
+
       <div>
         <LinkReact href="https://react.dev" target="_blank" rel="noreferrer">
           <img src={reactLogo} alt="React logo" />
@@ -26,6 +22,7 @@ const SideBar = ({ $side, $barWidth, $barHeight, $offsetY }) => {
           <img src={viteLogo} alt="Vite logo" />
         </LinkVite>
       </div>
+
       <Button onClick={() => setCount(count => count + 1)}>
         Count {count}
       </Button>
@@ -37,7 +34,7 @@ export default SideBar;
 
 SideBar.propTypes = {
   $side: PropTypes.string,
-  $barWidth: PropTypes.string,
-  $barHeight: PropTypes.string,
-  $offsetY: PropTypes.string,
+  $width: PropTypes.string,
+  $height: PropTypes.string,
+  $offY: PropTypes.string,
 };

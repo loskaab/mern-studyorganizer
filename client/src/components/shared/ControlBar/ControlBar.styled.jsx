@@ -7,8 +7,8 @@ export const ControlDiv = styled.div`
   padding-block: ${({ $pb = themes.indent.s }) => $pb};
   padding-inline: ${({ $pi = themes.indent.m }) => $pi};
   position: ${({ $pos = 'fixed' }) => $pos};
-  ${({ $x = 'left' }) => `${$x}: 0`};
-  ${({ $y = 'top' }) => `${$y}: 0`};
+  ${({ $side = 'left' }) => `${$side}: 0`};
+  ${({ $high = 'top' }) => `${$high}: 0`};
 
   display: grid;
   align-items: center;

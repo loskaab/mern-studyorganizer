@@ -3,13 +3,13 @@ import styled, { css } from 'styled-components';
 import { themes } from 'styles/themes';
 
 export const SideBarDiv = styled.div`
-  height: ${({ $barHeight }) => $barHeight};
-  width: ${({ $barWidth }) => $barWidth};
+  height: ${({ $height }) => $height};
+  width: ${({ $width }) => $width};
   padding-inline: ${themes.indent.m};
   padding-block: ${themes.indent.s};
   position: fixed;
-  top: ${({ $offsetY }) => $offsetY};
   ${({ $side }) => `${$side}: 0`};
+  top: ${({ $offY }) => $offY};
 
   z-index: 100;
 

@@ -10,8 +10,9 @@ export const addElement = async element => {
   return data;
 };
 
-export const updateElement = async ({ id, element }) => {
-  const { data } = await apiClient.put(`/elements/${id}`, element);
+export const updateElement = async element => {
+  const { _id } = element;
+  const { data } = await apiClient.put(`/elements/${_id}`, element);
   return data;
 };
 

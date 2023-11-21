@@ -14,34 +14,34 @@ export const StyledHeader = styled.header`
   z-index: 10;
   background-color: ${themes.colors.background};
   border-bottom: 1px solid ${themes.colors.divider};
+`;
 
-  & > a {
-    margin-right: 20px;
+export const LogoLink = styled.a`
+  margin-right: 20px;
+`;
+
+export const Nav = styled.nav`
+  margin-right: auto;
+
+  & a {
+    padding: 2px 5px;
+    border-radius: ${themes.radius.s};
+    text-decoration: none;
+    color: ${themes.colors.black};
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 20px;
+
+    &.active {
+      color: ${themes.colors.accent};
+    } /* &:global(.active) { } */
   }
 `;
 
-export const NavLink = styled(Link)`
-  padding: 2px 5px;
-  border-radius: ${themes.radius.s};
-  text-decoration: none;
-  color: ${themes.colors.black};
-  text-decoration: none;
-  font-weight: 700;
-  font-size: 20px;
-
-  &.active {
-    color: ${themes.colors.accent};
-  } /* &:global(.active) { } */
-`;
-
 export const Div = styled.div`
-  margin-left: auto;
+  margin-right: auto;
   display: flex;
   align-items: center;
   font-size: 16px;
   font-weight: 700;
-
-  & button {
-    margin-left: 20px;
-  }
 `;

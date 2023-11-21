@@ -10,9 +10,10 @@ export const List = styled.ol`
 const baseStyle = css`
   display: grid;
   grid-column-gap: 5px;
-  grid-template-columns: 10fr 20fr 1fr;
-  grid-template-areas: 'title title title';
+  grid-template-columns: 10fr 1fr 20fr;
+  grid-template-areas: '. title title';
   align-items: baseline;
+  justify-items: center;
 
   &:not(:last-of-type) {
     margin-bottom: 5px;
@@ -23,14 +24,10 @@ export const LiHead = styled.li`
   ${baseStyle}
   counter-reset: subsection;
 
-  justify-items: center;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 16px;
-  font-weight: 700;
-
   & h2 {
     grid-area: title;
-    font-size: 18px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
     text-transform: uppercase;
   }
 
@@ -45,9 +42,12 @@ export const LiContent = styled.li`
   ${baseStyle}
 
   & h3 {
-    margin-right: 15px;
     font-size: 18px;
-    justify-self: right;
+    font-weight: 500;
+  }
+
+  & a {
+    justify-self: left;
   }
 
   & a::before {
@@ -58,8 +58,8 @@ export const LiContent = styled.li`
     color: ${themes.colors.black};
   }
 
-  & span {
-    justify-self: right;
-    font-weight: 700;
+  & input {
+    align-self: center;
+    cursor: pointer;
   }
 `;

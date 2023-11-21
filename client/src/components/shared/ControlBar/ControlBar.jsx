@@ -2,14 +2,26 @@ import PropTypes from 'prop-types';
 
 import { ControlDiv } from './ControlBar.styled';
 
-const ControlBar = ({ $w, $pb, $pi, $pos, $x, $y, $rg, $cg, $mm, $gtc, children }) => {
+const ControlBar = ({
+  $w,
+  $pb,
+  $pi,
+  $pos,
+  $side,
+  $high,
+  $rg,
+  $cg,
+  $mm,
+  $gtc,
+  children,
+}) => {
   return (
     <ControlDiv
       $w={$w}
       $pb={$pb}
       $pi={$pi}
-      $x={$x}
-      $y={$y}
+      $side={$side}
+      $high={$high}
       $pos={$pos}
       $rg={$rg}
       $cg={$cg}
@@ -28,8 +40,8 @@ ControlBar.propTypes = {
   $pb: PropTypes.string,
   $pi: PropTypes.string,
   $pos: PropTypes.string,
-  $x: PropTypes.string,
-  $y: PropTypes.string,
+  $side: PropTypes.string,
+  $high: PropTypes.string,
   $rg: PropTypes.string,
   $cg: PropTypes.string,
   $mm: PropTypes.string,

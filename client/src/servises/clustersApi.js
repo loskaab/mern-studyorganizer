@@ -10,8 +10,15 @@ export const addCluster = async cluster => {
   return data;
 };
 
-export const updateCluster = async ({ id, cluster }) => {
-  const { data } = await apiClient.put(`/clusters/${id}`, cluster);
+export const updateCluster = async cluster => {
+  const { _id } = cluster;
+  const { data } = await apiClient.put(`/clusters/${_id}`, cluster);
+  return data;
+};
+
+export const updateClusterFavorite = async cluster => {
+  const { _id } = cluster;
+  const { data } = await apiClient.patch(`/clusters/favorite/${_id}`, cluster);
   return data;
 };
 

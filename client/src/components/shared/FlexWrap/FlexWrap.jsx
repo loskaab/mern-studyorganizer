@@ -27,8 +27,9 @@ FlexWrap.propTypes = {
   $ai: PropTypes.string,
   $jc: PropTypes.string,
   children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.string,
     PropTypes.node,
+    PropTypes.oneOf(['img', 'png', 'svg']),
   ]),
 };
 

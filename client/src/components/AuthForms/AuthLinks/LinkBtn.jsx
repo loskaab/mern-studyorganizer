@@ -16,7 +16,8 @@ LinkBtn.propTypes = {
   $fs: PropTypes.string,
   onClick: PropTypes.func.isRequired,
   children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.string,
     PropTypes.node,
+    PropTypes.oneOf(['img', 'png', 'svg']),
   ]).isRequired,
 };

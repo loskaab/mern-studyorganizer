@@ -12,19 +12,18 @@ export const FilterDiv = styled.div`
 
   input {
     width: 100%;
-    height: ${heightSize};
+    height: 38px; // ${heightSize};
     padding-inline: ${heightSize};
 
-    border: 1px solid ${themes.colors.accent};
+    border: 1px solid transparent;
     border-radius: ${themes.radius.s};
     outline: transparent;
     transition: border-color 250ms, outline 300ms;
-    box-shadow: ${themes.shadows.button};
 
     &:hover,
     &:focus {
-      border-color: ${themes.colors.hovered};
-      outline: 1px solid ${themes.colors.hovered};
+      border-color: ${themes.colors.accent};
+      /* outline: 1px solid ${themes.colors.hovered}; */
     }
 
     &::placeholder {

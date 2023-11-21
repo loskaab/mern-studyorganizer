@@ -11,8 +11,8 @@ export const FlexDiv = styled.div`
 
   display: ${({ $d = 'flex' }) => $d};
   flex-direction: ${({ $fd }) => $fd};
-  align-items: ${({ $ai }) => $ai};
   justify-content: ${({ $jc }) => $jc};
+  align-items: ${({ $ai }) => $ai};
 
   background-color: transparent;
 
