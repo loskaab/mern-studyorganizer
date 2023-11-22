@@ -35,7 +35,7 @@ export const themes = Object.freeze({
     s: '5px',
     m: '8px',
     l: '12px',
-    xl: '18px',
+    xl: '20px',
   },
   fontSizes: {
     micro: '10px',

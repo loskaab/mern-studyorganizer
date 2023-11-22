@@ -6,8 +6,8 @@ const { indents, shadows, breakpoints } = themes;
 
 export const ControlDiv = styled.div`
   width: ${({ $w }) => $w};
-  padding-block: ${({ $pb = indents.s }) => $pb};
-  padding-inline: ${({ $pi = indents.m }) => $pi};
+  margin-block: ${({ $mb = indents.s }) => $mb};
+  margin-inline: ${({ $mi = indents.m }) => $mi};
   position: ${({ $pos = 'fixed' }) => $pos};
   ${({ $side = 'left' }) => `${$side}: 0`};
   ${({ $high = 'top' }) => `${$high}: 0`};

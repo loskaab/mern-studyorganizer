@@ -26,6 +26,7 @@ const ElementsFilter = () => {
         type="text"
         name="filter"
         placeholder="Search"
+        autoComplete="off"
         value={filterValue}
         onChange={handleSearch}
       />

@@ -27,7 +27,7 @@ const ClustersEditPanel = () => {
   };
 
   return (
-    <ControlBar $side="right" $high="bottom" $gtc=" 1fr 1fr">
+    <ControlBar $mi="30px" $side="right" $high="bottom" $gtc=" 1fr 1fr">
       <Button $s="m" onClick={addCluster}>
         Add
       </Button>

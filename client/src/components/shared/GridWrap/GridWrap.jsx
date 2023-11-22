@@ -2,10 +2,23 @@ import PropTypes from 'prop-types';
 
 import { GridDiv } from './GridWrap.styled';
 
-const GridWrap = ({ $h, $m, $p, $ai, $jc, $rg, $cg, $mm, $gtc, children }) => {
+const GridWrap = ({
+  $w,
+  $h,
+  $m,
+  $p,
+  $ai,
+  $jc,
+  $rg,
+  $cg,
+  $mm,
+  $gtc,
+  children,
+}) => {
   return (
     <GridDiv
       id="grid"
+      $w={$w}
       $h={$h}
       $m={$m}
       $p={$p}
@@ -24,6 +37,7 @@ const GridWrap = ({ $h, $m, $p, $ai, $jc, $rg, $cg, $mm, $gtc, children }) => {
 export default GridWrap;
 
 GridWrap.propTypes = {
+  $w: PropTypes.string,
   $h: PropTypes.string,
   $m: PropTypes.string,
   $p: PropTypes.string,

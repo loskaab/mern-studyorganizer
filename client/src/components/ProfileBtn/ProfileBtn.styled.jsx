@@ -35,8 +35,8 @@ const avatarStyles = css`
 export const BtnDiv = styled.div`
   ${avatarStyles}
 
-  width: 36px;
-  height: 36px;
+  min-width: 36px;
+  min-height: 36px;
   margin-left: 20px;
   font-size: 12px;
   outline: 3px solid transparent;
@@ -48,8 +48,8 @@ export const BtnDiv = styled.div`
   }
 
   &::after {
-    width: 36px;
-    height: 36px;
+    min-width: 36px;
+    min-height: 36px;
   }
 
   @media screen and (width > ${breakpoints.tablet}) {
@@ -61,8 +61,8 @@ export const BtnDiv = styled.div`
 export const Label = styled.label`
   ${avatarStyles}
 
-  width: 150px;
-  height: 150px;
+  min-width: 150px;
+  min-height: 150px;
   font-size: 18px;
   border: 3px solid transparent;
   transition: border-color 250ms;
@@ -73,8 +73,8 @@ export const Label = styled.label`
   }
 
   &::after {
-    width: 150px;
-    height: 150px;
+    min-width: 150px;
+    min-height: 150px;
   }
 
   @media screen and (width > ${breakpoints.tablet}) {

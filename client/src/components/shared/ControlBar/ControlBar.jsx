@@ -4,8 +4,8 @@ import { ControlDiv } from './ControlBar.styled';
 
 const ControlBar = ({
   $w,
-  $pb,
-  $pi,
+  $mb,
+  $mi,
   $pos,
   $side,
   $high,
@@ -18,8 +18,8 @@ const ControlBar = ({
   return (
     <ControlDiv
       $w={$w}
-      $pb={$pb}
-      $pi={$pi}
+      $mb={$mb}
+      $mi={$mi}
       $side={$side}
       $high={$high}
       $pos={$pos}
@@ -37,8 +37,8 @@ export default ControlBar;
 
 ControlBar.propTypes = {
   $w: PropTypes.string,
-  $pb: PropTypes.string,
-  $pi: PropTypes.string,
+  $mb: PropTypes.string,
+  $mi: PropTypes.string,
   $pos: PropTypes.string,
   $side: PropTypes.string,
   $high: PropTypes.string,

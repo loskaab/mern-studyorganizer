@@ -19,7 +19,7 @@ export const Backdrop = styled.div`
     height: 400px;
     position: absolute;
     top: ${indents.xl};
-    right: ${indents.s};
+    right: ${indents.m};
 
     display: flex;
     justify-content: center;

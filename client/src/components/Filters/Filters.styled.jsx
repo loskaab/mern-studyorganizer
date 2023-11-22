@@ -5,6 +5,7 @@ import { themes } from 'styles/themes';
 const { colors, radiuses } = themes;
 const heightSize = '30px';
 const fontSize = '16px';
+const offsetY = `calc(${heightSize} * 1.1)`;
 
 export const FilterDiv = styled.div`
   width: 100%;
@@ -14,17 +15,20 @@ export const FilterDiv = styled.div`
   input {
     width: 100%;
     height: 38px; // ${heightSize};
-    padding-inline: ${heightSize};
+    padding-inline: ${offsetY};
 
     border: 1px solid transparent;
-    border-radius: ${radiuses.s};
+    border-radius: ${radiuses.xl};
+    border-color: ${colors.background};
     outline: transparent;
     transition: border-color 250ms, outline 300ms;
 
-    &:hover,
+    &:hover {
+      border-color: ${colors.borderLight};
+    }
+
     &:focus {
       border-color: ${colors.accent};
-      /* outline: 1px solid ${colors.hovered}; */
     }
 
     &::placeholder {
@@ -38,8 +42,7 @@ export const FilterDiv = styled.div`
 
     &:focus::placeholder {
       left: 0;
-      transform: translateX(${heightSize});
-      color: ${colors.hovered};
+      transform: ${`translateX(${offsetY})`};
     }
 
     & + svg {
@@ -53,18 +56,18 @@ export const FilterDiv = styled.div`
 
     &:focus + svg,
     &:not(:placeholder-shown) + svg {
-      left: calc(${heightSize} * 0.55);
+      left: calc(${heightSize} * 0.65);
       fill: ${colors.hovered};
     }
   }
 `;
 
 export const Button = styled.button`
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   position: absolute;
   top: 50%;
-  right: calc(${heightSize} * 0.55);
+  right: calc(${heightSize} * 0.65);
   transform: translate(50%, -50%);
   display: flex;
   justify-content: center;
@@ -74,4 +77,9 @@ export const Button = styled.button`
   border-radius: 50%;
   background-color: ${colors.border};
   color: ${colors.white};
+  transition: background-color 250ms;
+
+  &:hover {
+    background-color: ${colors.accent};
+  }
 `;

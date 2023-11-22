@@ -5,6 +5,8 @@ import { themes } from 'styles/themes';
 const { breakpoints } = themes;
 
 export const GridDiv = styled.div`
+  width: ${({ $w }) => $w};
+  height: ${({ $h }) => $h};
   margin: ${({ $m = '0' }) => $m};
   padding: ${({ $p = '0' }) => $p};
   /* max-width: 1280px; */
@@ -22,7 +24,6 @@ export const GridDiv = styled.div`
   grid-column-gap: ${({ $cg = '20px' }) => $cg};
 
   @media screen and (width >= ${breakpoints.tablet}) {
-    height: ${({ $h }) => $h};
     grid-template-columns: ${({ $gtc }) => $gtc};
   }
 `;

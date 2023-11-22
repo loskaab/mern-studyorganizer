@@ -13,14 +13,19 @@ const ClustersList = () => {
   const dispatch = useDispatch();
   const { allClusters, clustersFilter } = useClusters();
 
-  const filtredClusters = allClusters.filter(({ cluster, title, group }) => {
-    return (
-      cluster.toLowerCase().includes(clustersFilter) ||
-      title.toLowerCase().includes(clustersFilter) ||
-      group.toLowerCase().includes(clustersFilter)
-    );
-  });
-  const filtredGroups = getUnique(filtredClusters, 'group');
+  const filtredClusters = [...allClusters]
+    .filter(({ cluster, title, group }) => {
+      return (
+        cluster.toLowerCase().includes(clustersFilter) ||
+        title.toLowerCase().includes(clustersFilter) ||
+        group.toLowerCase().includes(clustersFilter)
+      );
+    })
+    .sort((a, b) => a.title.localeCompare(b.title));
+
+  const filtredGroups = getUnique(filtredClusters, 'group').sort((a, b) =>
+    a.localeCompare(b),
+  );
 
   useEffect(() => {
     dispatch(fetchClustersThunk());

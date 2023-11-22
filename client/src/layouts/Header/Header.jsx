@@ -6,7 +6,7 @@ import GridWrap from 'components/shared/GridWrap/GridWrap';
 import LogoLink from 'components/shared/LogoLink/LogoLink';
 import ProfileBtn from 'components/ProfileBtn/ProfileBtn';
 import ClustersFilter from 'components/Filters/ClustersFilter';
-import ClustersSelect from 'components/Filters/ClustersSelect';
+import ClustersSelect from 'components/Selects/ClustersSelect';
 
 import { StyledHeader, Nav } from './Header.styled';
 
@@ -24,7 +24,7 @@ const Header = ({ $height }) => {
         {/* {isLoggedIn && <NavLink to="/profile">Profile</NavLink>} */}
       </Nav>
 
-      <GridWrap $ai="center" $gtc="2fr 1fr">
+      <GridWrap $w="55%" $cg="20px" $ai="center" $gtc="2fr 1fr">
         {pathname === '/cluster' && <ClustersFilter />}
         {pathname === '/cluster' && <ClustersSelect />}
       </GridWrap>

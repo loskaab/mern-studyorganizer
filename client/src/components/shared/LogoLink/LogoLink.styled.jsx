@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+import { themes } from 'styles/themes';
+
+const { indents } = themes;
+
 export const Link = styled.a`
-  margin-right: 20px;
+  margin-right: ${indents.m};
 `;
