@@ -16,7 +16,7 @@ export const FilterDiv = styled.div`
     padding-inline: ${heightSize};
 
     border: 1px solid transparent;
-    border-radius: ${themes.radius.s};
+    border-radius: ${themes.radiuses.s};
     outline: transparent;
     transition: border-color 250ms, outline 300ms;
 

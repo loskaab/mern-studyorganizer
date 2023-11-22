@@ -8,32 +8,34 @@ export const themes = Object.freeze({
     black: '#343434',
     white: '#FFFFFF',
     yellow: '#f3cf00',
-    ligthBlue: '#dfeafd',
-    lightGray: '#d3dbe5',
+
+    accent: '#2374ef',
+    hovered: '#1f68d7',
 
     background: '#f0f4f9',
     backgroundHoverd: '#f2f6fc',
-    accent: '#2374ef',
-    hovered: '#1f68d7',
 
     error: '#E74A3B',
     success: '#3CBC81',
     noValue: '#343434',
 
     border: '#b1b1b1',
+    borderLight: '#d3dbe5',
     placeholder: '#5c5858',
 
     backdrop: 'rgba(23, 24, 32, 0.5)',
   },
-  indent: {
+  indents: {
     s: '10px',
     m: '20px',
-    l: '40px',
+    l: '35px',
+    xl: '50px',
   },
-  radius: {
+  radiuses: {
     s: '5px',
     m: '8px',
     l: '12px',
+    xl: '18px',
   },
   fontSizes: {
     micro: '10px',

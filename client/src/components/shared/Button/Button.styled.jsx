@@ -50,7 +50,7 @@ const transparentStyles = css`
   &:focus {
     color: ${themes.colors.hovered};
     border-color: ${themes.colors.hovered};
-    background-color: ${themes.colors.ligthBlue};
+    background-color: ${themes.colors.backgroundHoverd};
   }
 
   &:disabled {

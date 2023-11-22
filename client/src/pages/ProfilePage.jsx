@@ -5,7 +5,7 @@ import { themes } from 'styles/themes';
 // import ProfileForm from 'components/Forms/ProfileForm';
 
 const ProfilePage = () => {
-  const { s, m } = themes.indent;
+  const { s, m } = themes.indents;
 
   return (
     <FlexWrap $p={`${s} ${m}`} $fd="column" $ai="center" $jc="center">

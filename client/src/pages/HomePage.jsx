@@ -3,7 +3,7 @@ import MainLayout from 'layouts/MainLayout/MainLayout';
 import { themes } from 'styles/themes';
 
 const HomePage = () => {
-  const { s, m } = themes.indent;
+  const { s, m } = themes.indents;
 
   return (
     <FlexWrap $p={`${s} ${m}`} $d="flex" $ai="center" $jc="center">

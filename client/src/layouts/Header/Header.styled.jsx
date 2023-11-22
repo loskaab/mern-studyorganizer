@@ -1,18 +1,20 @@
-import { NavLink as Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { themes } from 'styles/themes';
 
+const { colors, indents, radiuses } = themes;
+
 export const StyledHeader = styled.header`
+  padding: 0 20px;
+  height: ${indents.xl};
   position: sticky;
   top: 0;
   left: 0;
   display: flex;
   align-items: center;
   justify-content: start;
-  padding: 6px 20px;
   z-index: 10;
-  background-color: ${themes.colors.background};
+  background-color: ${colors.background};
 `;
 
 export const LogoLink = styled.a`
@@ -24,15 +26,15 @@ export const Nav = styled.nav`
 
   & a {
     padding: 2px 5px;
-    border-radius: ${themes.radius.s};
+    border-radius: ${radiuses.s};
     text-decoration: none;
-    color: ${themes.colors.black};
+    color: ${colors.black};
     text-decoration: none;
     font-weight: 700;
     font-size: 20px;
 
     &.active {
-      color: ${themes.colors.accent};
+      color: ${colors.accent};
     } /* &:global(.active) { } */
   }
 `;

@@ -5,7 +5,7 @@ import ClustersList from 'components/ClustersList/ClustersList';
 import ClustersEditPanel from 'layouts/EditPanel/ClustersEditPanel';
 
 const ClustersPage = () => {
-  const { s, m } = themes.indent;
+  const { s, m } = themes.indents;
 
   return (
     <FlexWrap $p={`${s} ${m}`}>

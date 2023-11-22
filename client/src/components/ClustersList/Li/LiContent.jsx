@@ -3,14 +3,12 @@ import { useDispatch } from 'react-redux';
 import { TiStar } from 'react-icons/ti';
 
 import { updateClusterFavoriteThunk } from 'store/clusters/clustersThunks';
-import { themes } from 'styles/themes';
 
 import { LiContent as Li, Label } from './Li.styled';
 
 const LiContent = ({ el }) => {
   const dispatch = useDispatch();
   const { _id, cluster, title, favorite } = el;
-  const { yellow, border } = themes.colors;
 
   const trim = cluster => {
     const text = cluster.replace('https://', '').replace('http://', '');
@@ -21,7 +19,7 @@ const LiContent = ({ el }) => {
     dispatch(updateClusterFavoriteThunk({ _id, favorite: !favorite }));
 
   return (
-    <Li>
+    <Li $hoverd={favorite}>
       <Label>
         <input
           type="checkbox"
@@ -29,13 +27,7 @@ const LiContent = ({ el }) => {
           checked={favorite}
           onChange={handleChange}
         />
-
-        <TiStar
-          size="20px"
-          color={favorite ? yellow : 'transparent'}
-          stroke={favorite ? yellow : border}
-          strokeWidth="2.5px"
-        />
+        <TiStar size="18px" />
       </Label>
 
       <h3>{title}</h3>
@@ -49,4 +41,4 @@ const LiContent = ({ el }) => {
 
 export default LiContent;
 
-LiContent.propTypes = { el: PropTypes.object };
+LiContent.propTypes = { el: PropTypes.object, $hoverd: PropTypes.bool };

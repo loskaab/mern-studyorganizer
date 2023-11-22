@@ -9,7 +9,7 @@ export const Form = styled(FormikForm)`
   display: flex;
   flex-direction: column;
 
-  border-radius: ${themes.radius.m};
+  border-radius: ${themes.radiuses.m};
   background-color: ${themes.colors.white};
 
   box-shadow: ${themes.shadows.auth};
@@ -52,7 +52,7 @@ export const Field = styled(FormikField)`
   font-family: 'Roboto', sans-serif;
 
   border: 1px solid ${themes.colors.border};
-  border-radius: ${themes.radius.s};
+  border-radius: ${themes.radiuses.s};
   outline: 0.5px solid transparent;
   transition: border-color 250ms linear, outline-color 250ms linear;
 
