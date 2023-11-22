@@ -9,7 +9,7 @@ import Button from 'components/shared/Button/Button';
 import Modal from 'components/shared/Modal/Modal';
 import ClusterForm from 'components/ClusterForm/ClusterForm';
 
-const ClustersBar = () => {
+const ClustersEditPanel = () => {
   const [isModal, setIsModal] = useState(false);
   const [clipboardText, setClipboerdText] = useState('');
 
@@ -42,4 +42,4 @@ const ClustersBar = () => {
   );
 };
 
-export default ClustersBar;
+export default ClustersEditPanel;

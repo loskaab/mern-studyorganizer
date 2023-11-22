@@ -5,8 +5,9 @@ import { fetchClustersThunk } from 'store/clusters/clustersThunks';
 import { useClusters } from 'utils/hooks';
 import { getUnique } from 'utils/helpers';
 
-import Li from './Li/Li';
-import { List, LiHead } from './ClustersList.styled';
+import LiHead from './Li/LiHead';
+import LiContent from './Li/LiContent';
+import { List } from './ClustersList.styled';
 
 const ClustersList = () => {
   const dispatch = useDispatch();
@@ -29,12 +30,10 @@ const ClustersList = () => {
     <List>
       {filtredGroups.map(group => (
         <Fragment key={group}>
-          <LiHead>
-            <h2>{group}</h2>
-          </LiHead>
+          <LiHead group={group} />
 
           {filtredClusters.map(
-            el => el.group === group && <Li key={el._id} el={el} />,
+            el => el.group === group && <LiContent key={el._id} el={el} />,
           )}
         </Fragment>
       ))}

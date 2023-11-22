@@ -3,13 +3,10 @@ import MainLayout from 'layouts/MainLayout/MainLayout';
 import { themes } from 'styles/themes';
 
 const HomePage = () => {
+  const { s, m } = themes.indent;
+
   return (
-    <FlexWrap
-      $p={`${themes.indent.s} ${themes.indent.m}`}
-      $d="flex"
-      $ai="center"
-      $jc="center"
-    >
+    <FlexWrap $p={`${s} ${m}`} $d="flex" $ai="center" $jc="center">
       <MainLayout />
     </FlexWrap>
   );

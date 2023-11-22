@@ -17,7 +17,6 @@ export const SideBarDiv = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border-right: 1px solid ${themes.colors.divider};
 `;
 
 const baseLogo = css`

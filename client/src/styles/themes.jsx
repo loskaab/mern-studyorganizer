@@ -7,9 +7,12 @@ export const themes = Object.freeze({
   colors: {
     black: '#343434',
     white: '#FFFFFF',
-    ligthBlue: '#ddf0ff83',
+    yellow: '#f3cf00',
+    ligthBlue: '#dfeafd',
+    lightGray: '#d3dbe5',
 
-    background: '#f9f9f9',
+    background: '#f0f4f9',
+    backgroundHoverd: '#f2f6fc',
     accent: '#2374ef',
     hovered: '#1f68d7',
 
@@ -18,7 +21,6 @@ export const themes = Object.freeze({
     noValue: '#343434',
 
     border: '#b1b1b1',
-    divider: '#dbdbdb',
     placeholder: '#5c5858',
 
     backdrop: 'rgba(23, 24, 32, 0.5)',
@@ -56,5 +58,7 @@ export const themes = Object.freeze({
   shadows: {
     auth: '0 3px 5px -1px rgb(0 0 0/20%), 0 6px 10px 0 rgb(0 0 0/14%), 0 1px 18px 0 rgb(0 0 0/12%)',
     button: '0 7px 6px 1px rgba(0,0,0,.16)',
+    hover:
+      'inset 1px 0 0 #dadce0, inset -1px 0 0 #dadce0, 0 1px 2px 0 rgba(60,64,67,.3), 0 1px 3px 1px rgba(60,64,67,.15)',
   },
 });
