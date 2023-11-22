@@ -2,11 +2,13 @@ import { Oval } from 'react-loader-spinner';
 
 import { themes } from 'styles/themes';
 
+const { colors } = themes;
+
 const OvalLoader = () => (
   <Oval
     height={40}
     width={40}
-    color={themes.colors.error}
+    color={colors.error}
     wrapperStyle={{
       position: 'fixed',
       top: '50%',
@@ -16,7 +18,7 @@ const OvalLoader = () => (
     wrapperClass=""
     visible={true}
     ariaLabel="oval-loading"
-    secondaryColor={themes.colors.error}
+    secondaryColor={colors.error}
     strokeWidth={6}
     strokeWidthSecondary={6}
   />

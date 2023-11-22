@@ -1,6 +1,6 @@
 export const getAbbreviation = text =>
   text
-    .replace('-', ' ')
+    ?.replace('-', ' ')
     .split(/\s+/)
     .reduce((acc, el) => acc + el.at(0).toUpperCase(), '')
     .substring(0, 3);

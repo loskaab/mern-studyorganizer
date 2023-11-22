@@ -1,5 +1,8 @@
 import styled from 'styled-components';
+
 import { themes } from 'styles/themes';
+
+const { colors, shadows } = themes;
 
 export const Backdrop = styled.div`
   width: 100vw;
@@ -12,7 +15,7 @@ export const Backdrop = styled.div`
   align-items: center;
   z-index: 100;
 
-  background-color: ${themes.colors.backdrop};
+  background-color: ${colors.backdrop};
   backdrop-filter: blur(5px);
 
   & > div {
@@ -23,7 +26,7 @@ export const Backdrop = styled.div`
 
     transform: translate(-50%, -50%);
 
-    background-color: transparent; // ${themes.colors.white};
-    box-shadow: ${themes.shadows.modal};
+    background-color: transparent; // ${colors.white};
+    box-shadow: ${shadows.modal};
   }
 `;

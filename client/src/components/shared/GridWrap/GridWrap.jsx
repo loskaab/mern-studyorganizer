@@ -36,6 +36,7 @@ GridWrap.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.node,
+    PropTypes.arrayOf(PropTypes.node),
     PropTypes.oneOf(['img', 'png', 'svg']),
   ]),
 };

@@ -2,11 +2,11 @@ import PropTypes from 'prop-types';
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 
-import { Backdrop } from './Modal.styled';
+import { Backdrop } from './ProfileLayout.styled';
 
 const modalRoot = document.querySelector('#modal');
 
-const Modal = ({ onClick, children }) => {
+const ProfileLayout = ({ onClick, children }) => {
   useEffect(() => {
     const handleKeyDown = e => {
       e.key === 'Escape' && onClick();
@@ -28,9 +28,9 @@ const Modal = ({ onClick, children }) => {
   );
 };
 
-export default Modal;
+export default ProfileLayout;
 
-Modal.propTypes = {
+ProfileLayout.propTypes = {
   onClick: PropTypes.func.isRequired,
   children: PropTypes.oneOfType([
     PropTypes.string,

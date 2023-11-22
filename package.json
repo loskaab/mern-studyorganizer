@@ -10,8 +10,5 @@
  },
  "keywords": [],
  "author": "BS",
- "license": "ISC",
- "dependencies": {
-  "react-select": "^5.8.0"
- }
+ "license": "ISC"
 }

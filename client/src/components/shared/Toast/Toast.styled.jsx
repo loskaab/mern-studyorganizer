@@ -4,6 +4,8 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import { themes } from 'styles/themes';
 
+const { colors } = themes;
+
 export const ToastContainer = styled(Toast).attrs({
   className: 'toast-container',
   toastClassName: 'toast',
@@ -14,43 +16,43 @@ export const ToastContainer = styled(Toast).attrs({
 
   & button[aria-label='close'] {
     & svg {
-      color: ${themes.colors.placeholder};
+      color: ${colors.placeholder};
     }
   }
   .toast {
-    color: ${themes.colors.black};
+    color: ${colors.black};
   }
 
   & .Toastify__toast--info {
     .body {
       & svg {
-        fill: ${themes.colors.accent};
+        fill: ${colors.accent};
       }
     }
     .progress {
-      background-color: ${themes.colors.accent};
+      background-color: ${colors.accent};
     }
   }
 
   & .Toastify__toast--success {
     .body {
       & svg {
-        fill: ${themes.colors.success};
+        fill: ${colors.success};
       }
     }
     .progress {
-      background-color: ${themes.colors.success};
+      background-color: ${colors.success};
     }
   }
 
   & .Toastify__toast--error {
     .body {
       & svg {
-        fill: ${themes.colors.error};
+        fill: ${colors.error};
       }
     }
     .progress {
-      background-color: ${themes.colors.error};
+      background-color: ${colors.error};
     }
   }
 `;

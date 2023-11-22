@@ -2,6 +2,8 @@ import styled from 'styled-components';
 
 import { themes } from 'styles/themes';
 
+const { breakpoints } = themes;
+
 export const FlexDiv = styled.div`
   margin: ${({ $m = '0 auto' }) => $m};
   padding: ${({ $p = '0 10px' }) => $p};
@@ -16,17 +18,17 @@ export const FlexDiv = styled.div`
 
   background-color: transparent;
 
-  @media screen and (width >= ${themes.breakpoints.mobile}) {
-    max-width: ${themes.breakpoints.mobile};
+  @media screen and (width >= ${breakpoints.mobile}) {
+    max-width: ${breakpoints.mobile};
   }
 
-  @media screen and (width >= ${themes.breakpoints.tablet}) {
-    max-width: ${themes.breakpoints.tablet};
+  @media screen and (width >= ${breakpoints.tablet}) {
+    max-width: ${breakpoints.tablet};
     padding: ${({ $p = '0 24px' }) => $p};
   }
 
-  @media screen and (width >= ${themes.breakpoints.desktop}) {
-    max-width: 100%; // max-width: ${themes.breakpoints.desktop};
+  @media screen and (width >= ${breakpoints.desktop}) {
+    max-width: 100%; // max-width: ${breakpoints.desktop};
     padding: ${({ $p = '0 40px' }) => $p};
   }
 `;

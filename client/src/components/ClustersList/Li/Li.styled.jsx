@@ -55,7 +55,7 @@ export const LiContent = styled.li`
 
   &:hover {
     border-color: ${colors.border};
-    box-shadow: ${shadows.hover};
+    box-shadow: ${shadows.back};
     background-color: ${colors.backgroundHoverd};
   }
 

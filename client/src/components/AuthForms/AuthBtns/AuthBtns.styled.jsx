@@ -2,6 +2,8 @@ import styled, { css } from 'styled-components';
 
 import { themes } from 'styles/themes';
 
+const { colors, breakpoints } = themes;
+
 const baseStyles = css`
   height: 41px;
   display: flex;
@@ -12,7 +14,7 @@ const baseStyles = css`
   font-family: 'Roboto', sans-serif;
   font-size: 14px;
 
-  @media screen and (width > ${themes.breakpoints.tablet}) {
+  @media screen and (width > ${breakpoints.tablet}) {
     font-size: 16px;
   }
 
@@ -27,21 +29,21 @@ export const SignButton = styled.button`
   margin-top: 30px;
 
   font-weight: 700;
-  border-color: ${themes.colors.accent};
-  color: ${themes.colors.white};
-  background-color: ${themes.colors.accent};
+  border-color: ${colors.accent};
+  color: ${colors.white};
+  background-color: ${colors.accent};
 
   &:hover,
   &:focus {
-    border-color: ${themes.colors.hovered};
-    background-color: ${themes.colors.hovered};
+    border-color: ${colors.hovered};
+    background-color: ${colors.hovered};
   }
 
   &:disabled {
     cursor: auto;
-    color: ${themes.colors.border};
-    border-color: ${themes.colors.accent};
-    background-color: ${themes.colors.accent};
+    color: ${colors.border};
+    border-color: ${colors.accent};
+    background-color: ${colors.accent};
   }
 `;
 
@@ -52,15 +54,15 @@ export const IconLink = styled.a`
   padding-inline: 10px;
 
   font-weight: 500;
-  border-color: ${themes.colors.accent};
-  color: ${themes.colors.accent};
-  background-color: ${themes.colors.white};
+  border-color: ${colors.accent};
+  color: ${colors.accent};
+  background-color: ${colors.white};
 
   &:hover,
   &:focus {
-    color: ${themes.colors.hovered};
-    border-color: ${themes.colors.hovered};
-    background-color: ${themes.colors.backgroundHoverd};
+    color: ${colors.hovered};
+    border-color: ${colors.hovered};
+    background-color: ${colors.backgroundHoverd};
   }
 
   & pre {

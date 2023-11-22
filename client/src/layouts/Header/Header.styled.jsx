@@ -2,11 +2,11 @@ import styled from 'styled-components';
 
 import { themes } from 'styles/themes';
 
-const { colors, indents, radiuses } = themes;
+const { colors, radiuses } = themes;
 
 export const StyledHeader = styled.header`
   padding: 0 20px;
-  height: ${indents.xl};
+  height: ${({ $height }) => $height};
   position: sticky;
   top: 0;
   left: 0;
@@ -15,10 +15,6 @@ export const StyledHeader = styled.header`
   justify-content: start;
   z-index: 10;
   background-color: ${colors.background};
-`;
-
-export const LogoLink = styled.a`
-  margin-right: 20px;
 `;
 
 export const Nav = styled.nav`
@@ -37,12 +33,4 @@ export const Nav = styled.nav`
       color: ${colors.accent};
     } /* &:global(.active) { } */
   }
-`;
-
-export const Div = styled.div`
-  margin-right: auto;
-  display: flex;
-  align-items: center;
-  font-size: 16px;
-  font-weight: 700;
 `;

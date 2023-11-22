@@ -3,10 +3,12 @@ import { Link as RouteLink } from 'react-router-dom';
 
 import { themes } from 'styles/themes';
 
+const { colors } = themes;
+
 const CommonStyles = css`
   margin-left: auto;
 
-  color: ${themes.colors.accent};
+  color: ${colors.accent};
   text-decoration: underline;
   font-family: 'Roboto', sans-serif;
   font-size: ${({ $fs = '14px' }) => $fs};

@@ -1,53 +1,35 @@
 import PropTypes from 'prop-types';
-import { NavLink, useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { NavLink, useLocation } from 'react-router-dom';
 
-// import { cleanElements, setActiveElement } from 'store/elements/elementsSlice';
-// import { setElementsFilter } from 'store/elements/elementsSlice';
-import { logoutThunk } from 'store/auth/authThunks';
 import { useAuth } from 'utils/hooks/useAuth';
-import mernLogo from 'assets/icons/favicon.png';
-import Button from 'components/shared/Button/Button';
+import GridWrap from 'components/shared/GridWrap/GridWrap';
+import LogoLink from 'components/shared/LogoLink/LogoLink';
+import ProfileBtn from 'components/ProfileBtn/ProfileBtn';
+import ClustersFilter from 'components/Filters/ClustersFilter';
+import ClustersSelect from 'components/Filters/ClustersSelect';
 
-import { StyledHeader, LogoLink, Nav } from './Header.styled';
+import { StyledHeader, Nav } from './Header.styled';
 
-const Header = ({ children }) => {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const { isLoggedIn, user } = useAuth();
-
-  const handleLogIn = () => {
-    navigate('/signin', { replace: true });
-  };
-
-  const handleLogOut = () => {
-    dispatch(logoutThunk());
-    // dispatch(cleanElements());
-    // dispatch(setActiveElement(null));
-    // dispatch(setElementsFilter(''));
-  };
+const Header = ({ $height }) => {
+  const { pathname } = useLocation();
+  const { isLoggedIn } = useAuth();
 
   return (
-    <StyledHeader>
-      <LogoLink
-        href="https://github.com/Belka-S/mern_starter"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <img src={mernLogo} height="32" width="32" alt="MERN logo" />
-      </LogoLink>
+    <StyledHeader $height={$height}>
+      <LogoLink />
 
       <Nav>
-        {!isLoggedIn && <NavLink to="/">Home</NavLink>}
-        {isLoggedIn && <NavLink to="/profile">Profile</NavLink>}
+        <NavLink to="/">Home</NavLink>
         {isLoggedIn && <NavLink to="/cluster">Clusters</NavLink>}
+        {/* {isLoggedIn && <NavLink to="/profile">Profile</NavLink>} */}
       </Nav>
 
-      {children}
+      <GridWrap $ai="center" $gtc="2fr 1fr">
+        {pathname === '/cluster' && <ClustersFilter />}
+        {pathname === '/cluster' && <ClustersSelect />}
+      </GridWrap>
 
-      {isLoggedIn && <p style={{ margin: '0 20px' }}>{user.email}</p>}
-      {isLoggedIn && <Button onClick={handleLogOut}>Log out</Button>}
-      {!isLoggedIn && <Button onClick={handleLogIn}>Log in</Button>}
+      {isLoggedIn && <ProfileBtn />}
     </StyledHeader>
   );
 };
@@ -55,9 +37,5 @@ const Header = ({ children }) => {
 export default Header;
 
 Header.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.node,
-    PropTypes.oneOf(['img', 'png', 'svg']),
-  ]),
+  $height: PropTypes.string.isRequired,
 };

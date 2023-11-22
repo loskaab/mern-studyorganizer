@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 import { themes } from 'styles/themes';
 
+const { colors, radiuses } = themes;
 const heightSize = '30px';
 const fontSize = '16px';
 
@@ -16,14 +17,14 @@ export const FilterDiv = styled.div`
     padding-inline: ${heightSize};
 
     border: 1px solid transparent;
-    border-radius: ${themes.radiuses.s};
+    border-radius: ${radiuses.s};
     outline: transparent;
     transition: border-color 250ms, outline 300ms;
 
     &:hover,
     &:focus {
-      border-color: ${themes.colors.accent};
-      /* outline: 1px solid ${themes.colors.hovered}; */
+      border-color: ${colors.accent};
+      /* outline: 1px solid ${colors.hovered}; */
     }
 
     &::placeholder {
@@ -38,7 +39,7 @@ export const FilterDiv = styled.div`
     &:focus::placeholder {
       left: 0;
       transform: translateX(${heightSize});
-      color: ${themes.colors.hovered};
+      color: ${colors.hovered};
     }
 
     & + svg {
@@ -53,7 +54,7 @@ export const FilterDiv = styled.div`
     &:focus + svg,
     &:not(:placeholder-shown) + svg {
       left: calc(${heightSize} * 0.55);
-      fill: ${themes.colors.hovered};
+      fill: ${colors.hovered};
     }
   }
 `;
@@ -71,6 +72,6 @@ export const Button = styled.button`
 
   border: 1px solid transparent;
   border-radius: 50%;
-  background-color: ${themes.colors.border};
-  color: ${themes.colors.white};
+  background-color: ${colors.border};
+  color: ${colors.white};
 `;

@@ -3,14 +3,16 @@ import styled, { css } from 'styled-components';
 import { themes } from 'styles/themes';
 import { visuallyHidden } from 'styles/utils/hidden.styled';
 
+const { colors, radiuses, shadows } = themes;
+
 export const Form = styled.form`
   padding: 40px;
   display: grid;
   grid-row-gap: 20px;
 
-  border-radius: ${themes.radiuses.m};
-  background-color: ${themes.colors.white};
-  box-shadow: ${themes.shadows.auth};
+  border-radius: ${radiuses.m};
+  background-color: ${colors.white};
+  box-shadow: ${shadows.auth};
 `;
 
 export const Label = styled.label`
@@ -30,7 +32,7 @@ export const Label = styled.label`
   & span {
     font-size: 14px;
     font-weight: 400;
-    color: ${themes.colors.error};
+    color: ${colors.error};
   }
 `;
 
@@ -41,14 +43,14 @@ const baseStyles = css`
   font-size: 16px;
   font-family: 'Roboto', sans-serif;
 
-  border: 1px solid ${themes.colors.border};
-  border-radius: ${themes.radiuses.s};
+  border: 1px solid ${colors.border};
+  border-radius: ${radiuses.s};
   outline: 0.5px solid transparent;
   transition: border-color 250ms linear, outline-color 250ms linear;
 
   &:hover,
   &:focus {
-    border: 1px solid ${themes.colors.hovered};
+    border: 1px solid ${colors.hovered};
   }
 `;
 
@@ -76,7 +78,7 @@ export const SelectWrap = styled.div`
     content: '';
     width: 0.8em;
     height: 0.5em;
-    background-color: ${themes.colors.placeholder};
+    background-color: ${colors.placeholder};
     clip-path: polygon(100% 0%, 0 0%, 50% 100%);
   }
 

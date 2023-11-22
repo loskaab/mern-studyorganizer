@@ -2,6 +2,8 @@ import styled from 'styled-components';
 
 import { themes } from 'styles/themes';
 
+const { colors } = themes;
+
 export const Button = styled.button`
   width: fit-content;
   position: absolute;
@@ -14,11 +16,11 @@ export const Button = styled.button`
 
   border-color: transparent;
   background-color: transparent;
-  color: ${themes.colors.border};
+  color: ${colors.border};
   transition: color 250ms;
 
   &:hover,
   &:focus {
-    color: ${themes.colors.black};
+    color: ${colors.black};
   }
 `;

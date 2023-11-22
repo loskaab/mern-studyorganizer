@@ -4,15 +4,17 @@ import { BsCheckCircle, BsExclamationCircle } from 'react-icons/bs';
 
 import { themes } from 'styles/themes';
 
+const { colors, radiuses, shadows } = themes;
+
 export const Form = styled(FormikForm)`
   padding: 40px;
   display: flex;
   flex-direction: column;
 
-  border-radius: ${themes.radiuses.m};
-  background-color: ${themes.colors.white};
+  border-radius: ${radiuses.m};
+  background-color: ${colors.white};
 
-  box-shadow: ${themes.shadows.auth};
+  box-shadow: ${shadows.auth};
 `;
 
 export const Label = styled.label`
@@ -51,17 +53,17 @@ export const Field = styled(FormikField)`
   font-size: 16px;
   font-family: 'Roboto', sans-serif;
 
-  border: 1px solid ${themes.colors.border};
-  border-radius: ${themes.radiuses.s};
+  border: 1px solid ${colors.border};
+  border-radius: ${radiuses.s};
   outline: 0.5px solid transparent;
   transition: border-color 250ms linear, outline-color 250ms linear;
 
   border-color: ${({ $validation }) => {
     switch ($validation) {
       case 'noValue':
-        return themes.colors.border;
+        return colors.border;
       case $validation:
-        return themes.colors[$validation];
+        return colors[$validation];
       default:
         break;
     }
@@ -77,7 +79,7 @@ export const Field = styled(FormikField)`
 function validateHoverFocus({ $validation }) {
   switch ($validation) {
     case $validation:
-      return themes.colors[$validation];
+      return colors[$validation];
     default:
       break;
   }
@@ -101,7 +103,7 @@ export const ErrorMsg = styled(ErrorMessage)`
   font-size: 14px;
   font-weight: 400;
 
-  color: ${themes.colors.error};
+  color: ${colors.error};
 `;
 
 const IconStyles = css`
@@ -114,11 +116,11 @@ const IconStyles = css`
 export const SuccessIcon = styled(BsCheckCircle)`
   ${IconStyles};
 
-  color: ${themes.colors.success};
+  color: ${colors.success};
 `;
 
 export const ErrorIcon = styled(BsExclamationCircle)`
   ${IconStyles};
 
-  color: ${themes.colors.error};
+  color: ${colors.error};
 `;
