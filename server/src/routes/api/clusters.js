@@ -15,7 +15,7 @@ router.put('/:id', isValidId, validate.clusters.addSchema, ctrl.clusters.updateB
 router.patch(
   '/favorite/:id',
   isValidId,
-  // validate.clusters.updateFavoriteSchema,
+  validate.clusters.updateFavoriteSchema,
   ctrl.clusters.updateFavoriteById,
 );
 router.delete('/:id', isValidId, ctrl.clusters.removeById);

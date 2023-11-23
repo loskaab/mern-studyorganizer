@@ -7,11 +7,11 @@ import { addClusterThunk } from 'store/clusters/clustersThunks';
 import { titleSchema } from 'utils/validation';
 import ButtonClr from 'components/shared/Button/ButtonClr';
 
-import { Form, Label, Input, SelectWrap, Hidden } from './ClusterForm.styled';
+import { Form, Label, Input, SelectWrap, Hidden } from './ClusterForms.styled';
 
 export const clusterGroups = ['common', 'study', 'work'];
 
-const ClusterForm = ({ clipboardText, setIsModal }) => {
+const AddClusterForm = ({ cluster, setIsModal }) => {
   const dispatch = useDispatch();
 
   const {
@@ -21,7 +21,7 @@ const ClusterForm = ({ clipboardText, setIsModal }) => {
   } = useForm({
     mode: 'onBlur',
     resolver: yupResolver(titleSchema),
-    defaultValues: { cluster: clipboardText },
+    defaultValues: { cluster },
   });
 
   const onSubmit = data => {
@@ -35,7 +35,7 @@ const ClusterForm = ({ clipboardText, setIsModal }) => {
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
       <Label>
-        {clusterImage(clipboardText)}
+        {clusterImage(cluster)}
         <Hidden {...register('cluster')} />
       </Label>
 
@@ -47,7 +47,7 @@ const ClusterForm = ({ clipboardText, setIsModal }) => {
       <Label>
         Group: <span> {errors.group?.message}</span>
         <SelectWrap>
-          <select name="pets" id="pet-select" {...register('group')}>
+          <select name="group" id="group-select" {...register('group')}>
             {clusterGroups.map(el => (
               <option key={el} value={el}>
                 {el}
@@ -65,9 +65,9 @@ const ClusterForm = ({ clipboardText, setIsModal }) => {
   );
 };
 
-export default ClusterForm;
+export default AddClusterForm;
 
-ClusterForm.propTypes = {
-  clipboardText: PropTypes.string.isRequired,
+AddClusterForm.propTypes = {
+  cluster: PropTypes.string.isRequired,
   setIsModal: PropTypes.func.isRequired,
 };

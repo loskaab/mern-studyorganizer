@@ -4,6 +4,42 @@ import { themes } from 'styles/themes';
 
 const { colors, breakpoints } = themes;
 
+// Base styles
+const baseStyles = css`
+  width: ${({ $w }) => $w};
+  height: ${({ $h }) => $h};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-family: 'Roboto', sans-serif;
+
+  border: 1px solid ${colors.accent};
+  box-shadow: ${({ $bs }) => $bs};
+
+  transition: color 250ms, border-color 250ms, background-color 250ms;
+
+  &:disabled {
+    cursor: auto;
+    color: ${colors.border};
+    border-color: ${colors.border};
+    background-color: ${colors.accent};
+  }
+
+  ${({ $s = 's' }) => {
+    switch ($s) {
+      case 's':
+        return smallStyles;
+      case 'm':
+        return mediumStyles;
+      case 'l':
+        return largeStyles;
+      default:
+        break;
+    }
+  }}
+`;
+
 // Size styles
 const smallStyles = css`
   min-width: 60px;
@@ -76,40 +112,6 @@ const coloredStyles = css`
     border-color: ${colors.accent};
     background-color: ${colors.accent};
   }
-`;
-
-// Base styles
-const baseStyles = css`
-  width: ${({ $w }) => $w};
-  height: ${({ $h }) => $h};
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  font-family: 'Roboto', sans-serif;
-
-  border: 1px solid ${colors.accent};
-  transition: color 250ms, border-color 250ms, background-color 250ms;
-
-  &:disabled {
-    cursor: auto;
-    color: ${colors.border};
-    border-color: ${colors.border};
-    background-color: ${colors.accent};
-  }
-
-  ${({ $s = 's' }) => {
-    switch ($s) {
-      case 's':
-        return smallStyles;
-      case 'm':
-        return mediumStyles;
-      case 'l':
-        return largeStyles;
-      default:
-        break;
-    }
-  }}
 `;
 
 // Buttons

@@ -1,14 +1,12 @@
+import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { BsSearch } from 'react-icons/bs';
 import { IoClose } from 'react-icons/io5';
 
-import { selectClustersFilter } from 'store/clusters/clustersSelectors';
-import { setClustersFilter } from 'store/clusters/clustersSlice';
+import { FilterDiv, Button } from './Filter.styled';
 
-import { FilterDiv, Button } from './Filters.styled';
-
-const ClustersFilter = () => {
-  const filterValue = useSelector(selectClustersFilter);
+const Filter = ({ select, set }) => {
+  const filterValue = useSelector(select);
   const dispatch = useDispatch();
 
   // Serch on icon click
@@ -16,9 +14,9 @@ const ClustersFilter = () => {
   // Serch on change
   const handleSearch = e => {
     const filterValue = e.target.value.toLowerCase();
-    dispatch(setClustersFilter(filterValue));
+    dispatch(set(filterValue));
   };
-  const handleClean = () => dispatch(setClustersFilter(''));
+  const handleClean = () => dispatch(set(''));
 
   return (
     <FilterDiv>
@@ -42,4 +40,9 @@ const ClustersFilter = () => {
   );
 };
 
-export default ClustersFilter;
+export default Filter;
+
+Filter.propTypes = {
+  select: PropTypes.func.isRequired,
+  set: PropTypes.func.isRequired,
+};

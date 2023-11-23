@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { TiStar } from 'react-icons/ti';
 
-import { updateClusterFavoriteThunk } from 'store/clusters/clustersThunks';
+import { updateFavoriteThunk } from 'store/clusters/clustersThunks';
 
 import { LiContent as Li, Label } from './Li.styled';
 
@@ -16,7 +16,7 @@ const LiContent = ({ el }) => {
   };
 
   const handleChange = () =>
-    dispatch(updateClusterFavoriteThunk({ _id, favorite: !favorite }));
+    dispatch(updateFavoriteThunk({ _id, favorite: !favorite }));
 
   return (
     <Li $hoverd={favorite}>

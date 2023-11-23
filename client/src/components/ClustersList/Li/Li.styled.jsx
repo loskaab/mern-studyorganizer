@@ -37,7 +37,7 @@ export const LiHead = styled.li`
 
     &::before {
       counter-increment: section;
-      content: 'Section ' counter(section) '. ';
+      content: 'Group ' counter(section) '. ';
       text-transform: capitalize;
     }
   }

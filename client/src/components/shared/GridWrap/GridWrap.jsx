@@ -7,6 +7,9 @@ const GridWrap = ({
   $h,
   $m,
   $p,
+  $pos,
+  $side,
+  $high,
   $ai,
   $jc,
   $rg,
@@ -22,6 +25,9 @@ const GridWrap = ({
       $h={$h}
       $m={$m}
       $p={$p}
+      $pos={$pos}
+      $side={$side}
+      $high={$high}
       $ai={$ai}
       $jc={$jc}
       $rg={$rg}
@@ -41,6 +47,9 @@ GridWrap.propTypes = {
   $h: PropTypes.string,
   $m: PropTypes.string,
   $p: PropTypes.string,
+  $pos: PropTypes.string,
+  $side: PropTypes.string,
+  $high: PropTypes.string,
   $ai: PropTypes.string,
   $jc: PropTypes.string,
   $rg: PropTypes.string,

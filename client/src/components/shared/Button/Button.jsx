@@ -6,6 +6,7 @@ const Button = ({
   $w,
   $h,
   $s,
+  $bs,
   onClick,
   type = 'button',
   disabled,
@@ -16,6 +17,7 @@ const Button = ({
       $w={$w}
       $h={$h}
       $s={$s}
+      $bs={$bs}
       onClick={onClick}
       type={type}
       disabled={disabled}
@@ -31,6 +33,7 @@ Button.propTypes = {
   $w: PropTypes.string,
   $h: PropTypes.string,
   $s: PropTypes.string,
+  $bs: PropTypes.string,
   onClick: PropTypes.func,
   type: PropTypes.string,
   disabled: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]),

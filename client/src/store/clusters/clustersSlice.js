@@ -3,12 +3,21 @@ import { createSlice, isAnyOf, combineReducers } from '@reduxjs/toolkit';
 import * as TNK from './clustersThunks';
 
 const thunkArr = [
+  // Clusters
   TNK.fetchClustersThunk,
   TNK.addClusterThunk,
   TNK.updateClusterThunk,
+  TNK.updateFavoriteThunk,
   TNK.deleteClusterThunk,
+  // Groups
+  TNK.fetchGroupsThunk,
+  TNK.addGroupThunk,
+  TNK.updateGroupThunk,
+  TNK.deleteGroupThunk,
 ];
 const fn = type => thunkArr.map(el => el[type]);
+
+// Clusters
 
 const handleFetchClusters = (_, action) => {
   return action.payload.result.clusters;
@@ -24,7 +33,7 @@ const handleUpdateCluster = (state, action) => {
   state.splice(index, 1, cluster);
 };
 
-const handleUpdateClusterFavorite = (state, action) => {
+const handleUpdateFavorite = (state, action) => {
   const { cluster } = action.payload.result;
   const index = state.findIndex(el => el._id === cluster._id);
   state.splice(index, 1, cluster);
@@ -33,6 +42,27 @@ const handleUpdateClusterFavorite = (state, action) => {
 const handleDeleteCluster = (state, action) => {
   const { cluster } = action.payload.result;
   return state.filter(el => el._id !== cluster._id);
+};
+
+// Groups
+
+const handleFetchGroups = (_, action) => {
+  return action.payload.result.groups;
+};
+
+const handleAddGroup = (state, action) => {
+  state.unshift(action.payload.result.group);
+};
+
+const handleUpdateGroup = (state, action) => {
+  const { group } = action.payload.result;
+  const index = state.findIndex(el => el._id === group._id);
+  state.splice(index, 1, group);
+};
+
+const handleDeleteGroup = (state, action) => {
+  const { group } = action.payload.result;
+  return state.filter(el => el._id !== group._id);
 };
 
 // fulfilled items slice
@@ -47,11 +77,24 @@ const clusterItemsSlice = createSlice({
       .addCase(TNK.fetchClustersThunk.fulfilled, handleFetchClusters)
       .addCase(TNK.addClusterThunk.fulfilled, handleAddCluster)
       .addCase(TNK.updateClusterThunk.fulfilled, handleUpdateCluster)
-      .addCase(
-        TNK.updateClusterFavoriteThunk.fulfilled,
-        handleUpdateClusterFavorite,
-      )
+      .addCase(TNK.updateFavoriteThunk.fulfilled, handleUpdateFavorite)
       .addCase(TNK.deleteClusterThunk.fulfilled, handleDeleteCluster);
+  },
+});
+
+// fulfilled groups slice
+const clusterGroupsSlice = createSlice({
+  name: 'itemGroups',
+  initialState: [],
+  reducers: {
+    cleanCluster: () => [],
+  },
+  extraReducers: builder => {
+    builder
+      .addCase(TNK.fetchGroupsThunk.fulfilled, handleFetchGroups)
+      .addCase(TNK.addGroupThunk.fulfilled, handleAddGroup)
+      .addCase(TNK.updateGroupThunk.fulfilled, handleUpdateGroup)
+      .addCase(TNK.deleteGroupThunk.fulfilled, handleDeleteGroup);
   },
 });
 
@@ -99,6 +142,7 @@ const clusterErrorSlice = createSlice({
 
 export const clustersReducer = combineReducers({
   items: clusterItemsSlice.reducer,
+  itemGroups: clusterGroupsSlice.reducer,
   activeItem: clusterActiveItemSlice.reducer,
   filter: clusterFilterSlice.reducer,
   isLoading: clusterIsLoadingSlice.reducer,

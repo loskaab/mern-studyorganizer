@@ -1,3 +1,6 @@
+import PropTypes from 'prop-types';
+import Select from 'react-select';
+
 import { themes } from 'styles/themes';
 
 const {
@@ -10,7 +13,7 @@ const {
   borderLight,
 } = themes.colors;
 
-export const styles = {
+const styles = {
   control: (baseStyles, state) => ({
     ...baseStyles,
     minWidth: '200px',
@@ -50,3 +53,9 @@ export const styles = {
     textTransform: 'capitalize',
   }),
 };
+
+export const StyledSelect = ({ options }) => (
+  <Select styles={styles} options={options} />
+);
+
+StyledSelect.propTypes = { options: PropTypes.arrayOf(PropTypes.object) };

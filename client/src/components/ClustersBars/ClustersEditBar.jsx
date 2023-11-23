@@ -3,13 +3,15 @@ import { toast } from 'react-toastify';
 
 import { readClipboard } from 'utils/helpers';
 import { clusterSchema } from 'utils/validation';
-import ControlBar from 'components/shared/ControlBar/ControlBar';
+import GridWrap from 'components/shared/GridWrap/GridWrap';
 import Button from 'components/shared/Button/Button';
-
 import Modal from 'components/shared/Modal/Modal';
-import ClusterForm from 'components/ClusterForm/ClusterForm';
+import AddClusterForm from 'components/ClusterForms/AddClusterForm';
+import { themes } from 'styles/themes';
 
-const ClustersEditPanel = () => {
+const { button } = themes.shadows;
+
+const ClustersEditBar = () => {
   const [isModal, setIsModal] = useState(false);
   const [clipboardText, setClipboerdText] = useState('');
 
@@ -26,20 +28,32 @@ const ClustersEditPanel = () => {
     }
   };
 
+  const editClusters = () => {
+    // console.log('qwe');
+  };
+
   return (
-    <ControlBar $mi="30px" $side="right" $high="bottom" $gtc=" 1fr 1fr">
-      <Button $s="m" onClick={addCluster}>
+    <GridWrap
+      $m="10px 30px"
+      $pos="fixed"
+      $side="right"
+      $high="bottom"
+      $gtc=" 1fr 1fr"
+    >
+      <Button onClick={addCluster} $s="m" $bs={button}>
         Add
       </Button>
-      <Button $s="m">Edit</Button>
+      <Button onClick={editClusters} $s="m" $bs={button}>
+        Edit
+      </Button>
 
       {isModal && (
         <Modal onClick={() => setIsModal(false)}>
-          <ClusterForm clipboardText={clipboardText} setIsModal={setIsModal} />
+          <AddClusterForm cluster={clipboardText} setIsModal={setIsModal} />
         </Modal>
       )}
-    </ControlBar>
+    </GridWrap>
   );
 };
 
-export default ClustersEditPanel;
+export default ClustersEditBar;

@@ -9,8 +9,10 @@ export const GridDiv = styled.div`
   height: ${({ $h }) => $h};
   margin: ${({ $m = '0' }) => $m};
   padding: ${({ $p = '0' }) => $p};
-  /* max-width: 1280px; */
-  position: relative;
+  position: ${({ $pos = 'relative' }) => $pos};
+  ${({ $side = 'left' }) => `${$side}: 0`};
+  ${({ $high = 'top' }) => `${$high}: 0`};
+
   display: grid;
   align-items: ${({ $ai }) => $ai};
   justify-items: ${({ $jc }) => $jc};
