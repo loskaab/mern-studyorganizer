@@ -3,15 +3,14 @@ const { Schema, model } = require('mongoose');
 const { mongooseError } = require('../utils');
 
 const required = [true, 'Required field!'];
-const groupList = ['small', 'middle', 'large'];
 
 const elementSchema = new Schema(
   {
     element: { type: String, required },
     title: { type: String, default: '', required },
-    checked: { type: Boolean, default: false },
     favorite: { type: Boolean, default: false },
-    group: { type: String, enum: groupList, default: 'middle' },
+    checked: { type: Boolean, default: false },
+    group: { type: String, default: 'common' },
 
     owner: { type: Schema.Types.ObjectId, ref: 'User', required: true },
     cluster: { type: Schema.Types.ObjectId, ref: 'Cluster', required: true },

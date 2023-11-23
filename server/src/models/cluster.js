@@ -9,8 +9,9 @@ const clusterSchema = new Schema(
   {
     cluster: { type: String, match: regex(regExp.HTTP.name), required },
     title: { type: String, default: '', required },
-    favorite: { type: Boolean, default: false },
-    group: { type: String, default: 'common' },
+    favorite: { type: Boolean, default: false, required },
+    checked: { type: Boolean, default: false },
+    group: { type: String, default: 'common', required },
 
     owner: { type: Schema.Types.ObjectId, ref: 'User', required: true },
   },

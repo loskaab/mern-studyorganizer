@@ -1,15 +1,14 @@
 const Joi = require('joi');
 
 const { validateBody } = require('../decorators');
-const groupList = ['small', 'middle', 'large'];
 
 const addSchema = validateBody(
   Joi.object({
     element: Joi.string().required(),
     title: Joi.string().required(),
-    checked: Joi.boolean(),
-    favorite: Joi.boolean(),
-    group: Joi.string().valid(...groupList),
+    favorite: Joi.boolean().required(),
+    checked: Joi.boolean().required(),
+    group: Joi.string().required(),
   }),
 );
 
