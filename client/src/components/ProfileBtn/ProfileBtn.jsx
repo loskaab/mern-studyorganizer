@@ -2,28 +2,35 @@ import { useState } from 'react';
 
 import { useAuth } from 'utils/hooks/useAuth';
 import { getAbbreviation } from 'utils/helpers';
-import ProfileLayout from 'layouts/ProfileLayout/ProfileLayout';
+import Modal from 'components/shared/Modal/Modal';
 import ProfileForm from 'components/ProfileForm/ProfileForm';
+import { themes } from 'styles/themes';
 
 import { BtnDiv } from './ProfileBtn.styled';
 
 const ProfileBtn = () => {
-  const [isProfileLayout, setIsProfileLayout] = useState(false);
+  const [isModal, setIsModal] = useState(false);
   const { user } = useAuth();
 
   const { avatarUrl: url, name } = user;
   const abbr = getAbbreviation(name);
+  const { m, xl } = themes.indents;
 
-  const handleClick = () => setIsProfileLayout(!isProfileLayout);
+  const handleClick = () => setIsModal(!isModal);
 
   return (
     <>
       <BtnDiv onClick={handleClick} $url={url} $abbr={url ? '' : abbr} />
 
-      {isProfileLayout && (
-        <ProfileLayout onClick={handleClick}>
+      {isModal && (
+        <Modal
+          $x={`right: ${m}`}
+          $y={`top: ${xl}`}
+          $bd={false}
+          onClick={handleClick}
+        >
           <ProfileForm />
-        </ProfileLayout>
+        </Modal>
       )}
     </>
   );

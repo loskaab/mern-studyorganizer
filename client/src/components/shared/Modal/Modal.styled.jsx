@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import { themes } from 'styles/themes';
 
-const { colors, shadows } = themes;
+const { colors, shadows, indents, radiuses } = themes;
 
 export const Backdrop = styled.div`
   width: 100vw;
@@ -10,23 +10,19 @@ export const Backdrop = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   z-index: 100;
-
-  background-color: ${colors.backdrop};
-  backdrop-filter: blur(5px);
+  ${({ $bd = true }) => $bd && `background-color: ${colors.backdrop}`};
+  ${({ $bd = true }) => $bd && `backdrop-filter: blur(${indents.s})`};
 
   & > div {
-    min-width: 400px;
     position: absolute;
-    top: 50%;
-    left: 50%;
+    ${({ $x = 'left: 50%' }) => $x};
+    ${({ $y = 'top: 50%' }) => $y};
 
-    transform: translate(-50%, -50%);
+    ${({ $x, $y }) => !$x && !$y && 'transform: translate(-50%, -50%);'}
 
+    border-radius: ${radiuses.xl};
     background-color: transparent; // ${colors.white};
-    box-shadow: ${shadows.modal};
+    box-shadow: ${shadows.back};
   }
 `;

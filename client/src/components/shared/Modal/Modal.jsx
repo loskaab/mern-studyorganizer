@@ -6,7 +6,7 @@ import { Backdrop } from './Modal.styled';
 
 const modalRoot = document.querySelector('#modal');
 
-const Modal = ({ onClick, children }) => {
+const Modal = ({ $x, $y, $bd, onClick, children }) => {
   useEffect(() => {
     const handleKeyDown = e => {
       e.key === 'Escape' && onClick();
@@ -21,7 +21,7 @@ const Modal = ({ onClick, children }) => {
   const handleBackdropClick = e => e.target === e.currentTarget && onClick();
 
   return createPortal(
-    <Backdrop onClick={handleBackdropClick}>
+    <Backdrop $x={$x} $y={$y} $bd={$bd} onClick={handleBackdropClick}>
       <div>{children}</div>
     </Backdrop>,
     modalRoot,
@@ -31,6 +31,9 @@ const Modal = ({ onClick, children }) => {
 export default Modal;
 
 Modal.propTypes = {
+  $x: PropTypes.string,
+  $y: PropTypes.string,
+  $bd: PropTypes.bool,
   onClick: PropTypes.func.isRequired,
   children: PropTypes.oneOfType([
     PropTypes.string,
