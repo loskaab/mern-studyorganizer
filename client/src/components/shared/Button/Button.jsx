@@ -8,6 +8,7 @@ const Button = ({
   $s,
   $bs,
   onClick,
+  name,
   type = 'button',
   disabled,
   children,
@@ -19,6 +20,7 @@ const Button = ({
       $s={$s}
       $bs={$bs}
       onClick={onClick}
+      name={name}
       type={type}
       disabled={disabled}
     >
@@ -35,6 +37,7 @@ Button.propTypes = {
   $s: PropTypes.string,
   $bs: PropTypes.string,
   onClick: PropTypes.func,
+  name: PropTypes.string,
   type: PropTypes.string,
   disabled: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]),
   children: PropTypes.oneOfType([

@@ -6,8 +6,9 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { addClusterThunk } from 'store/clusters/clustersThunks';
 import { titleSchema } from 'utils/validation';
 import ButtonClr from 'components/shared/Button/ButtonClr';
+import Select from 'components/shared/Select/Select';
 
-import { Form, Label, Input, SelectWrap, Hidden } from './ClusterForms.styled';
+import { Form, Label, Input, Hidden } from './ClusterForms.styled';
 
 export const clusterGroups = ['common', 'study', 'work'];
 
@@ -45,17 +46,8 @@ const AddClusterForm = ({ cluster, setIsModal }) => {
       </Label>
 
       <Label>
-        Group: <span> {errors.group?.message}</span>
-        <SelectWrap>
-          <select {...register('group')}>
-            {clusterGroups.map(el => (
-              <option key={el} value={el}>
-                {el}
-              </option>
-            ))}
-          </select>
-          <span></span>
-        </SelectWrap>
+        Group:
+        <Select options={clusterGroups.map(el => ({ value: el, label: el }))} />
       </Label>
 
       <ButtonClr type="submit" $s="l" $h="41px">

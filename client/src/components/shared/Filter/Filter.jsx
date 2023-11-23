@@ -5,8 +5,8 @@ import { IoClose } from 'react-icons/io5';
 
 import { FilterDiv, Button } from './Filter.styled';
 
-const Filter = ({ select, set }) => {
-  const filterValue = useSelector(select);
+const Filter = ({ selector, reducer }) => {
+  const filterValue = useSelector(selector);
   const dispatch = useDispatch();
 
   // Serch on icon click
@@ -14,9 +14,9 @@ const Filter = ({ select, set }) => {
   // Serch on change
   const handleSearch = e => {
     const filterValue = e.target.value.toLowerCase();
-    dispatch(set(filterValue));
+    dispatch(reducer(filterValue));
   };
-  const handleClean = () => dispatch(set(''));
+  const handleClean = () => dispatch(reducer(''));
 
   return (
     <FilterDiv>
@@ -43,6 +43,6 @@ const Filter = ({ select, set }) => {
 export default Filter;
 
 Filter.propTypes = {
-  select: PropTypes.func.isRequired,
-  set: PropTypes.func.isRequired,
+  selector: PropTypes.func.isRequired,
+  reducer: PropTypes.func.isRequired,
 };

@@ -28,7 +28,7 @@ export const FilterDiv = styled.div`
     }
 
     &:focus {
-      border-color: ${colors.accent};
+      border-color: ${colors.hovered};
     }
 
     &::placeholder {
