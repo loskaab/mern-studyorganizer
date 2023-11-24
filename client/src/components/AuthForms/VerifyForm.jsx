@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 
 import { verifySchema } from 'utils/validation';
 import { refreshUserThunk, verifyEmailThunk } from 'store/auth/authThunks';
-import { addGroupThunk } from 'store/clusters/clustersThunks';
+import { addGroupThunk } from 'store/cluster/clusterThunks';
 
 import SignBtn from './AuthBtns/SignBtn';
 import {

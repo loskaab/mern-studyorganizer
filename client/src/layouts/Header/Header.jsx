@@ -3,7 +3,7 @@ import { NavLink, useLocation } from 'react-router-dom';
 
 import { useAuth } from 'utils/hooks/useAuth';
 import LogoLink from 'components/LogoLink/LogoLink';
-import ClustersSearchBar from 'components/ClustersBars/ClustersSearchBar';
+import ClustersSearchBar from 'components/ClusterBars/ClusterSearchBar';
 import ProfileBtn from 'components/ProfileBtn/ProfileBtn';
 
 import { StyledHeader, Nav } from './Header.styled';

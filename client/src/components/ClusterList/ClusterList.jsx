@@ -4,15 +4,15 @@ import { useDispatch } from 'react-redux';
 import {
   fetchClustersThunk,
   fetchGroupsThunk,
-} from 'store/clusters/clustersThunks';
+} from 'store/cluster/clusterThunks';
 import { useClusters } from 'utils/hooks';
 import { getUnique } from 'utils/helpers';
 
 import LiHead from './Li/LiHead';
 import LiContent from './Li/LiContent';
-import { List } from './ClustersList.styled';
+import { List } from './ClusterList.styled';
 
-const ClustersList = () => {
+const ClusterList = () => {
   const dispatch = useDispatch();
   const { allClusters, clustersFilter } = useClusters();
 
@@ -49,4 +49,4 @@ const ClustersList = () => {
   );
 };
 
-export default ClustersList;
+export default ClusterList;

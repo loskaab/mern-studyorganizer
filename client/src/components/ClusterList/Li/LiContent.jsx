@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { TiStar } from 'react-icons/ti';
 
-import { updateFavoriteThunk } from 'store/clusters/clustersThunks';
+import { updateFavoriteThunk } from 'store/cluster/clusterThunks';
 
 import { LiContent as Li, Label } from './Li.styled';
 

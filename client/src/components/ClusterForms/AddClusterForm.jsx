@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import { useClusters } from 'utils/hooks';
-import { addClusterThunk } from 'store/clusters/clustersThunks';
+import { addClusterThunk } from 'store/cluster/clusterThunks';
 import { titleSchema } from 'utils/validation';
 import ButtonClr from 'components/shared/Button/ButtonClr';
 import Select from 'components/shared/Select/Select';

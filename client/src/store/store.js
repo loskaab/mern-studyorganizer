@@ -12,8 +12,8 @@ import {
 } from 'redux-persist';
 
 import { authReducer } from './auth/authSlice';
-import { clustersReducer } from './clusters/clustersSlice';
-import { elementsReducer } from './elements/elementsSlice';
+import { clustersReducer } from './cluster/clusterSlice';
+import { elementsReducer } from './element/elementSlice';
 
 // ----------------persistReducer---------------- //
 

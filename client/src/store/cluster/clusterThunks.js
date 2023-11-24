@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import * as API from 'servises/clustersApi';
+import * as API from 'servises/clusterApi';
 
 // Clusters
 

@@ -2,8 +2,8 @@ import GridWrap from 'components/shared/GridWrap/GridWrap';
 import Select from 'components/shared/Select/Select';
 import Filter from 'components/shared/Filter/Filter';
 import { useClusters } from 'utils/hooks';
-import { selectClustersFilter } from 'store/clusters/clustersSelectors';
-import { setClustersFilter } from 'store/clusters/clustersSlice';
+import { selectClusterFilter } from 'store/cluster/clusterSelectors';
+import { setClusterFilter } from 'store/cluster/clusterSlice';
 import { themes } from 'styles/themes';
 
 const { backgroundHoverd: ol, white: b, borderLight: bh } = themes.colors;
@@ -19,7 +19,7 @@ const ClustersSearchBar = () => {
 
   return (
     <GridWrap $w="55%" $cg="20px" $ai="center" $gtc="2fr 1fr">
-      <Filter selector={selectClustersFilter} reducer={setClustersFilter} />
+      <Filter selector={selectClusterFilter} reducer={setClusterFilter} />
       <Select onChange={getGroup} options={options} $ol={ol} $b={b} $bh={bh} />
     </GridWrap>
   );

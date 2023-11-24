@@ -12,7 +12,7 @@ import EditClusterForm from 'components/ClusterForms/EditClusterForm';
 
 const { button } = themes.shadows;
 
-const ClustersEditBar = () => {
+const ClusterEditBar = () => {
   const [isModal, setIsModal] = useState(false);
   const [clipboardText, setClipboerdText] = useState('');
 
@@ -60,4 +60,4 @@ const ClustersEditBar = () => {
   );
 };
 
-export default ClustersEditBar;
+export default ClusterEditBar;

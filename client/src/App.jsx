@@ -16,7 +16,7 @@ const SignupPage = lazy(() => import('pages/SignupPage'));
 const SigninPage = lazy(() => import('pages/SigninPage'));
 const ProfilePage = lazy(() => import('pages/ProfilePage'));
 const ClusterPage = lazy(() => import('pages/ClusterPage'));
-const ElementsPage = lazy(() => import('pages/ElementsPage'));
+const ElementsPage = lazy(() => import('pages/ElementPage'));
 
 const App = () => {
   const dispatch = useDispatch();

@@ -1,6 +1,6 @@
 import { createSlice, isAnyOf, combineReducers } from '@reduxjs/toolkit';
 
-import * as TNK from './clustersThunks';
+import * as TNK from './clusterThunks';
 
 const thunkArr = [
   // Clusters
@@ -103,7 +103,7 @@ const clusterFilterSlice = createSlice({
   name: 'filter',
   initialState: '',
   reducers: {
-    setClustersFilter: (_, action) => action.payload,
+    setClusterFilter: (_, action) => action.payload,
   },
 });
 
@@ -151,4 +151,4 @@ export const clustersReducer = combineReducers({
 
 export const { cleanCluster } = clusterItemsSlice.actions;
 export const { setActiveCluster } = clusterActiveItemSlice.actions;
-export const { setClustersFilter } = clusterFilterSlice.actions;
+export const { setClusterFilter } = clusterFilterSlice.actions;

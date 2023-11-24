@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
-import { addGroupThunk } from 'store/clusters/clustersThunks';
+import { addGroupThunk } from 'store/cluster/clusterThunks';
 import { groupSchema } from 'utils/validation';
 import ButtonClr from 'components/shared/Button/ButtonClr';
 

@@ -1,6 +1,6 @@
 import { createSlice, isAnyOf, combineReducers } from '@reduxjs/toolkit';
 
-import * as TNK from './elementsThunks';
+import * as TNK from './elementThunks';
 
 const thunkArr = [
   TNK.fetchElementsThunk,
