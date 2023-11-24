@@ -4,7 +4,7 @@ import FlexWrap from 'components/shared/FlexWrap/FlexWrap';
 import ClustersList from 'components/ClustersList/ClustersList';
 import ClustersEditBar from 'components/ClustersBars/ClustersEditBar';
 
-const ClustersPage = () => {
+const ClusterPage = () => {
   const { s, m } = themes.indents;
 
   return (
@@ -15,4 +15,4 @@ const ClustersPage = () => {
   );
 };
 
-export default ClustersPage;
+export default ClusterPage;

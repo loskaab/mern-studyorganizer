@@ -5,10 +5,10 @@ const { ctrlWrapper } = require('../../decorators');
 
 const getById = ctrlWrapper(async (req, res) => {
   const { id } = req.params;
-  const clusterGroup = await ClusterGroup.findById(id);
-  if (!clusterGroup) throw HttpError(403);
+  const group = await ClusterGroup.findById(id);
+  if (!group) throw HttpError(403);
 
-  res.status(200).json({ message: 'Found', result: { clusterGroup } });
+  res.status(200).json({ message: 'Found', result: { group } });
 });
 
 module.exports = getById;

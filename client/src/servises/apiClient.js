@@ -24,7 +24,7 @@ apiClient.interceptors.response.use(
   response => {
     const { message, result } = response.data;
 
-    !result?.clusters && !result?.elements && message && toast.success(message);
+    !message?.includes('Found') && message && toast.success(message);
 
     !message &&
       result?.user?.verificationCode === 'google' &&

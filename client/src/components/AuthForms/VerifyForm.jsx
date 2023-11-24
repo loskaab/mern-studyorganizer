@@ -2,9 +2,11 @@ import PropTypes from 'prop-types';
 import { Fragment } from 'react';
 import { Formik } from 'formik';
 import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
 
 import { verifySchema } from 'utils/validation';
 import { refreshUserThunk, verifyEmailThunk } from 'store/auth/authThunks';
+import { addGroupThunk } from 'store/clusters/clustersThunks';
 
 import SignBtn from './AuthBtns/SignBtn';
 import {
@@ -32,8 +34,9 @@ const VerifyForm = ({ userEmail }) => {
   const onSubmit = (values, actions) => {
     dispatch(verifyEmailThunk(values))
       .unwrap() // .then(pld =>  console.log(pld))
-      .catch(err => console.log(err))
-      .then(() => dispatch(refreshUserThunk()));
+      .catch(err => err.includes('401') && toast.error('Unauthorized'))
+      .then(() => dispatch(refreshUserThunk()))
+      .then(() => dispatch(addGroupThunk({ clusterGroup: 'Common' })));
 
     actions.resetForm();
   };
@@ -52,7 +55,7 @@ const VerifyForm = ({ userEmail }) => {
 
           <Fragment>
             <Label>
-              Code:
+              Code
               <pre> </pre>
               <ErrorMsg name="verificationCode" component="span" />
             </Label>

@@ -15,7 +15,7 @@ import HomePage from 'pages/HomePage';
 const SignupPage = lazy(() => import('pages/SignupPage'));
 const SigninPage = lazy(() => import('pages/SigninPage'));
 const ProfilePage = lazy(() => import('pages/ProfilePage'));
-const ClustersPage = lazy(() => import('pages/ClustersPage'));
+const ClusterPage = lazy(() => import('pages/ClusterPage'));
 const ElementsPage = lazy(() => import('pages/ElementsPage'));
 
 const App = () => {
@@ -41,7 +41,7 @@ const App = () => {
               <Route path="signin" element={<SigninPage />} />
             </Route>
             <Route element={<PrivateRoutes />}>
-              <Route path="cluster" element={<ClustersPage />} />
+              <Route path="cluster" element={<ClusterPage />} />
               <Route path="cluster/:id" element={<ElementsPage />} />
               <Route path="profile" element={<ProfilePage />} />
             </Route>

@@ -19,6 +19,7 @@ const authenticate = async (req, res, next) => {
     if (!user || !user.accessToken || user.accessToken !== accessToken) {
       next(HttpError(401));
     }
+
     req.user = user;
     next();
   } catch {

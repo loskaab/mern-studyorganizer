@@ -18,7 +18,7 @@ import {
   ErrorIcon,
 } from './AuthForms.styled';
 
-const ForgotForm = ({ setIsForgot, email }) => {
+const ForgotForm = ({ setIsFM, email }) => {
   // const dispatch = useDispatch();
 
   const isValid = ({ values, errors }) => {
@@ -34,7 +34,7 @@ const ForgotForm = ({ setIsForgot, email }) => {
     //   .unwrap() // .then(pld => console.log(pld))
     //   .catch(err => console.log(err));
 
-    setIsForgot(false); // actions.resetForm();
+    setIsFM(false); // actions.resetForm();
   };
 
   return (
@@ -51,7 +51,7 @@ const ForgotForm = ({ setIsForgot, email }) => {
 
           <Fragment>
             <Label>
-              Email:
+              Email
               <pre> </pre>
               <ErrorMsg name="email" component="span" />
             </Label>
@@ -78,6 +78,6 @@ const ForgotForm = ({ setIsForgot, email }) => {
 export default ForgotForm;
 
 ForgotForm.propTypes = {
-  setIsForgot: PropTypes.func.isRequired,
+  setIsFM: PropTypes.func.isRequired,
   email: PropTypes.string.isRequired,
 };

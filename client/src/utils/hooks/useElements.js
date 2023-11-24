@@ -4,11 +4,19 @@ import * as selectors from 'store/elements/elementsSelectors';
 
 export const useElements = () => {
   const allElements = useSelector(selectors.selectElements);
-  const activeElement = useSelector(selectors.selectActiveElement);
+  const elementsGroups = useSelector(selectors.selectElementsGroups);
   const elementsFilter = useSelector(selectors.selectElementsFilter);
+  const activeElement = useSelector(selectors.selectActiveElement);
 
   const error = useSelector(selectors.selectError);
   const isLoading = useSelector(selectors.selectIsLoading);
 
-  return { allElements, activeElement, elementsFilter, error, isLoading };
+  return {
+    allElements,
+    elementsGroups,
+    elementsFilter,
+    activeElement,
+    error,
+    isLoading,
+  };
 };

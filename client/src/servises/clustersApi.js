@@ -30,21 +30,21 @@ export const deleteCluster = async id => {
 // Groups
 
 export const fetchGroups = async () => {
-  const { data } = await apiClient.get('/clusters/groups');
+  const { data } = await apiClient.get('/clustergroups');
   return data;
 };
 
 export const addGroup = async group => {
-  const { data } = await apiClient.post('/clusters/groups', group);
+  const { data } = await apiClient.post('/clustergroups', group);
   return data;
 };
 
 export const updateGroup = async ({ _id, ...group }) => {
-  const { data } = await apiClient.put(`/clusters/groups/${_id}`, group);
+  const { data } = await apiClient.put(`/clustergroups/${_id}`, group);
   return data;
 };
 
 export const deleteGroup = async id => {
-  const { data } = await apiClient.delete(`/clusters/groups/${id}`);
+  const { data } = await apiClient.delete(`/clustergroups/${id}`);
   return data;
 };

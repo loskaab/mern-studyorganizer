@@ -8,6 +8,7 @@ import { visuallyHidden } from 'styles/utils/hidden.styled';
 const { colors, radiuses, shadows } = themes;
 
 export const Form = styled.form`
+  width: 460px;
   padding: 40px;
   display: grid;
   grid-row-gap: 20px;
@@ -19,19 +20,20 @@ export const Form = styled.form`
 
 export const Label = styled.label`
   position: relative;
-  font-size: 18px;
-  font-weight: 700;
 
-  &:not(:first-of-type) {
-    font-size: 16px;
-    font-weight: 500;
+  font-size: 16px;
+  font-weight: 500;
+
+  &:first-of-type {
+    font-size: 18px;
+    font-weight: 700;
   }
 
   &:last-of-type {
     margin-bottom: 10px;
   }
 
-  & span {
+  & > span {
     font-size: 14px;
     font-weight: 400;
     color: ${colors.error};

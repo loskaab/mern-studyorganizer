@@ -7,8 +7,8 @@ const addSchema = validateBody(
   Joi.object({
     cluster: Joi.string().pattern(regExp.HTTP.pattern).required(),
     title: Joi.string().required(),
-    favorite: Joi.boolean().required(),
-    checked: Joi.boolean().required(),
+    favorite: Joi.boolean(),
+    checked: Joi.boolean(),
     group: Joi.string().required(),
   }),
 );

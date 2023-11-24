@@ -84,10 +84,10 @@ const clusterItemsSlice = createSlice({
 
 // fulfilled groups slice
 const clusterGroupsSlice = createSlice({
-  name: 'itemGroups',
+  name: 'groups',
   initialState: [],
   reducers: {
-    cleanCluster: () => [],
+    cleanGroup: () => [],
   },
   extraReducers: builder => {
     builder
@@ -142,7 +142,7 @@ const clusterErrorSlice = createSlice({
 
 export const clustersReducer = combineReducers({
   items: clusterItemsSlice.reducer,
-  itemGroups: clusterGroupsSlice.reducer,
+  groups: clusterGroupsSlice.reducer,
   activeItem: clusterActiveItemSlice.reducer,
   filter: clusterFilterSlice.reducer,
   isLoading: clusterIsLoadingSlice.reducer,

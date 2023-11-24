@@ -10,10 +10,10 @@ const elementsRouter = require('./api/elements');
 const elementGroupsRouter = require('./api/elementGroups');
 
 router.use('/auth', authRouter);
-router.use('/clusters', clustersRouter);
-router.use('/clusters/groups', clusterGroupsRouter);
-router.use('/elements', elementsRouter);
-router.use('/elements/groups', elementGroupsRouter);
 router.use('/users', usersRouter);
+router.use('/clusters', clustersRouter);
+router.use('/clustergroups', clusterGroupsRouter);
+router.use('/elements', elementsRouter);
+router.use('/elementgroups', elementGroupsRouter);
 
 module.exports = router;

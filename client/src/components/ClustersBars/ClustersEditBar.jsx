@@ -29,7 +29,7 @@ const ClustersEditBar = () => {
     }
   };
 
-  const editClusters = e => {
+  const editClusters = () => {
     setIsModal('edit');
   };
 
@@ -53,7 +53,7 @@ const ClustersEditBar = () => {
           {isModal === 'add' && (
             <AddClusterForm cluster={clipboardText} setIsModal={setIsModal} />
           )}
-          {isModal === 'edit' && <EditClusterForm />}
+          {isModal === 'edit' && <EditClusterForm setIsModal={setIsModal} />}
         </Modal>
       )}
     </GridWrap>

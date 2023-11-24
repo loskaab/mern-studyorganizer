@@ -10,7 +10,6 @@ const clusterGroupSchema = new Schema(
     clusterGroup: { type: String, match: regex(regExp.NAME.name), unique: true, required },
 
     owner: { type: Schema.Types.ObjectId, ref: 'User', required: true },
-    clusterOwner: { type: Schema.Types.ObjectId, ref: 'Cluster', required: true },
   },
   { versionKey: false, timestamps: true },
 );

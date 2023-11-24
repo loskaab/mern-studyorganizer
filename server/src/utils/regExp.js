@@ -1,6 +1,6 @@
 const NAME = {
   name: 'NAME',
-  msg: 'only letters, numbers, underscores, dashes, spases',
+  msg: 'letters, numbers, underscores, dashes, spases',
   pattern: /^[a-zA-Zа-яА-Я0-9]+(([_ -][a-zA-Zа-яА-Я])?[a-zA-Zа-яА-Я0-9]*)*$/,
 };
 
@@ -12,19 +12,19 @@ const EMAIL = {
 
 const PHONE = {
   name: 'PHONE',
-  msg: 'only digits, spaces, dashes, parentheses, can start with +',
+  msg: 'digits, spaces, dashes, parentheses, can start with +',
   pattern: /^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[\s]?[0-9])+$/,
 };
 
 const TELEGRAM = {
   name: 'TELEGRAM',
-  msg: 'only letters and numbers,  more than five, start with @',
+  msg: 'letters and numbers, more than five, start with @',
   pattern: /.*\B@(?=\w{5,32}\b)[a-zA-Z0-9]+(?:_[a-zA-Z0-9]+)*$/,
 };
 
 const TELEGRAM_PHONE = {
   name: 'TELEGRAM_PHONE',
-  msg: 'only letters, digits, spaces, dashes, parentheses, can start with +, @',
+  msg: 'letters, digits, spaces, dashes, parentheses, can start with +, @',
   pattern:
     /(.*\B@(?=\w{5,32}\b)[a-zA-Z0-9]+(?:_[a-zA-Z0-9]+)*$)|(^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[\s]?[0-9])+$)/,
 };
@@ -57,7 +57,7 @@ const DATE = {
 
 const ADDRESS = {
   name: 'ADDRESS',
-  msg: 'only letters, numbers, commas, dashes, spases',
+  msg: 'letters, numbers, commas, dashes, spases',
   pattern: /^[a-zA-Zа-яА-Я0-9]+(([ -]|(, )[a-zA-Zа-яА-Я0-9])?[a-zA-Zа-яА-Я0-9]*)*$/,
 };
 

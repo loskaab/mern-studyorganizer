@@ -13,7 +13,6 @@ const elementSchema = new Schema(
     group: { type: String, default: 'common' },
 
     owner: { type: Schema.Types.ObjectId, ref: 'User', required: true },
-    cluster: { type: Schema.Types.ObjectId, ref: 'Cluster', required: true },
   },
   { versionKey: false, timestamps: true },
 );

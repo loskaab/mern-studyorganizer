@@ -1,7 +1,7 @@
 import { Formik } from 'formik';
-import PropTypes from 'prop-types';
 import { Fragment, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
 
 import LinkRoute from 'components/AuthForms/AuthLinks/LinkRoute';
 import { signupSchema } from 'utils/validation';
@@ -23,7 +23,7 @@ import {
 
 const initialValues = { name: '', email: '', password: '' };
 
-const SignupForm = ({ setIsVerify }) => {
+const SignupForm = () => {
   const dispatch = useDispatch();
   const [toggle, setToggle] = useState('password');
 
@@ -41,9 +41,8 @@ const SignupForm = ({ setIsVerify }) => {
 
   const onSubmit = (values, actions) => {
     dispatch(registerThunk(values))
-      .unwrap()
-      .then(pld => setIsVerify(!pld.result.user.verifiedEmail))
-      .catch(err => console.log(err));
+      .unwrap() // .then(pld => setIsVM(!pld.result.user.verifiedEmail))
+      .catch(err => err.includes('401') && toast.error('Unauthorized'));
 
     actions.resetForm();
   };
@@ -64,7 +63,7 @@ const SignupForm = ({ setIsVerify }) => {
           {Object.keys(initialValues).map(key => (
             <Fragment key={key}>
               <Label>
-                {key.at(0).toUpperCase() + key.substring(1) + ':'}
+                {key.at(0).toUpperCase() + key.substring(1)}
                 <pre> </pre>
                 <ErrorMsg name={key} component="span" />
               </Label>
@@ -95,7 +94,3 @@ const SignupForm = ({ setIsVerify }) => {
 };
 
 export default SignupForm;
-
-SignupForm.propTypes = {
-  setIsVerify: PropTypes.func.isRequired,
-};

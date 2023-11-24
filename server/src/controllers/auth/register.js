@@ -18,7 +18,7 @@ const register = ctrlWrapper(async (req, res) => {
     throw HttpError(409, 'Email already exists');
   }
   const hashPassword = await bcrypt.hash(password, 10);
-  const verificationCode = randomNumber(6);
+  const verificationCode = randomNumber(6).toString();
   const msg = createMsg('verifyEmail.ejs', { email, verificationCode });
   await sendMail.nodemailer(msg);
 
@@ -34,9 +34,10 @@ const register = ctrlWrapper(async (req, res) => {
   const newUser = await User.findByIdAndUpdate(id, { refreshToken }, { new: true });
 
   if (!newUser) throw HttpError(403);
-  res
-    .status(201)
-    .json({ message: `Verification code sent to ${user.email}`, result: { user: newUser } });
+  res.status(201).json({
+    message: `Verification code sent to ${user.email}`,
+    result: { user: { ...newUser._doc, verificationCode: verificationCode?.split(' ')[1] } },
+  });
 });
 
 module.exports = register;

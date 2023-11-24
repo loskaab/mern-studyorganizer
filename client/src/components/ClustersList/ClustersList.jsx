@@ -1,7 +1,10 @@
 import { Fragment, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { fetchClustersThunk } from 'store/clusters/clustersThunks';
+import {
+  fetchClustersThunk,
+  fetchGroupsThunk,
+} from 'store/clusters/clustersThunks';
 import { useClusters } from 'utils/hooks';
 import { getUnique } from 'utils/helpers';
 
@@ -13,12 +16,16 @@ const ClustersList = () => {
   const dispatch = useDispatch();
   const { allClusters, clustersFilter } = useClusters();
 
+  useEffect(() => {
+    dispatch(fetchClustersThunk());
+    dispatch(fetchGroupsThunk());
+  }, [dispatch]);
+
   const filtredClusters = [...allClusters]
-    .filter(({ cluster, title, group }) => {
+    .filter(({ cluster, title }) => {
       return (
         cluster.toLowerCase().includes(clustersFilter) ||
-        title.toLowerCase().includes(clustersFilter) ||
-        group.toLowerCase().includes(clustersFilter)
+        title.toLowerCase().includes(clustersFilter)
       );
     })
     .sort((a, b) => a.title.localeCompare(b.title));
@@ -26,10 +33,6 @@ const ClustersList = () => {
   const filtredGroups = getUnique(filtredClusters, 'group').sort((a, b) =>
     a.localeCompare(b),
   );
-
-  useEffect(() => {
-    dispatch(fetchClustersThunk());
-  }, [dispatch]);
 
   return (
     <List>

@@ -8,28 +8,24 @@ import VerifyForm from 'components/AuthForms/VerifyForm';
 import { useAuth } from 'utils/hooks';
 
 const SigninPage = () => {
-  const [isVerify, setIsVerify] = useState(false);
-  const [isForgot, setIsForgot] = useState(false);
-  const [email, setEmail] = useState('');
   const { user } = useAuth();
+  const [isVM, setIsVM] = useState(user.email && !user.verifiedEmail);
+  const [isFM, setIsFM] = useState(false);
+  const [email, setEmail] = useState('');
 
   return (
     <FlexWrap $w="400px" $p="0" $fd="column" $jc="center">
-      <SigninForm
-        setIsVerify={setIsVerify}
-        setIsForgot={setIsForgot}
-        setEmail={setEmail}
-      />
+      <SigninForm setIsFM={setIsFM} setEmail={setEmail} />
 
-      {isVerify && (
-        <Modal onClick={() => setIsVerify(!isVerify)}>
+      {isVM && (
+        <Modal onClick={() => setIsVM(!isVM)}>
           <VerifyForm userEmail={user.email} />
         </Modal>
       )}
 
-      {isForgot && (
-        <Modal onClick={() => setIsForgot(!isForgot)}>
-          <ForgotForm setIsForgot={setIsForgot} email={email} />
+      {isFM && (
+        <Modal onClick={() => setIsFM(!isFM)}>
+          <ForgotForm setIsFM={setIsFM} email={email} />
         </Modal>
       )}
     </FlexWrap>

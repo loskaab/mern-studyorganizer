@@ -7,15 +7,15 @@ import Modal from 'components/shared/Modal/Modal';
 import { useAuth } from 'utils/hooks';
 
 const SignupPage = () => {
-  const [isVerify, setIsVerify] = useState(false);
   const { user } = useAuth();
+  const [isVM, setIsVM] = useState(user.email && !user.verifiedEmail);
 
   return (
     <FlexWrap $w="400px" $p="0" $fd="column" $jc="center">
-      <SignupForm setIsVerify={setIsVerify} />
+      <SignupForm />
 
-      {isVerify && (
-        <Modal onClick={() => setIsVerify(!isVerify)}>
+      {isVM && (
+        <Modal onClick={() => setIsVM(!isVM)}>
           <VerifyForm userEmail={user.email} />
         </Modal>
       )}

@@ -8,10 +8,10 @@ const router = express.Router();
 
 router.use(authenticate);
 
-router.get('/groups', ctrl.clusterGroups.getAll);
-router.get('/groups/:id', isValidId, ctrl.clusterGroups.getById);
-router.post('/groups', validate.clusterGroups.addSchema, ctrl.clusterGroups.add);
-router.put('/groups/:id', isValidId, validate.clusterGroups.addSchema, ctrl.clusterGroups.updateById);
-router.delete('/groups/:id', isValidId, ctrl.clusterGroups.removeById);
+router.get('/', ctrl.clusterGroups.getAll);
+router.get('/:id', isValidId, ctrl.clusterGroups.getById);
+router.post('/', validate.clusterGroups.addSchema, ctrl.clusterGroups.add);
+router.put('/:id', isValidId, validate.clusterGroups.addSchema, ctrl.clusterGroups.updateById);
+router.delete('/:id', isValidId, ctrl.clusterGroups.removeById);
 
 module.exports = router;
