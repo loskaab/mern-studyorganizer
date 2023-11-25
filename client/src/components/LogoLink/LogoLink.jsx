@@ -5,7 +5,7 @@ import { Link } from './LogoLink.styled';
 const LogoLink = () => {
   return (
     <Link
-      href="https://github.com/Belka-S/mern_starter"
+      href="https://github.com/Belka-S/mern-starter"
       target="_blank"
       rel="noopener noreferrer"
     >

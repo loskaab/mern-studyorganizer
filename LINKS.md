@@ -1,4 +1,4 @@
-# **[mern_starter](https://github.com/Belka-S/mern_starter)**
+# **[mern-starter](https://github.com/Belka-S/mern-starter)**
 
 - **[react]**https://react.dev/
 - **[normalize.css]**https://www.npmjs.com/package/normalize.css
