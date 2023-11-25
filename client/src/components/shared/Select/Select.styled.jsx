@@ -23,7 +23,7 @@ export const defaultTheme = ({
 };
 
 export const defaultStyles = ({
-  $ol = colors.white, // outline
+  $ol = colors.white, // outline (if not neded, must be equal to the background)
   $b = colors.border, // border
   $bh = colors.accent, // hoverd border
   $bf = colors.hovered, //focused border
@@ -53,9 +53,7 @@ export const defaultStyles = ({
       borderBottom: `1px dotted ${colors.borderLight}`,
       fontSize: '16px',
       fontWeight: '500',
-
       color: state.isSelected ? `${$o}` : state.isFocused && `${$ob}`,
-
       ':active': { color: `${$oh}`, backgroundColor: `${$ob}` },
       textTransform: 'capitalize',
       cursor: 'pointer',

@@ -98,6 +98,15 @@ const clusterGroupsSlice = createSlice({
   },
 });
 
+// fulfilled active cluster slice
+const clusterActiveSlice = createSlice({
+  name: 'active',
+  initialState: null,
+  reducers: {
+    setActiveCluster: (_, action) => action.payload,
+  },
+});
+
 // fulfilled filter slice
 const clusterFilterSlice = createSlice({
   name: 'filter',
@@ -107,12 +116,12 @@ const clusterFilterSlice = createSlice({
   },
 });
 
-// fulfilled active cluster slice
-const clusterActiveItemSlice = createSlice({
-  name: 'activeItem',
-  initialState: null,
+// fulfilled select slice
+const clusterSelectSlice = createSlice({
+  name: 'select',
+  initialState: '',
   reducers: {
-    setActiveCluster: (_, action) => action.payload,
+    setClusterSelect: (_, action) => action.payload,
   },
 });
 
@@ -143,12 +152,14 @@ const clusterErrorSlice = createSlice({
 export const clustersReducer = combineReducers({
   items: clusterItemsSlice.reducer,
   groups: clusterGroupsSlice.reducer,
-  activeItem: clusterActiveItemSlice.reducer,
+  active: clusterActiveSlice.reducer,
   filter: clusterFilterSlice.reducer,
+  select: clusterSelectSlice.reducer,
   isLoading: clusterIsLoadingSlice.reducer,
   error: clusterErrorSlice.reducer,
 });
 
 export const { cleanCluster } = clusterItemsSlice.actions;
-export const { setActiveCluster } = clusterActiveItemSlice.actions;
+export const { setActiveCluster } = clusterActiveSlice.actions;
 export const { setClusterFilter } = clusterFilterSlice.actions;
+export const { setClusterSelect } = clusterSelectSlice.actions;

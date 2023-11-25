@@ -5,8 +5,8 @@ import * as selectors from 'store/element/elementSelectors';
 export const useElements = () => {
   const allElements = useSelector(selectors.selectElements);
   const elementGroups = useSelector(selectors.selectElementGroups);
-  const elementFilter = useSelector(selectors.selectElementFilter);
   const activeElement = useSelector(selectors.selectActiveElement);
+  const elementFilter = useSelector(selectors.selectElementFilter);
 
   const error = useSelector(selectors.selectError);
   const isLoading = useSelector(selectors.selectIsLoading);
@@ -14,8 +14,8 @@ export const useElements = () => {
   return {
     allElements,
     elementGroups,
-    elementFilter,
     activeElement,
+    elementFilter,
     error,
     isLoading,
   };

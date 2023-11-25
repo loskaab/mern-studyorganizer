@@ -35,9 +35,9 @@ const AddClusterForm = ({ cluster, setIsModal }) => {
     setIsModal(false);
   };
 
-  const options = clusterGroups.map(({ clusterGroup }) => {
-    return { value: clusterGroup, label: clusterGroup };
-  });
+  const options = clusterGroups
+    .map(el => ({ value: el.clusterGroup, label: el.clusterGroup }))
+    .sort((a, b) => a.value.localeCompare(b.value));
 
   const createGroup = value => {
     if (!watch('title')) {

@@ -55,8 +55,8 @@ const elementFilterSlice = createSlice({
 });
 
 // fulfilled active element slice
-const elementActiveItemSlice = createSlice({
-  name: 'activeItem',
+const elementActiveSlice = createSlice({
+  name: 'active',
   initialState: null,
   reducers: {
     setActiveElement: (_, action) => action.payload,
@@ -89,12 +89,12 @@ const elementErrorSlice = createSlice({
 
 export const elementsReducer = combineReducers({
   items: elementItemsSlice.reducer,
-  activeItem: elementActiveItemSlice.reducer,
+  active: elementActiveSlice.reducer,
   filter: elementFilterSlice.reducer,
   isLoading: elementIsLoadingSlice.reducer,
   error: elementErrorSlice.reducer,
 });
 
 export const { cleanElement } = elementItemsSlice.actions;
-export const { setActiveElement } = elementActiveItemSlice.actions;
+export const { setActiveElement } = elementActiveSlice.actions;
 export const { setelementFilter } = elementFilterSlice.actions;

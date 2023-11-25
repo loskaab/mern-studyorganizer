@@ -13,7 +13,8 @@ import { List } from './ClusterList.styled';
 
 const ClusterList = () => {
   const dispatch = useDispatch();
-  const { allClusters, clusterFilter, clusterGroups } = useClusters();
+  const { allClusters, clusterGroups, clusterFilter, clusterSelect } =
+    useClusters();
 
   useEffect(() => {
     dispatch(fetchGroupsThunk());
@@ -21,6 +22,11 @@ const ClusterList = () => {
   }, [dispatch]);
 
   const filtredGroups = [...clusterGroups]
+    .filter(el => {
+      if (clusterSelect) {
+        return el.clusterGroup === clusterSelect && el;
+      } else return el;
+    })
     .filter(el => el.clusterGroup.toLowerCase().includes(clusterFilter))
     .map(el => el.clusterGroup)
     .sort((a, b) => a.localeCompare(b));
