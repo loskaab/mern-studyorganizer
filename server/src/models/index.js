@@ -1,7 +1,7 @@
-const { Cluster } = require('./cluster');
-const { ClusterGroup } = require('./clusterGroup');
-const { Element } = require('./element');
-const { ElementGroup } = require('./elementGroup');
-const { User } = require('./user');
+const { Cluster } = require('./Cluster');
+const { ClusterGroup } = require('./ClusterGroup');
+const { Element } = require('./Element');
+const { ElementGroup } = require('./ElementGroup');
+const { User } = require('./User');
 
 module.exports = { Cluster, ClusterGroup, Element, ElementGroup, User };

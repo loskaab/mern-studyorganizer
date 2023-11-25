@@ -1,5 +1,5 @@
-const { User } = require('../../models/user');
-const { Contact } = require('../../models/element');
+const { User } = require('../../models');
+const { Contact } = require('../../models');
 const { ctrlWrapper } = require('../../decorators');
 const { cloudinary, HttpError, restrictedAccess } = require('../../utils');
 

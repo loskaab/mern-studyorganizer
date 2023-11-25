@@ -1,8 +1,8 @@
-const { User } = require('../../models/user');
+const { User } = require('../../models');
 const { ctrlWrapper } = require('../../decorators');
 const { HttpError, cloudinary, restrictedAccess } = require('../../utils');
 const { randomNumber, sendMail, createMsg } = require('../../utils');
-
+/* eslint-disable camelcase */
 const updateProfile = ctrlWrapper(async (req, res) => {
   const { name, email } = req.body;
   const { _id } = req.user;
@@ -21,7 +21,6 @@ const updateProfile = ctrlWrapper(async (req, res) => {
   if (req.file) {
     const { avatarId } = req.user;
     if (avatarId) await cloudinary.destroy(avatarId);
-    // eslint-disable-next-line camelcase
     const { url, public_id } = await cloudinary.upload(req.file.path);
     const avatar = { avatarUrl: url, avatarId: public_id };
 

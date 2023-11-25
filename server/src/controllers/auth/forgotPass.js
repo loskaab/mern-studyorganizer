@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 
-const { User } = require('../../models/user');
+const { User } = require('../../models');
 const { ctrlWrapper } = require('../../decorators');
 const { HttpError, sendMail, createMsg } = require('../../utils');
 
