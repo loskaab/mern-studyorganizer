@@ -6,7 +6,6 @@ import {
   fetchGroupsThunk,
 } from 'store/cluster/clusterThunks';
 import { useClusters } from 'utils/hooks';
-import { getUnique } from 'utils/helpers';
 
 import LiHead from './Li/LiHead';
 import LiContent from './Li/LiContent';
@@ -14,25 +13,26 @@ import { List } from './ClusterList.styled';
 
 const ClusterList = () => {
   const dispatch = useDispatch();
-  const { allClusters, clustersFilter } = useClusters();
+  const { allClusters, clusterFilter, clusterGroups } = useClusters();
 
   useEffect(() => {
-    dispatch(fetchClustersThunk());
     dispatch(fetchGroupsThunk());
+    dispatch(fetchClustersThunk());
   }, [dispatch]);
+
+  const filtredGroups = [...clusterGroups]
+    .filter(el => el.clusterGroup.toLowerCase().includes(clusterFilter))
+    .map(el => el.clusterGroup)
+    .sort((a, b) => a.localeCompare(b));
 
   const filtredClusters = [...allClusters]
     .filter(({ cluster, title }) => {
       return (
-        cluster.toLowerCase().includes(clustersFilter) ||
-        title.toLowerCase().includes(clustersFilter)
+        cluster.toLowerCase().includes(clusterFilter) ||
+        title.toLowerCase().includes(clusterFilter)
       );
     })
     .sort((a, b) => a.title.localeCompare(b.title));
-
-  const filtredGroups = getUnique(filtredClusters, 'group').sort((a, b) =>
-    a.localeCompare(b),
-  );
 
   return (
     <List>

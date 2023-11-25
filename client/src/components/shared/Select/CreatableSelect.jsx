@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 
-import { SelectSimple, defaultTheme, defaultStyles } from './Select.styled';
+import { SelectCreatable, defaultTheme, defaultStyles } from './Select.styled';
 
-const Select = ({
+const CreatableSelect = ({
   styles,
 
   $obh,
@@ -19,14 +19,16 @@ const Select = ({
   name,
   value,
   defaultValue,
-  placeholder,
+  placeholder = 'Create / Select...',
   options, // [{ value: qwe, label: asd, }]
   onChange, // (option, name) => console.log(option, name)
   isClearable,
+  onCreateOption,
+  isLoading,
   isDisabled,
 }) => {
   return (
-    <SelectSimple
+    <SelectCreatable
       theme={defaultTheme({ $obh, $sobh })}
       styles={{
         ...defaultStyles({ $ol, $b, $bh, $bf, $o, $oh, $ob, $obh }),
@@ -39,12 +41,14 @@ const Select = ({
       options={options}
       onChange={onChange}
       isClearable={isClearable}
+      onCreateOption={onCreateOption}
+      isLoading={isLoading}
       isDisabled={isDisabled}
     />
   );
 };
 
-Select.propTypes = {
+CreatableSelect.propTypes = {
   styles: PropTypes.arrayOf(PropTypes.object),
 
   $obh: PropTypes.string,
@@ -65,7 +69,9 @@ Select.propTypes = {
   placeholder: PropTypes.string,
   onChange: PropTypes.func,
   isClearable: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+  onCreateOption: PropTypes.func,
+  isLoading: PropTypes.bool,
   isDisabled: PropTypes.bool,
 };
 
-export default Select;
+export default CreatableSelect;

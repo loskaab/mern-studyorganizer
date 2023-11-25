@@ -6,9 +6,8 @@ import { clusterSchema } from 'utils/validation';
 import GridWrap from 'components/shared/GridWrap/GridWrap';
 import Button from 'components/shared/Button/Button';
 import Modal from 'components/shared/Modal/Modal';
-import AddClusterForm from 'components/ClusterForms/AddClusterForm';
+import AddClusterForm from 'components/ClusterForms/ClusterAddForm';
 import { themes } from 'styles/themes';
-import EditClusterForm from 'components/ClusterForms/EditClusterForm';
 
 const { button } = themes.shadows;
 
@@ -29,31 +28,21 @@ const ClusterEditBar = () => {
     }
   };
 
-  const editClusters = () => {
-    setIsModal('edit');
-  };
-
   return (
     <GridWrap
       $m="10px 30px"
       $pos="fixed"
       $side="right"
       $high="bottom"
-      $gtc=" 1fr 1fr"
+      $gtc=" 1fr"
     >
       <Button name="add" onClick={addCluster} $s="m" $bs={button}>
         Add
       </Button>
-      <Button name="edit" onClick={editClusters} $s="m" $bs={button}>
-        Edit
-      </Button>
 
       {isModal && (
         <Modal onClick={() => setIsModal(false)}>
-          {isModal === 'add' && (
-            <AddClusterForm cluster={clipboardText} setIsModal={setIsModal} />
-          )}
-          {isModal === 'edit' && <EditClusterForm setIsModal={setIsModal} />}
+          <AddClusterForm cluster={clipboardText} setIsModal={setIsModal} />
         </Modal>
       )}
     </GridWrap>

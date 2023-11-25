@@ -13,7 +13,7 @@ const ProfileForm = () => {
     dispatch(logoutThunk());
     // dispatch(cleanElements());
     // dispatch(setActiveElement(null));
-    // dispatch(setElementsFilter(''));
+    // dispatch(setelementFilter(''));
   };
 
   return (

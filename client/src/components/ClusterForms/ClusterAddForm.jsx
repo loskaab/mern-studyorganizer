@@ -3,22 +3,25 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { toast } from 'react-toastify';
 
 import { useClusters } from 'utils/hooks';
-import { addClusterThunk } from 'store/cluster/clusterThunks';
+import { addClusterThunk, addGroupThunk } from 'store/cluster/clusterThunks';
 import { titleSchema } from 'utils/validation';
 import ButtonClr from 'components/shared/Button/ButtonClr';
-import Select from 'components/shared/Select/Select';
+import CreatableSelect from 'components/shared/Select/CreatableSelect';
 
 import { Form, Label, Input, Hidden } from './ClusterForms.styled';
 
 const AddClusterForm = ({ cluster, setIsModal }) => {
   const dispatch = useDispatch();
-  const [group, setGroup] = useState('');
+  const [stateGroup, setStateGroup] = useState('');
+  // const [isLoading, setIsLoading] = useState(false);
   const { clusterGroups } = useClusters();
 
   const {
     register,
+    watch,
     handleSubmit,
     formState: { errors },
   } = useForm({
@@ -28,7 +31,7 @@ const AddClusterForm = ({ cluster, setIsModal }) => {
   });
 
   const onSubmit = data => {
-    dispatch(addClusterThunk({ ...data, ...group }));
+    dispatch(addClusterThunk({ ...data, group: stateGroup.value }));
     setIsModal(false);
   };
 
@@ -36,7 +39,14 @@ const AddClusterForm = ({ cluster, setIsModal }) => {
     return { value: clusterGroup, label: clusterGroup };
   });
 
-  const handleChange = data => setGroup({ group: data ? data.value : '' });
+  const createGroup = value => {
+    if (!watch('title')) {
+      toast.error('Title is required');
+    } else {
+      dispatch(addGroupThunk({ clusterGroup: value }));
+      setStateGroup({ value, label: value });
+    }
+  };
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
@@ -52,7 +62,13 @@ const AddClusterForm = ({ cluster, setIsModal }) => {
 
       <Label>
         Group
-        <Select options={options} onChange={handleChange} isClearable={group} />
+        <CreatableSelect
+          value={stateGroup}
+          options={options}
+          onChange={data => setStateGroup(data ? data : '')}
+          onCreateOption={createGroup}
+          isClearable={stateGroup}
+        />
       </Label>
 
       <ButtonClr type="submit" $s="l" $h="41px">
