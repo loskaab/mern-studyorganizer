@@ -11,9 +11,12 @@ import PrivateRoutes from 'routes/PrivateRoutes';
 import Toast from 'components/shared/Toast/Toast';
 import OvalLoader from 'components/shared/Loader/OvalLoader';
 import SharedLayout from 'layouts/SharedLayout/SharedLayout';
+
 import HomePage from 'pages/HomePage';
 const SignupPage = lazy(() => import('pages/SignupPage'));
 const SigninPage = lazy(() => import('pages/SigninPage'));
+const ForgotPage = lazy(() => import('pages/ForgotPage'));
+const GooglePage = lazy(() => import('pages/GooglePage'));
 const ProfilePage = lazy(() => import('pages/ProfilePage'));
 const ClusterPage = lazy(() => import('pages/ClusterPage'));
 const ElementsPage = lazy(() => import('pages/ElementPage'));
@@ -39,6 +42,8 @@ const App = () => {
             <Route element={<PublicRoutes />}>
               <Route path="signup" element={<SignupPage />} />
               <Route path="signin" element={<SigninPage />} />
+              <Route path="reset" element={<ForgotPage />} />
+              <Route path="google" element={<GooglePage />} />
             </Route>
             <Route element={<PrivateRoutes />}>
               <Route path="cluster" element={<ClusterPage />} />
