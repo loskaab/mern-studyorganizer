@@ -1,9 +1,11 @@
-// import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Fragment } from 'react';
 import { Formik } from 'formik';
+import { toast } from 'react-toastify';
 
-// import { forgotPassThunk } from 'store/auth/authOperations';
+import { forgotPassThunk } from 'store/auth/authThunks';
+
 import { forgotSchema } from 'utils/validation';
 
 import SignBtn from './AuthBtns/SignBtn';
@@ -19,7 +21,7 @@ import {
 } from './AuthForms.styled';
 
 const ForgotForm = ({ setIsFM, email }) => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const isValid = ({ values, errors }) => {
     const noValue = !Object.values(values)[0] && 'noValue';
@@ -29,10 +31,10 @@ const ForgotForm = ({ setIsFM, email }) => {
 
   const isDisabled = ({ errors }) => Object.keys(errors).length;
 
-  const onSubmit = (values, actions) => {
-    // dispatch(forgotPassThunk(values))
-    //   .unwrap() // .then(pld => console.log(pld))
-    //   .catch(err => console.log(err));
+  const onSubmit = values => {
+    dispatch(forgotPassThunk(values))
+      .unwrap() // .then(pld => console.log(pld))
+      .catch(err => toast.error(err.message));
 
     setIsFM(false); // actions.resetForm();
   };

@@ -1,9 +1,11 @@
 import PropTypes from 'prop-types';
 import { Fragment, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { Formik } from 'formik';
-// import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
 
-// import { resetPassThunk } from 'store/auth/authOperations';
+import { resetPassThunk } from 'store/auth/authThunks';
 import { resetSchema } from 'utils/validation';
 
 import SignBtn from './AuthBtns/SignBtn';
@@ -22,7 +24,8 @@ import {
 const initialValues = { newPass: '', confirmPass: '' };
 
 const ResetForm = ({ id, pwdToken }) => {
-  // const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [toggle, setToggle] = useState('password');
 
   const isValid = ({ values, errors, key }) => {
@@ -37,12 +40,11 @@ const ResetForm = ({ id, pwdToken }) => {
     return noValue || isError;
   };
 
-  const onSubmit = (values, actions) => {
-    // dispatch(resetPassThunk({ ...values, id, pwdToken }))
-    //   .unwrap() // .then(pld => console.log(pld))
-    //   .catch(err => console.log(err));
-
-    actions.resetForm();
+  const onSubmit = values => {
+    dispatch(resetPassThunk({ ...values, id, pwdToken }))
+      .unwrap()
+      .then(() => navigate('/signin', { replace: true }))
+      .catch(err => toast.error(err.message));
   };
 
   return (
