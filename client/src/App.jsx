@@ -13,10 +13,10 @@ import OvalLoader from 'components/shared/Loader/OvalLoader';
 import SharedLayout from 'layouts/SharedLayout/SharedLayout';
 
 import HomePage from 'pages/HomePage';
+import GooglePage from 'pages/GooglePage';
 const SignupPage = lazy(() => import('pages/SignupPage'));
 const SigninPage = lazy(() => import('pages/SigninPage'));
 const ForgotPage = lazy(() => import('pages/ForgotPage'));
-const GooglePage = lazy(() => import('pages/GooglePage'));
 const ProfilePage = lazy(() => import('pages/ProfilePage'));
 const ClusterPage = lazy(() => import('pages/ClusterPage'));
 const ElementsPage = lazy(() => import('pages/ElementPage'));
