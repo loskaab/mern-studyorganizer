@@ -7,6 +7,7 @@ import { themes } from 'styles/themes';
 const { colors, radiuses, shadows } = themes;
 
 export const Form = styled(FormikForm)`
+  min-width: 400px;
   padding: 40px;
   display: flex;
   flex-direction: column;

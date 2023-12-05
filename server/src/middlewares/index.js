@@ -1,15 +1,17 @@
-const globalErrorHandler = require('./globalErrorHandler');
-const missingRouteHandler = require('./missingRouteHandler');
 const authenticate = require('./authenticate');
+const globalErrorHandler = require('./globalErrorHandler');
 const isValidId = require('./isValidId');
-const upload = require('./upload');
+const missingRouteHandler = require('./missingRouteHandler');
 const parse = require('./parse');
+const passport = require('./passport');
+const upload = require('./upload');
 
 module.exports = {
   authenticate,
   globalErrorHandler,
-  missingRouteHandler,
   isValidId,
-  upload,
+  missingRouteHandler,
+  passport,
   parse,
+  upload,
 };

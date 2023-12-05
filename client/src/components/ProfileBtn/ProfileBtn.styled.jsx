@@ -26,7 +26,7 @@ const avatarStyles = css`
     justify-content: center;
     align-items: center;
     color: ${colors.white};
-    font-weight: 900;
+    font-weight: 700;
     font-family: 'Montserrat', sans-serif;
     ${({ $abbr }) => `content:"${$abbr}"`};
   }

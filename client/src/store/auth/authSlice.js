@@ -2,7 +2,7 @@ import { createSlice, isAnyOf, combineReducers } from '@reduxjs/toolkit';
 
 import * as TNK from 'store/auth/authThunks';
 
-import { initialState } from './initialState';
+import { userInitialState } from './initialState';
 
 const thunkArr = [
   TNK.registerThunk,
@@ -19,7 +19,7 @@ const fn = type => thunkArr.map(el => el[type]);
 
 const handleLoginSucsess = (_, action) => action.payload.result.user;
 
-const handleLogoutSucsess = () => initialState;
+const handleLogoutSucsess = () => userInitialState;
 
 const handleAuthSucsess = (state, action) => {
   const { accessToken, refreshToken } = action.payload.result.user;
@@ -29,7 +29,7 @@ const handleAuthSucsess = (state, action) => {
 // fulfilled slice
 const authUserSlice = createSlice({
   name: 'user',
-  initialState,
+  initialState: userInitialState,
   reducers: {
     authenticate: handleAuthSucsess,
   },
@@ -58,9 +58,9 @@ const authIsLoadingSlice = createSlice({
   initialState: false,
   extraReducers: builder => {
     builder
-      .addMatcher(isAnyOf(...fn('pending')), state => true)
-      .addMatcher(isAnyOf(...fn('fulfilled')), state => false)
-      .addMatcher(isAnyOf(...fn('rejected')), state => false);
+      .addMatcher(isAnyOf(...fn('pending')), () => true)
+      .addMatcher(isAnyOf(...fn('fulfilled')), () => false)
+      .addMatcher(isAnyOf(...fn('rejected')), () => false);
   },
 });
 
@@ -70,9 +70,9 @@ const authIsRefreshingSlice = createSlice({
   initialState: false,
   extraReducers: builder => {
     builder
-      .addMatcher(isAnyOf(...fn('pending')), state => true)
-      .addMatcher(isAnyOf(...fn('fulfilled')), state => false)
-      .addMatcher(isAnyOf(...fn('rejected')), state => false);
+      .addMatcher(isAnyOf(...fn('pending')), () => true)
+      .addMatcher(isAnyOf(...fn('fulfilled')), () => false)
+      .addMatcher(isAnyOf(...fn('rejected')), () => false);
   },
 });
 
@@ -82,8 +82,8 @@ const authErrorSlice = createSlice({
   initialState: false,
   extraReducers: builder => {
     builder
-      .addMatcher(isAnyOf(...fn('pending')), state => false)
-      .addMatcher(isAnyOf(...fn('fulfilled')), state => false)
+      .addMatcher(isAnyOf(...fn('pending')), () => false)
+      .addMatcher(isAnyOf(...fn('fulfilled')), () => false)
       .addMatcher(isAnyOf(...fn('rejected')), (_, action) => action.payload);
   },
 });

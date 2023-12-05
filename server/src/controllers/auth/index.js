@@ -1,21 +1,21 @@
 const forgotPass = require('./forgotPass');
 const getUser = require('./getUser');
+const google = require('./google');
 const login = require('./login');
 const logout = require('./logout');
 const refreshToken = require('./refreshToken');
 const register = require('./register');
-const verifyEmail = require('./verifyEmail');
 const resetPass = require('./resetPass');
-// const google = require('./google');
+const verifyEmail = require('./verifyEmail');
 
 module.exports = {
   forgotPass,
   getUser,
+  google,
   login,
   logout,
   refreshToken,
   register,
-  resetPass,
   verifyEmail,
-  // google,
+  resetPass,
 };
