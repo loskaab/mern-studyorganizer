@@ -1,7 +1,11 @@
 import { useDispatch } from 'react-redux';
 
+import {
+  cleanCluster,
+  cleanGroup,
+  setClusterFilter,
+} from 'store/cluster/clusterSlice';
 import { logoutThunk } from 'store/auth/authThunks';
-// import { useAuth } from 'utils/hooks/useAuth';
 import Button from 'components/shared/Button/Button';
 
 import { Form } from './ProfileForm.styled';
@@ -11,9 +15,10 @@ const ProfileForm = () => {
 
   const handleLogOut = () => {
     dispatch(logoutThunk());
-    // dispatch(cleanElements());
+    dispatch(cleanCluster());
+    dispatch(cleanGroup());
+    dispatch(setClusterFilter(''));
     // dispatch(setActiveElement(null));
-    // dispatch(setelementFilter(''));
   };
 
   return (

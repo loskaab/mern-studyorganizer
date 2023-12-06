@@ -7,7 +7,7 @@ const regex = field => [regExp[field].pattern, `Invalid ${field.toLowerCase()}!`
 
 const elementGroupSchema = new Schema(
   {
-    elementGroup: { type: String, match: regex(regExp.NAME.name), unique: true, required },
+    elementGroup: { type: String, match: regex(regExp.NAME.name), required },
 
     owner: { type: Schema.Types.ObjectId, ref: 'User', required: true },
   },

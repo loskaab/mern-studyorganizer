@@ -13,23 +13,12 @@ import { List } from './ClusterList.styled';
 
 const ClusterList = () => {
   const dispatch = useDispatch();
-  const { allClusters, clusterGroups, clusterFilter, clusterSelect } =
-    useClusters();
+  const { allClusters, clusterFilter, clusterSelect } = useClusters();
 
   useEffect(() => {
     dispatch(fetchGroupsThunk());
     dispatch(fetchClustersThunk());
   }, [dispatch]);
-
-  const filtredGroups = [...clusterGroups]
-    .filter(el => {
-      if (clusterSelect) {
-        return el.clusterGroup === clusterSelect && el;
-      } else return el;
-    })
-    .filter(el => el.clusterGroup.toLowerCase().includes(clusterFilter))
-    .map(el => el.clusterGroup)
-    .sort((a, b) => a.localeCompare(b));
 
   const filtredClusters = [...allClusters]
     .filter(({ cluster, title }) => {
@@ -40,9 +29,19 @@ const ClusterList = () => {
     })
     .sort((a, b) => a.title.localeCompare(b.title));
 
+  const filtredGroups = Array.from(
+    new Set(filtredClusters.map(el => el.group)),
+  );
+
+  const selectedGroups = filtredGroups.filter(el => {
+    if (clusterSelect) {
+      return el === clusterSelect && el;
+    } else return el;
+  });
+
   return (
     <List>
-      {filtredGroups.map(group => (
+      {selectedGroups.map(group => (
         <Fragment key={group}>
           <LiHead group={group} />
 
