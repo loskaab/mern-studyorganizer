@@ -26,15 +26,15 @@ const LiCluster = ({ el }) => {
     return text.length <= 50 ? text : text.substring(0, 49).concat('...');
   };
 
-  const handleChangeFavorite = () => {
+  const changeFavorite = () => {
     dispatch(updateFavoriteThunk({ _id, favorite: !favorite }));
   };
 
-  const handleChangeChecked = () => {
+  const changeChecked = () => {
     dispatch(updateCheckedThunk({ _id, checked: !checked }));
   };
 
-  const handleDelete = () => {
+  const deleteCluster = () => {
     dispatch(deleteClusterThunk(_id));
   };
 
@@ -45,7 +45,7 @@ const LiCluster = ({ el }) => {
           type="checkbox"
           name="favorite"
           checked={favorite}
-          onChange={handleChangeFavorite}
+          onChange={changeFavorite}
         />
         <TiStar size="18px" />
       </LabelFavorite>
@@ -56,7 +56,7 @@ const LiCluster = ({ el }) => {
         {trim(cluster)}
       </a>
 
-      <DelBtn onClick={handleDelete}>
+      <DelBtn onClick={deleteCluster}>
         <FiTrash2 size="16px" />
       </DelBtn>
 
@@ -65,7 +65,7 @@ const LiCluster = ({ el }) => {
           type="checkbox"
           name="checked"
           checked={checked}
-          onChange={handleChangeChecked}
+          onChange={changeChecked}
         />
         <FaCheck size="15px" />
       </LabelChecked>
