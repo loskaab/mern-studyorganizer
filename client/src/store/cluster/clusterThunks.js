@@ -37,6 +37,17 @@ export const updateClusterThunk = createAsyncThunk(
   },
 );
 
+export const deleteClusterThunk = createAsyncThunk(
+  'items/deleteCluster',
+  async (id, thunkAPI) => {
+    try {
+      return await API.deleteCluster(id);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  },
+);
+
 export const updateFavoriteThunk = createAsyncThunk(
   'items/updateFavorite',
   async (cluster, thunkAPI) => {
@@ -48,11 +59,11 @@ export const updateFavoriteThunk = createAsyncThunk(
   },
 );
 
-export const deleteClusterThunk = createAsyncThunk(
-  'items/deleteCluster',
-  async (id, thunkAPI) => {
+export const updateCheckedThunk = createAsyncThunk(
+  'items/updateChecked',
+  async (cluster, thunkAPI) => {
     try {
-      return await API.deleteCluster(id);
+      return await API.updateChecked(cluster);
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

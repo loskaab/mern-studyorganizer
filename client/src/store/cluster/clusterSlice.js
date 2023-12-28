@@ -33,15 +33,21 @@ const handleUpdateCluster = (state, action) => {
   state.splice(index, 1, cluster);
 };
 
+const handleDeleteCluster = (state, action) => {
+  const { cluster } = action.payload.result;
+  return state.filter(el => el._id !== cluster._id);
+};
+
 const handleUpdateFavorite = (state, action) => {
   const { cluster } = action.payload.result;
   const index = state.findIndex(el => el._id === cluster._id);
   state.splice(index, 1, cluster);
 };
 
-const handleDeleteCluster = (state, action) => {
+const handleUpdateChecked = (state, action) => {
   const { cluster } = action.payload.result;
-  return state.filter(el => el._id !== cluster._id);
+  const index = state.findIndex(el => el._id === cluster._id);
+  state.splice(index, 1, cluster);
 };
 
 // Groups
@@ -77,8 +83,9 @@ const clusterItemsSlice = createSlice({
       .addCase(TNK.fetchClustersThunk.fulfilled, handleFetchClusters)
       .addCase(TNK.addClusterThunk.fulfilled, handleAddCluster)
       .addCase(TNK.updateClusterThunk.fulfilled, handleUpdateCluster)
+      .addCase(TNK.deleteClusterThunk.fulfilled, handleDeleteCluster)
       .addCase(TNK.updateFavoriteThunk.fulfilled, handleUpdateFavorite)
-      .addCase(TNK.deleteClusterThunk.fulfilled, handleDeleteCluster);
+      .addCase(TNK.updateCheckedThunk.fulfilled, handleUpdateChecked);
   },
 });
 

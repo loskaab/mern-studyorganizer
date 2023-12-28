@@ -5,12 +5,15 @@ import { themes } from 'styles/themes';
 
 const { colors, shadows, indents, radiuses } = themes;
 
-const baseStyle = css`
+// li
+
+const baseLiStyle = css`
   margin: 0 ${indents.s};
+  padding-inline: 4px;
   display: grid;
-  grid-column-gap: 5px;
-  grid-template-columns: 1fr 10fr 20fr;
-  grid-template-areas: '. title title';
+  grid-column-gap: 2px;
+  grid-template-columns: 1fr 15fr 30fr 1fr 1fr;
+  grid-template-areas: '. title title . .';
   align-items: center;
   justify-items: left;
   line-height: 1.5;
@@ -18,8 +21,8 @@ const baseStyle = css`
   border-bottom-color: ${colors.borderLight};
 `;
 
-export const LiHead = styled.li`
-  ${baseStyle}
+export const LiGroup = styled.li`
+  ${baseLiStyle}
   counter-reset: subsection;
   line-height: 2;
 
@@ -43,11 +46,12 @@ export const LiHead = styled.li`
   }
 `;
 
-export const LiContent = styled.li`
-  ${baseStyle}
+export const LiCluster = styled.li`
+  ${baseLiStyle}
 
   transition: box-shadow 250ms, border-color 250ms;
 
+  // title
   & h3 {
     font-size: 16px;
     font-weight: 500;
@@ -59,17 +63,7 @@ export const LiContent = styled.li`
     background-color: ${colors.backgroundHoverd};
   }
 
-  & svg {
-    transition: stroke 250ms;
-    stroke-width: 2.5px;
-    color: ${({ $hoverd }) => ($hoverd ? colors.yellow : 'transparent')};
-    stroke: ${({ $hoverd }) => ($hoverd ? colors.yellow : colors.border)};
-  }
-  &:hover svg {
-    stroke: ${({ $hoverd }) => !$hoverd && colors.placeholder};
-    stroke-width: ${({ $hoverd }) => !$hoverd && '2px'};
-  }
-
+  // cluster
   & a {
     font-size: 16px;
     color: ${colors.placeholder};
@@ -82,12 +76,19 @@ export const LiContent = styled.li`
       color: ${colors.black};
     }
   }
-  &:hover a {
+  a:hover {
     color: ${colors.hovered};
+  }
+
+  &:hover label,
+  &:hover button {
+    opacity: 1;
   }
 `;
 
-export const Label = styled.label`
+// input label
+
+const baseLabelStyle = css`
   width: 100%;
   display: flex;
   align-items: center;
@@ -96,5 +97,58 @@ export const Label = styled.label`
 
   & input {
     ${visuallyHidden}
+  }
+`;
+
+export const LabelFavorite = styled.label`
+  ${baseLabelStyle}
+
+  & svg {
+    transition: stroke 250ms;
+    stroke-width: 2px;
+    color: ${({ $hovered }) => ($hovered ? colors.yellow : 'transparent')};
+    stroke: ${({ $hovered }) => ($hovered ? colors.yellow : colors.border)};
+  }
+  &:hover svg {
+    stroke: ${colors.placeholder};
+  }
+`;
+
+export const LabelChecked = styled.label`
+  ${baseLabelStyle}
+  opacity: ${({ $hovered }) => ($hovered ? 1 : 0)};
+  transition: opacity 250ms;
+
+  & svg {
+    transition: border-color 250ms, color 250ms;
+    padding: 1px;
+    padding-top: 2px;
+    border: 2px solid ${colors.border};
+    border-radius: 50%;
+    color: ${({ $hovered }) => ($hovered ? colors.border : 'transparent')};
+  }
+  &:hover svg {
+    border-color: ${colors.placeholder};
+    color: ${({ $hovered }) => ($hovered ? colors.placeholder : 'transparent')};
+  }
+`;
+
+// delete button
+
+export const DelBtn = styled.button`
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  background-color: transparent;
+  border-color: transparent;
+  opacity: 0;
+  transition: opacity 250ms;
+
+  & svg {
+    transition: color 250ms;
+    color: ${colors.border};
+  }
+  &:hover svg {
+    color: ${colors.placeholder};
   }
 `;

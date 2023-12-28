@@ -6,7 +6,8 @@ const add = ctrlWrapper(async (req, res) => {
   const { _id: owner } = req.user;
   const { cluster } = req.body;
 
-  if (await Cluster.findOne({ cluster })) {
+  const clusterArr = await Cluster.find({ cluster, owner });
+  if (clusterArr[0]) {
     throw HttpError(409, 'Already existing cluster');
   }
 

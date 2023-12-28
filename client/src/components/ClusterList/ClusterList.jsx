@@ -7,8 +7,8 @@ import {
 } from 'store/cluster/clusterThunks';
 import { useClusters } from 'utils/hooks';
 
-import LiHead from './Li/LiHead';
-import LiContent from './Li/LiContent';
+import LiGroup from './Li/LiGroup';
+import LiCluster from './Li/LiCluster';
 import { List } from './ClusterList.styled';
 
 const ClusterList = () => {
@@ -43,10 +43,10 @@ const ClusterList = () => {
     <List>
       {selectedGroups.map(group => (
         <Fragment key={group}>
-          <LiHead group={group} />
+          <LiGroup group={group} />
 
           {filtredClusters.map(
-            el => el.group === group && <LiContent key={el._id} el={el} />,
+            el => el.group === group && <LiCluster key={el._id} el={el} />,
           )}
         </Fragment>
       ))}

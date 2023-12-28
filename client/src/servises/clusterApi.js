@@ -17,13 +17,18 @@ export const updateCluster = async ({ _id, ...cluster }) => {
   return data;
 };
 
+export const deleteCluster = async id => {
+  const { data } = await apiClient.delete(`/clusters/${id}`);
+  return data;
+};
+
 export const updateFavorite = async ({ _id, ...cluster }) => {
   const { data } = await apiClient.patch(`/clusters/favorite/${_id}`, cluster);
   return data;
 };
 
-export const deleteCluster = async id => {
-  const { data } = await apiClient.delete(`/clusters/${id}`);
+export const updateChecked = async ({ _id, ...cluster }) => {
+  const { data } = await apiClient.patch(`/clusters/checked/${_id}`, cluster);
   return data;
 };
 
