@@ -132,6 +132,15 @@ const clusterSelectSlice = createSlice({
   },
 });
 
+// fulfilled select slice
+const clusterCheckedSlice = createSlice({
+  name: 'checked',
+  initialState: true,
+  reducers: {
+    setClusterChecked: (_, action) => action.payload,
+  },
+});
+
 // loading slice
 const clusterIsLoadingSlice = createSlice({
   name: 'isLoading',
@@ -162,6 +171,7 @@ export const clustersReducer = combineReducers({
   active: clusterActiveSlice.reducer,
   filter: clusterFilterSlice.reducer,
   select: clusterSelectSlice.reducer,
+  checked: clusterCheckedSlice.reducer,
   isLoading: clusterIsLoadingSlice.reducer,
   error: clusterErrorSlice.reducer,
 });
@@ -171,3 +181,4 @@ export const { cleanGroup } = clusterGroupsSlice.actions;
 export const { setActiveCluster } = clusterActiveSlice.actions;
 export const { setClusterFilter } = clusterFilterSlice.actions;
 export const { setClusterSelect } = clusterSelectSlice.actions;
+export const { setClusterChecked } = clusterCheckedSlice.actions;

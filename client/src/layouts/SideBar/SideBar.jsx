@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
 import { useLocation } from 'react-router-dom';
 
+import { useAuth, useClusters } from 'utils/hooks';
+
 import ScreenSaver from 'components/ScreenSaver/ScreenSaver';
 import ElementFrame from 'components/ElementFrame/ElementFrame';
 
@@ -8,10 +10,14 @@ import { SideBarDiv } from './SideBar.styled';
 
 const SideBar = ({ $side, $width, $height, $offY }) => {
   const { pathname } = useLocation();
+  const { user } = useAuth();
+  const { activeCluster } = useClusters();
+
+  const isFrame = user._id === activeCluster.owner && pathname.length !== 1;
 
   return (
     <SideBarDiv $side={$side} $width={$width} $height={$height} $offY={$offY}>
-      {pathname.includes('element/') ? <ElementFrame /> : <ScreenSaver />}
+      {isFrame ? <ElementFrame /> : <ScreenSaver />}
     </SideBarDiv>
   );
 };
