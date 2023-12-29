@@ -10,7 +10,7 @@ const ElementFrame = () => {
 
   const clusterId = pathname.replace('/element/', '');
 
-  const elementLink = activeCluster.cluster
+  const elementLink = activeCluster?.cluster
     .replace('watch?v=', 'embed/')
     .replace('/view', '/preview');
 

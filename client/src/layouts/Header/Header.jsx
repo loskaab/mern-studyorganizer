@@ -12,9 +12,7 @@ import { StyledHeader, Nav } from './Header.styled';
 const Header = ({ $height }) => {
   const { pathname } = useLocation();
   const { isLoggedIn } = useAuth();
-  const { activeCluster } = useClusters();
-
-  const { _id } = activeCluster;
+  const { activeCluster: ac } = useClusters();
 
   return (
     <StyledHeader $height={$height}>
@@ -23,7 +21,7 @@ const Header = ({ $height }) => {
       <Nav>
         <NavLink to="/">Home</NavLink>
         {isLoggedIn && <NavLink to="/cluster">Cluster</NavLink>}
-        {isLoggedIn && <NavLink to={`/element/${_id}`}>Element</NavLink>}
+        {isLoggedIn && <NavLink to={`/element/${ac?._id}`}>Element</NavLink>}
       </Nav>
 
       {pathname === '/cluster' && <ClustersSearchBar />}
