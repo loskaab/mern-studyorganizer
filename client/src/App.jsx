@@ -19,7 +19,7 @@ const SigninPage = lazy(() => import('pages/SigninPage'));
 const ForgotPage = lazy(() => import('pages/ForgotPage'));
 const ProfilePage = lazy(() => import('pages/ProfilePage'));
 const ClusterPage = lazy(() => import('pages/ClusterPage'));
-const ElementsPage = lazy(() => import('pages/ElementPage'));
+const ElementPage = lazy(() => import('pages/ElementPage'));
 
 const App = () => {
   const dispatch = useDispatch();
@@ -47,7 +47,7 @@ const App = () => {
             </Route>
             <Route element={<PrivateRoutes />}>
               <Route path="cluster" element={<ClusterPage />} />
-              <Route path="cluster/:id" element={<ElementsPage />} />
+              <Route path="element/:id" element={<ElementPage />} />
               <Route path="profile" element={<ProfilePage />} />
             </Route>
           </Route>

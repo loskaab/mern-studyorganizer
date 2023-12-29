@@ -25,7 +25,7 @@ const ClustersSearchBar = () => {
     .sort((a, b) => a.value.localeCompare(b.value));
 
   return (
-    <GridWrap $w="calc(60% - 70px)" $cg="2%" $ai="center" $gtc="2fr 1fr">
+    <GridWrap $w="calc(44.6% - 70px)" $cg="2%" $ai="center" $gtc="2fr 1fr">
       <Filter selector={selectClusterFilter} reducer={setClusterFilter} />
       <Select
         onChange={data => setGroup(data ? data.value : '')}

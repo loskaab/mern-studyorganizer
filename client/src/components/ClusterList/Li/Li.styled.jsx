@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { Link } from 'react-router-dom';
 
 import { visuallyHidden } from 'styles/utils/hidden.styled';
 import { themes } from 'styles/themes';
@@ -51,38 +52,45 @@ export const LiCluster = styled.li`
 
   transition: box-shadow 250ms, border-color 250ms;
 
-  // title
-  & h3 {
-    font-size: 16px;
-    font-weight: 500;
-  }
-
   &:hover {
     border-color: ${colors.border};
     box-shadow: ${shadows.back};
     background-color: ${colors.backgroundHoverd};
   }
 
-  // cluster
-  & a {
-    font-size: 16px;
-    color: ${colors.placeholder};
-
-    &::before {
-      counter-increment: subsection;
-      content: counter(section) '.' counter(subsection) '. ';
-      font-size: 14px;
-      font-weight: 700;
-      color: ${colors.black};
-    }
-  }
-  a:hover {
-    color: ${colors.hovered};
-  }
-
   &:hover label,
   &:hover button {
     opacity: 1;
+  }
+`;
+
+const baseLinkStyle = css`
+  font-size: 16px;
+
+  &:hover {
+    color: ${colors.hovered};
+  }
+`;
+
+export const ElementLink = styled(Link)`
+  ${baseLinkStyle}
+
+  color: ${colors.black};
+
+  font-weight: 500;
+`;
+
+export const ClusterLink = styled.a`
+  ${baseLinkStyle}
+
+  color: ${colors.placeholder};
+
+  &::before {
+    counter-increment: subsection;
+    content: counter(section) '.' counter(subsection) '. ';
+    font-size: 14px;
+    font-weight: 700;
+    color: ${colors.black};
   }
 `;
 

@@ -11,7 +11,7 @@ import { themes } from 'styles/themes';
 const SharedLayout = () => {
   const { xl } = themes.indents;
   const barH = `calc(100vh - ${xl})`;
-  const barW = '40%';
+  const barW = '55%';
   const outletW = `calc(100% - ${barW})`;
 
   return (

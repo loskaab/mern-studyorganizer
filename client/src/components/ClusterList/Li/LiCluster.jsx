@@ -1,9 +1,11 @@
 import PropTypes from 'prop-types';
+// import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { TiStar } from 'react-icons/ti';
 import { FiTrash2 } from 'react-icons/fi';
 import { FaCheck } from 'react-icons/fa';
 
+import { setActiveCluster } from 'store/cluster/clusterSlice';
 import {
   updateFavoriteThunk,
   updateCheckedThunk,
@@ -12,6 +14,8 @@ import {
 
 import {
   LiCluster as Li,
+  ElementLink,
+  ClusterLink,
   LabelFavorite,
   LabelChecked,
   DelBtn,
@@ -19,11 +23,12 @@ import {
 
 const LiCluster = ({ el }) => {
   const dispatch = useDispatch();
+
   const { _id, cluster, title, favorite, checked } = el;
 
   const trim = cluster => {
     const text = cluster.replace('https://', '').replace('http://', '');
-    return text.length <= 50 ? text : text.substring(0, 49).concat('...');
+    return text.length <= 30 ? text : text.substring(0, 29).concat('...');
   };
 
   const changeFavorite = () => {
@@ -32,10 +37,6 @@ const LiCluster = ({ el }) => {
 
   const changeChecked = () => {
     dispatch(updateCheckedThunk({ _id, checked: !checked }));
-  };
-
-  const deleteCluster = () => {
-    dispatch(deleteClusterThunk(_id));
   };
 
   return (
@@ -50,13 +51,18 @@ const LiCluster = ({ el }) => {
         <TiStar size="18px" />
       </LabelFavorite>
 
-      <h3>{title}</h3>
+      <ElementLink
+        onClick={() => dispatch(setActiveCluster(el))}
+        to={`/element/${_id}`}
+      >
+        {title}
+      </ElementLink>
 
-      <a href={cluster} target="_blank" rel="noopener noreferrer">
+      <ClusterLink href={cluster} target="_blank" rel="noopener noreferrer">
         {trim(cluster)}
-      </a>
+      </ClusterLink>
 
-      <DelBtn onClick={deleteCluster}>
+      <DelBtn onClick={() => dispatch(deleteClusterThunk(_id))}>
         <FiTrash2 size="16px" />
       </DelBtn>
 

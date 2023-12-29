@@ -30,7 +30,7 @@ const ClusterEditBar = () => {
 
   return (
     <GridWrap
-      $m="10px 30px"
+      $m="15px 25px"
       $pos="fixed"
       $side="right"
       $high="bottom"
