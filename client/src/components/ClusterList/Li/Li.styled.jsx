@@ -13,8 +13,8 @@ const baseLiStyle = css`
   padding-inline: 4px;
   display: grid;
   grid-column-gap: 2px;
-  grid-template-columns: 1fr 15fr 30fr 1fr 1fr;
-  grid-template-areas: '. title title . .';
+  grid-template-columns: 1fr 15fr 30fr 1fr 1fr 1fr;
+  grid-template-areas: '. title title . . .';
   align-items: center;
   justify-items: left;
   line-height: 1.5;
@@ -141,15 +141,13 @@ export const LabelChecked = styled.label`
   }
 `;
 
-// delete button
-
-export const TrashBtn = styled.button`
+// edit, trash buttons
+const baseBtnStyle = css`
   display: flex;
   justify-items: center;
   align-items: center;
   background-color: transparent;
   border-color: transparent;
-  opacity: ${({ $hovered }) => ($hovered ? 1 : 0)};
   transition: opacity 250ms;
 
   & svg {
@@ -159,4 +157,16 @@ export const TrashBtn = styled.button`
   &:hover svg {
     color: ${colors.placeholder};
   }
+`;
+
+export const TrashBtn = styled.button`
+  ${baseBtnStyle}
+
+  opacity: ${({ $hovered }) => ($hovered ? 1 : 0)};
+`;
+
+export const EditBtn = styled.button`
+  ${baseBtnStyle}
+
+  opacity:0;
 `;

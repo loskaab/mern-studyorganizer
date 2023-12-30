@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { TiStar } from 'react-icons/ti';
-import { FiTrash2 } from 'react-icons/fi';
+import { FiEdit3, FiTrash2 } from 'react-icons/fi';
 import { FaCheck } from 'react-icons/fa';
 
 import { useClusters } from 'utils/hooks';
@@ -10,6 +11,8 @@ import {
   updateFavoriteThunk,
   updateCheckedThunk,
 } from 'store/cluster/clusterThunks';
+import Modal from 'components/shared/Modal/Modal';
+import EditClusterForm from 'components/ClusterForms/ClusterEditForm';
 
 import {
   LiCluster as Li,
@@ -17,12 +20,14 @@ import {
   ClusterLink,
   LabelFavorite,
   LabelChecked,
+  EditBtn,
   TrashBtn,
 } from './Li.styled';
 
 const LiCluster = ({ el }) => {
   const dispatch = useDispatch();
   const { clusterTrash } = useClusters();
+  const [isModal, setIsModal] = useState(false);
 
   const { _id, cluster, title, favorite, checked } = el;
   const isInTrash = clusterTrash.find(el => el._id === _id);
@@ -64,6 +69,10 @@ const LiCluster = ({ el }) => {
         {trim(cluster)}
       </ClusterLink>
 
+      <EditBtn onClick={() => setIsModal('edit')}>
+        <FiEdit3 size="15px" />
+      </EditBtn>
+
       <TrashBtn $hovered={isInTrash} onClick={changeTrash}>
         <FiTrash2 size="16px" />
       </TrashBtn>
@@ -77,6 +86,12 @@ const LiCluster = ({ el }) => {
         />
         <FaCheck size="15px" />
       </LabelChecked>
+
+      {isModal && (
+        <Modal onClick={() => setIsModal(false)}>
+          <EditClusterForm el={el} setIsModal={setIsModal} />
+        </Modal>
+      )}
     </Li>
   );
 };

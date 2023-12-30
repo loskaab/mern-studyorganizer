@@ -11,7 +11,7 @@ router.use(authenticate);
 router.get('/', ctrl.clusters.getAll);
 router.get('/:id', isValidId, ctrl.clusters.getById);
 router.post('/', validate.clusters.addSchema, ctrl.clusters.add);
-router.put('/:id', isValidId, validate.clusters.addSchema, ctrl.clusters.updateById);
+router.patch('/:id', isValidId, validate.clusters.addSchema, ctrl.clusters.updateById);
 router.delete('/:id', isValidId, ctrl.clusters.removeById);
 router.patch(
   '/favorite/:id',

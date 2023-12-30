@@ -6,16 +6,23 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { toast } from 'react-toastify';
 
 import { useClusters } from 'utils/hooks';
-import { addClusterThunk, addGroupThunk } from 'store/cluster/clusterThunks';
+import {
+  addGroupThunk,
+  updateClusterThunk,
+  deleteGroupThunk,
+  fetchClustersThunk,
+} from 'store/cluster/clusterThunks';
 import { titleSchema } from 'utils/validation';
 import ButtonClr from 'components/shared/Button/ButtonClr';
 import CreatableSelect from 'components/shared/Select/CreatableSelect';
 
 import { Form, Label, Input, Hidden } from './ClusterForms.styled';
 
-const AddClusterForm = ({ cluster, setIsModal }) => {
+const EditClusterForm = ({ el, setIsModal }) => {
+  const { _id, cluster, title, group } = el;
+
   const dispatch = useDispatch();
-  const [stateGroup, setStateGroup] = useState('');
+  const [stateGroup, setStateGroup] = useState({ value: group, label: group });
   const { clusterGroups } = useClusters();
 
   const {
@@ -26,12 +33,27 @@ const AddClusterForm = ({ cluster, setIsModal }) => {
   } = useForm({
     mode: 'onBlur',
     resolver: yupResolver(titleSchema),
-    defaultValues: { cluster },
+    defaultValues: { cluster, title },
   });
 
-  const onSubmit = data => {
-    dispatch(addClusterThunk({ ...data, group: stateGroup.value }));
+  const onSubmit = async data => {
+    dispatch(updateClusterThunk({ _id, ...data, group: stateGroup.value }));
     setIsModal(false);
+    // delete empty clusterGroups
+    const toDeleteClusterGroupeId = [];
+    await dispatch(fetchClustersThunk())
+      .unwrap()
+      .then(pld => {
+        const { clusters } = pld.result;
+        const newClusterGroups = Array.from(
+          new Set(clusters.map(el => el.group)),
+        );
+        clusterGroups.forEach(el => {
+          if (newClusterGroups.includes(el.clusterGroup)) return;
+          toDeleteClusterGroupeId.push(el._id);
+        });
+      });
+    toDeleteClusterGroupeId.forEach(el => dispatch(deleteGroupThunk(el)));
   };
 
   const options = clusterGroups
@@ -77,9 +99,9 @@ const AddClusterForm = ({ cluster, setIsModal }) => {
   );
 };
 
-export default AddClusterForm;
+export default EditClusterForm;
 
-AddClusterForm.propTypes = {
-  cluster: PropTypes.string.isRequired,
+EditClusterForm.propTypes = {
+  el: PropTypes.object,
   setIsModal: PropTypes.func.isRequired,
 };

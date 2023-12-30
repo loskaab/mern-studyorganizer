@@ -17,7 +17,7 @@ const CreatableSelect = ({
   $ob,
 
   name,
-  value,
+  value = { value: 'HTML', label: 'Chocolate' },
   defaultValue,
   placeholder = 'Create / Select...',
   options, // [{ value: qwe, label: asd, }]

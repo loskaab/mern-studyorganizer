@@ -13,7 +13,7 @@ export const addCluster = async cluster => {
 };
 
 export const updateCluster = async ({ _id, ...cluster }) => {
-  const { data } = await apiClient.put(`/clusters/${_id}`, cluster);
+  const { data } = await apiClient.patch(`/clusters/${_id}`, cluster);
   return data;
 };
 
