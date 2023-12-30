@@ -22,7 +22,7 @@ export const Nav = styled.nav`
 
   & a {
     padding: 2px 0;
-    margin-right: ${indents.s};
+    margin-right: ${indents.m};
     border-radius: ${radiuses.s};
     text-decoration: none;
     color: ${colors.black};

@@ -3,7 +3,16 @@ import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 
 import { useClusters } from 'utils/hooks';
-import { setClusterChecked } from 'store/cluster/clusterSlice';
+import {
+  deleteClusterThunk,
+  deleteGroupThunk,
+  fetchClustersThunk,
+} from 'store/cluster/clusterThunks';
+import {
+  emptyClusterTrash,
+  setClusterChecked,
+} from 'store/cluster/clusterSlice';
+
 import { readClipboard } from 'utils/helpers';
 import { clusterSchema } from 'utils/validation';
 import GridWrap from 'components/shared/GridWrap/GridWrap';
@@ -18,7 +27,9 @@ const ClusterEditBar = () => {
   const dispatch = useDispatch();
   const [isModal, setIsModal] = useState(false);
   const [clipboardText, setClipboerdText] = useState('');
-  const { clusterChecked } = useClusters();
+  const { clusterChecked, clusterTrash, clusterGroups } = useClusters();
+
+  const isTrashBtn = clusterTrash.length > 0;
 
   const addCluster = async e => {
     // const text = window.getSelection().toString(); text && (await writeClipboard(text));
@@ -33,9 +44,30 @@ const ClusterEditBar = () => {
     }
   };
 
-  const handleCompleted = e => {
+  const showHideChecked = e => {
     dispatch(setClusterChecked(!clusterChecked));
     e.target.blur();
+  };
+
+  const emptyTrash = async () => {
+    // delete trash clusters
+    await clusterTrash.forEach(el => dispatch(deleteClusterThunk(el._id)));
+    dispatch(emptyClusterTrash());
+    // delete empty clusterGroups
+    const toDeleteClusterGroupeId = [];
+    await dispatch(fetchClustersThunk())
+      .unwrap()
+      .then(pld => {
+        const { clusters } = pld.result;
+        const newClusterGroups = Array.from(
+          new Set(clusters.map(el => el.group)),
+        );
+        clusterGroups.forEach(el => {
+          if (newClusterGroups.includes(el.clusterGroup)) return;
+          toDeleteClusterGroupeId.push(el._id);
+        });
+      });
+    toDeleteClusterGroupeId.forEach(el => dispatch(deleteGroupThunk(el)));
   };
 
   return (
@@ -44,9 +76,17 @@ const ClusterEditBar = () => {
       $pos="fixed"
       $side="right"
       $high="bottom"
-      $gtc="1fr 1fr"
+      $gtc="1fr 1fr 1fr"
     >
-      <Button onClick={handleCompleted} $s="m" $bs={button}>
+      {isTrashBtn ? (
+        <Button onClick={emptyTrash} $s="m" $bs={button}>
+          Delete
+        </Button>
+      ) : (
+        <span></span>
+      )}
+
+      <Button onClick={showHideChecked} $s="m" $bs={button}>
         {clusterChecked ? 'Show' : 'Hide'}
       </Button>
 

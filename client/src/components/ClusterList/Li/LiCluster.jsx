@@ -1,15 +1,14 @@
 import PropTypes from 'prop-types';
-// import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { TiStar } from 'react-icons/ti';
 import { FiTrash2 } from 'react-icons/fi';
 import { FaCheck } from 'react-icons/fa';
 
-import { setActiveCluster } from 'store/cluster/clusterSlice';
+import { useClusters } from 'utils/hooks';
+import { setActiveCluster, setClusterTrash } from 'store/cluster/clusterSlice';
 import {
   updateFavoriteThunk,
   updateCheckedThunk,
-  deleteClusterThunk,
 } from 'store/cluster/clusterThunks';
 
 import {
@@ -18,13 +17,15 @@ import {
   ClusterLink,
   LabelFavorite,
   LabelChecked,
-  DelBtn,
+  TrashBtn,
 } from './Li.styled';
 
 const LiCluster = ({ el }) => {
   const dispatch = useDispatch();
+  const { clusterTrash } = useClusters();
 
   const { _id, cluster, title, favorite, checked } = el;
+  const isInTrash = clusterTrash.find(el => el._id === _id);
 
   const trim = cluster => {
     const text = cluster.replace('https://', '').replace('http://', '');
@@ -35,9 +36,13 @@ const LiCluster = ({ el }) => {
     dispatch(updateFavoriteThunk({ _id, favorite: !favorite }));
   };
 
+  const setActive = () => dispatch(setActiveCluster(el));
+
   const changeChecked = () => {
     dispatch(updateCheckedThunk({ _id, checked: !checked }));
   };
+
+  const changeTrash = () => dispatch(setClusterTrash(el));
 
   return (
     <Li>
@@ -51,10 +56,7 @@ const LiCluster = ({ el }) => {
         <TiStar size="18px" />
       </LabelFavorite>
 
-      <ElementLink
-        onClick={() => dispatch(setActiveCluster(el))}
-        to={`/element/${_id}`}
-      >
+      <ElementLink onClick={setActive} to={`/element/${_id}`}>
         {title}
       </ElementLink>
 
@@ -62,9 +64,9 @@ const LiCluster = ({ el }) => {
         {trim(cluster)}
       </ClusterLink>
 
-      <DelBtn onClick={() => dispatch(deleteClusterThunk(_id))}>
+      <TrashBtn $hovered={isInTrash} onClick={changeTrash}>
         <FiTrash2 size="16px" />
-      </DelBtn>
+      </TrashBtn>
 
       <LabelChecked $hovered={checked}>
         <input

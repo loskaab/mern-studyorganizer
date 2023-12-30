@@ -143,13 +143,13 @@ export const LabelChecked = styled.label`
 
 // delete button
 
-export const DelBtn = styled.button`
+export const TrashBtn = styled.button`
   display: flex;
   justify-items: center;
   align-items: center;
   background-color: transparent;
   border-color: transparent;
-  opacity: 0;
+  opacity: ${({ $hovered }) => ($hovered ? 1 : 0)};
   transition: opacity 250ms;
 
   & svg {

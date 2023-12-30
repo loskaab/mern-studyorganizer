@@ -26,13 +26,13 @@ const authPersistConfig = {
 const eclustersPersistConfig = {
   key: 'clusters',
   storage,
-  whitelist: ['filter', 'select', 'active'],
+  blacklist: ['isLoading', 'error'],
 };
 
 const elementsPersistConfig = {
   key: 'elements',
   storage,
-  whitelist: ['filter', 'select', 'active'],
+  blacklist: ['isLoading', 'error'],
 };
 
 const rootReducer = combineReducers({
