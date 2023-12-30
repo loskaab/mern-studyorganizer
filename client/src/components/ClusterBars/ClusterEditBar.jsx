@@ -50,6 +50,9 @@ const ClusterEditBar = () => {
   };
 
   const emptyTrash = async () => {
+    if (!confirm('Are you sure you want to delete the selected Clusters?')) {
+      return;
+    }
     // delete trash clusters
     await clusterTrash.forEach(el => dispatch(deleteClusterThunk(el._id)));
     dispatch(emptyClusterTrash());
