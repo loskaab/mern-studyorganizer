@@ -7,10 +7,7 @@ import { FaCheck } from 'react-icons/fa';
 
 import { useClusters } from 'utils/hooks';
 import { setActiveCluster, setClusterTrash } from 'store/cluster/clusterSlice';
-import {
-  updateFavoriteThunk,
-  updateCheckedThunk,
-} from 'store/cluster/clusterThunks';
+import { updateClusterThunk } from 'store/cluster/clusterThunks';
 import Modal from 'components/shared/Modal/Modal';
 import EditClusterForm from 'components/ClusterForms/ClusterEditForm';
 
@@ -38,13 +35,13 @@ const LiCluster = ({ el }) => {
   };
 
   const changeFavorite = () => {
-    dispatch(updateFavoriteThunk({ _id, favorite: !favorite }));
+    dispatch(updateClusterThunk({ _id, favorite: !favorite }));
   };
 
   const setActive = () => dispatch(setActiveCluster(el));
 
   const changeChecked = () => {
-    dispatch(updateCheckedThunk({ _id, checked: !checked }));
+    dispatch(updateClusterThunk({ _id, checked: !checked }));
   };
 
   const changeTrash = () => dispatch(setClusterTrash(el));

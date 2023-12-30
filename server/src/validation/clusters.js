@@ -13,8 +13,14 @@ const addSchema = validateBody(
   }),
 );
 
-const updateCheckedSchema = validateBody(Joi.object({ checked: Joi.boolean().required() }));
+const updateSchema = validateBody(
+  Joi.object({
+    cluster: Joi.string().pattern(regExp.HTTP.pattern),
+    title: Joi.string(),
+    favorite: Joi.boolean(),
+    checked: Joi.boolean(),
+    group: Joi.string(),
+  }),
+);
 
-const updateFavoriteSchema = validateBody(Joi.object({ favorite: Joi.boolean().required() }));
-
-module.exports = { addSchema, updateCheckedSchema, updateFavoriteSchema };
+module.exports = { addSchema, updateSchema };

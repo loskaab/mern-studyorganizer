@@ -12,8 +12,18 @@ const addSchema = validateBody(
   }),
 );
 
-const updateCheckedSchema = validateBody(Joi.object({ checked: Joi.boolean().required() }));
+const updateSchema = validateBody(
+  Joi.object({
+    element: Joi.string(),
+    title: Joi.string(),
+    favorite: Joi.boolean(),
+    checked: Joi.boolean(),
+    group: Joi.string(),
+  }),
+);
 
-const updateFavoriteSchema = validateBody(Joi.object({ favorite: Joi.boolean().required() }));
+// const updateCheckedSchema = validateBody(Joi.object({ checked: Joi.boolean().required() }));
 
-module.exports = { addSchema, updateCheckedSchema, updateFavoriteSchema };
+// const updateFavoriteSchema = validateBody(Joi.object({ favorite: Joi.boolean().required() }));
+
+module.exports = { addSchema, updateSchema };
