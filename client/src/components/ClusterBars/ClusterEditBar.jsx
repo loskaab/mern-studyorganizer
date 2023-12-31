@@ -8,10 +8,7 @@ import {
   deleteGroupThunk,
   fetchClustersThunk,
 } from 'store/cluster/clusterThunks';
-import {
-  emptyClusterTrash,
-  setClusterChecked,
-} from 'store/cluster/clusterSlice';
+import { emptyClusterTrash } from 'store/cluster/clusterSlice';
 
 import { readClipboard } from 'utils/helpers';
 import { clusterSchema } from 'utils/validation';
@@ -27,7 +24,7 @@ const ClusterEditBar = () => {
   const dispatch = useDispatch();
   const [isModal, setIsModal] = useState(false);
   const [clipboardText, setClipboerdText] = useState('');
-  const { clusterChecked, clusterTrash, clusterGroups } = useClusters();
+  const { clusterTrash, clusterGroups } = useClusters();
 
   const isTrashBtn = clusterTrash.length > 0;
 
@@ -42,11 +39,6 @@ const ClusterEditBar = () => {
       e.target.blur();
       toast.error(`Invalid cluster, ${err.message}`);
     }
-  };
-
-  const showHideChecked = e => {
-    dispatch(setClusterChecked(!clusterChecked));
-    e.target.blur();
   };
 
   const emptyTrash = async () => {
@@ -79,7 +71,7 @@ const ClusterEditBar = () => {
       $pos="fixed"
       $side="right"
       $high="bottom"
-      $gtc="1fr 1fr 1fr"
+      $gtc="1fr 1fr"
     >
       {isTrashBtn ? (
         <Button onClick={emptyTrash} $s="m" $bs={button}>
@@ -88,10 +80,6 @@ const ClusterEditBar = () => {
       ) : (
         <span></span>
       )}
-
-      <Button onClick={showHideChecked} $s="m" $bs={button}>
-        {clusterChecked ? 'Show' : 'Hide'}
-      </Button>
 
       <Button onClick={addCluster} $s="m" $bs={button}>
         Add

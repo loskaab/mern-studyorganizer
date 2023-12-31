@@ -13,35 +13,45 @@ import { List } from './ClusterList.styled';
 
 const ClusterList = () => {
   const dispatch = useDispatch();
-  const { allClusters, clusterFilter, clusterSelect, clusterChecked } =
-    useClusters();
+  const { allClusters, clusterFilter, clusterSelect } = useClusters();
 
   useEffect(() => {
     dispatch(fetchGroupsThunk());
     dispatch(fetchClustersThunk());
   }, [dispatch]);
 
+  // cluster filter/favorite/checked
   const filtredClusters = [...allClusters]
-    .filter(({ cluster, title, checked }) => {
+    .filter(({ group, title, favorite, checked }) => {
+      // filter
       const allFiltred =
-        cluster.toLowerCase().includes(clusterFilter) ||
+        group.toLowerCase().includes(clusterFilter) ||
         title.toLowerCase().includes(clusterFilter);
-
-      const unCompleted = checked !== clusterChecked;
-
-      return clusterChecked ? allFiltred && unCompleted : allFiltred;
+      // filter + favorite
+      const filtredFavorite = clusterSelect.includes('favorite')
+        ? allFiltred && favorite === true
+        : allFiltred;
+      // filter + favorite + checked
+      if (clusterSelect.some(el => ['checked', 'unchecked'].includes(el))) {
+        return clusterSelect.includes('checked')
+          ? filtredFavorite && checked === true
+          : filtredFavorite && checked === false;
+      }
+      return filtredFavorite;
     })
     .sort((a, b) => a.title.localeCompare(b.title));
 
+  // group filter
   const filtredGroups = Array.from(
     new Set(filtredClusters.map(el => el.group)),
   ).sort((a, b) => a.localeCompare(b));
 
-  const selectedGroups = filtredGroups.filter(el => {
-    if (clusterSelect) {
-      return el === clusterSelect && el;
-    } else return el;
-  });
+  const selectedGroups =
+    clusterSelect.filter(
+      el => !['favorite', 'checked', 'unchecked'].includes(el),
+    ).length !== 0
+      ? clusterSelect.filter(el => filtredGroups.includes(el))
+      : filtredGroups;
 
   return (
     <List>

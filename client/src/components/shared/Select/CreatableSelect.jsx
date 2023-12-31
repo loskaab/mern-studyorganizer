@@ -64,11 +64,21 @@ CreatableSelect.propTypes = {
 
   options: PropTypes.arrayOf(PropTypes.object),
   name: PropTypes.string,
-  value: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
-  defaultValue: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+  value: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.object),
+    PropTypes.object,
+  ]),
+  defaultValue: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.object),
+    PropTypes.object,
+  ]),
   placeholder: PropTypes.string,
   onChange: PropTypes.func,
-  isClearable: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+  isClearable: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.string),
+    PropTypes.string,
+    PropTypes.object,
+  ]),
   onCreateOption: PropTypes.func,
   isLoading: PropTypes.bool,
   isDisabled: PropTypes.bool,

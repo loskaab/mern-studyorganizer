@@ -22,6 +22,7 @@ const Select = ({
   placeholder,
   options, // [{ value: qwe, label: asd, }]
   onChange, // (option, name) => console.log(option, name)
+  isMulti,
   isClearable,
   isDisabled,
 }) => {
@@ -38,6 +39,7 @@ const Select = ({
       placeholder={placeholder}
       options={options}
       onChange={onChange}
+      isMulti={isMulti}
       isClearable={isClearable}
       isDisabled={isDisabled}
     />
@@ -60,11 +62,22 @@ Select.propTypes = {
 
   options: PropTypes.arrayOf(PropTypes.object),
   name: PropTypes.string,
-  value: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
-  defaultValue: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+  value: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.object),
+    PropTypes.object,
+  ]),
+  defaultValue: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.object),
+    PropTypes.object,
+  ]),
   placeholder: PropTypes.string,
   onChange: PropTypes.func,
-  isClearable: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+  isMulti: PropTypes.bool,
+  isClearable: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.string),
+    PropTypes.string,
+    PropTypes.object,
+  ]),
   isDisabled: PropTypes.bool,
 };
 

@@ -8,8 +8,8 @@ export const useClusters = () => {
   const activeCluster = useSelector(selectors.selectActiveCluster);
   const clusterFilter = useSelector(selectors.selectClusterFilter);
   const clusterSelect = useSelector(selectors.selectClusterSelect);
-  const clusterChecked = useSelector(selectors.selectClusterChecked);
   const clusterTrash = useSelector(selectors.selectClusterTrash);
+  // const clusterChecked = useSelector(selectors.selectClusterChecked);
 
   const error = useSelector(selectors.selectError);
   const isLoading = useSelector(selectors.selectIsLoading);
@@ -20,8 +20,8 @@ export const useClusters = () => {
     activeCluster,
     clusterFilter,
     clusterSelect,
-    clusterChecked,
     clusterTrash,
+    // clusterChecked,
 
     error,
     isLoading,

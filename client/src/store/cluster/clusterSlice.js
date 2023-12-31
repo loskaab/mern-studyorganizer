@@ -118,13 +118,13 @@ const clusterSelectSlice = createSlice({
 });
 
 // fulfilled checked slice
-const clusterCheckedSlice = createSlice({
-  name: 'checked',
-  initialState: false,
-  reducers: {
-    setClusterChecked: (_, action) => action.payload,
-  },
-});
+// const clusterCheckedSlice = createSlice({
+//   name: 'checked',
+//   initialState: null,
+//   reducers: {
+//     setClusterChecked: (_, action) => action.payload,
+//   },
+// });
 
 // fulfilled trash slice
 const clusterTrashSlice = createSlice({
@@ -173,8 +173,8 @@ export const clustersReducer = combineReducers({
   active: clusterActiveSlice.reducer,
   filter: clusterFilterSlice.reducer,
   select: clusterSelectSlice.reducer,
-  checked: clusterCheckedSlice.reducer,
   trash: clusterTrashSlice.reducer,
+  // checked: clusterCheckedSlice.reducer,
 
   isLoading: clusterIsLoadingSlice.reducer,
   error: clusterErrorSlice.reducer,
@@ -185,5 +185,5 @@ export const { cleanGroup } = clusterGroupsSlice.actions;
 export const { setActiveCluster } = clusterActiveSlice.actions;
 export const { setClusterFilter } = clusterFilterSlice.actions;
 export const { setClusterSelect } = clusterSelectSlice.actions;
-export const { setClusterChecked } = clusterCheckedSlice.actions;
 export const { setClusterTrash, emptyClusterTrash } = clusterTrashSlice.actions;
+// export const { setClusterChecked } = clusterCheckedSlice.actions;
