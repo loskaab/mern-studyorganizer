@@ -24,11 +24,6 @@ export const Label = styled.label`
   font-size: 16px;
   font-weight: 500;
 
-  &:first-of-type {
-    font-size: 18px;
-    font-weight: 700;
-  }
-
   &:last-of-type {
     margin-bottom: 10px;
   }

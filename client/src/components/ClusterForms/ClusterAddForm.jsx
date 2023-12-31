@@ -50,7 +50,7 @@ const AddClusterForm = ({ cluster, setIsModal }) => {
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
       <Label>
-        {cluster.length <= 39 ? cluster : cluster.substring(0, 39) + '...'}
+        {cluster.length <= 45 ? cluster : cluster.substring(0, 45) + '...'}
         <Hidden {...register('cluster')} />
       </Label>
 

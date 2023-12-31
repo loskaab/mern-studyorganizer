@@ -72,8 +72,8 @@ const EditClusterForm = ({ el, setIsModal }) => {
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
       <Label>
-        {cluster.length <= 39 ? cluster : cluster.substring(0, 39) + '...'}
-        <Hidden {...register('cluster')} />
+        Cluster <span> {errors.cluster?.message}</span>
+        <Input {...register('cluster')} />
       </Label>
 
       <Label>
