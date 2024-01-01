@@ -1,7 +1,7 @@
 const NAME = {
   name: 'NAME',
   msg: 'letters, numbers, underscores, dashes, spases',
-  pattern: /^[a-zA-Zа-яА-Я0-9]+(([_ -][a-zA-Zа-яА-Я])?[a-zA-Zа-яА-Я0-9]*)*$/,
+  pattern: /^[a-zA-Zа-яА-Я0-9]+(([_ -]|[a-zA-Zа-яА-Я])?[a-zA-Zа-яА-Я0-9]*)*$/,
 };
 
 const EMAIL = {
