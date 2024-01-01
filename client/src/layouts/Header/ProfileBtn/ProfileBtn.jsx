@@ -8,13 +8,14 @@ import { themes } from 'styles/themes';
 
 import { BtnDiv } from './ProfileBtn.styled';
 
+const { m, xl } = themes.indents;
+
 const ProfileBtn = () => {
   const [isModal, setIsModal] = useState(false);
   const { user } = useAuth();
 
   const { avatarUrl: url, name } = user;
   const abbr = getAbbreviation(name);
-  const { m, xl } = themes.indents;
 
   const handleClick = () => setIsModal(!isModal);
 

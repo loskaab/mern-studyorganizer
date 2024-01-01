@@ -10,11 +10,12 @@ import MainLayout from 'layouts/MainLayout/MainLayout';
 import Button from 'components/shared/Button/Button';
 import { themes } from 'styles/themes';
 
+const { s, m } = themes.indents;
+
 const HomePage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { isLoggedIn } = useAuth();
-  const { s, m } = themes.indents;
 
   const handleDemo = () => {
     dispatch(loginThunk({ email: 'demo@mail.com', password: 'qweasd' }))

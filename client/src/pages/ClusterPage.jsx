@@ -3,11 +3,11 @@ import FlexWrap from 'components/shared/FlexWrap/FlexWrap';
 import ClusterList from 'components/ClusterList/ClusterList';
 import ClusterEditBar from 'components/ClusterBars/ClusterEditBar';
 
-const ClusterPage = () => {
-  const { s, m } = themes.indents;
+const { s, m } = themes.indents;
 
+const ClusterPage = () => {
   return (
-    <FlexWrap $p={`2px ${m} ${s}`}>
+    <FlexWrap $p={`2px ${m} ${s} ${s}`}>
       <ClusterList />
       <ClusterEditBar />
     </FlexWrap>

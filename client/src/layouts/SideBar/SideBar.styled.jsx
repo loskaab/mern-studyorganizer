@@ -9,8 +9,9 @@ export const SideBarDiv = styled.div`
   width: ${({ $width }) => $width};
   padding-top: 2px;
   padding-bottom: ${indents.s};
-  padding-inline: ${indents.m};
+  padding-inline: ${indents.s};
   position: fixed;
+  ${({ $side }) => `padding-${$side}: ${indents.m}`};
   ${({ $side }) => `${$side}: 0`};
   top: ${({ $offY }) => $offY};
 

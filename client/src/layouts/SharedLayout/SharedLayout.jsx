@@ -8,19 +8,18 @@ import SideBar from 'layouts/SideBar/SideBar';
 
 import { themes } from 'styles/themes';
 
-const SharedLayout = () => {
-  const { xl } = themes.indents;
-  const barH = `calc(100vh - ${xl})`;
-  const barW = '55%';
-  const outletW = `calc(100% - ${barW})`;
+const { xl } = themes.indents;
+const barH = `calc(100vh - ${xl})`;
+export const barW = '55%';
 
+const SharedLayout = () => {
   return (
     <>
       <Header $height={xl} />
 
       <SideBar $side="left" $width={barW} $height={barH} $offY={xl} />
 
-      <GridWrap $gtc={`${barW}  ${outletW}`} $cg="0">
+      <GridWrap $gtc={`${barW}  calc(100% - ${barW})`} $cg="0">
         <div style={{ height: barH }}></div>
         <Suspense fallback={<OvalLoader />}>
           <Outlet />
