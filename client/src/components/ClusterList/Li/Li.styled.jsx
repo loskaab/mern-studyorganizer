@@ -13,8 +13,8 @@ const baseLiStyle = css`
   padding-inline: 4px;
   display: grid;
   grid-column-gap: 2px;
-  grid-template-columns: 1fr 15fr 30fr 1fr 1fr 1fr;
-  grid-template-areas: '. title title . . .';
+  grid-template-columns: 1fr 15fr 30fr 1fr 1fr 1fr 1fr;
+  grid-template-areas: '. title title . . . .';
   align-items: center;
   justify-items: left;
   line-height: 1.5;
@@ -71,13 +71,6 @@ const baseLinkStyle = css`
     color: ${colors.hovered};
   }
 `;
-
-// export const ElementLink = styled(Link)`
-//   ${baseLinkStyle}
-
-//   color: ${colors.black};
-//   font-weight: 500;
-// `;
 
 export const ElementLink = styled.button`
   ${baseLinkStyle}
@@ -149,7 +142,7 @@ export const LabelChecked = styled.label`
   }
 `;
 
-// edit, trash buttons
+// date, edit, trash buttons
 const baseBtnStyle = css`
   display: flex;
   justify-items: center;
@@ -158,13 +151,22 @@ const baseBtnStyle = css`
   border-color: transparent;
   transition: opacity 250ms;
 
+  &,
   & svg {
     transition: color 250ms;
     color: ${colors.border};
   }
+  &:hover,
   &:hover svg {
     color: ${colors.placeholder};
   }
+`;
+
+export const DateBtn = styled.button`
+  ${baseBtnStyle}
+
+  font-size: 14px;
+  /* color: ${colors.placeholder}; */
 `;
 
 export const TrashBtn = styled.button`

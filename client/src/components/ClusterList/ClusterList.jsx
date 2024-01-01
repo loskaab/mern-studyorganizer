@@ -1,4 +1,4 @@
-import { Fragment, useEffect } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import {
@@ -14,6 +14,7 @@ import { List } from './ClusterList.styled';
 const ClusterList = () => {
   const dispatch = useDispatch();
   const { allClusters, clusterFilter, clusterSelect } = useClusters();
+  const [sortByDate, setSortByDate] = useState(true);
 
   useEffect(() => {
     dispatch(fetchGroupsThunk());
@@ -39,7 +40,11 @@ const ClusterList = () => {
       }
       return filtredFavorite;
     })
-    .sort((a, b) => a.title.localeCompare(b.title));
+    .sort(
+      sortByDate
+        ? (a, b) => b.createdAt - a.createdAt
+        : (a, b) => a.title.localeCompare(b.title),
+    );
 
   // group filter
   const filtredGroups = Array.from(
@@ -60,7 +65,15 @@ const ClusterList = () => {
           <LiGroup group={group} />
 
           {filtredClusters.map(
-            el => el.group === group && <LiCluster key={el._id} el={el} />,
+            el =>
+              el.group === group && (
+                <LiCluster
+                  key={el._id}
+                  el={el}
+                  sortByDate={sortByDate}
+                  setSortByDate={setSortByDate}
+                />
+              ),
           )}
         </Fragment>
       ))}

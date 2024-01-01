@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 import { TiStar } from 'react-icons/ti';
 import { FiEdit3, FiTrash2 } from 'react-icons/fi';
@@ -19,17 +20,27 @@ import {
   ClusterLink,
   LabelFavorite,
   LabelChecked,
+  DateBtn,
   EditBtn,
   TrashBtn,
 } from './Li.styled';
 
-const LiCluster = ({ el }) => {
+const LiCluster = ({ el, sortByDate, setSortByDate }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { activeCluster, clusterTrash } = useClusters();
   const [isModal, setIsModal] = useState(false);
 
-  const { _id, cluster, title, favorite, checked } = el;
+  const { _id, cluster, title, favorite, checked, createdAt } = el;
+
+  const date = new Date(createdAt)
+    .toLocaleDateString('zh-Hans-CN', {
+      year: '2-digit',
+      month: '2-digit',
+      day: '2-digit',
+    })
+    .replaceAll('/', '.');
+
   const isInTrash = clusterTrash.find(el => el._id === _id);
 
   const trim = cluster => {
@@ -37,7 +48,7 @@ const LiCluster = ({ el }) => {
     return text.length <= 30 ? text : text.substring(0, 29).concat('...');
   };
 
-  const changeFavorite = () => {
+  const handleFavorite = () => {
     dispatch(updateClusterThunk({ _id, favorite: !favorite }));
   };
 
@@ -48,11 +59,18 @@ const LiCluster = ({ el }) => {
     }
   };
 
-  const changeChecked = () => {
+  const handleChecked = () => {
     dispatch(updateClusterThunk({ _id, checked: !checked }));
   };
 
-  const changeTrash = () => dispatch(setClusterTrash(el));
+  const handleTrash = () => dispatch(setClusterTrash(el));
+
+  const handleSort = () => {
+    setSortByDate(!sortByDate);
+    sortByDate
+      ? toast.success('Ascend by Title')
+      : toast.success('Descend by Date');
+  };
 
   return (
     <Li>
@@ -61,7 +79,7 @@ const LiCluster = ({ el }) => {
           type="checkbox"
           name="favorite"
           checked={favorite}
-          onChange={changeFavorite}
+          onChange={handleFavorite}
         />
         <TiStar size="18px" />
       </LabelFavorite>
@@ -76,7 +94,7 @@ const LiCluster = ({ el }) => {
         <FiEdit3 size="15px" />
       </EditBtn>
 
-      <TrashBtn $hovered={isInTrash} onClick={changeTrash}>
+      <TrashBtn $hovered={isInTrash} onClick={handleTrash}>
         <FiTrash2 size="16px" />
       </TrashBtn>
 
@@ -85,10 +103,12 @@ const LiCluster = ({ el }) => {
           type="checkbox"
           name="checked"
           checked={checked}
-          onChange={changeChecked}
+          onChange={handleChecked}
         />
         <FaCheck size="15px" />
       </LabelChecked>
+
+      <DateBtn onClick={handleSort}>{date}</DateBtn>
 
       {isModal && (
         <Modal onClick={() => setIsModal(false)}>
@@ -101,4 +121,9 @@ const LiCluster = ({ el }) => {
 
 export default LiCluster;
 
-LiCluster.propTypes = { el: PropTypes.object, $hovered: PropTypes.bool };
+LiCluster.propTypes = {
+  el: PropTypes.object,
+  sortByDate: PropTypes.bool,
+  setSortByDate: PropTypes.func,
+  $hovered: PropTypes.bool,
+};
