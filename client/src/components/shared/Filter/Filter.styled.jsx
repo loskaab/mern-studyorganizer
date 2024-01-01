@@ -80,10 +80,11 @@ export const Button = styled.button`
   transition: background-color 250ms;
 
   & svg {
+    transition: fill 250ms;
     fill: ${colors.border};
 
     &:hover {
-      fill: ${colors.placeholder};
+      fill: #7d7d7d;
     }
   }
 `;
