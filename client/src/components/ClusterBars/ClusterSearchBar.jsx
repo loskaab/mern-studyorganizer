@@ -46,7 +46,7 @@ const ClustersSearchBar = () => {
   });
 
   return (
-    <GridWrap $w="100%" $cg="2%" $ai="center" $gtc="1fr 2fr">
+    <GridWrap $w="100%" $m="0 2% 0 0 " $cg="2%" $ai="center" $gtc="1fr 2fr">
       <Filter selector={selectClusterFilter} reducer={setClusterFilter} />
       <Select
         isMulti

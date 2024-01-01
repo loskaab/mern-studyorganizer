@@ -37,7 +37,7 @@ export const BtnDiv = styled.div`
 
   min-width: 36px;
   min-height: 36px;
-  margin-left: 20px;
+  margin-left: auto;
   font-size: 12px;
   outline: 3px solid transparent;
   transition: outline-color 250ms;

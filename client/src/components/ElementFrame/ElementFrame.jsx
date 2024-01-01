@@ -19,7 +19,7 @@ const ElementFrame = () => {
       id={clusterId}
       width="100%"
       height={elementLink?.includes('embed/') ? '50%' : '100%'}
-      src={`${elementLink}#view=FitH&toolbar=1&page=${5}`}
+      src={`${elementLink}#view=FitH&toolbar=1&page=${1}`}
     ></Iframe>
   );
 };
