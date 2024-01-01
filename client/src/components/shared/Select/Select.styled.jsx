@@ -32,9 +32,9 @@ export const defaultStyles = ({
   $ob = colors.white, // option background
 }) => ({
   // Select Styles
-  control: (baseStyles, state) => {
+  control: (styles, state) => {
     return {
-      ...baseStyles,
+      ...styles,
       minWidth: '200px',
       borderRadius: `${themes.radiuses.s}`,
       outline: state.isFocused ? `1px solid ${$ol}` : 'none',
@@ -47,9 +47,9 @@ export const defaultStyles = ({
     };
   },
 
-  option: (baseStyles, state) => {
+  option: (styles, state) => {
     return {
-      ...baseStyles,
+      ...styles,
       borderBottom: `1px dotted ${colors.borderLight}`,
       fontSize: '16px',
       fontWeight: '500',
@@ -60,24 +60,49 @@ export const defaultStyles = ({
     };
   },
 
-  placeholder: baseStyles => {
+  placeholder: styles => {
     return {
-      ...baseStyles,
+      ...styles,
       color: `${colors.placeholder}`,
     };
   },
 
-  input: baseStyles => {
+  input: styles => {
     return {
-      ...baseStyles,
+      ...styles,
       textTransform: 'capitalize',
     };
   },
 
-  singleValue: baseStyles => {
+  singleValue: styles => {
     return {
-      ...baseStyles,
+      ...styles,
       textTransform: 'capitalize',
     };
   },
+
+  multiValue: styles => {
+    return {
+      ...styles,
+      backgroundColor: 'transparent',
+    };
+  },
+  multiValueLabel: styles => ({
+    ...styles,
+    display: 'flex',
+    alineItems: 'center',
+    padding: 0,
+    paddingLeft: 0,
+    fontSize: '16px',
+    color: colors.hovered,
+  }),
+  multiValueRemove: styles => ({
+    ...styles,
+    color: colors.border,
+
+    ':hover': {
+      backgroundColor: colors.white,
+      color: colors.placeholder,
+    },
+  }),
 });

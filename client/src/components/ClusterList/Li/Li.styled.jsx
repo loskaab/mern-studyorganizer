@@ -72,11 +72,19 @@ const baseLinkStyle = css`
   }
 `;
 
-export const ElementLink = styled(Link)`
+// export const ElementLink = styled(Link)`
+//   ${baseLinkStyle}
+
+//   color: ${colors.black};
+//   font-weight: 500;
+// `;
+
+export const ElementLink = styled.button`
   ${baseLinkStyle}
 
+  border: none;
+  background-color: transparent;
   color: ${colors.black};
-
   font-weight: 500;
 `;
 

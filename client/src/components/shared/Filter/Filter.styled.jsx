@@ -5,7 +5,7 @@ import { themes } from 'styles/themes';
 const { colors, radiuses } = themes;
 const heightSize = '30px';
 const fontSize = '16px';
-const offsetY = `calc(${heightSize} * 1.1)`;
+const offsetY = `calc(${heightSize} * 1)`;
 
 export const FilterDiv = styled.div`
   width: 100%;
@@ -21,7 +21,9 @@ export const FilterDiv = styled.div`
     border-radius: ${radiuses.xl};
     border-color: ${colors.background};
     outline: transparent;
+    font-size: ${fontSize};
     transition: border-color 250ms, outline 300ms;
+    color: ${colors.hovered};
 
     &:hover {
       border-color: ${colors.borderLight};
@@ -34,7 +36,7 @@ export const FilterDiv = styled.div`
     &::placeholder {
       width: fit-content;
       position: absolute;
-      left: 50%;
+      left: 57%;
       transform: translateX(-50%);
       transition: left 300ms, transform 300ms;
       font-size: ${fontSize};
@@ -48,7 +50,7 @@ export const FilterDiv = styled.div`
     & + svg {
       position: absolute;
       top: 50%;
-      left: calc(50% - 2.5 * ${fontSize});
+      left: calc(57% - 2.6 * ${fontSize});
       transform: translate(-50%, -50%);
       transition: left 300ms, transform 300ms, fill 300ms;
       cursor: text;
@@ -63,8 +65,6 @@ export const FilterDiv = styled.div`
 `;
 
 export const Button = styled.button`
-  width: 20px;
-  height: 20px;
   position: absolute;
   top: 50%;
   right: calc(${heightSize} * 0.65);
@@ -75,11 +75,15 @@ export const Button = styled.button`
 
   border: 1px solid transparent;
   border-radius: 50%;
-  background-color: ${colors.border};
+  background-color: transparent;
   color: ${colors.white};
   transition: background-color 250ms;
 
-  &:hover {
-    background-color: ${colors.accent};
+  & svg {
+    fill: ${colors.border};
+
+    &:hover {
+      fill: ${colors.placeholder};
+    }
   }
 `;

@@ -19,7 +19,7 @@ export const themes = Object.freeze({
     success: '#3CBC81',
     noValue: '#343434',
 
-    border: '#b1b1b1',
+    border: '#c9c9c9',
     borderLight: '#d3dbe5',
     placeholder: '#5c5858',
 

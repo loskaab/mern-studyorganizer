@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+
 import { TiStar } from 'react-icons/ti';
 import { FiEdit3, FiTrash2 } from 'react-icons/fi';
 import { FaCheck } from 'react-icons/fa';
@@ -23,7 +25,8 @@ import {
 
 const LiCluster = ({ el }) => {
   const dispatch = useDispatch();
-  const { clusterTrash } = useClusters();
+  const navigate = useNavigate();
+  const { activeCluster, clusterTrash } = useClusters();
   const [isModal, setIsModal] = useState(false);
 
   const { _id, cluster, title, favorite, checked } = el;
@@ -38,7 +41,12 @@ const LiCluster = ({ el }) => {
     dispatch(updateClusterThunk({ _id, favorite: !favorite }));
   };
 
-  const setActive = () => dispatch(setActiveCluster(el));
+  const handleLinkClick = () => {
+    dispatch(setActiveCluster(el));
+    if (el._id === activeCluster._id) {
+      navigate(`/element/${_id}`, { replace: true });
+    }
+  };
 
   const changeChecked = () => {
     dispatch(updateClusterThunk({ _id, checked: !checked }));
@@ -58,9 +66,7 @@ const LiCluster = ({ el }) => {
         <TiStar size="18px" />
       </LabelFavorite>
 
-      <ElementLink onClick={setActive} to={`/element/${_id}`}>
-        {title}
-      </ElementLink>
+      <ElementLink onClick={handleLinkClick}>{title}</ElementLink>
 
       <ClusterLink href={cluster} target="_blank" rel="noopener noreferrer">
         {trim(cluster)}

@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { BsSearch } from 'react-icons/bs';
-import { IoClose } from 'react-icons/io5';
+
+import sprite from 'assets/icons/sprite.svg';
 
 import { FilterDiv, Button } from './Filter.styled';
 
@@ -23,7 +24,7 @@ const Filter = ({ selector, reducer }) => {
       <input
         type="text"
         name="filter"
-        placeholder="Search"
+        placeholder="Search..."
         autoComplete="off"
         value={filterValue}
         onChange={handleSearch}
@@ -33,7 +34,9 @@ const Filter = ({ selector, reducer }) => {
 
       {filterValue && (
         <Button onClick={handleClean}>
-          <IoClose size="16" />
+          <svg width="11" height="11">
+            <use href={`${sprite}#x`}></use>
+          </svg>
         </Button>
       )}
     </FilterDiv>

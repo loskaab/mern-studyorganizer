@@ -24,9 +24,9 @@ const ClustersSearchBar = () => {
 
   const getOptions = selectValue => {
     const options = [
-      { value: 'favorite', label: <FaStar size="13px" /> },
-      { value: 'checked', label: <FaCheckCircle size="13px" /> },
-      { value: 'unchecked', label: <ImRadioUnchecked size="13px" /> },
+      { value: 'favorite', label: <FaStar size="18px" /> },
+      { value: 'checked', label: <FaCheckCircle size="16px" /> },
+      { value: 'unchecked', label: <ImRadioUnchecked size="16px" /> },
       ...clusterGroups
         .map(el => ({ value: el.clusterGroup, label: el.clusterGroup }))
         .sort((a, b) => a.value.localeCompare(b.value)),
@@ -46,7 +46,7 @@ const ClustersSearchBar = () => {
   });
 
   return (
-    <GridWrap $w="calc(44.6% - 70px)" $cg="2%" $ai="center" $gtc="2fr 3fr">
+    <GridWrap $w="calc(44.6% - 70px)" $cg="2%" $ai="center" $gtc="1fr 2fr">
       <Filter selector={selectClusterFilter} reducer={setClusterFilter} />
       <Select
         isMulti
