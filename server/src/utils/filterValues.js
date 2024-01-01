@@ -1,7 +1,7 @@
 const filterValues = obj => {
   const newObj = { ...obj._doc };
   for (const key in newObj) {
-    if (key === 'createdAt' || key === 'updatedAt') {
+    if (key === 'updatedAt') {
       delete newObj[key];
     }
   }
