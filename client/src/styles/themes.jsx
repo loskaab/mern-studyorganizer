@@ -26,12 +26,14 @@ export const themes = Object.freeze({
     backdrop: 'rgba(23, 24, 32, 0.5)',
   },
   indents: {
+    xs: '5px',
     s: '10px',
     m: '20px',
     l: '35px',
     xl: '50px',
   },
   radiuses: {
+    xs: '3px',
     s: '5px',
     m: '8px',
     l: '12px',

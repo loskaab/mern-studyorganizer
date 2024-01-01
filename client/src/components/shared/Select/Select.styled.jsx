@@ -84,6 +84,7 @@ export const defaultStyles = ({
   multiValue: styles => {
     return {
       ...styles,
+      borderRadius: `${themes.radiuses.xs}`,
       backgroundColor: 'transparent',
     };
   },
