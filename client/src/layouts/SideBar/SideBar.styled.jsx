@@ -11,6 +11,7 @@ export const SideBarDiv = styled.div`
   padding-bottom: ${indents.s};
   padding-inline: ${indents.s};
   position: fixed;
+
   ${({ $side }) => `padding-${$side}: ${indents.m}`};
   ${({ $side }) => `${$side}: 0`};
   top: ${({ $offY }) => $offY};

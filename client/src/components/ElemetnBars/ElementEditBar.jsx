@@ -30,6 +30,7 @@ const ElementEditBar = () => {
     const element = (await readClipboard()).trim();
     try {
       dispatch(addElementThunk({ element, cluster: activeCluster.title }));
+      e.target.blur();
     } catch (err) {
       e.target.blur();
       toast.error(`Invalid element, ${err.message}`);
@@ -62,8 +63,8 @@ const ElementEditBar = () => {
 
   return (
     <GridWrap
-      $m="15px 25px"
-      $pos="fixed"
+      $m="15px 15px"
+      $pos="absolute"
       $side="right"
       $high="bottom"
       $gtc="1fr 1fr"
