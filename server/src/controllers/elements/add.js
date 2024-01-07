@@ -4,6 +4,7 @@ const { ctrlWrapper } = require('../../decorators');
 
 const add = ctrlWrapper(async (req, res) => {
   const { _id: owner } = req.user;
+
   const newElement = await Element.create({ ...req.body, owner });
   if (!newElement) throw HttpError(403);
 

@@ -56,7 +56,7 @@ const AddClusterForm = ({ cluster, setIsModal }) => {
 
       <Label>
         Title <span> {errors.title?.message}</span>
-        <Input {...register('title')} />
+        <Input autoFocus {...register('title')} />
       </Label>
 
       <Label>

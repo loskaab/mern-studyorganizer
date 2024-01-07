@@ -2,6 +2,8 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import * as API from 'servises/elementApi';
 
+// Elements
+
 export const fetchElementsThunk = createAsyncThunk(
   'items/fetchElements',
   async (_, thunkAPI) => {

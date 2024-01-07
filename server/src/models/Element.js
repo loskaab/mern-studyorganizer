@@ -7,10 +7,11 @@ const required = [true, 'Required field!'];
 const elementSchema = new Schema(
   {
     element: { type: String, required },
-    title: { type: String, default: '', required },
+    title: { type: String, default: '' },
     favorite: { type: Boolean, default: false },
     checked: { type: Boolean, default: false },
     group: { type: String, default: 'common' },
+    cluster: { type: String, default: 'all' },
 
     owner: { type: Schema.Types.ObjectId, ref: 'User', required: true },
   },

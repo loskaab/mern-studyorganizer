@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 
@@ -23,20 +23,31 @@ const { button } = themes.shadows;
 const ClusterEditBar = () => {
   const dispatch = useDispatch();
   const [isModal, setIsModal] = useState(false);
-  const [clipboardText, setClipboerdText] = useState('');
+  const [clipboardText, setClipboardText] = useState('');
   const { clusterTrash, clusterGroups } = useClusters();
 
   const isTrashBtn = clusterTrash.length > 0;
 
+  useEffect(() => {
+    const handleKeyDown = e => {
+      if (e.key === '+') addCluster();
+    };
+
+    addEventListener('keydown', handleKeyDown);
+    return () => {
+      removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
+
   const addCluster = async e => {
-    // const text = window.getSelection().toString(); text && (await writeClipboard(text));
     const cluster = await readClipboard();
     try {
       await clusterSchema.validate({ cluster });
-      setClipboerdText(cluster);
+      setClipboardText(cluster);
       setIsModal('add');
+      // set cursor on input
     } catch (err) {
-      e.target.blur();
+      e?.target.blur();
       toast.error(`Invalid cluster, ${err.message}`);
     }
   };

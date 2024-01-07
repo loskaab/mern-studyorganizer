@@ -48,28 +48,6 @@ export const deleteClusterThunk = createAsyncThunk(
   },
 );
 
-// export const updateFavoriteThunk = createAsyncThunk(
-//   'items/updateFavorite',
-//   async (cluster, thunkAPI) => {
-//     try {
-//       return await API.updateFavorite(cluster);
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.message);
-//     }
-//   },
-// );
-
-// export const updateCheckedThunk = createAsyncThunk(
-//   'items/updateChecked',
-//   async (cluster, thunkAPI) => {
-//     try {
-//       return await API.updateChecked(cluster);
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.message);
-//     }
-//   },
-// );
-
 // Groups
 
 export const fetchGroupsThunk = createAsyncThunk(

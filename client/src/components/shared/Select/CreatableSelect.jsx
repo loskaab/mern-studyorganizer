@@ -67,6 +67,7 @@ CreatableSelect.propTypes = {
   value: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.object),
     PropTypes.object,
+    PropTypes.string,
   ]),
   defaultValue: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.object),

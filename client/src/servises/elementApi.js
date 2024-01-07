@@ -1,5 +1,7 @@
 import { apiClient } from './apiClient';
 
+// Elements
+
 export const fetchElements = async () => {
   const { data } = await apiClient.get('/elements');
   return data;

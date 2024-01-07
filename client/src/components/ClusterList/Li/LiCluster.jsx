@@ -33,13 +33,11 @@ const LiCluster = ({ el, sortByDate, setSortByDate }) => {
 
   const { _id, cluster, title, favorite, checked, createdAt } = el;
 
-  const date = new Date(createdAt)
-    .toLocaleDateString('zh-Hans-CN', {
-      year: '2-digit',
-      month: '2-digit',
-      day: '2-digit',
-    })
-    .replaceAll('/', '.');
+  const date = new Date(createdAt).toLocaleDateString('ro-RO', {
+    year: '2-digit',
+    month: '2-digit',
+    day: '2-digit',
+  });
 
   const isInTrash = clusterTrash.find(el => el._id === _id);
 
