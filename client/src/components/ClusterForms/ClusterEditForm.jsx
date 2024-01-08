@@ -16,7 +16,7 @@ import { titleSchema } from 'utils/validation';
 import ButtonClr from 'components/shared/Button/ButtonClr';
 import CreatableSelect from 'components/shared/Select/CreatableSelect';
 
-import { Form, Label, Input, Hidden } from './ClusterForms.styled';
+import { Form, Label, Input } from './ClusterForms.styled';
 
 const EditClusterForm = ({ el, setIsModal }) => {
   const { _id, cluster, title, group } = el;

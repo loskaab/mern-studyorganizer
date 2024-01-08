@@ -5,7 +5,7 @@ const { validateBody } = require('../decorators');
 const addSchema = validateBody(
   Joi.object({
     element: Joi.string().required(),
-    title: Joi.string(),
+    caption: Joi.string(),
     favorite: Joi.boolean(),
     checked: Joi.boolean(),
     group: Joi.string(),
@@ -16,7 +16,7 @@ const addSchema = validateBody(
 const updateSchema = validateBody(
   Joi.object({
     element: Joi.string(),
-    title: Joi.string(),
+    caption: Joi.string().allow(''),
     favorite: Joi.boolean(),
     checked: Joi.boolean(),
     group: Joi.string(),

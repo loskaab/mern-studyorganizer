@@ -5,7 +5,7 @@ import { themes } from 'styles/themes';
 
 const { colors } = themes;
 
-const CommonStyles = css`
+const baseStyles = css`
   margin-left: auto;
 
   color: ${colors.accent};
@@ -16,11 +16,11 @@ const CommonStyles = css`
 `;
 
 export const Link = styled(RouteLink)`
-  ${CommonStyles};
+  ${baseStyles};
 `;
 
 export const Btn = styled.button`
-  ${CommonStyles};
+  ${baseStyles};
 
   background-color: transparent;
   border-color: transparent;

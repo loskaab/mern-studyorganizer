@@ -7,26 +7,26 @@ import { FaCheck } from 'react-icons/fa';
 import { FiEdit3, FiTrash2 } from 'react-icons/fi';
 
 import FlexWrap from 'components/shared/FlexWrap/FlexWrap';
-import Modal from 'components/shared/Modal/Modal';
 import { useElements } from 'utils/hooks';
 import { updateElementThunk } from 'store/element/elementThunks';
 import { setElementTrash } from 'store/element/elementSlice';
 
+import Element from './Element/Element';
 import {
   Li,
-  Divider,
   LabelFavorite,
   LabelChecked,
   TrashBtn,
   EditBtn,
-} from './LiElement.styled';
+} from './Li.styled';
+import ElEditForm from './Element/ElEditForm';
 
 const LiElement = ({ el }) => {
   const dispatch = useDispatch();
   const { elementTrash } = useElements();
-  const [isModal, setIsModal] = useState(false);
+  const [isForm, setIsForm] = useState(false);
 
-  const { _id, element, title, favorite, checked, createdAt } = el;
+  const { _id, favorite, checked } = el;
   const isInTrash = elementTrash.find(el => el._id === _id);
 
   const handleFavorite = () => {
@@ -38,6 +38,15 @@ const LiElement = ({ el }) => {
   };
 
   const handleTrash = () => dispatch(setElementTrash(el));
+
+  const handleEdit = e => {
+    if (isForm) {
+      setIsForm(false);
+    } else {
+      const height = e.target.closest('div').clientHeight;
+      setIsForm(height);
+    }
+  };
 
   return (
     <Li>
@@ -63,25 +72,18 @@ const LiElement = ({ el }) => {
         </LabelChecked>
       </FlexWrap>
 
-      {element}
-      <Divider />
-      <span>translation</span>
+      {isForm && <ElEditForm el={el} isForm={isForm} setIsForm={setIsForm} />}
+      {!isForm && <Element el={el} />}
 
       <FlexWrap $h="100%" $p="0" $fd="column">
         <TrashBtn $hovered={isInTrash} onClick={handleTrash}>
           <FiTrash2 size="16px" />
         </TrashBtn>
 
-        <EditBtn onClick={() => setIsModal('edit')}>
+        <EditBtn onClick={handleEdit}>
           <FiEdit3 size="15px" />
         </EditBtn>
       </FlexWrap>
-
-      {isModal && (
-        <Modal onClick={() => setIsModal(false)}>
-          {/* <EditClusterForm el={el} setIsModal={setIsModal} /> */}
-        </Modal>
-      )}
     </Li>
   );
 };

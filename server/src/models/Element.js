@@ -7,7 +7,7 @@ const required = [true, 'Required field!'];
 const elementSchema = new Schema(
   {
     element: { type: String, required },
-    title: { type: String, default: '' },
+    caption: { type: String, default: '' },
     favorite: { type: Boolean, default: false },
     checked: { type: Boolean, default: false },
     group: { type: String, default: 'common' },

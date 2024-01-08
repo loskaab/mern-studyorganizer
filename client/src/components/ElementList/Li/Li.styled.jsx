@@ -8,13 +8,15 @@ const { colors, shadows, indents, radiuses } = themes;
 // li
 
 const baseLiStyle = css`
+  padding-block: ${indents.xs};
   &:not(:last-of-type) {
     margin-bottom: ${indents.s};
   }
-  padding-block: ${indents.xs};
+  position: relative;
+
   display: grid;
   align-items: center;
-  grid-template-columns: 1fr 12fr 1fr 12fr 1fr;
+  grid-template-columns: 1fr 25fr 1fr;
   /* grid-template-areas: '. . . .'; */
 
   background-color: ${colors.white};
@@ -36,13 +38,6 @@ export const Li = styled.li`
   &:hover button {
     opacity: 1;
   }
-`;
-
-export const Divider = styled.div`
-  height: 75%;
-  width: 1px;
-  justify-self: center;
-  border: 1px solid ${colors.borderLight};
 `;
 
 // input label
@@ -94,7 +89,7 @@ export const LabelChecked = styled.label`
 
 // edit, trash buttons
 
-const baseBtnStyle = css`
+export const baseBtnStyles = css`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -113,13 +108,13 @@ const baseBtnStyle = css`
 `;
 
 export const TrashBtn = styled.button`
-  ${baseBtnStyle}
+  ${baseBtnStyles}
 
   opacity: ${({ $hovered }) => ($hovered ? 1 : 0)};
 `;
 
 export const EditBtn = styled.button`
-  ${baseBtnStyle}
+  ${baseBtnStyles}
 
   opacity: 0;
 `;

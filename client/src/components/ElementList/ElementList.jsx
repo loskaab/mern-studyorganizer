@@ -5,7 +5,7 @@ import { useClusters, useElements } from 'utils/hooks';
 import { fetchElementsThunk } from 'store/element/elementThunks';
 
 import { List } from './ElementList.styled';
-import LiElement from './Li/LiElement';
+import LiElement from './Li/Li';
 
 const ElementList = () => {
   const dispatch = useDispatch();
