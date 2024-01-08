@@ -3,8 +3,8 @@ import { Outlet } from 'react-router-dom';
 
 import GridWrap from 'components/shared/GridWrap/GridWrap';
 import OvalLoader from 'components/shared/Loader/OvalLoader';
-import Header from 'layouts/Header/Header';
-import SideBar from 'layouts/SideBar/SideBar';
+import Header from 'layouts/SharedLayout/Header/Header';
+import SideBar from 'layouts/SharedLayout/SideBar/SideBar';
 
 import { themes } from 'styles/themes';
 

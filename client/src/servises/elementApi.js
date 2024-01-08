@@ -13,7 +13,7 @@ export const addElement = async element => {
 };
 
 export const updateElement = async ({ _id, ...element }) => {
-  const { data } = await apiClient.put(`/elements/${_id}`, element);
+  const { data } = await apiClient.patch(`/elements/${_id}`, element);
   return data;
 };
 

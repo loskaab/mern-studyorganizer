@@ -5,7 +5,7 @@ import { useAuth, useClusters } from 'utils/hooks';
 
 import ScreenSaver from 'components/ScreenSaver/ScreenSaver';
 import ElementFrame from 'components/ElementFrame/ElementFrame';
-import ElementEditBar from 'components/ElemetnBars/ElementEditBar';
+import ElementEditBar from 'components/ElementBars/ElementEditBar';
 
 import { SideBarDiv } from './SideBar.styled';
 

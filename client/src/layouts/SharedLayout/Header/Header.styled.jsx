@@ -35,3 +35,7 @@ export const Nav = styled.nav`
     } /* &:global(.active) { } */
   }
 `;
+
+export const Title = styled.h2`
+  font-size: 26px;
+`;

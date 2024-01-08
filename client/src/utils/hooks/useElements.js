@@ -7,6 +7,8 @@ export const useElements = () => {
   const elementGroups = useSelector(selectors.selectElementGroups);
   const activeElement = useSelector(selectors.selectActiveElement);
   const elementFilter = useSelector(selectors.selectElementFilter);
+  const elementSelect = useSelector(selectors.selectElementSelect);
+  const elementTrash = useSelector(selectors.selectElementTrash);
 
   const error = useSelector(selectors.selectError);
   const isLoading = useSelector(selectors.selectIsLoading);
@@ -16,6 +18,8 @@ export const useElements = () => {
     elementGroups,
     activeElement,
     elementFilter,
+    elementSelect,
+    elementTrash,
 
     error,
     isLoading,

@@ -55,7 +55,6 @@ export const themes = Object.freeze({
     sb: 600,
     b: 700,
   },
-
   animations: {
     cubicBezier: 'cubic-bezier(0, 0.5, 1.3, 2)',
   },

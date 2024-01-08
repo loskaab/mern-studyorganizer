@@ -4,6 +4,9 @@ import { useDispatch } from 'react-redux';
 import { useClusters, useElements } from 'utils/hooks';
 import { fetchElementsThunk } from 'store/element/elementThunks';
 
+import { List } from './ElementList.styled';
+import LiElement from './Li/LiElement';
+
 const ElementList = () => {
   const dispatch = useDispatch();
   const { activeCluster } = useClusters();
@@ -18,15 +21,11 @@ const ElementList = () => {
     .sort((a, b) => a.createdAt.localeCompare(b.createdAt));
 
   return (
-    <div>
-      <h2>
-        {activeCluster.group} {activeCluster.title}
-      </h2>
-
+    <List>
       {activeClusterElements.map(el => (
-        <p key={el._id}>{el.element}</p>
+        <LiElement key={el._id} el={el} />
       ))}
-    </div>
+    </List>
   );
 };
 

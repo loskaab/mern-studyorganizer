@@ -3,53 +3,33 @@ import styled, { css } from 'styled-components';
 import { visuallyHidden } from 'styles/utils/hidden.styled';
 import { themes } from 'styles/themes';
 
-const { colors, shadows, radiuses } = themes;
+const { colors, shadows, indents, radiuses } = themes;
 
 // li
 
 const baseLiStyle = css`
-  padding-inline: 4px;
-  display: grid;
-  grid-column-gap: 2px;
-  grid-template-columns: 1fr 15fr 30fr 1fr 1fr 1fr 1fr;
-  grid-template-areas: '. title title . . . .';
-  align-items: center;
-  justify-items: left;
-  line-height: 1.5;
-  border: 1px solid transparent;
-  border-bottom-color: ${colors.borderLight};
-`;
-
-export const LiGroup = styled.li`
-  ${baseLiStyle}
-  counter-reset: subsection;
-  line-height: 2;
-
-  & h2 {
-    justify-self: center;
-    grid-area: title;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 16px;
-    text-transform: uppercase;
-
-    &::before {
-      counter-increment: section;
-      content: 'Group ' counter(section) '. ';
-      text-transform: capitalize;
-    }
+  &:not(:last-of-type) {
+    margin-bottom: ${indents.s};
   }
-`;
+  padding-block: ${indents.xs};
+  display: grid;
+  align-items: center;
+  grid-template-columns: 1fr 12fr 1fr 12fr 1fr;
+  /* grid-template-areas: '. . . .'; */
 
-export const LiCluster = styled.li`
+  background-color: ${colors.white};
+  border-radius: ${radiuses.s};
+  font-size: 22px;
+`;
+export const Li = styled.li`
   ${baseLiStyle}
 
-  transition: box-shadow 250ms, border-color 250ms background-color 250ms;
+  transition: box-shadow 250ms, border-color 250ms;
 
   &:hover {
     border-color: ${colors.border};
     box-shadow: ${shadows.back};
-    background-color: ${colors.white};
-    border-radius: ${radiuses.xs};
+    /* background-color: ${colors.backgroundHoverd}; */
   }
 
   &:hover label,
@@ -58,35 +38,11 @@ export const LiCluster = styled.li`
   }
 `;
 
-const baseLinkStyle = css`
-  font-size: 16px;
-
-  &:hover {
-    color: ${colors.hovered};
-  }
-`;
-
-export const TitleLink = styled.button`
-  ${baseLinkStyle}
-
-  border: none;
-  background-color: transparent;
-  color: ${colors.black};
-  font-weight: 500;
-`;
-
-export const ClusterLink = styled.a`
-  ${baseLinkStyle}
-
-  color: ${colors.placeholder};
-
-  &::before {
-    counter-increment: subsection;
-    content: counter(section) '.' counter(subsection) '. ';
-    font-size: 14px;
-    font-weight: 700;
-    color: ${colors.black};
-  }
+export const Divider = styled.div`
+  height: 75%;
+  width: 1px;
+  justify-self: center;
+  border: 1px solid ${colors.borderLight};
 `;
 
 // input label
@@ -136,7 +92,7 @@ export const LabelChecked = styled.label`
   }
 `;
 
-// date, edit, trash buttons
+// edit, trash buttons
 
 const baseBtnStyle = css`
   display: flex;
@@ -146,7 +102,6 @@ const baseBtnStyle = css`
   border-color: transparent;
   transition: opacity 250ms;
 
-  &,
   & svg {
     transition: color 250ms;
     color: ${colors.border};
@@ -155,12 +110,6 @@ const baseBtnStyle = css`
   &:hover svg {
     color: ${colors.placeholder};
   }
-`;
-
-export const DateBtn = styled.button`
-  ${baseBtnStyle}
-
-  font-size: 14px;
 `;
 
 export const TrashBtn = styled.button`

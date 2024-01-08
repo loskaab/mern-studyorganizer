@@ -19,12 +19,13 @@ import AddClusterForm from 'components/ClusterForms/ClusterAddForm';
 import { themes } from 'styles/themes';
 
 const { button } = themes.shadows;
+const { s, m } = themes.indents;
 
 const ClusterEditBar = () => {
   const dispatch = useDispatch();
   const [isModal, setIsModal] = useState(false);
-  const [clipboardText, setClipboardText] = useState('');
   const { clusterTrash, clusterGroups } = useClusters();
+  const [clipboardText, setClipboardText] = useState('');
 
   const isTrashBtn = clusterTrash.length > 0;
 
@@ -78,8 +79,8 @@ const ClusterEditBar = () => {
 
   return (
     <GridWrap
-      $m="15px 25px"
-      $pos="absolute"
+      $m={`${s} ${m}`}
+      $pos="fixed"
       $side="right"
       $high="bottom"
       $gtc="1fr 1fr"

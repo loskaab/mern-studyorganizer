@@ -5,8 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import { TiStar } from 'react-icons/ti';
-import { FiEdit3, FiTrash2 } from 'react-icons/fi';
 import { FaCheck } from 'react-icons/fa';
+import { FiEdit3, FiTrash2 } from 'react-icons/fi';
 
 import { useClusters } from 'utils/hooks';
 import { setActiveCluster, setClusterTrash } from 'store/cluster/clusterSlice';
@@ -16,7 +16,7 @@ import EditClusterForm from 'components/ClusterForms/ClusterEditForm';
 
 import {
   LiCluster as Li,
-  ElementLink,
+  TitleLink,
   ClusterLink,
   LabelFavorite,
   LabelChecked,
@@ -79,10 +79,10 @@ const LiCluster = ({ el, sortByDate, setSortByDate }) => {
           checked={favorite}
           onChange={handleFavorite}
         />
-        <TiStar size="18px" />
+        <TiStar size="20px" />
       </LabelFavorite>
 
-      <ElementLink onClick={handleLinkClick}>{title}</ElementLink>
+      <TitleLink onClick={handleLinkClick}>{title}</TitleLink>
 
       <ClusterLink href={cluster} target="_blank" rel="noopener noreferrer">
         {trim(cluster)}

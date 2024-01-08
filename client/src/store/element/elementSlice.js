@@ -34,7 +34,7 @@ const elementItemsSlice = createSlice({
   name: 'items',
   initialState: [],
   reducers: {
-    cleanElement: state => [],
+    cleanElement: () => [],
   },
   extraReducers: builder => {
     builder
@@ -42,15 +42,6 @@ const elementItemsSlice = createSlice({
       .addCase(TNK.addElementThunk.fulfilled, handleAddElement)
       .addCase(TNK.updateElementThunk.fulfilled, handleUpdateElement)
       .addCase(TNK.deleteElementThunk.fulfilled, handleDeleteElement);
-  },
-});
-
-// fulfilled filter slice
-const elementFilterSlice = createSlice({
-  name: 'filter',
-  initialState: '',
-  reducers: {
-    setelementFilter: (_, action) => action.payload,
   },
 });
 
@@ -63,15 +54,50 @@ const elementActiveSlice = createSlice({
   },
 });
 
+// fulfilled select slice
+const elementSelectSlice = createSlice({
+  name: 'select',
+  initialState: '',
+  reducers: {
+    setElementSelect: (_, action) => action.payload,
+  },
+});
+
+// fulfilled trash slice
+const elementTrashSlice = createSlice({
+  name: 'trash',
+  initialState: [],
+  reducers: {
+    setElementTrash: (state, { payload }) => {
+      const isInTrash = state.find(el => el._id === payload._id);
+      if (isInTrash) {
+        return state.filter(el => el._id !== payload._id);
+      } else {
+        state.push(payload);
+      }
+    },
+    emptyElementTrash: () => [],
+  },
+});
+
+// fulfilled filter slice
+const elementFilterSlice = createSlice({
+  name: 'filter',
+  initialState: '',
+  reducers: {
+    setElementFilter: (_, action) => action.payload,
+  },
+});
+
 // loading slice
 const elementIsLoadingSlice = createSlice({
   name: 'isLoading',
   initialState: false,
   extraReducers: builder => {
     builder
-      .addMatcher(isAnyOf(...fn('pending')), state => true)
-      .addMatcher(isAnyOf(...fn('fulfilled')), state => false)
-      .addMatcher(isAnyOf(...fn('rejected')), state => false);
+      .addMatcher(isAnyOf(...fn('pending')), () => true)
+      .addMatcher(isAnyOf(...fn('fulfilled')), () => false)
+      .addMatcher(isAnyOf(...fn('rejected')), () => false);
   },
 });
 
@@ -81,8 +107,8 @@ const elementErrorSlice = createSlice({
   initialState: false,
   extraReducers: builder => {
     builder
-      .addMatcher(isAnyOf(...fn('pending')), state => false)
-      .addMatcher(isAnyOf(...fn('fulfilled')), state => false)
+      .addMatcher(isAnyOf(...fn('pending')), () => false)
+      .addMatcher(isAnyOf(...fn('fulfilled')), () => false)
       .addMatcher(isAnyOf(...fn('rejected')), (_, action) => action.payload);
   },
 });
@@ -91,10 +117,15 @@ export const elementsReducer = combineReducers({
   items: elementItemsSlice.reducer,
   active: elementActiveSlice.reducer,
   filter: elementFilterSlice.reducer,
+  select: elementSelectSlice.reducer,
+  trash: elementTrashSlice.reducer,
+
   isLoading: elementIsLoadingSlice.reducer,
   error: elementErrorSlice.reducer,
 });
 
 export const { cleanElement } = elementItemsSlice.actions;
 export const { setActiveElement } = elementActiveSlice.actions;
-export const { setelementFilter } = elementFilterSlice.actions;
+export const { setElementFilter } = elementFilterSlice.actions;
+export const { setElementSelect } = elementSelectSlice.actions;
+export const { setElementTrash, emptyElementTrash } = elementTrashSlice.actions;
