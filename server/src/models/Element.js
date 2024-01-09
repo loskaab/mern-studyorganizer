@@ -10,8 +10,8 @@ const elementSchema = new Schema(
     caption: { type: String, default: '' },
     favorite: { type: Boolean, default: false },
     checked: { type: Boolean, default: false },
-    group: { type: String, default: 'common' },
-    cluster: { type: String, default: 'all' },
+    group: { type: String, default: '' },
+    cluster: { type: String, default: '' },
 
     owner: { type: Schema.Types.ObjectId, ref: 'User', required: true },
   },

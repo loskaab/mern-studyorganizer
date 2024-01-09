@@ -12,7 +12,7 @@ const validateBody = schema => {
             if (cutIndex !== -1) {
               err.message = err.message.substring(0, cutIndex + 7);
             }
-            return err.message;
+            return `Body validation: ${err.message}`;
           })
           .join(', '),
       });

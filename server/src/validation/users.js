@@ -21,6 +21,7 @@ const updateSchema = validateBody(
     socialLink: Joi.string().pattern(regExp.HTTP.pattern).allow(''),
     birthday: Joi.string().pattern(regExp.DATE.pattern).allow(''),
     about: Joi.string().allow(''),
+    lang: Joi.string(),
   }),
 );
 

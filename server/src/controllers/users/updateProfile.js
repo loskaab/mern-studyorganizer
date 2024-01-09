@@ -4,6 +4,7 @@ const { HttpError, cloudinary, restrictedAccess } = require('../../utils');
 const { randomNumber, sendMail, createMsg } = require('../../utils');
 /* eslint-disable camelcase */
 const updateProfile = ctrlWrapper(async (req, res) => {
+  console.log('req.body: ', req.body);
   const { name, email } = req.body;
   const { _id } = req.user;
 
