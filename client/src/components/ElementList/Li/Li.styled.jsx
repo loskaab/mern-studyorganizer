@@ -10,7 +10,6 @@ const { colors, shadows, indents, radiuses } = themes;
 const baseLiStyle = css`
   margin-top: ${indents.s};
   padding-block: ${indents.xs};
-  /* position: relative; */
 
   display: grid;
   align-items: center;
@@ -28,7 +27,6 @@ export const Li = styled.li`
   &:hover {
     border-color: ${colors.border};
     box-shadow: ${shadows.back};
-    /* background-color: ${colors.backgroundHoverd}; */
   }
 
   &:hover label,

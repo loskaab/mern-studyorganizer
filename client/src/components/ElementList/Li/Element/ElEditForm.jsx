@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { BsSendCheck, BsTextareaResize } from 'react-icons/bs';
@@ -22,6 +23,23 @@ const ElementEditForm = ({ el, isForm, setIsForm }) => {
     mode: 'onBlur',
     defaultValues: { element, caption },
   });
+
+  useEffect(() => {
+    const handleKeyDown = e => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        handleSubmit(onSubmit)();
+      }
+      if (e.key === 'Escape') {
+        setIsForm(false);
+      }
+    };
+
+    addEventListener('keydown', handleKeyDown);
+    return () => {
+      removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
 
   const onSubmit = data => {
     dispatch(updateElementThunk({ _id, ...data }));

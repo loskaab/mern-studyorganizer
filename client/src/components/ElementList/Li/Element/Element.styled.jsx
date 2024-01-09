@@ -9,6 +9,8 @@ const { colors, radiuses } = themes;
 // element
 
 const baseWrapStyles = css`
+  padding-block: 4px;
+  height: 100%;
   display: grid;
   align-items: center;
   grid-template-columns: 20fr 1fr 20fr;
@@ -32,7 +34,7 @@ export const Textarea = styled.textarea`
 `;
 
 export const Divider = styled.div`
-  height: 75%;
+  height: calc(100% - 8px);
   width: 1px;
   justify-self: center;
   border: 1px solid ${colors.borderLight};

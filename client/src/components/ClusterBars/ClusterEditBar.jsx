@@ -33,7 +33,6 @@ const ClusterEditBar = () => {
     const handleKeyDown = e => {
       if (e.key === '+') addCluster();
     };
-
     addEventListener('keydown', handleKeyDown);
     return () => {
       removeEventListener('keydown', handleKeyDown);
