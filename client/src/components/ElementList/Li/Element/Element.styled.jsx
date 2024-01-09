@@ -6,6 +6,8 @@ import { themes } from 'styles/themes';
 
 const { colors, radiuses } = themes;
 
+// element
+
 const baseWrapStyles = css`
   display: grid;
   align-items: center;
@@ -36,6 +38,8 @@ export const Divider = styled.div`
   border: 1px solid ${colors.borderLight};
 `;
 
+// buttons
+
 export const BtnWrap = styled.div`
   height: 100%;
   display: flex;
@@ -49,4 +53,23 @@ export const SubmitBtn = styled.button`
 
 export const ResizeBtn = styled.button`
   ${baseBtnStyles}
+
+  cursor: row-resize;
+`;
+
+export const SpeakBtn = styled.button`
+  height: 100%;
+  text-align: left;
+  display: flex;
+  align-items: top;
+  background-color: transparent;
+  border-color: transparent;
+  border-radius: ${radiuses.s};
+  color: ${colors.black};
+  transition: background-color 250ms;
+
+  &:hover,
+  &:focus {
+    background-color: ${colors.backgroundHoverd};
+  }
 `;

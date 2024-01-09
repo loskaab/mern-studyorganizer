@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
 import Select from 'components/shared/Select/Select';
-import { languageCode } from 'utils/constants';
+import { languageCodes, rateValues } from 'utils/constants';
 import { useAuth, useClusters, useElements } from 'utils/hooks';
 import { updateUserThunk } from 'store/auth/authThunks';
 import { fetchElementsThunk } from 'store/element/elementThunks';
@@ -29,7 +29,14 @@ const ElementList = () => {
     .filter(el => el.cluster === activeCluster.title)
     .sort((a, b) => a.createdAt.localeCompare(b.createdAt));
 
-  const { _id, lang } = activeCluster;
+  const { _id, lang, rate } = activeCluster;
+
+  const setClusterRate = ({ value }) => {
+    dispatch(updateClusterThunk({ _id, rate: value }))
+      .unwrap()
+      .then(pld => dispatch(setActiveCluster(pld.result.cluster)));
+  };
+
   const setClusterLang = ({ value }) => {
     dispatch(updateClusterThunk({ _id, lang: value }))
       .unwrap()
@@ -46,8 +53,8 @@ const ElementList = () => {
     <List>
       <SelectWrap>
         <Select
-          options={languageCode}
-          defaultValue={languageCode.find(el => el.value === lang)}
+          options={languageCodes}
+          defaultValue={languageCodes.find(el => el.value === lang)}
           onChange={setClusterLang}
           $ol={ol}
           $b={b}
@@ -55,8 +62,16 @@ const ElementList = () => {
           $br={themes.radiuses.xl}
         />
         <Select
-          options={languageCode}
-          defaultValue={languageCode.find(el => el.value === user.lang)}
+          options={rateValues}
+          defaultValue={rateValues.find(el => el.value == rate)}
+          onChange={setClusterRate}
+          $ol={ol}
+          $b={b}
+          $bh={bh}
+        />
+        <Select
+          options={languageCodes}
+          defaultValue={languageCodes.find(el => el.value === user.lang)}
           onChange={setUserLang}
           $ol={ol}
           $b={b}

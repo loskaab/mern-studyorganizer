@@ -7,13 +7,12 @@ import {
 } from 'store/element/elementThunks';
 import { emptyElementTrash } from 'store/element/elementSlice';
 import { useAuth, useClusters, useElements } from 'utils/hooks';
-import { readClipboard, writeClipboard } from 'utils/helpers';
+import { readClipboard, writeClipboard, translateText } from 'utils/helpers';
 
 import GridWrap from 'components/shared/GridWrap/GridWrap';
 import Button from 'components/shared/Button/Button';
 
 import { themes } from 'styles/themes';
-import { translateText } from 'utils/helpers/translateText';
 
 const { button } = themes.shadows;
 
@@ -25,12 +24,12 @@ const ElementEditBar = () => {
   const isTrashBtn = elementTrash.length > 0;
 
   const addElement = async e => {
-    const text = window.getSelection().toString();
-    text && (await writeClipboard(text));
-    // document.execCommand('copy');
+    const text = window.getSelection().toString(); // document.execCommand('copy');
+    text && (await writeClipboard(text)); // document.execCommand('copy');
+
     const element = (await readClipboard()).trim();
-    const translationLine = { from: activeCluster.lang, to: user.lang };
-    const caption = await translateText(element, translationLine);
+    const translation = { from: activeCluster.lang, to: user.lang };
+    const caption = await translateText(element, translation);
     const cluster = activeCluster.title;
     try {
       dispatch(addElementThunk({ element, caption, cluster }));

@@ -9,7 +9,7 @@ export const SelectWrap = styled.div`
   display: grid;
   align-items: center;
   column-gap: ${indents.s};
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 2fr 1fr 2fr;
 `;
 
 export const List = styled.ul`

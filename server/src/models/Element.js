@@ -8,6 +8,7 @@ const elementSchema = new Schema(
   {
     element: { type: String, required },
     caption: { type: String, default: '' },
+    lang: { type: String, default: 'en' },
     favorite: { type: Boolean, default: false },
     checked: { type: Boolean, default: false },
     group: { type: String, default: '' },

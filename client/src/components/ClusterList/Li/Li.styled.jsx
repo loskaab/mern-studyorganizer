@@ -60,6 +60,7 @@ export const LiCluster = styled.li`
 
 const baseLinkStyle = css`
   font-size: 16px;
+  transition: color 250ms;
 
   &:hover {
     color: ${colors.hovered};

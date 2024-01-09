@@ -92,7 +92,8 @@ export const baseBtnStyles = css`
   align-items: center;
   background-color: transparent;
   border-color: transparent;
-  transition: opacity 250ms;
+  transition: opacity 250ms color 250ms;
+  color: ${colors.black};
 
   & svg {
     transition: color 250ms;

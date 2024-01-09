@@ -43,10 +43,10 @@
 - **[redux-toolkit]**https://redux-toolkit.js.org
 - **[redux-persist]**https://github.com/rt2zz/redux-persist
 - **[concurrently]**https://www.npmjs.com/package/concurrently
+- **[WebSpeechAPI]**https://developer.mozilla.org/ru/docs/Web/API/Web_Speech_API/Using_the_Web_Speech_API
 
 - **[multer-storage-cloudinary]**https://www.npmjs.com/package/multer-storage-cloudinary
 - **[chardet]**https://www.npmjs.com/package/chardet
-- **[]**
 - **[]**
 - **[]**
 - **[]**
