@@ -4,7 +4,7 @@ import { baseBtnStyles } from '../Li.styled';
 
 import { themes } from 'styles/themes';
 
-const { colors, radiuses, indents } = themes;
+const { colors, radiuses } = themes;
 
 const baseWrapStyles = css`
   display: grid;

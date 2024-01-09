@@ -6,18 +6,20 @@ import {
   deleteElementThunk,
 } from 'store/element/elementThunks';
 import { emptyElementTrash } from 'store/element/elementSlice';
-import { useClusters, useElements } from 'utils/hooks';
+import { useAuth, useClusters, useElements } from 'utils/hooks';
 import { readClipboard, writeClipboard } from 'utils/helpers';
 
 import GridWrap from 'components/shared/GridWrap/GridWrap';
 import Button from 'components/shared/Button/Button';
 
 import { themes } from 'styles/themes';
+import { translateText } from 'utils/helpers/translateText';
 
 const { button } = themes.shadows;
 
 const ElementEditBar = () => {
   const dispatch = useDispatch();
+  const { user } = useAuth();
   const { activeCluster } = useClusters();
   const { elementTrash } = useElements();
   const isTrashBtn = elementTrash.length > 0;
@@ -27,8 +29,11 @@ const ElementEditBar = () => {
     text && (await writeClipboard(text));
     // document.execCommand('copy');
     const element = (await readClipboard()).trim();
+    const translationLine = { from: activeCluster.lang, to: user.lang };
+    const caption = await translateText(element, translationLine);
+    const cluster = activeCluster.title;
     try {
-      dispatch(addElementThunk({ element, cluster: activeCluster.title }));
+      dispatch(addElementThunk({ element, caption, cluster }));
       e.target.blur();
     } catch (err) {
       e.target.blur();

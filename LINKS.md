@@ -45,7 +45,7 @@
 - **[concurrently]**https://www.npmjs.com/package/concurrently
 
 - **[multer-storage-cloudinary]**https://www.npmjs.com/package/multer-storage-cloudinary
-- **[]**
+- **[chardet]**https://www.npmjs.com/package/chardet
 - **[]**
 - **[]**
 - **[]**

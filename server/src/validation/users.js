@@ -1,7 +1,7 @@
 const Joi = require('joi');
 
 const { validateBody } = require('../decorators');
-const { joiError, regExp } = require('../utils');
+const { joiError, regExp, langCodes } = require('../utils');
 
 const registerSchema = validateBody(
   Joi.object({
@@ -21,7 +21,7 @@ const updateSchema = validateBody(
     socialLink: Joi.string().pattern(regExp.HTTP.pattern).allow(''),
     birthday: Joi.string().pattern(regExp.DATE.pattern).allow(''),
     about: Joi.string().allow(''),
-    lang: Joi.string(),
+    lang: Joi.string().valid(...Object.keys(langCodes)),
   }),
 );
 

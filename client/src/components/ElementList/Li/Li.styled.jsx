@@ -8,16 +8,13 @@ const { colors, shadows, indents, radiuses } = themes;
 // li
 
 const baseLiStyle = css`
+  margin-top: ${indents.s};
   padding-block: ${indents.xs};
-  &:not(:last-of-type) {
-    margin-bottom: ${indents.s};
-  }
-  position: relative;
+  /* position: relative; */
 
   display: grid;
   align-items: center;
   grid-template-columns: 1fr 25fr 1fr;
-  /* grid-template-areas: '. . . .'; */
 
   background-color: ${colors.white};
   border-radius: ${radiuses.s};

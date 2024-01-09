@@ -3,6 +3,7 @@ const createMsg = require('./createMsg');
 const filterValues = require('./filterValues');
 const HttpError = require('./HttpError');
 const joiError = require('./joiError');
+const langCodes = require('./langCodes');
 const logFile = require('./logFile');
 const mongooseError = require('./mongooseError');
 const renderEjsTemplate = require('./renderEjsTemplate');
@@ -17,6 +18,7 @@ module.exports = {
   filterValues,
   HttpError,
   joiError,
+  langCodes,
   logFile,
   mongooseError,
   randomNumber,
