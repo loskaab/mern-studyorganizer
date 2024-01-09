@@ -13,7 +13,8 @@ import { List } from './ClusterList.styled';
 
 const ClusterList = () => {
   const dispatch = useDispatch();
-  const { allClusters, clusterFilter, clusterSelect } = useClusters();
+  const { allClusters, clusterTrash } = useClusters();
+  const { clusterFilter, clusterSelect } = useClusters();
   const [sortByDate, setSortByDate] = useState(true);
 
   useEffect(() => {
@@ -21,8 +22,16 @@ const ClusterList = () => {
     dispatch(fetchClustersThunk());
   }, [dispatch]);
 
-  // cluster filter/favorite/checked
-  const filtredClusters = [...allClusters]
+  // cluster trash/filter/favorite/checked
+  const getClusters = () => {
+    const trashId = clusterTrash.map(el => el._id);
+
+    return clusterSelect.includes('trash')
+      ? [...allClusters].filter(el => trashId.includes(el._id))
+      : [...allClusters];
+  };
+
+  const filtredClusters = getClusters()
     .filter(({ group, title, favorite, checked }) => {
       // filter
       const allFiltred =
@@ -53,7 +62,7 @@ const ClusterList = () => {
 
   const selectedGroups =
     clusterSelect.filter(
-      el => !['favorite', 'checked', 'unchecked'].includes(el),
+      el => !['trash', 'favorite', 'checked', 'unchecked'].includes(el),
     ).length !== 0
       ? clusterSelect.filter(el => filtredGroups.includes(el))
       : filtredGroups;

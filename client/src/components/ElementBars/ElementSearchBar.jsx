@@ -1,14 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { FaStar, FaCheckCircle } from 'react-icons/fa';
-import { ImRadioUnchecked } from 'react-icons/im';
 
 import GridWrap from 'components/shared/GridWrap/GridWrap';
 import Select from 'components/shared/Select/Select';
 import Filter from 'components/shared/Filter/Filter';
-import { useClusters } from 'utils/hooks';
-import { selectClusterFilter } from 'store/cluster/clusterSelectors';
-import { setClusterFilter, setClusterSelect } from 'store/cluster/clusterSlice';
+import { baseOptions } from 'components/shared/Select/options/baseOptions';
+import { useElements } from 'utils/hooks';
+import { setElementFilter, setElementSelect } from 'store/element/elementSlice';
+import { selectElementFilter } from 'store/element/elementSelectors';
 import { themes } from 'styles/themes';
 
 const { backgroundHoverd: ol, white: b, borderLight: bh } = themes.colors;
@@ -16,22 +15,15 @@ const { s } = themes.indents;
 
 const ElementSearchBar = () => {
   const dispatch = useDispatch();
-  const { clusterGroups, clusterSelect } = useClusters();
-  const [selectValue, setSelectValue] = useState(clusterSelect);
+  const { elementSelect } = useElements();
+  const [selectValue, setSelectValue] = useState(elementSelect);
 
   useEffect(() => {
-    dispatch(setClusterSelect(selectValue));
+    dispatch(setElementSelect(selectValue));
   }, [dispatch, selectValue]);
 
   const getOptions = selectValue => {
-    const options = [
-      { value: 'favorite', label: <FaStar size="18px" /> },
-      { value: 'checked', label: <FaCheckCircle size="16px" /> },
-      { value: 'unchecked', label: <ImRadioUnchecked size="16px" /> },
-      ...clusterGroups
-        .map(el => ({ value: el.clusterGroup, label: el.clusterGroup }))
-        .sort((a, b) => a.value.localeCompare(b.value)),
-    ];
+    const options = [...baseOptions];
     if (selectValue.includes('checked')) {
       return options.filter(el => el.value !== 'unchecked');
     }
@@ -43,12 +35,12 @@ const ElementSearchBar = () => {
   };
 
   const defaultValue = getOptions(selectValue).filter(el => {
-    return clusterSelect.includes(el.value);
+    return elementSelect.includes(el.value);
   });
 
   return (
     <GridWrap $w="100%" $m={`0 ${s} 0 0 `} $cg={s} $ai="center" $gtc="1fr 2fr">
-      <Filter selector={selectClusterFilter} reducer={setClusterFilter} />
+      <Filter selector={selectElementFilter} reducer={setElementFilter} />
       <Select
         isMulti
         onChange={data => setSelectValue(data ? data.map(el => el.value) : '')}

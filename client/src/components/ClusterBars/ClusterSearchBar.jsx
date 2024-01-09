@@ -1,18 +1,17 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { FaStar, FaCheckCircle } from 'react-icons/fa';
-import { ImRadioUnchecked } from 'react-icons/im';
 
 import GridWrap from 'components/shared/GridWrap/GridWrap';
-import Select from 'components/shared/Select/Select';
 import Filter from 'components/shared/Filter/Filter';
+import Select from 'components/shared/Select/Select';
+import { baseOptions } from 'components/shared/Select/options/baseOptions';
 import { useClusters } from 'utils/hooks';
 import { selectClusterFilter } from 'store/cluster/clusterSelectors';
 import { setClusterFilter, setClusterSelect } from 'store/cluster/clusterSlice';
 import { themes } from 'styles/themes';
 
-const { backgroundHoverd: ol, white: b, borderLight: bh } = themes.colors;
 const { s } = themes.indents;
+const { backgroundHoverd: ol, white: b, borderLight: bh } = themes.colors;
 
 const ClustersSearchBar = () => {
   const dispatch = useDispatch();
@@ -25,9 +24,7 @@ const ClustersSearchBar = () => {
 
   const getOptions = selectValue => {
     const options = [
-      { value: 'favorite', label: <FaStar size="18px" /> },
-      { value: 'checked', label: <FaCheckCircle size="16px" /> },
-      { value: 'unchecked', label: <ImRadioUnchecked size="16px" /> },
+      ...baseOptions,
       ...clusterGroups
         .map(el => ({ value: el.clusterGroup, label: el.clusterGroup }))
         .sort((a, b) => a.value.localeCompare(b.value)),
