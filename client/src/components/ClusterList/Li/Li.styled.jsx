@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 import { visuallyHidden } from 'styles/utils/hidden.styled';
 import { themes } from 'styles/themes';
 
-const { colors, shadows, radiuses } = themes;
+const { colors, shadows, indents } = themes;
 
 // li
 
@@ -49,7 +49,7 @@ export const LiCluster = styled.li`
     border-color: ${colors.border};
     box-shadow: ${shadows.back};
     background-color: ${colors.white};
-    border-radius: ${radiuses.xs};
+    border-radius: ${indents.xxs};
   }
 
   &:hover label,

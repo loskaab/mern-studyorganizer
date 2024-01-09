@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import { themes } from 'styles/themes';
 
-const { colors, radiuses } = themes;
+const { colors, indents } = themes;
 const heightSize = '30px';
 const fontSize = '16px';
 const offsetY = `calc(${heightSize} * 1)`;
@@ -18,7 +18,7 @@ export const FilterDiv = styled.div`
     padding-inline: ${offsetY};
 
     border: 1px solid transparent;
-    border-radius: ${radiuses.xl};
+    border-radius: ${indents.m};
     border-color: ${colors.background};
     outline: transparent;
     font-size: ${fontSize};

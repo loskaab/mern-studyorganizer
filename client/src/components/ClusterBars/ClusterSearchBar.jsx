@@ -10,7 +10,7 @@ import { selectClusterFilter } from 'store/cluster/clusterSelectors';
 import { setClusterFilter, setClusterSelect } from 'store/cluster/clusterSlice';
 import { themes } from 'styles/themes';
 
-const { s } = themes.indents;
+const { s, m } = themes.indents;
 const { backgroundHoverd: ol, white: b, borderLight: bh } = themes.colors;
 
 const ClustersSearchBar = () => {
@@ -55,7 +55,7 @@ const ClustersSearchBar = () => {
         $ol={ol}
         $b={b}
         $bh={bh}
-        $br={themes.radiuses.xl}
+        $br={m}
       />
     </GridWrap>
   );

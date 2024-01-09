@@ -5,7 +5,7 @@ export { Select as SelectSimple };
 export { CreatableSelect as SelectCreatable };
 
 import { themes } from 'styles/themes';
-const { colors, radiuses } = themes;
+const { colors, indents } = themes;
 
 export const defaultTheme = ({
   $obh = colors.accent, // hoverd option background
@@ -18,12 +18,12 @@ export const defaultTheme = ({
       primary25: `${$obh}`,
       primary: `${$sobh}`,
     },
-    borderRadius: `${radiuses.s}`,
+    borderRadius: `${indents.xs}`,
   });
 };
 
 export const defaultStyles = ({
-  $br = radiuses.s, // border radius
+  $br = indents.xs, // border radius
   $ol = colors.white, // outline (if not neded, must be equal to the background)
   $b = colors.border, // border
   $bh = colors.accent, // hoverd border
@@ -85,7 +85,7 @@ export const defaultStyles = ({
   multiValue: styles => {
     return {
       ...styles,
-      borderRadius: `${radiuses.xs}`,
+      borderRadius: `${indents.xxs}`,
       backgroundColor: 'transparent',
     };
   },

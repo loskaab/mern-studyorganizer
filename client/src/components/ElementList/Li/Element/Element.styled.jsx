@@ -4,7 +4,7 @@ import { baseBtnStyles } from '../Li.styled';
 
 import { themes } from 'styles/themes';
 
-const { colors, radiuses } = themes;
+const { colors, indents } = themes;
 
 // element
 
@@ -29,7 +29,7 @@ export const Form = styled.form`
 export const Textarea = styled.textarea`
   outline: none;
   border: 1px solid ${colors.accent};
-  border-radius: ${radiuses.s};
+  border-radius: ${indents.xs};
   resize: vertical;
 `;
 
@@ -66,7 +66,7 @@ export const SpeakBtn = styled.button`
   align-items: top;
   background-color: transparent;
   border-color: transparent;
-  border-radius: ${radiuses.s};
+  border-radius: ${indents.xs};
   color: ${colors.black};
   transition: background-color 250ms;
   overflow-x: auto;

@@ -11,7 +11,7 @@ import { selectElementFilter } from 'store/element/elementSelectors';
 import { themes } from 'styles/themes';
 
 const { backgroundHoverd: ol, white: b, borderLight: bh } = themes.colors;
-const { s } = themes.indents;
+const { s, m } = themes.indents;
 
 const ElementSearchBar = () => {
   const dispatch = useDispatch();
@@ -50,7 +50,7 @@ const ElementSearchBar = () => {
         $ol={ol}
         $b={b}
         $bh={bh}
-        $br={themes.radiuses.xl}
+        $br={m}
       />
     </GridWrap>
   );

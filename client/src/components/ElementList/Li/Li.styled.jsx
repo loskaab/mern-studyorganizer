@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 import { visuallyHidden } from 'styles/utils/hidden.styled';
 import { themes } from 'styles/themes';
 
-const { colors, shadows, indents, radiuses } = themes;
+const { colors, shadows, indents } = themes;
 
 // li
 
@@ -17,7 +17,7 @@ const baseLiStyle = css`
   grid-template-columns: 1fr 25fr 1fr;
 
   background-color: ${colors.white};
-  border-radius: ${radiuses.s};
+  border-radius: ${indents.xs};
   font-size: 22px;
 `;
 export const Li = styled.li`

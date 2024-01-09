@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import { themes } from 'styles/themes';
 
-const { colors, indents, radiuses } = themes;
+const { colors, indents } = themes;
 
 export const StyledHeader = styled.header`
   padding: 0 20px;
@@ -23,7 +23,7 @@ export const Nav = styled.nav`
   & a {
     padding: 2px 0;
     margin-right: ${indents.m};
-    border-radius: ${radiuses.s};
+    border-radius: ${indents.xs};
     text-decoration: none;
     color: ${colors.black};
     text-decoration: none;

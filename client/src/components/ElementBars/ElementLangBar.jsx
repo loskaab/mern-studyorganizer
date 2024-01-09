@@ -51,7 +51,7 @@ const ElementLangBar = () => {
         onChange={setClusterLang}
         $ol={ol}
         $b={b}
-        $bh={bh} // $br={themes.radiuses.xl}
+        $bh={bh}
       />
       <Select
         options={rateValues}

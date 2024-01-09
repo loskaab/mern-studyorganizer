@@ -5,7 +5,7 @@ import { visuallyHidden } from 'styles/utils/hidden.styled';
 
 // import Select from 'components/shared/Select/Select';
 
-const { colors, radiuses, shadows } = themes;
+const { colors, indents, shadows } = themes;
 
 export const Form = styled.form`
   width: 460px;
@@ -13,7 +13,7 @@ export const Form = styled.form`
   display: grid;
   grid-row-gap: 20px;
 
-  border-radius: ${radiuses.m};
+  border-radius: ${indents.s};
   background-color: ${colors.white};
   box-shadow: ${shadows.auth};
 `;
@@ -43,7 +43,7 @@ const baseStyles = css`
   font-family: 'Roboto', sans-serif;
 
   border: 1px solid ${colors.border};
-  border-radius: ${radiuses.s};
+  border-radius: ${indents.xs};
   outline: 0.5px solid transparent;
   transition: border-color 250ms linear, outline-color 250ms linear;
 

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import { themes } from 'styles/themes';
 
-const { colors, shadows, indents, radiuses } = themes;
+const { colors, shadows, indents } = themes;
 
 export const Backdrop = styled.div`
   width: 100vw;
@@ -21,7 +21,7 @@ export const Backdrop = styled.div`
 
     ${({ $x, $y }) => !$x && !$y && 'transform: translate(-50%, -50%);'}
 
-    border-radius: ${radiuses.xl};
+    border-radius: ${indents.m};
     background-color: transparent; // ${colors.white};
     box-shadow: ${shadows.back};
   }

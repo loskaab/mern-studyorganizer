@@ -26,28 +26,22 @@ export const themes = Object.freeze({
     backdrop: 'rgba(23, 24, 32, 0.5)',
   },
   indents: {
-    xs: '5px',
-    s: '10px',
-    m: '20px',
+    xxs: '3px',
+    xs: '5px', //
+    s: '10px', //
+    m: '20px', //
     l: '35px',
-    xl: '50px',
-  },
-  radiuses: {
-    xs: '3px',
-    s: '5px',
-    m: '8px',
-    l: '12px',
-    xl: '20px',
+    xl: '50px', //
+    xxl: '100px',
   },
   fontSizes: {
-    micro: '10px',
+    xxs: '10px',
     xs: '12px',
     s: '14px',
     m: '16px',
     l: '18px',
     xl: '20px',
     xxl: '24px',
-    xxxl: '32px',
   },
   fontWeight: {
     r: 400,

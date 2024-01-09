@@ -4,7 +4,7 @@ import { BsCheckCircle, BsExclamationCircle } from 'react-icons/bs';
 
 import { themes } from 'styles/themes';
 
-const { colors, radiuses, shadows } = themes;
+const { colors, indents, shadows } = themes;
 
 export const Form = styled(FormikForm)`
   min-width: 400px;
@@ -12,7 +12,7 @@ export const Form = styled(FormikForm)`
   display: flex;
   flex-direction: column;
 
-  border-radius: ${radiuses.m};
+  border-radius: ${indents.s};
   background-color: ${colors.white};
 
   box-shadow: ${shadows.auth};
@@ -55,7 +55,7 @@ export const Field = styled(FormikField)`
   font-family: 'Roboto', sans-serif;
 
   border: 1px solid ${colors.border};
-  border-radius: ${radiuses.s};
+  border-radius: ${indents.xs};
   outline: 0.5px solid transparent;
   transition: border-color 250ms linear, outline-color 250ms linear;
 
