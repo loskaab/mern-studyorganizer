@@ -15,10 +15,3 @@ router.patch('/:id', isValidId, validate.elements.updateSchema, ctrl.elements.up
 router.delete('/:id', isValidId, ctrl.elements.removeById);
 
 module.exports = router;
-
-// router.patch(
-//   '/:id/favorite',
-//   isValidId,
-//   validate.elements.updateFavoriteSchema,
-//   ctrl.elements.updateFavoriteById,
-// );

@@ -25,8 +25,8 @@ const handleUpdateElement = (state, action) => {
 };
 
 const handleDeleteElement = (state, action) => {
-  const { element } = action.payload.result;
-  return state.filter(el => el._id !== element._id);
+  const { id } = action.payload.result;
+  return state.filter(el => !id.includes(el._id));
 };
 
 // fulfilled items slice

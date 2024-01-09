@@ -58,8 +58,9 @@ const ClusterEditBar = () => {
       return;
     }
     // delete trash clusters
-    await clusterTrash.forEach(el => dispatch(deleteClusterThunk(el._id)));
-    dispatch(emptyClusterTrash());
+    dispatch(deleteClusterThunk(clusterTrash.map(el => el._id).join('&')))
+      .unwrap()
+      .then(() => dispatch(emptyClusterTrash()));
     // delete empty clusterGroups
     const toDeleteClusterGroupeId = [];
     await dispatch(fetchClustersThunk())

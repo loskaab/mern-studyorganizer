@@ -33,8 +33,8 @@ const handleUpdateCluster = (state, action) => {
 };
 
 const handleDeleteCluster = (state, action) => {
-  const { cluster } = action.payload.result;
-  return state.filter(el => el._id !== cluster._id);
+  const { id } = action.payload.result;
+  return state.filter(el => !id.includes(el._id));
 };
 
 // Groups

@@ -5,13 +5,19 @@ const { ctrlWrapper } = require('../../decorators');
 const { restrictedAccess } = require('../../utils');
 
 const removeById = ctrlWrapper(async (req, res) => {
-  const { id } = req.params;
-  if (restrictedAccess.clusterId.includes(id)) throw HttpError(403);
+  let { id } = req.params;
+  id = id.includes('&') ? id.split('&') : [id];
 
-  const delCluster = await Cluster.findByIdAndDelete(id);
-  if (!delCluster) throw HttpError(403);
+  for (let i = 0; i < id.length; i += 1) {
+    if (restrictedAccess.clusterId.includes(id[i])) {
+      throw HttpError(403);
+    }
+  }
 
-  res.status(200).json({ message: 'Deleted', result: { cluster: delCluster } });
+  const query = { _id: { $in: id } };
+  const { deletedCount } = await Cluster.deleteMany(query);
+
+  res.status(200).json({ message: `Deleted ${deletedCount} cluster(s)`, result: { id } });
 });
 
 module.exports = removeById;

@@ -40,13 +40,14 @@ const ElementEditBar = () => {
     }
   };
 
-  const emptyTrash = async () => {
+  const emptyTrash = () => {
     if (!confirm('Are you sure you want to delete the selected Clusters?')) {
       return;
     }
     // delete trash elements
-    await elementTrash.forEach(el => dispatch(deleteElementThunk(el._id)));
-    dispatch(emptyElementTrash());
+    dispatch(deleteElementThunk(elementTrash.map(el => el._id).join('&')))
+      .unwrap()
+      .then(() => dispatch(emptyElementTrash()));
   };
 
   return (

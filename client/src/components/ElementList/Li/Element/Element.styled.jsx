@@ -67,6 +67,7 @@ export const SpeakBtn = styled.button`
   border-radius: ${radiuses.s};
   color: ${colors.black};
   transition: background-color 250ms;
+  overflow-x: auto;
 
   &:hover,
   &:focus {
