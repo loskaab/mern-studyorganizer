@@ -19,14 +19,14 @@ const ElementLangBar = () => {
 
   const { _id, lang, rate } = activeCluster;
 
-  const setClusterRate = ({ value }) => {
-    dispatch(updateClusterThunk({ _id, rate: value }))
+  const setClusterLang = ({ value }) => {
+    dispatch(updateClusterThunk({ _id, lang: value }))
       .unwrap()
       .then(pld => dispatch(setActiveCluster(pld.result.cluster)));
   };
 
-  const setClusterLang = ({ value }) => {
-    dispatch(updateClusterThunk({ _id, lang: value }))
+  const setClusterRate = ({ value }) => {
+    dispatch(updateClusterThunk({ _id, rate: value }))
       .unwrap()
       .then(pld => dispatch(setActiveCluster(pld.result.cluster)));
   };
@@ -37,16 +37,21 @@ const ElementLangBar = () => {
     dispatch(updateUserThunk(formData));
   };
 
+  const setUserRate = ({ value }) => {
+    const formData = new FormData();
+    formData.append('rate', value);
+    dispatch(updateUserThunk(formData));
+  };
+
   return (
-    <GridWrap $m="0" $cg="8px" $ai="center" $gtc="1fr 1fr 1fr">
+    <GridWrap $m="0" $cg="8px" $ai="center" $gtc="1fr 1fr 1fr 1fr">
       <Select
         options={languageCodes}
         defaultValue={languageCodes.find(el => el.value === lang)}
         onChange={setClusterLang}
         $ol={ol}
         $b={b}
-        $bh={bh}
-        // $br={themes.radiuses.xl}
+        $bh={bh} // $br={themes.radiuses.xl}
       />
       <Select
         options={rateValues}
@@ -56,10 +61,19 @@ const ElementLangBar = () => {
         $b={b}
         $bh={bh}
       />
+
       <Select
         options={languageCodes}
         defaultValue={languageCodes.find(el => el.value === user.lang)}
         onChange={setUserLang}
+        $ol={ol}
+        $b={b}
+        $bh={bh}
+      />
+      <Select
+        options={rateValues}
+        defaultValue={rateValues.find(el => el.value == user.rate)}
+        onChange={setUserRate}
         $ol={ol}
         $b={b}
         $bh={bh}

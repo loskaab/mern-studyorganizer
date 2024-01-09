@@ -22,6 +22,7 @@ const updateSchema = validateBody(
     birthday: Joi.string().pattern(regExp.DATE.pattern).allow(''),
     about: Joi.string().allow(''),
     lang: Joi.string().valid(...Object.keys(langCodes)),
+    rate: Joi.number(),
   }),
 );
 
