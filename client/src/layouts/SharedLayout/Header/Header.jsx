@@ -20,6 +20,8 @@ const Header = ({ $height }) => {
   const { isLoggedIn } = useAuth();
   const { activeCluster: ac } = useClusters();
 
+  const isTitle = pathname !== '/' && ac?.group && ac?.title;
+
   return (
     <StyledHeader $height={$height}>
       <FlexWrap $w={barW} $p={`0 ${s} 0 0`} $ai="center">
@@ -29,7 +31,7 @@ const Header = ({ $height }) => {
           {isLoggedIn && <NavLink to="/cluster">Cluster</NavLink>}
           {isLoggedIn && <NavLink to={`/element/${ac?._id}`}>Element</NavLink>}
         </Nav>
-        {pathname !== '/' && <Title>{`${ac?.group} ${ac?.title}`}</Title>}
+        {isTitle && <Title>{`${ac.group} ${ac.title}`}</Title>}
       </FlexWrap>
 
       <FlexWrap $w={`calc(100% - ${barW})`} $p={`0 0 0 ${s}`} $ai="center">

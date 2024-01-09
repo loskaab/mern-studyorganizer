@@ -15,18 +15,16 @@ const { backgroundHoverd: ol, white: b, borderLight: bh } = themes.colors;
 const ElementLangBar = () => {
   const dispatch = useDispatch();
   const { user } = useAuth();
-  const { activeCluster } = useClusters();
-
-  const { _id, lang, rate } = activeCluster;
+  const { activeCluster: ac } = useClusters();
 
   const setClusterLang = ({ value }) => {
-    dispatch(updateClusterThunk({ _id, lang: value }))
+    dispatch(updateClusterThunk({ _id: ac._id, lang: value }))
       .unwrap()
       .then(pld => dispatch(setActiveCluster(pld.result.cluster)));
   };
 
   const setClusterRate = ({ value }) => {
-    dispatch(updateClusterThunk({ _id, rate: value }))
+    dispatch(updateClusterThunk({ _id: ac._id, rate: value }))
       .unwrap()
       .then(pld => dispatch(setActiveCluster(pld.result.cluster)));
   };
@@ -47,16 +45,18 @@ const ElementLangBar = () => {
     <GridWrap $m="0" $cg="8px" $ai="center" $gtc="1fr 1fr 1fr 1fr">
       <Select
         options={languageCodes}
-        defaultValue={languageCodes.find(el => el.value === lang)}
+        defaultValue={languageCodes.find(el => el.value === ac?.lang)}
         onChange={setClusterLang}
+        placeholder="Language..."
         $ol={ol}
         $b={b}
         $bh={bh}
       />
       <Select
         options={rateValues}
-        defaultValue={rateValues.find(el => el.value == rate)}
+        defaultValue={rateValues.find(el => el.value == ac?.rate)}
         onChange={setClusterRate}
+        placeholder="Rate..."
         $ol={ol}
         $b={b}
         $bh={bh}
