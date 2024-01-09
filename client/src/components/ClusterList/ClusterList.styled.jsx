@@ -7,7 +7,7 @@ const { indents } = themes;
 export const List = styled.ol`
   width: 100%;
 
-  padding-top: 2px;
+  /* padding-top: 2px; */
   padding-bottom: ${indents.xl};
   counter-reset: section 0;
 `;

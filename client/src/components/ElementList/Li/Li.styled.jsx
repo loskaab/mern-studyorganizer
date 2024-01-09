@@ -8,7 +8,8 @@ const { colors, shadows, indents, radiuses } = themes;
 // li
 
 const baseLiStyle = css`
-  margin-top: ${indents.s};
+  /* margin-bottom: ${indents.s}; */
+  margin-bottom: 7px;
   padding-block: ${indents.xs};
 
   display: grid;
@@ -71,7 +72,7 @@ export const LabelChecked = styled.label`
   & svg {
     transition: border-color 250ms, color 250ms;
     padding: 1px;
-    padding-top: 2px;
+    /* padding-top: 2px; */
     border: 2px solid ${colors.border};
     border-radius: 50%;
     color: ${({ $hovered }) => ($hovered ? colors.border : 'transparent')};

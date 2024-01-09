@@ -6,7 +6,7 @@ const { s, m } = themes.indents;
 
 const ElementPage = () => {
   return (
-    <FlexWrap $p={`2px ${m} ${s} ${s}`}>
+    <FlexWrap $p={`0 ${m} ${s} ${s}`}>
       <ElementList />
     </FlexWrap>
   );

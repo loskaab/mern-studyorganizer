@@ -14,7 +14,7 @@ import { themes } from 'styles/themes';
 const { backgroundHoverd: ol, white: b, borderLight: bh } = themes.colors;
 const { s } = themes.indents;
 
-const ClustersSearchBar = () => {
+const ElementSearchBar = () => {
   const dispatch = useDispatch();
   const { clusterGroups, clusterSelect } = useClusters();
   const [selectValue, setSelectValue] = useState(clusterSelect);
@@ -64,4 +64,4 @@ const ClustersSearchBar = () => {
   );
 };
 
-export default ClustersSearchBar;
+export default ElementSearchBar;
