@@ -5,8 +5,9 @@ import {
   fetchClustersThunk,
   fetchGroupsThunk,
 } from 'store/cluster/clusterThunks';
-import { useClusters } from 'utils/hooks';
+import { useClusters, useElements } from 'utils/hooks';
 import { fetchElementsThunk } from 'store/element/elementThunks';
+import { baseOptions } from 'components/shared/Select/options/baseOptions';
 
 import LiGroup from './Li/LiGroup';
 import LiCluster from './Li/LiCluster';
@@ -16,6 +17,7 @@ const ClusterList = () => {
   const dispatch = useDispatch();
   const { allClusters, clusterTrash } = useClusters();
   const { clusterFilter, clusterSelect } = useClusters();
+  const { allElements } = useElements();
 
   const [sortByDate, setSortByDate] = useState(true);
 
@@ -27,11 +29,28 @@ const ClusterList = () => {
 
   // cluster trash/filter/favorite/checked
   const getClusters = () => {
+    // trash
     const trashId = clusterTrash.map(el => el._id);
+    const trashClusters = allClusters.filter(el => trashId.includes(el._id));
+    if (clusterSelect.includes('trash')) return trashClusters;
+    //recent
+    const sortedElements = [...allElements].sort((a, b) =>
+      a.createdAt.localeCompare(b.createdAt),
+    );
+    let recent = [];
+    for (let i = 0; i < sortedElements.length; i += 1) {
+      const cluster = sortedElements[i].cluster;
+      if (!recent.includes(cluster)) {
+        recent.push(cluster);
+      }
+    }
+    const recentClusters = allClusters
+      .filter(el => recent.includes(el.cluster))
+      .slice(0, 29);
 
-    return clusterSelect.includes('trash')
-      ? [...allClusters].filter(el => trashId.includes(el._id))
-      : [...allClusters];
+    if (clusterSelect.includes('recent')) return recentClusters;
+    // all
+    return allClusters;
   };
 
   const filtredClusters = getClusters()
@@ -64,9 +83,8 @@ const ClusterList = () => {
   ).sort((a, b) => a.localeCompare(b));
 
   const selectedGroups =
-    clusterSelect.filter(
-      el => !['trash', 'favorite', 'checked', 'unchecked'].includes(el),
-    ).length !== 0
+    clusterSelect.filter(el => !baseOptions.map(el => el.value).includes(el))
+      .length !== 0
       ? clusterSelect.filter(el => filtredGroups.includes(el))
       : filtredGroups;
 

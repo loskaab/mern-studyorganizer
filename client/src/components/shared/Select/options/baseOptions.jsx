@@ -1,6 +1,7 @@
 import { FaStar, FaCheckCircle } from 'react-icons/fa';
 import { FiTrash2 } from 'react-icons/fi';
 import { ImRadioUnchecked } from 'react-icons/im';
+import { CgSandClock } from 'react-icons/cg';
 
 import { Div } from './options.styled';
 
@@ -34,6 +35,14 @@ export const baseOptions = [
     label: (
       <Div>
         <FiTrash2 size="16px" /> <span>Trash</span>
+      </Div>
+    ),
+  },
+  {
+    value: 'recent',
+    label: (
+      <Div>
+        <CgSandClock size="16px" /> <span>Recent</span>
       </Div>
     ),
   },

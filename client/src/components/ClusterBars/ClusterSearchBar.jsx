@@ -16,6 +16,7 @@ const { backgroundHoverd: ol, white: b, borderLight: bh } = themes.colors;
 const ClustersSearchBar = () => {
   const dispatch = useDispatch();
   const { clusterGroups, clusterSelect } = useClusters();
+
   const [selectValue, setSelectValue] = useState(clusterSelect);
 
   useEffect(() => {
@@ -34,6 +35,9 @@ const ClustersSearchBar = () => {
     }
     if (selectValue.includes('unchecked')) {
       return options.filter(el => el.value !== 'checked');
+    }
+    if (selectValue.includes('recent')) {
+      return options.filter(el => el.value !== 'trash');
     } else {
       return options;
     }

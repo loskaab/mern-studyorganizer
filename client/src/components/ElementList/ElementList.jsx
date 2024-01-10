@@ -28,8 +28,8 @@ const ElementList = () => {
     const trashId = elementTrash.map(el => el._id);
 
     return elementSelect.includes('trash')
-      ? [...activeClusterElements].filter(el => trashId.includes(el._id))
-      : [...activeClusterElements];
+      ? activeClusterElements.filter(el => trashId.includes(el._id))
+      : activeClusterElements;
   };
 
   const filtredElements = getElements()

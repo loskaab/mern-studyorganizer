@@ -48,9 +48,7 @@ const LiCluster = ({ el, sortByDate, setSortByDate }) => {
     day: '2-digit',
   });
 
-  const elementCount = [...allElements].filter(
-    el => el.cluster === cluster,
-  ).length;
+  const elementCount = allElements.filter(el => el.cluster === cluster).length;
 
   const handleFavorite = () => {
     dispatch(updateClusterThunk({ _id, favorite: !favorite }));
