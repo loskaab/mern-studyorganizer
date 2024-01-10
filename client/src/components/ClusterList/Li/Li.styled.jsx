@@ -11,7 +11,7 @@ const baseLiStyle = css`
   padding-inline: 4px;
   display: grid;
   grid-column-gap: 2px;
-  grid-template-columns: 1fr 15fr 30fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 20fr 30fr 2fr 1fr 1fr 1fr 4fr;
   grid-template-areas: '. title title . . . .';
   align-items: center;
   justify-items: left;
@@ -142,6 +142,7 @@ export const LabelChecked = styled.label`
 const baseBtnStyle = css`
   display: flex;
   justify-content: center;
+  justify-self: center;
   align-items: center;
   background-color: transparent;
   border-color: transparent;
@@ -156,6 +157,13 @@ const baseBtnStyle = css`
   &:hover svg {
     color: ${colors.placeholder};
   }
+`;
+
+export const CountSpan = styled.span`
+  ${baseBtnStyle}
+
+  justify-self: right;
+  font-size: 14px;
 `;
 
 export const DateBtn = styled.button`

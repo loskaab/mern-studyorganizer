@@ -8,7 +8,7 @@ import { TiStar } from 'react-icons/ti';
 import { FaCheck } from 'react-icons/fa';
 import { FiEdit3, FiTrash2 } from 'react-icons/fi';
 
-import { useClusters } from 'utils/hooks';
+import { useClusters, useElements } from 'utils/hooks';
 import { setActiveCluster, setClusterTrash } from 'store/cluster/clusterSlice';
 import { updateClusterThunk } from 'store/cluster/clusterThunks';
 import Modal from 'components/shared/Modal/Modal';
@@ -23,15 +23,24 @@ import {
   DateBtn,
   EditBtn,
   TrashBtn,
+  CountSpan,
 } from './Li.styled';
 
 const LiCluster = ({ el, sortByDate, setSortByDate }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { activeCluster, clusterTrash } = useClusters();
+  const { allElements } = useElements();
   const [isModal, setIsModal] = useState(false);
 
   const { _id, cluster, title, favorite, checked, createdAt } = el;
+
+  const trim = cluster => {
+    const text = cluster.replace('https://', '').replace('http://', '');
+    return text.length <= 30 ? text : text.substring(0, 29).concat('...');
+  };
+
+  const isInTrash = clusterTrash.find(el => el._id === _id);
 
   const date = new Date(createdAt).toLocaleDateString('ro-RO', {
     year: '2-digit',
@@ -39,12 +48,9 @@ const LiCluster = ({ el, sortByDate, setSortByDate }) => {
     day: '2-digit',
   });
 
-  const isInTrash = clusterTrash.find(el => el._id === _id);
-
-  const trim = cluster => {
-    const text = cluster.replace('https://', '').replace('http://', '');
-    return text.length <= 30 ? text : text.substring(0, 29).concat('...');
-  };
+  const elementCount = [...allElements].filter(
+    el => el.cluster === cluster,
+  ).length;
 
   const handleFavorite = () => {
     dispatch(updateClusterThunk({ _id, favorite: !favorite }));
@@ -87,6 +93,8 @@ const LiCluster = ({ el, sortByDate, setSortByDate }) => {
       <ClusterLink href={cluster} target="_blank" rel="noopener noreferrer">
         {trim(cluster)}
       </ClusterLink>
+
+      <CountSpan>{elementCount > 0 && elementCount}</CountSpan>
 
       <EditBtn onClick={() => setIsModal('edit')}>
         <FiEdit3 size="15px" />

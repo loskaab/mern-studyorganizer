@@ -8,6 +8,7 @@ import {
   setClusterFilter,
 } from 'store/cluster/clusterSlice';
 import {
+  cleanElement,
   emptyElementTrash,
   setElementFilter,
 } from 'store/element/elementSlice';
@@ -21,13 +22,14 @@ const ProfileForm = () => {
 
   const handleLogOut = () => {
     dispatch(logoutThunk());
+    dispatch(setActiveCluster(null));
     dispatch(cleanCluster());
     dispatch(cleanGroup());
+    dispatch(cleanElement());
     dispatch(setClusterFilter(''));
     dispatch(setElementFilter(''));
     dispatch(emptyClusterTrash([]));
     dispatch(emptyElementTrash([]));
-    dispatch(setActiveCluster(null));
   };
 
   return (

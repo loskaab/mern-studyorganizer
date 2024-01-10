@@ -6,6 +6,7 @@ import {
   fetchGroupsThunk,
 } from 'store/cluster/clusterThunks';
 import { useClusters } from 'utils/hooks';
+import { fetchElementsThunk } from 'store/element/elementThunks';
 
 import LiGroup from './Li/LiGroup';
 import LiCluster from './Li/LiCluster';
@@ -15,11 +16,13 @@ const ClusterList = () => {
   const dispatch = useDispatch();
   const { allClusters, clusterTrash } = useClusters();
   const { clusterFilter, clusterSelect } = useClusters();
+
   const [sortByDate, setSortByDate] = useState(true);
 
   useEffect(() => {
-    dispatch(fetchGroupsThunk());
     dispatch(fetchClustersThunk());
+    dispatch(fetchGroupsThunk());
+    dispatch(fetchElementsThunk());
   }, [dispatch]);
 
   // cluster trash/filter/favorite/checked
