@@ -23,7 +23,7 @@ const ElementSearchBar = () => {
   }, [dispatch, selectValue]);
 
   const getOptions = selectValue => {
-    const options = [...baseOptions];
+    const options = baseOptions.filter(el => el.value !== 'recent');
     if (selectValue.includes('checked')) {
       return options.filter(el => el.value !== 'unchecked');
     }

@@ -7,6 +7,14 @@ import { Div } from './options.styled';
 
 export const baseOptions = [
   {
+    value: 'recent',
+    label: (
+      <Div>
+        <CgSandClock size="16px" /> <span>Recent</span>
+      </Div>
+    ),
+  },
+  {
     value: 'favorite',
     label: (
       <Div>
@@ -35,14 +43,6 @@ export const baseOptions = [
     label: (
       <Div>
         <FiTrash2 size="16px" /> <span>Trash</span>
-      </Div>
-    ),
-  },
-  {
-    value: 'recent',
-    label: (
-      <Div>
-        <CgSandClock size="16px" /> <span>Recent</span>
       </Div>
     ),
   },

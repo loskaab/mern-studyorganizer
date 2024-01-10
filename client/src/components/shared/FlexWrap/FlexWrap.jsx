@@ -2,8 +2,20 @@ import PropTypes from 'prop-types';
 
 import { FlexDiv } from './FlexWrap.styled';
 
-const FlexWrap = ({ $w, $h, $m, $p, $d, $fd, $ai, $jc, children }) => (
+const FlexWrap = ({
+  className,
+  $w,
+  $h,
+  $m,
+  $p,
+  $d,
+  $fd,
+  $ai,
+  $jc,
+  children,
+}) => (
   <FlexDiv
+    className={className}
     $w={$w}
     $h={$h}
     $m={$m}
@@ -18,6 +30,7 @@ const FlexWrap = ({ $w, $h, $m, $p, $d, $fd, $ai, $jc, children }) => (
 );
 
 FlexWrap.propTypes = {
+  className: PropTypes.string,
   $w: PropTypes.string,
   $h: PropTypes.string,
   $m: PropTypes.string,
