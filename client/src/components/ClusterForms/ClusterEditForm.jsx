@@ -39,21 +39,6 @@ const EditClusterForm = ({ el, setIsModal }) => {
   const onSubmit = async data => {
     dispatch(updateClusterThunk({ _id, ...data, group: stateGroup.value }));
     setIsModal(false);
-    // delete empty clusterGroups
-    const toDeleteClusterGroupeId = [];
-    await dispatch(fetchClustersThunk())
-      .unwrap()
-      .then(pld => {
-        const { clusters } = pld.result;
-        const newClusterGroups = Array.from(
-          new Set(clusters.map(el => el.group)),
-        );
-        clusterGroups.forEach(el => {
-          if (newClusterGroups.includes(el.clusterGroup)) return;
-          toDeleteClusterGroupeId.push(el._id);
-        });
-      });
-    toDeleteClusterGroupeId.forEach(el => dispatch(deleteGroupThunk(el)));
   };
 
   const options = clusterGroups
