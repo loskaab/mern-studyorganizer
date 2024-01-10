@@ -76,7 +76,6 @@ const elementTrashSlice = createSlice({
         state.push(payload);
       }
     },
-    emptyElementTrash: () => [],
   },
 });
 
@@ -128,4 +127,4 @@ export const { cleanElement } = elementItemsSlice.actions;
 export const { setActiveElement } = elementActiveSlice.actions;
 export const { setElementFilter } = elementFilterSlice.actions;
 export const { setElementSelect } = elementSelectSlice.actions;
-export const { setElementTrash, emptyElementTrash } = elementTrashSlice.actions;
+export const { setElementTrash } = elementTrashSlice.actions;

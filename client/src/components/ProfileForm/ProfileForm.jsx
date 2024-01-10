@@ -3,14 +3,16 @@ import { useDispatch } from 'react-redux';
 import {
   cleanCluster,
   cleanGroup,
-  emptyClusterTrash,
   setActiveCluster,
   setClusterFilter,
+  setClusterSelect,
+  setClusterTrash,
 } from 'store/cluster/clusterSlice';
 import {
   cleanElement,
-  emptyElementTrash,
+  setElementTrash,
   setElementFilter,
+  setElementSelect,
 } from 'store/element/elementSlice';
 import { logoutThunk } from 'store/auth/authThunks';
 import Button from 'components/shared/Button/Button';
@@ -28,8 +30,10 @@ const ProfileForm = () => {
     dispatch(cleanElement());
     dispatch(setClusterFilter(''));
     dispatch(setElementFilter(''));
-    dispatch(emptyClusterTrash([]));
-    dispatch(emptyElementTrash([]));
+    dispatch(setElementSelect([]));
+    dispatch(setClusterSelect([]));
+    dispatch(setClusterTrash([]));
+    dispatch(setElementTrash([]));
   };
 
   return (

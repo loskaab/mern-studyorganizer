@@ -130,7 +130,6 @@ const clusterTrashSlice = createSlice({
         state.push(payload);
       }
     },
-    emptyClusterTrash: () => [],
   },
 });
 
@@ -175,5 +174,5 @@ export const { cleanGroup } = clusterGroupsSlice.actions;
 export const { setActiveCluster } = clusterActiveSlice.actions;
 export const { setClusterFilter } = clusterFilterSlice.actions;
 export const { setClusterSelect } = clusterSelectSlice.actions;
-export const { setClusterTrash, emptyClusterTrash } = clusterTrashSlice.actions;
+export const { setClusterTrash } = clusterTrashSlice.actions;
 // export const { setClusterChecked } = clusterCheckedSlice.actions;

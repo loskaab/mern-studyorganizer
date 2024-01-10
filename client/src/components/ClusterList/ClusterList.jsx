@@ -7,7 +7,6 @@ import {
 } from 'store/cluster/clusterThunks';
 import { useClusters, useElements } from 'utils/hooks';
 import { fetchElementsThunk } from 'store/element/elementThunks';
-import { baseOptions } from 'components/shared/Select/options/baseOptions';
 
 import LiGroup from './Li/LiGroup';
 import LiCluster from './Li/LiCluster';
@@ -16,7 +15,7 @@ import { List } from './ClusterList.styled';
 const ClusterList = () => {
   const dispatch = useDispatch();
   const { allClusters, clusterTrash } = useClusters();
-  const { clusterFilter, clusterSelect } = useClusters();
+  const { clusterFilter, clusterSelect = [] } = useClusters();
   const { allElements } = useElements();
 
   const [sortByDate, setSortByDate] = useState(true);
@@ -27,7 +26,7 @@ const ClusterList = () => {
     dispatch(fetchElementsThunk());
   }, [dispatch]);
 
-  // cluster trash/filter/favorite/checked
+  // clusters filter+selector (trash/filter/favorite/checked)
   const getClusters = () => {
     // trash
     const trashId = clusterTrash.map(el => el._id);
@@ -77,16 +76,13 @@ const ClusterList = () => {
         : (a, b) => a.title.localeCompare(b.title),
     );
 
-  // group filter
-  const filtredGroups = Array.from(
+  // groups filter+selector
+  const clusterGroups = Array.from(
     new Set(filtredClusters.map(el => el.group)),
   ).sort((a, b) => a.localeCompare(b));
 
-  const selectedGroups =
-    clusterSelect.filter(el => !baseOptions.map(el => el.value).includes(el))
-      .length !== 0
-      ? clusterSelect.filter(el => filtredGroups.includes(el))
-      : filtredGroups;
+  let selectedGroups = clusterSelect.filter(el => clusterGroups.includes(el));
+  selectedGroups = selectedGroups.length !== 0 ? selectedGroups : clusterGroups;
 
   return (
     <List>

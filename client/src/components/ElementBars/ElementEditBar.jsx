@@ -5,7 +5,7 @@ import {
   addElementThunk,
   deleteElementThunk,
 } from 'store/element/elementThunks';
-import { emptyElementTrash } from 'store/element/elementSlice';
+import { setElementTrash } from 'store/element/elementSlice';
 import { useAuth, useClusters, useElements } from 'utils/hooks';
 import { readClipboard, writeClipboard, translateText } from 'utils/helpers';
 
@@ -47,7 +47,7 @@ const ElementEditBar = () => {
     // delete trash elements
     dispatch(deleteElementThunk(elementTrash.map(el => el._id).join('&')))
       .unwrap()
-      .then(() => dispatch(emptyElementTrash()));
+      .then(() => dispatch(setElementTrash([])));
   };
 
   return (

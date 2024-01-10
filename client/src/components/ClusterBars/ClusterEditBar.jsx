@@ -8,7 +8,7 @@ import {
   deleteGroupThunk,
   fetchClustersThunk,
 } from 'store/cluster/clusterThunks';
-import { emptyClusterTrash } from 'store/cluster/clusterSlice';
+import { setClusterTrash } from 'store/cluster/clusterSlice';
 
 import { readClipboard } from 'utils/helpers';
 import { clusterSchema } from 'utils/validation';
@@ -59,7 +59,7 @@ const ClusterEditBar = () => {
     // delete trash clusters
     dispatch(deleteClusterThunk(clusterTrash.map(el => el._id).join('&')))
       .unwrap()
-      .then(() => dispatch(emptyClusterTrash()));
+      .then(() => dispatch(setClusterTrash([])));
     // delete empty clusterGroups
     const toDeleteClusterGroupeId = [];
     await dispatch(fetchClustersThunk())
