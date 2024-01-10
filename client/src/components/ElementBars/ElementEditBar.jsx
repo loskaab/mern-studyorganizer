@@ -24,13 +24,13 @@ const ElementEditBar = () => {
   const isTrashBtn = elementTrash.length > 0;
 
   const addElement = async e => {
-    const text = window.getSelection().toString(); // document.execCommand('copy');
-    text && (await writeClipboard(text)); // document.execCommand('copy');
-
+    const text = window.getSelection().toString();
+    text && (await writeClipboard(text));
+    // document.execCommand('copy');
     const element = (await readClipboard()).trim();
     const translation = { from: activeCluster.lang, to: user.lang };
     const caption = await translateText(element, translation);
-    const cluster = activeCluster.title;
+    const { cluster } = activeCluster;
     try {
       dispatch(addElementThunk({ element, caption, cluster }));
       e.target.blur();

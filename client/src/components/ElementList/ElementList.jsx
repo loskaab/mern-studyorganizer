@@ -20,7 +20,7 @@ const ElementList = () => {
   }, [dispatch]);
 
   const activeClusterElements = allElements
-    .filter(el => el.cluster === activeCluster.title)
+    .filter(el => el.cluster === activeCluster.cluster)
     .sort((a, b) => a.createdAt.localeCompare(b.createdAt));
 
   // element trash/filter/favorite/checked
