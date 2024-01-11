@@ -11,7 +11,7 @@ const baseLiStyle = css`
   padding-inline: 4px;
   display: grid;
   grid-column-gap: 2px;
-  grid-template-columns: 1fr 20fr 30fr 2fr 1fr 1fr 1fr 4fr;
+  grid-template-columns: 1fr 15fr 30fr 2fr 1fr 1fr 1fr 4fr;
   grid-template-areas: '. title title . . . .';
   align-items: center;
   justify-items: left;

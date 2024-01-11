@@ -5,7 +5,7 @@ import {
   addElementThunk,
   deleteElementThunk,
 } from 'store/element/elementThunks';
-import { setElementTrash } from 'store/element/elementSlice';
+import { emptyElementTrash } from 'store/element/elementSlice';
 import { useAuth, useClusters, useElements } from 'utils/hooks';
 import { readClipboard, writeClipboard, translateText } from 'utils/helpers';
 
@@ -21,7 +21,6 @@ const ElementEditBar = () => {
   const { user } = useAuth();
   const { activeCluster } = useClusters();
   const { elementTrash } = useElements();
-  const isTrashBtn = elementTrash.length > 0;
 
   const addElement = async e => {
     const text = window.getSelection().toString();
@@ -47,7 +46,7 @@ const ElementEditBar = () => {
     // delete trash elements
     dispatch(deleteElementThunk(elementTrash.map(el => el._id).join('&')))
       .unwrap()
-      .then(() => dispatch(setElementTrash([])));
+      .then(() => dispatch(emptyElementTrash()));
   };
 
   return (
@@ -58,7 +57,7 @@ const ElementEditBar = () => {
       $high="bottom"
       $gtc="1fr 1fr"
     >
-      {isTrashBtn ? (
+      {elementTrash.length > 0 ? (
         <Button onClick={emptyTrash} $s="m" $bs={button}>
           Delete
         </Button>

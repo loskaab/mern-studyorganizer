@@ -6,13 +6,13 @@ import {
   setActiveCluster,
   setClusterFilter,
   setClusterSelect,
-  setClusterTrash,
+  emptyClusterTrash,
 } from 'store/cluster/clusterSlice';
 import {
   cleanElement,
-  setElementTrash,
   setElementFilter,
   setElementSelect,
+  emptyElementTrash,
 } from 'store/element/elementSlice';
 import { logoutThunk } from 'store/auth/authThunks';
 import Button from 'components/shared/Button/Button';
@@ -32,8 +32,8 @@ const ProfileForm = () => {
     dispatch(setElementFilter(''));
     dispatch(setElementSelect([]));
     dispatch(setClusterSelect([]));
-    dispatch(setClusterTrash([]));
-    dispatch(setElementTrash([]));
+    dispatch(emptyClusterTrash());
+    dispatch(emptyElementTrash());
   };
 
   return (
