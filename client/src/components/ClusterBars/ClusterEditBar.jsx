@@ -3,12 +3,11 @@ import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 
 import { useClusters } from 'utils/hooks';
+import { deleteClusterThunk } from 'store/cluster/clusterThunks';
 import {
-  deleteClusterThunk,
-  deleteGroupThunk,
-  fetchClustersThunk,
-} from 'store/cluster/clusterThunks';
-import { emptyClusterTrash } from 'store/cluster/clusterSlice';
+  emptyClusterTrash,
+  setActiveCluster,
+} from 'store/cluster/clusterSlice';
 
 import { readClipboard } from 'utils/helpers';
 import { clusterSchema } from 'utils/validation';
@@ -24,7 +23,7 @@ const { s, m } = themes.indents;
 const ClusterEditBar = () => {
   const dispatch = useDispatch();
   const [isModal, setIsModal] = useState(false);
-  const { clusterTrash, clusterGroups } = useClusters();
+  const { activeCluster, clusterTrash } = useClusters();
   const [clipboardText, setClipboardText] = useState('');
 
   const isTrashBtn = clusterTrash.length > 0;
@@ -58,23 +57,12 @@ const ClusterEditBar = () => {
     }
     // delete trash clusters
     dispatch(deleteClusterThunk(clusterTrash.map(el => el._id).join('&')))
-      .unwrap()
+      .then(() => {
+        const trashId = clusterTrash.map(el => el._id);
+        const { _id } = activeCluster;
+        trashId.includes(_id) && dispatch(setActiveCluster(null));
+      })
       .then(() => dispatch(emptyClusterTrash()));
-    // delete empty clusterGroups
-    const toDeleteClusterGroupeId = [];
-    await dispatch(fetchClustersThunk())
-      .unwrap()
-      .then(pld => {
-        const { clusters } = pld.result;
-        const newClusterGroups = Array.from(
-          new Set(clusters.map(el => el.group)),
-        );
-        clusterGroups.forEach(el => {
-          if (newClusterGroups.includes(el.clusterGroup)) return;
-          toDeleteClusterGroupeId.push(el._id);
-        });
-      });
-    toDeleteClusterGroupeId.forEach(el => dispatch(deleteGroupThunk(el)));
   };
 
   return (
