@@ -14,7 +14,9 @@ const SideBar = ({ $side, $width, $height, $offY }) => {
   const { user } = useAuth();
   const { activeCluster } = useClusters();
 
-  const isFrame = user?._id === activeCluster?.owner && pathname.length !== 1;
+  const isFrame =
+    user?._id === activeCluster?.owner &&
+    (pathname.includes('cluster') || pathname.includes('element'));
 
   return (
     <SideBarDiv $side={$side} $width={$width} $height={$height} $offY={$offY}>

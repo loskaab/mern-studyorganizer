@@ -14,9 +14,11 @@ import { List } from './ClusterList.styled';
 
 const ClusterList = () => {
   const dispatch = useDispatch();
-  const { allClusters, clusterTrash } = useClusters();
-  const { clusterFilter, clusterSelect = [] } = useClusters();
   const { allElements } = useElements();
+  const { allClusters, clusterTrash, clusterFilter } = useClusters();
+
+  let { clusterSelect } = useClusters();
+  clusterSelect = !clusterSelect ? [] : clusterSelect;
 
   const [sortByDate, setSortByDate] = useState(true);
 

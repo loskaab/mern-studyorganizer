@@ -56,7 +56,7 @@ const LiCluster = ({ el, sortByDate, setSortByDate }) => {
 
   const handleLinkClick = () => {
     dispatch(setActiveCluster(el));
-    if (el?._id === activeCluster._id) {
+    if (el?._id === activeCluster?._id) {
       navigate(`/element/${_id}`, { replace: true });
     }
   };
