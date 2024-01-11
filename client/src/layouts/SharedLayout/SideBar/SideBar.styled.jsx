@@ -7,7 +7,6 @@ const { indents } = themes;
 export const SideBarDiv = styled.div`
   height: ${({ $height }) => $height};
   width: ${({ $width }) => $width};
-  /* padding-top: 2px; */
   padding-bottom: ${indents.s};
   padding-inline: ${indents.s};
   position: fixed;

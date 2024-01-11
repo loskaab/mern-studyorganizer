@@ -72,7 +72,6 @@ export const LabelChecked = styled.label`
   & svg {
     transition: border-color 250ms, color 250ms;
     padding: 1px;
-    /* padding-top: 2px; */
     border: 2px solid ${colors.border};
     border-radius: 50%;
     color: ${({ $hovered }) => ($hovered ? colors.border : 'transparent')};

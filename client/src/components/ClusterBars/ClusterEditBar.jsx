@@ -51,7 +51,7 @@ const ClusterEditBar = () => {
     }
   };
 
-  const emptyTrash = async () => {
+  const emptyTrash = () => {
     if (!confirm('Are you sure you want to delete the selected Clusters?')) {
       return;
     }
