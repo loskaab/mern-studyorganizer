@@ -13,7 +13,7 @@ export const themes = Object.freeze({
     hovered: '#1f68d7',
 
     background: '#f0f4f9',
-    backgroundHoverd: '#f2f6fc',
+    backgroundHoverd: '#d3e3fd',
 
     error: '#E74A3B',
     success: '#3CBC81',

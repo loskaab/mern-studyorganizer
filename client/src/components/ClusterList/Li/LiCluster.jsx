@@ -75,7 +75,7 @@ const LiCluster = ({ el, sortByDate, setSortByDate }) => {
   };
 
   return (
-    <Li>
+    <Li $active={el._id === activeCluster._id}>
       <LabelFavorite $hovered={favorite}>
         <input
           type="checkbox"
@@ -129,5 +129,6 @@ LiCluster.propTypes = {
   el: PropTypes.object,
   sortByDate: PropTypes.bool,
   setSortByDate: PropTypes.func,
+  $active: PropTypes.bool,
   $hovered: PropTypes.bool,
 };

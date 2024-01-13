@@ -43,6 +43,7 @@ export const LiGroup = styled.li`
 export const LiCluster = styled.li`
   ${baseLiStyle}
 
+  background-color: ${({ $active }) => $active && colors.backgroundHoverd};
   transition: box-shadow 250ms, border-color 250ms background-color 250ms;
 
   &:hover {

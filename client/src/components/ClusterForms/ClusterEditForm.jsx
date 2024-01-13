@@ -6,12 +6,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { toast } from 'react-toastify';
 
 import { useClusters } from 'utils/hooks';
-import {
-  addGroupThunk,
-  updateClusterThunk,
-  deleteGroupThunk,
-  fetchClustersThunk,
-} from 'store/cluster/clusterThunks';
+import { addGroupThunk, updateClusterThunk } from 'store/cluster/clusterThunks';
 import { titleSchema } from 'utils/validation';
 import ButtonClr from 'components/shared/Button/ButtonClr';
 import CreatableSelect from 'components/shared/Select/CreatableSelect';
