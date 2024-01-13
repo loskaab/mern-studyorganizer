@@ -29,9 +29,9 @@ const ElementEditBar = () => {
     const element = (await readClipboard()).trim();
     const translation = { from: activeCluster.lang, to: user.lang };
     const caption = await translateText(element, translation);
-    const { cluster } = activeCluster;
+    const { _id } = activeCluster;
     try {
-      dispatch(addElementThunk({ element, caption, cluster }));
+      dispatch(addElementThunk({ element, caption, cluster: _id }));
       e.target.blur();
     } catch (err) {
       e.target.blur();

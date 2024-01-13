@@ -48,7 +48,7 @@ const LiCluster = ({ el, sortByDate, setSortByDate }) => {
     day: '2-digit',
   });
 
-  const elementCount = allElements.filter(el => el.cluster === cluster).length;
+  const elementCount = allElements.filter(el => el.cluster === _id).length;
 
   const handleFavorite = () => {
     dispatch(updateClusterThunk({ _id, favorite: !favorite }));
@@ -75,7 +75,7 @@ const LiCluster = ({ el, sortByDate, setSortByDate }) => {
   };
 
   return (
-    <Li $active={el._id === activeCluster._id}>
+    <Li $active={el._id === activeCluster?._id}>
       <LabelFavorite $hovered={favorite}>
         <input
           type="checkbox"
