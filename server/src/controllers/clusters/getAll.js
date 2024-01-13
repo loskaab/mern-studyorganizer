@@ -10,7 +10,7 @@ const getAll = ctrlWrapper(async (req, res) => {
   const total = await Cluster.countDocuments({ owner, ...query });
   const clusters = await Cluster.find({ owner, ...query }, projection, { skip, limit })
     // .populate('owner', 'name email')
-    .sort({ createdAt: -1 });
+    .sort({ createdAt: 1 });
   if (!clusters) throw HttpError(403);
 
   res.status(200).json({ message: `Found ${total} cluster(s)`, result: { clusters } });

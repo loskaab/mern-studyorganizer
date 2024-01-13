@@ -70,8 +70,8 @@ const LiCluster = ({ el, sortByDate, setSortByDate }) => {
   const handleSort = () => {
     setSortByDate(!sortByDate);
     sortByDate
-      ? toast.success('Ascend by Title')
-      : toast.success('Descend by Date');
+      ? toast.success('Ascending by Title')
+      : toast.success('Ascending by Date');
   };
 
   return (

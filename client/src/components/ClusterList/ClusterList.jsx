@@ -74,7 +74,7 @@ const ClusterList = () => {
     })
     .sort(
       sortByDate
-        ? (a, b) => b.createdAt - a.createdAt
+        ? (a, b) => a.createdAt - b.createdAt
         : (a, b) => a.title.localeCompare(b.title),
     );
 
