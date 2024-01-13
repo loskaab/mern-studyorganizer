@@ -50,7 +50,7 @@ const ElementList = () => {
       }
       return filtredFavorite;
     })
-    .sort((a, b) => a.createdAt - b.createdAt);
+    .sort((a, b) => b.createdAt.localeCompare(a.createdAt));
 
   return (
     <List>

@@ -20,7 +20,7 @@ const ClusterList = () => {
   let { clusterSelect } = useClusters();
   clusterSelect = !clusterSelect ? [] : clusterSelect;
 
-  const [sortByDate, setSortByDate] = useState(true);
+  const [sortByDate, setSortByDate] = useState(false);
 
   useEffect(() => {
     dispatch(fetchClustersThunk());
@@ -74,7 +74,7 @@ const ClusterList = () => {
     })
     .sort(
       sortByDate
-        ? (a, b) => a.createdAt - b.createdAt
+        ? (a, b) => b.createdAt.localeCompare(a.createdAt)
         : (a, b) => a.title.localeCompare(b.title),
     );
 
