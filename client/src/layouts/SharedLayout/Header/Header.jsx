@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 
 import LogoLink from 'layouts/SharedLayout/Header/LogoLink/LogoLink';
 import ClustersSearchBar from 'components/ClusterBars/ClusterSearchBar';
@@ -11,16 +11,25 @@ import { useAuth } from 'utils/hooks/useAuth';
 import { barW } from 'layouts/SharedLayout/SharedLayout';
 import { themes } from 'styles/themes';
 
-import { StyledHeader, Nav, Title } from './Header.styled';
+import { StyledHeader, Nav, TitleBtn } from './Header.styled';
 
 const { s } = themes.indents;
 
 const Header = ({ $height }) => {
   const { pathname } = useLocation();
+  const navigate = useNavigate();
   const { isLoggedIn } = useAuth();
   const { activeCluster: ac } = useClusters();
 
   const isTitle = pathname !== '/' && ac?.group && ac?.title;
+  const handleNavi = () => {
+    if (pathname.includes('/cluster')) {
+      navigate(`/element/${ac?._id}`, { replace: true });
+    }
+    if (pathname.includes('/element')) {
+      navigate('/cluster', { replace: true });
+    }
+  };
 
   return (
     <StyledHeader $height={$height}>
@@ -31,7 +40,10 @@ const Header = ({ $height }) => {
           {isLoggedIn && <NavLink to="/cluster">Cluster</NavLink>}
           {isLoggedIn && <NavLink to={`/element/${ac?._id}`}>Element</NavLink>}
         </Nav>
-        {isTitle && <Title>{`${ac.group} ${ac.title}`}</Title>}
+
+        {isTitle && (
+          <TitleBtn onClick={handleNavi}>{`${ac.group} ${ac.title}`}</TitleBtn>
+        )}
       </FlexWrap>
 
       <FlexWrap $w={`calc(100% - ${barW})`} $p={`0 0 0 ${s}`} $ai="center">

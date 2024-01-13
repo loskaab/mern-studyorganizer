@@ -36,6 +36,20 @@ export const Nav = styled.nav`
   }
 `;
 
-export const Title = styled.h2`
-  font-size: 26px;
+export const TitleBtn = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border-color: transparent;
+  transition: color 250ms;
+  color: ${colors.black};
+
+  font-size: 24px;
+  font-weight: 600;
+
+  &:hover,
+  &:hover svg {
+    color: ${colors.hovered};
+  }
 `;

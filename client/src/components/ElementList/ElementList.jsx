@@ -13,7 +13,9 @@ const ElementList = () => {
   const dispatch = useDispatch();
   const { activeCluster } = useClusters();
   const { allElements, elementTrash } = useElements();
-  const { elementFilter, elementSelect } = useElements();
+  const { elementFilter } = useElements();
+  let { elementSelect } = useElements();
+  elementSelect = !elementSelect ? [] : elementSelect;
 
   useEffect(() => {
     dispatch(fetchElementsThunk());
