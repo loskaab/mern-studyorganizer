@@ -30,7 +30,7 @@ export const Textarea = styled.textarea`
   outline: none;
   border: 1px solid ${colors.accent};
   border-radius: ${indents.xs};
-  resize: vertical;
+  resize: none;
 `;
 
 export const Divider = styled.div`
@@ -55,8 +55,10 @@ export const SubmitBtn = styled.button`
 
 export const ResizeBtn = styled.button`
   ${baseBtnStyles}
+`;
 
-  cursor: row-resize;
+export const TranslateBtn = styled.button`
+  ${baseBtnStyles}
 `;
 
 export const SpeakBtn = styled.button`

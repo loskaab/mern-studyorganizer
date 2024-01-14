@@ -2,24 +2,30 @@ import PropTypes from 'prop-types';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
-import { BsSendCheck, BsTextareaResize } from 'react-icons/bs';
+import { BsSendCheck, BsTextareaResize, BsTranslate } from 'react-icons/bs';
 
+import { translateText } from 'utils/helpers';
+import { useAuth, useClusters } from 'utils/hooks';
 import { updateElementThunk } from 'store/element/elementThunks';
 
 import {
   Form,
   SubmitBtn,
   ResizeBtn,
+  TranslateBtn,
   BtnWrap,
   Textarea,
 } from './Element.styled';
 
 const ElementEditForm = ({ el, isForm, setIsForm }) => {
   const dispatch = useDispatch();
-  const { _id, element, caption } = el;
-  const height = isForm + 35;
+  const { user } = useAuth();
+  const { activeCluster } = useClusters();
 
-  const { register, handleSubmit } = useForm({
+  const { _id, element, caption } = el;
+  const height = isForm + 24;
+
+  const { register, watch, setValue, handleSubmit } = useForm({
     mode: 'onBlur',
     defaultValues: { element, caption },
   });
@@ -46,17 +52,27 @@ const ElementEditForm = ({ el, isForm, setIsForm }) => {
     setIsForm(false);
   };
 
+  const translateElement = async () => {
+    const element = watch('element');
+    const translation = { from: activeCluster.lang, to: user.lang };
+    const caption = await translateText(element, translation);
+    setValue('caption', caption);
+  };
+
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
       <Textarea {...register('element')} style={{ height }} />
 
       <BtnWrap>
-        <ResizeBtn type="button" onClick={() => setIsForm(height)}>
-          <BsTextareaResize size="16px" />
-        </ResizeBtn>
         <SubmitBtn>
           <BsSendCheck size="16px" />
         </SubmitBtn>
+        <ResizeBtn type="button" onClick={() => setIsForm(height)}>
+          <BsTextareaResize size="16px" />
+        </ResizeBtn>
+        <TranslateBtn type="button" onClick={translateElement}>
+          <BsTranslate size="16px" />
+        </TranslateBtn>
       </BtnWrap>
 
       <Textarea {...register('caption')} style={{ height }} />
