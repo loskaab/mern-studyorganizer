@@ -22,9 +22,10 @@ const { s, m } = themes.indents;
 
 const ClusterEditBar = () => {
   const dispatch = useDispatch();
-  const [isModal, setIsModal] = useState(false);
   const { activeCluster, clusterTrash } = useClusters();
+  const [isModal, setIsModal] = useState(false);
   const [clipboardText, setClipboardText] = useState('');
+  const [group, setGroup] = useState('');
 
   const isTrashBtn = clusterTrash.length > 0;
 
@@ -87,7 +88,12 @@ const ClusterEditBar = () => {
 
       {isModal && (
         <Modal onClick={() => setIsModal(false)}>
-          <AddClusterForm cluster={clipboardText} setIsModal={setIsModal} />
+          <AddClusterForm
+            cluster={clipboardText}
+            group={group}
+            setGroup={setGroup}
+            setIsModal={setIsModal}
+          />
         </Modal>
       )}
     </GridWrap>

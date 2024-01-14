@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -13,9 +12,8 @@ import CreatableSelect from 'components/shared/Select/CreatableSelect';
 
 import { Form, Label, Input, Hidden } from './ClusterForms.styled';
 
-const AddClusterForm = ({ cluster, setIsModal }) => {
+const AddClusterForm = ({ cluster, group, setGroup, setIsModal }) => {
   const dispatch = useDispatch();
-  const [stateGroup, setStateGroup] = useState('');
   const { clusterGroups } = useClusters();
 
   const {
@@ -30,7 +28,7 @@ const AddClusterForm = ({ cluster, setIsModal }) => {
   });
 
   const onSubmit = data => {
-    dispatch(addClusterThunk({ ...data, group: stateGroup.value }));
+    dispatch(addClusterThunk({ ...data, group: group.value }));
     setIsModal(false);
   };
 
@@ -38,12 +36,12 @@ const AddClusterForm = ({ cluster, setIsModal }) => {
     .map(el => ({ value: el.clusterGroup, label: el.clusterGroup }))
     .sort((a, b) => a.value.localeCompare(b.value));
 
-  const createGroup = value => {
+  const createGroup = groupValue => {
     if (!watch('title')) {
       toast.error('Title is required');
     } else {
-      dispatch(addGroupThunk({ clusterGroup: value }));
-      setStateGroup({ value, label: value });
+      dispatch(addGroupThunk({ clusterGroup: groupValue }));
+      setGroup({ group: groupValue, label: groupValue });
     }
   };
 
@@ -62,11 +60,11 @@ const AddClusterForm = ({ cluster, setIsModal }) => {
       <Label>
         Group
         <CreatableSelect
-          value={stateGroup}
+          value={group}
           options={options}
-          onChange={data => setStateGroup(data ? data : '')}
+          onChange={data => setGroup(data ? data : '')}
           onCreateOption={createGroup}
-          isClearable={stateGroup}
+          isClearable={group}
         />
       </Label>
 
@@ -81,5 +79,7 @@ export default AddClusterForm;
 
 AddClusterForm.propTypes = {
   cluster: PropTypes.string.isRequired,
+  group: PropTypes.string.isRequired,
+  setGroup: PropTypes.func.isRequired,
   setIsModal: PropTypes.func.isRequired,
 };

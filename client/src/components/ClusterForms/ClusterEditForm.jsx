@@ -53,12 +53,12 @@ const EditClusterForm = ({ el, setIsModal }) => {
     <Form onSubmit={handleSubmit(onSubmit)}>
       <Label>
         Cluster <span> {errors.cluster?.message}</span>
-        <Input {...register('cluster')} />
+        <Input {...register('cluster')} onFocus={e => e.target.select()} />
       </Label>
 
       <Label>
         Title <span> {errors.title?.message}</span>
-        <Input {...register('title')} />
+        <Input {...register('title')} onFocus={e => e.target.select()} />
       </Label>
 
       <Label>
