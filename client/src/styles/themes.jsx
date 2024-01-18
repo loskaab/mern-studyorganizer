@@ -27,11 +27,11 @@ export const themes = Object.freeze({
   },
   indents: {
     xxs: '3px',
-    xs: '5px', //
-    s: '10px', //
-    m: '20px', //
+    xs: '5px',
+    s: '10px',
+    m: '20px',
     l: '35px',
-    xl: '50px', //
+    xl: '50px',
     xxl: '100px',
   },
   fontSizes: {

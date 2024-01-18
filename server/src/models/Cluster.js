@@ -10,7 +10,7 @@ const clusterSchema = new Schema(
     cluster: { type: String, match: regex(regExp.HTTP.name), required },
     title: { type: String, default: '', required },
     lang: { type: String, default: 'de' },
-    rate: { type: String, default: 0.5 },
+    rate: { type: String, default: 0.75 },
     favorite: { type: Boolean, default: false },
     checked: { type: Boolean, default: false },
     group: { type: String, required },
