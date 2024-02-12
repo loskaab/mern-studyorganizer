@@ -33,8 +33,7 @@
 - **[react-use]**https://github.com/streamich/react-use#readme
 - **[hh-mm-ss]**https://www.npmjs.com/package/hh-mm-ss
 - **[MaterialUI]**https://mui.com/
-- **[]**
-- **[]**
+- **[svg-symbol-sprite]**https://github.com/scriptex/svg-symbol-sprite
 - **[]**
 - **[]**
 - **[zustand]**https://github.com/pmndrs/zustand
@@ -44,6 +43,8 @@
 - **[redux-persist]**https://github.com/rt2zz/redux-persist
 - **[concurrently]**https://www.npmjs.com/package/concurrently
 - **[WebSpeechAPI]**https://developer.mozilla.org/ru/docs/Web/API/Web_Speech_API/Using_the_Web_Speech_API
+- **[lint-images]**https://ausi.github.io/respimagelint/
+- **[@svgr/webpack]**https://www.npmjs.com/package/@svgr/webpack
 
 - **[multer-storage-cloudinary]**https://www.npmjs.com/package/multer-storage-cloudinary
 - **[chardet]**https://www.npmjs.com/package/chardet
@@ -59,4 +60,5 @@
 - **[]**
 - **[]**
 - **[]**
-- **[]**
+
+- **[pdf24]**https://tools.pdf24.org/en/ocr-pdf#s=1706141238718
