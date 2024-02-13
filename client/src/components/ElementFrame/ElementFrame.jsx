@@ -10,9 +10,14 @@ const ElementFrame = () => {
 
   const clusterId = pathname.replace('/element/', '');
 
-  const elementLink = activeCluster?.cluster
+  let elementLink = activeCluster?.cluster
+    // video
     .replace('watch?v=', 'embed/')
-    .replace('/view', '/preview');
+    // pdf
+    .replace('/view', '/preview')
+    // file list
+    .replace('drive/folders/', 'embeddedfolderview?id=')
+    .replace('?usp=drive_link', '#list');
 
   return (
     <Iframe
@@ -21,6 +26,10 @@ const ElementFrame = () => {
       height={elementLink?.includes('embed/') ? '50%' : '100%'}
       src={`${elementLink}#view=FitH&toolbar=1&page=${1}`}
     ></Iframe>
+
+    // <audio controls>
+    //   <source src={`${elementLink}`} type="audio/mp3" />
+    // </audio>
   );
 };
 
