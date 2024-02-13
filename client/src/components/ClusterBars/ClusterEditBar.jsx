@@ -8,6 +8,7 @@ import { useClusters } from 'utils/hooks';
 
 import DeleteBtn from './EditBtns/DeleteBtn';
 import AddBtn from './EditBtns/AddBtn';
+import GdriveBtn from './EditBtns/GdriveBtn';
 
 const { s, m } = themes.indents;
 
@@ -26,8 +27,9 @@ const ClusterEditBar = () => {
         $pos="fixed"
         $side="right"
         $high="bottom"
-        $gtc="1fr 1fr"
+        $gtc="1fr 1fr 1fr 1fr 1fr"
       >
+        <GdriveBtn />
         {isTrashBtn ? <DeleteBtn /> : <span></span>}
         <AddBtn setClipboardText={setClipboardText} setIsModal={setIsModal} />
       </GridWrap>

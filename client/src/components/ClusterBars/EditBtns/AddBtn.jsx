@@ -3,9 +3,9 @@ import { toast } from 'react-toastify';
 import { useEffect } from 'react';
 
 import Button from 'components/shared/Button/Button';
-import { themes } from 'styles/themes';
 import { clusterSchema } from 'utils/validation';
 import { readClipboard } from 'utils/helpers';
+import { themes } from 'styles/themes';
 
 const { button } = themes.shadows;
 
