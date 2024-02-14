@@ -7,7 +7,7 @@ export const listFiles = async () => {
       orderBy: 'folder', // name, folder, recency, modifiedTime,
       fields:
         'files(id, name, parents, mimeType, fullFileExtension, webViewLink, webContentLink, shared, starred, trashed)',
-      // q: 'starred',
+      q: 'shared',
     });
   } catch (err) {
     return err.message;

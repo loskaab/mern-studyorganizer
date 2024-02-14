@@ -4,7 +4,9 @@ import { useEffect, useState, Fragment } from 'react';
 import { useGdrive } from 'utils/hooks';
 
 const { VITE_GOOGLE_CLIENT_ID, VITE_GOOGLE_API_KEY } = import.meta.env;
-const { VITE_DISCOVERY_DOC, VITE_SCOPES } = import.meta.env;
+
+const DISC_DOC = 'https://www.googleapis.com/discovery/v1/apis/drive/v3/rest';
+const SCOPES = 'https://www.googleapis.com/auth/drive.metadata.readonly';
 
 const GdriveList = ({ setTokenClient }) => {
   const { files } = useGdrive();
@@ -29,7 +31,7 @@ const GdriveList = ({ setTokenClient }) => {
   async function initializeGapiClient() {
     await window.gapi.client.init({
       apiKey: VITE_GOOGLE_API_KEY,
-      discoveryDocs: [VITE_DISCOVERY_DOC],
+      discoveryDocs: [DISC_DOC],
     });
     setGapiInited(true);
   }
@@ -46,7 +48,7 @@ const GdriveList = ({ setTokenClient }) => {
     function gisLoaded() {
       const token = window.google.accounts.oauth2.initTokenClient({
         client_id: VITE_GOOGLE_CLIENT_ID,
-        scope: VITE_SCOPES,
+        scope: SCOPES,
         callback: '', // defined later
       });
       setTokenClient(token);
