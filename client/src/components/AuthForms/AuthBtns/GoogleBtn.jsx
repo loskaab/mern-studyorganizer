@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { FcGoogle } from 'react-icons/fc';
 import { MdArrowForwardIos } from 'react-icons/md';
 
-import { baseURL } from 'servises/baseURL';
+import { baseURL } from 'servises/mongoDB/baseURL';
 import FlexWrap from 'components/shared/FlexWrap/FlexWrap';
 
 import { IconLink } from './AuthBtns.styled';

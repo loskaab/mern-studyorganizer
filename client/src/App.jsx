@@ -20,6 +20,7 @@ const ForgotPage = lazy(() => import('pages/ForgotPage'));
 const ProfilePage = lazy(() => import('pages/ProfilePage'));
 const ClusterPage = lazy(() => import('pages/ClusterPage'));
 const ElementPage = lazy(() => import('pages/ElementPage'));
+const GdrivePage = lazy(() => import('pages/GdrivePage'));
 
 const App = () => {
   const dispatch = useDispatch();
@@ -48,6 +49,7 @@ const App = () => {
             <Route element={<PrivateRoutes />}>
               <Route path="cluster" element={<ClusterPage />} />
               <Route path="element/:id" element={<ElementPage />} />
+              <Route path="gdrive" element={<GdrivePage />} />
               <Route path="profile" element={<ProfilePage />} />
             </Route>
           </Route>

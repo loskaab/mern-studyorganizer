@@ -12,6 +12,7 @@ import {
 } from 'redux-persist';
 
 import { authReducer } from './auth/authSlice';
+import { gdriveReducer } from './gdrive/gdriveSlice';
 import { clustersReducer } from './cluster/clusterSlice';
 import { elementsReducer } from './element/elementSlice';
 
@@ -21,6 +22,12 @@ const authPersistConfig = {
   key: 'auth',
   storage,
   whitelist: ['user'],
+};
+
+const gdrivePersistConfig = {
+  key: 'gdrive',
+  storage,
+  blacklist: ['isLoading', 'error'],
 };
 
 const eclustersPersistConfig = {
@@ -37,6 +44,7 @@ const elementsPersistConfig = {
 
 const rootReducer = combineReducers({
   auth: persistReducer(authPersistConfig, authReducer),
+  gdrive: persistReducer(gdrivePersistConfig, gdriveReducer),
   clusters: persistReducer(eclustersPersistConfig, clustersReducer),
   elements: persistReducer(elementsPersistConfig, elementsReducer),
 });
