@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useEffect, useState, Fragment } from 'react';
+import { useEffect, Fragment } from 'react';
 
 import { useGdrive } from 'utils/hooks';
 
@@ -10,8 +10,8 @@ const SCOPES = 'https://www.googleapis.com/auth/drive.metadata.readonly';
 
 const GdriveList = ({ setTokenClient }) => {
   const { files } = useGdrive();
-  const [gapiInited, setGapiInited] = useState(false);
-  const [gisInited, setGisInited] = useState(false);
+  // const [gapiInited, setGapiInited] = useState(false);
+  // const [gisInited, setGisInited] = useState(false);
 
   useEffect(() => {
     const script = document.createElement('script');
@@ -33,7 +33,7 @@ const GdriveList = ({ setTokenClient }) => {
       apiKey: VITE_GOOGLE_API_KEY,
       discoveryDocs: [DISC_DOC],
     });
-    setGapiInited(true);
+    // setGapiInited(true);
   }
 
   useEffect(() => {
@@ -52,9 +52,9 @@ const GdriveList = ({ setTokenClient }) => {
         callback: '', // defined later
       });
       setTokenClient(token);
-      setGisInited(true);
+      // setGisInited(true);
     }
-  }, [gapiInited, gisInited, setTokenClient]);
+  }, [setTokenClient]);
 
   let folders = files.filter(el => el.mimeType.includes('folder'));
 

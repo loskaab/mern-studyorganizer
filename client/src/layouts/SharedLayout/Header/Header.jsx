@@ -37,7 +37,7 @@ const Header = ({ $height }) => {
         <LogoLink />
         <Nav>
           <NavLink to="/">Home</NavLink>
-          <NavLink to="gdrive">G-Drive</NavLink>
+          {isLoggedIn && <NavLink to="gdrive">G-Drive</NavLink>}
           {isLoggedIn && <NavLink to="/cluster">Cluster</NavLink>}
           {isLoggedIn && <NavLink to={`/element/${ac?._id}`}>Element</NavLink>}
         </Nav>

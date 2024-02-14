@@ -7,7 +7,7 @@ export const listFiles = async () => {
       orderBy: 'folder', // name, folder, recency, modifiedTime,
       fields:
         'files(id, name, parents, mimeType, fullFileExtension, webViewLink, webContentLink, shared, starred, trashed)',
-      q: 'shared',
+      // q: 'shared = true',
     });
   } catch (err) {
     return err.message;
@@ -16,5 +16,5 @@ export const listFiles = async () => {
   if (!files || files.length == 0) {
     return 'No files found.';
   }
-  return files;
+  return files.filter(el => el.shared === true);
 };
