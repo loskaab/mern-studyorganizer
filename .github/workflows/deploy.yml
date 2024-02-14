@@ -27,8 +27,9 @@ jobs:
      run: npm run build
      working-directory: './client'
      env:
-      VITE_PROD_BACK_URL:
-       ${{ vars.VITE_PROD_BACK_URL }}
+      VITE_PROD_BACK_URL: ${{ vars.VITE_PROD_BACK_URL }}
+      VITE_GOOGLE_CLIENT_ID: ${{vars.VITE_GOOGLE_CLIENT_ID}}
+      VITE_GOOGLE_API_KEY: ${{vars.VITE_GOOGLE_API_KEY}}
 
    - name: Copy index.html to 404.html
      run:
