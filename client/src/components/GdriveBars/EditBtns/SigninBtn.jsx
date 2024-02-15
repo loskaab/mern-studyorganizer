@@ -1,10 +1,9 @@
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 
-import { listFiles } from 'servises/googleDrive/filesApi';
 import Button from 'components/shared/Button/Button';
 import { themes } from 'styles/themes';
-import { setFiles } from 'store/gdrive/gdriveSlice';
+import { listFilesThunk } from 'store/gdrive/gdriveThunks';
 
 const { button } = themes.shadows;
 
@@ -19,8 +18,9 @@ const SigninBtn = ({ tokenClient }) => {
       }
       // document.getElementById('signout_button').style.visibility = 'visible';
       // document.getElementById('authorize_button').innerText = 'Refresh';
-      const files = await listFiles();
-      dispatch(setFiles(files));
+      // const files = await listFiles();
+      // dispatch(setFiles(files));
+      dispatch(listFilesThunk());
     };
 
     if (window.gapi.client.getToken() === null) {
