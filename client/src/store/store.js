@@ -24,12 +24,6 @@ const authPersistConfig = {
   whitelist: ['user'],
 };
 
-const gdrivePersistConfig = {
-  key: 'gdrive',
-  storage,
-  blacklist: ['isLoading', 'error'],
-};
-
 const eclustersPersistConfig = {
   key: 'clusters',
   storage,
@@ -42,11 +36,17 @@ const elementsPersistConfig = {
   blacklist: ['isLoading', 'error'],
 };
 
+const gdrivePersistConfig = {
+  key: 'gdrive',
+  storage,
+  blacklist: ['isLoading', 'error'],
+};
+
 const rootReducer = combineReducers({
   auth: persistReducer(authPersistConfig, authReducer),
-  gdrive: persistReducer(gdrivePersistConfig, gdriveReducer),
   clusters: persistReducer(eclustersPersistConfig, clustersReducer),
   elements: persistReducer(elementsPersistConfig, elementsReducer),
+  gdrive: persistReducer(gdrivePersistConfig, gdriveReducer),
 });
 
 // ----------------configureStore---------------- //

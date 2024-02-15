@@ -1,4 +1,4 @@
-import { useEffect, lazy } from 'react';
+import { useEffect, useState, lazy } from 'react';
 import { useDispatch } from 'react-redux';
 import { Route, Routes, Navigate } from 'react-router-dom';
 
@@ -14,6 +14,7 @@ import SharedLayout from 'layouts/SharedLayout/SharedLayout';
 
 import HomePage from 'pages/HomePage';
 import GooglePage from 'pages/GooglePage';
+import GdriveAuth from 'servises/google/authApi';
 const SignupPage = lazy(() => import('pages/SignupPage'));
 const SigninPage = lazy(() => import('pages/SigninPage'));
 const ForgotPage = lazy(() => import('pages/ForgotPage'));
@@ -24,7 +25,8 @@ const GdrivePage = lazy(() => import('pages/GdrivePage'));
 
 const App = () => {
   const dispatch = useDispatch();
-  const { isRefreshing, isLoading } = useAuth();
+  const { isLoggedIn, isRefreshing, isLoading } = useAuth();
+  const [token, setToken] = useState({}); // G-Drive Auth
 
   useEffect(() => {
     loadWebFonts();
@@ -36,6 +38,8 @@ const App = () => {
 
   return (
     <>
+      {isLoggedIn && <GdriveAuth setToken={setToken} />}
+
       {!(isRefreshing || isLoading) && (
         <Routes>
           <Route path="/" element={<SharedLayout />}>
@@ -49,7 +53,7 @@ const App = () => {
             <Route element={<PrivateRoutes />}>
               <Route path="cluster" element={<ClusterPage />} />
               <Route path="element/:id" element={<ElementPage />} />
-              <Route path="gdrive" element={<GdrivePage />} />
+              <Route path="gdrive" element={<GdrivePage token={token} />} />
               <Route path="profile" element={<ProfilePage />} />
             </Route>
           </Route>

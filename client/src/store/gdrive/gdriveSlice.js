@@ -6,18 +6,19 @@ const thunkArr = [TNK.listFilesThunk];
 
 const fn = type => thunkArr.map(el => el[type]);
 
-// gdrive files
+// files
+
 const handleListFiles = (_, action) => {
   const files = action.payload.files;
   return files.filter(el => el.shared === true);
 };
 
-// fulfilled auth slice
-const gdriveSlice = createSlice({
+// fulfilled files slice
+const gdriveListFilesSlice = createSlice({
   name: 'files',
   initialState: [],
   reducers: {
-    setFiles: (_, action) => action.payload,
+    emptyFiles: () => [],
   },
   extraReducers: builder => {
     builder.addCase(TNK.listFilesThunk.fulfilled, handleListFiles);
@@ -49,10 +50,10 @@ const gdriveErrorSlice = createSlice({
 });
 
 export const gdriveReducer = combineReducers({
-  files: gdriveSlice.reducer,
+  files: gdriveListFilesSlice.reducer,
 
   isLoading: gdriveIsLoadingSlice.reducer,
   error: gdriveErrorSlice.reducer,
 });
 
-export const { setFiles } = gdriveSlice.actions;
+export const { emptyFiles } = gdriveListFilesSlice.actions;

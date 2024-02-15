@@ -5,22 +5,17 @@ import AddClusterForm from 'components/ClusterForms/ClusterAddForm';
 import GridWrap from 'components/shared/GridWrap/GridWrap';
 import Modal from 'components/shared/Modal/Modal';
 import { themes } from 'styles/themes';
-import { useClusters } from 'utils/hooks';
 
-import DeleteBtn from './EditBtns/DeleteBtn';
-import AddBtn from './EditBtns/AddBtn';
 import SigninBtn from './EditBtns/SigninBtn';
-import SignoutBtn from './EditBtns/SignoutBtn';
+import AddBtn from './EditBtns/AddBtn';
+// import DeleteBtn from './EditBtns/DeleteBtn';
 
 const { s, m } = themes.indents;
 
-const GdriveEditBar = ({ tokenClient }) => {
-  const { clusterTrash } = useClusters();
+const GdriveEditBar = ({ token }) => {
   const [isModal, setIsModal] = useState(false);
   const [clipboardText, setClipboardText] = useState('');
   const [group, setGroup] = useState('');
-
-  const isTrashBtn = clusterTrash.length > 0;
 
   return (
     <>
@@ -29,12 +24,11 @@ const GdriveEditBar = ({ tokenClient }) => {
         $pos="fixed"
         $side="right"
         $high="bottom"
-        $gtc="1fr 1fr 1fr 1fr"
+        $gtc="1fr 1fr"
       >
-        {isTrashBtn ? <DeleteBtn /> : <span></span>}
+        {/* {isTrashBtn ? <DeleteBtn /> : <span></span>} */}
         <AddBtn setClipboardText={setClipboardText} setIsModal={setIsModal} />
-        <SigninBtn tokenClient={tokenClient} />
-        <SignoutBtn />
+        <SigninBtn token={token} />
       </GridWrap>
 
       {isModal && (
@@ -54,5 +48,5 @@ const GdriveEditBar = ({ tokenClient }) => {
 export default GdriveEditBar;
 
 GdriveEditBar.propTypes = {
-  tokenClient: PropTypes.object.isRequired,
+  token: PropTypes.object.isRequired,
 };

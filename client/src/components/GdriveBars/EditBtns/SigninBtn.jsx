@@ -7,33 +7,31 @@ import { listFilesThunk } from 'store/gdrive/gdriveThunks';
 
 const { button } = themes.shadows;
 
-const SigninBtn = ({ tokenClient }) => {
+const SigninBtn = ({ token }) => {
   const dispatch = useDispatch();
 
-  //  Sign in the user upon button click.
-  function signIn() {
-    tokenClient.callback = async resp => {
+  const signIn = e => {
+    token.callback = resp => {
       if (resp.error !== undefined) {
         throw resp;
       }
-      // document.getElementById('signout_button').style.visibility = 'visible';
-      // document.getElementById('authorize_button').innerText = 'Refresh';
-      // const files = await listFiles();
-      // dispatch(setFiles(files));
       dispatch(listFilesThunk());
     };
 
     if (window.gapi.client.getToken() === null) {
       // Prompt the user to select a Google Account and ask for consent to share their data
       // when establishing a new session.
-      tokenClient.requestAccessToken({ prompt: 'consent' });
+      token.requestAccessToken({ prompt: 'consent' });
     } else {
       // Skip display of account chooser and consent dialog for an existing session.
-      tokenClient.requestAccessToken({ prompt: '' });
+      token.requestAccessToken({ prompt: '' });
     }
-  }
+
+    e.currentTarget.blur();
+  };
+
   return (
-    <Button id="authorize_button" onClick={signIn} $s="m" $bs={button}>
+    <Button onClick={signIn} $s="m" $bs={button}>
       Sign In
     </Button>
   );
@@ -42,5 +40,5 @@ const SigninBtn = ({ tokenClient }) => {
 export default SigninBtn;
 
 SigninBtn.propTypes = {
-  tokenClient: PropTypes.object.isRequired,
+  token: PropTypes.object.isRequired,
 };
