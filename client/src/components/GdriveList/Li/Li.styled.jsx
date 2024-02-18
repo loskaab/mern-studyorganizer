@@ -11,7 +11,7 @@ const baseLiStyle = css`
   padding-inline: 4px;
   display: grid;
   grid-column-gap: 2px;
-  grid-template-columns: 1fr 15fr 30fr 2fr 1fr 1fr 1fr 4fr;
+  grid-template-columns: 1fr 20fr 20fr 1fr 1fr 1fr 4fr;
   grid-template-areas: '. title title . . . .';
   align-items: center;
   justify-items: left;
@@ -20,7 +20,7 @@ const baseLiStyle = css`
   border-bottom-color: ${colors.borderLight};
 `;
 
-export const LiGroup = styled.li`
+export const LiFolder = styled.li`
   ${baseLiStyle}
   counter-reset: subsection;
   line-height: 2;
@@ -30,17 +30,17 @@ export const LiGroup = styled.li`
     grid-area: title;
     font-family: 'Montserrat', sans-serif;
     font-size: 16px;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
 
     &::before {
       counter-increment: section;
-      content: 'Group ' counter(section) '. ';
-      text-transform: capitalize;
+      content: counter(section) '. ';
+      /* text-transform: capitalize; */
     }
   }
 `;
 
-export const LiCluster = styled.li`
+export const LiFile = styled.li`
   ${baseLiStyle}
 
   background-color: ${({ $active }) => $active && colors.backgroundHoverd};
@@ -59,7 +59,7 @@ export const LiCluster = styled.li`
   }
 `;
 
-const baseLinkStyle = css`
+const baseContentStyle = css`
   font-size: 16px;
   transition: color 250ms;
 
@@ -68,8 +68,8 @@ const baseLinkStyle = css`
   }
 `;
 
-export const TitleLink = styled.button`
-  ${baseLinkStyle}
+export const FileName = styled.button`
+  ${baseContentStyle}
 
   border: none;
   background-color: transparent;
@@ -77,8 +77,8 @@ export const TitleLink = styled.button`
   font-weight: 500;
 `;
 
-export const ClusterLink = styled.a`
-  ${baseLinkStyle}
+export const FileLink = styled.a`
+  ${baseContentStyle}
 
   color: ${colors.placeholder};
 
@@ -105,14 +105,17 @@ const baseLabelStyle = css`
   }
 `;
 
-export const LabelFavorite = styled.label`
+export const LabelFavorite = styled.a`
   ${baseLabelStyle}
+  position: relative;
+  padding-bottom: 2px;
+  padding-right: 2px;
 
   & svg {
     transition: stroke 250ms;
-    stroke-width: 2px;
+    stroke-width: 1px;
     color: ${({ $hovered }) => ($hovered ? colors.yellow : 'transparent')};
-    stroke: ${({ $hovered }) => ($hovered ? colors.yellow : colors.border)};
+    stroke: ${({ $hovered }) => ($hovered ? 'transparent' : colors.border)};
   }
   &:hover svg {
     stroke: ${colors.placeholder};

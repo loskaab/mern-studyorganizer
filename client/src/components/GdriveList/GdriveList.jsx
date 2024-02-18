@@ -1,44 +1,66 @@
-import { Fragment } from 'react';
+import { Fragment, useState } from 'react';
 
 import { useGdrive } from 'utils/hooks';
 
+import { List } from './GdriveList.styled';
+import LiFolder from './Li/LiFolder';
+import LiFile from './Li/LiFile';
+
 const GdriveList = () => {
   const { files } = useGdrive();
+  const [sortByDate, setSortByDate] = useState(false);
 
-  let folders = files.filter(el => el.mimeType.includes('folder'));
+  const getFolders = () => {
+    let folders = files.filter(el => el.mimeType.includes('folder'));
 
-  folders = folders.map(el => {
-    const parent = el.parents && folders.find(({ id }) => el.parents[0] === id);
-    const name = parent?.shared ? `${parent.name} / ${el.name}` : el.name;
+    for (let i = 0; i < 10; i += 1) {
+      folders = folders.map(el => {
+        if (!el.parents) return { ...el };
 
-    return { ...el, name };
-  });
+        const parent = folders.find(({ id }) => el.parents[0] === id);
+        const name = parent?.shared ? `${parent.name} / ${el.name}` : el.name;
+        const parents = parent?.shared && parent.parents;
+        return { ...el, name, parents };
+      });
+    }
+
+    return folders.sort((a, b) => a.name.localeCompare(b.name));
+  };
+
+  const filtredFolders = getFolders();
+
+  const filtredFiles = files
+    .filter(file => !file.mimeType.includes('folder') && file.parents)
+    .sort(
+      sortByDate
+        ? (a, b) => b.createdTime.localeCompare(a.createdTime)
+        : (a, b) => a.name.localeCompare(b.name),
+    );
 
   return (
-    <ol>
-      {folders.map(folder => {
-        const fileList = files
-          .filter(
-            el =>
-              !el.mimeType.includes('folder') &&
-              el.parents &&
-              el.parents[0] === folder.id,
-          )
-          .sort((a, b) => a.name.localeCompare(b.name))
-          .map(el => {
-            return <li key={el.id}>{el.name}</li>;
-          });
+    <List>
+      {filtredFolders.map(folder => {
+        const filesInFolder = filtredFiles.filter(
+          file => file.parents[0] === folder.id,
+        );
 
-        if (fileList.length > 0) {
+        if (filesInFolder.length > 0) {
           return (
             <Fragment key={folder.id}>
-              <li>{folder.name}</li>
-              <ul style={{ listStyle: 'none' }}>{fileList}</ul>
+              <LiFolder folder={folder.name} />
+              {filesInFolder.map(file => (
+                <LiFile
+                  key={file.id}
+                  el={file}
+                  sortByDate={sortByDate}
+                  setSortByDate={setSortByDate}
+                />
+              ))}
             </Fragment>
           );
         }
       })}
-    </ol>
+    </List>
   );
 };
 

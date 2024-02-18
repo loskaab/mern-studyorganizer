@@ -93,11 +93,11 @@ const ClusterList = () => {
           <LiGroup group={group} />
 
           {filtredClusters.map(
-            el =>
-              el.group === group && (
+            cluster =>
+              cluster.group === group && (
                 <LiCluster
-                  key={el._id}
-                  el={el}
+                  key={cluster._id}
+                  el={cluster}
                   sortByDate={sortByDate}
                   setSortByDate={setSortByDate}
                 />

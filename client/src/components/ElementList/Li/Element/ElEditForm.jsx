@@ -2,7 +2,8 @@ import PropTypes from 'prop-types';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
-import { BsSendCheck, BsTextareaResize, BsTranslate } from 'react-icons/bs';
+import { BsSendCheck, BsTextareaResize } from 'react-icons/bs';
+import { SiGoogletranslate } from 'react-icons/si';
 
 import { translateText } from 'utils/helpers';
 import { useAuth, useClusters } from 'utils/hooks';
@@ -71,7 +72,7 @@ const ElementEditForm = ({ el, isForm, setIsForm }) => {
           <BsTextareaResize size="16px" />
         </ResizeBtn>
         <TranslateBtn type="button" onClick={translateElement}>
-          <BsTranslate size="16px" />
+          <SiGoogletranslate size="16px" />
         </TranslateBtn>
       </BtnWrap>
 

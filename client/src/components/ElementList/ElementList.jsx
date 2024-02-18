@@ -56,8 +56,8 @@ const ElementList = () => {
 
   return (
     <List>
-      {filtredElements.map(el => (
-        <LiElement key={el._id} el={el} />
+      {filtredElements.map(element => (
+        <LiElement key={element._id} el={element} />
       ))}
 
       <ElementLangBar />

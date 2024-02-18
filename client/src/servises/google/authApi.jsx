@@ -48,7 +48,6 @@ const GdriveAuth = ({ setToken }) => {
         callback: '', // defined later
       });
       setToken(token);
-      // setGisInited(true);
     }
   }, [setToken]);
 };

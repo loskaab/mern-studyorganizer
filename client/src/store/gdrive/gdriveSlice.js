@@ -25,6 +25,15 @@ const gdriveListFilesSlice = createSlice({
   },
 });
 
+// fulfilled active file slice
+const fileActiveSlice = createSlice({
+  name: 'active',
+  initialState: null,
+  reducers: {
+    setActiveFile: (_, action) => action.payload,
+  },
+});
+
 // loading slice
 const gdriveIsLoadingSlice = createSlice({
   name: 'isLoading',
@@ -51,9 +60,11 @@ const gdriveErrorSlice = createSlice({
 
 export const gdriveReducer = combineReducers({
   files: gdriveListFilesSlice.reducer,
+  active: fileActiveSlice.reducer,
 
   isLoading: gdriveIsLoadingSlice.reducer,
   error: gdriveErrorSlice.reducer,
 });
 
 export const { emptyFiles } = gdriveListFilesSlice.actions;
+export const { setActiveFile } = fileActiveSlice.actions;

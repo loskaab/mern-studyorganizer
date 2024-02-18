@@ -9,6 +9,7 @@ import { FaCheck } from 'react-icons/fa';
 import { FiEdit3, FiTrash2 } from 'react-icons/fi';
 
 import { useClusters, useElements } from 'utils/hooks';
+import { getDate } from 'utils/helpers';
 import { setActiveCluster, setClusterTrash } from 'store/cluster/clusterSlice';
 import { updateClusterThunk } from 'store/cluster/clusterThunks';
 import Modal from 'components/shared/Modal/Modal';
@@ -35,18 +36,16 @@ const LiCluster = ({ el, sortByDate, setSortByDate }) => {
 
   const { _id, cluster, title, favorite, checked, createdAt } = el;
 
-  const trim = cluster => {
-    const text = cluster.replace('https://', '').replace('http://', '');
+  const trim = link => {
+    const text = link
+      .replace('https://drive.', '')
+      .replace('https://', '')
+      .replace('http://', '')
+      .replace('www.', '');
     return text.length <= 30 ? text : text.substring(0, 29).concat('...');
   };
 
   const isInTrash = clusterTrash.find(el => el._id === _id);
-
-  const date = new Date(createdAt).toLocaleDateString('ro-RO', {
-    year: '2-digit',
-    month: '2-digit',
-    day: '2-digit',
-  });
 
   const elementCount = allElements.filter(el => el.cluster === _id).length;
 
@@ -75,7 +74,7 @@ const LiCluster = ({ el, sortByDate, setSortByDate }) => {
   };
 
   return (
-    <Li $active={el._id === activeCluster?._id}>
+    <Li $active={_id === activeCluster?._id}>
       <LabelFavorite $hovered={favorite}>
         <input
           type="checkbox"
@@ -112,7 +111,7 @@ const LiCluster = ({ el, sortByDate, setSortByDate }) => {
         <FaCheck size="15px" />
       </LabelChecked>
 
-      <DateBtn onClick={handleSort}>{date}</DateBtn>
+      <DateBtn onClick={handleSort}>{getDate(createdAt)}</DateBtn>
 
       {isModal && (
         <Modal onClick={() => setIsModal(false)}>

@@ -15,7 +15,7 @@ import {
   emptyElementTrash,
 } from 'store/element/elementSlice';
 import { logoutThunk } from 'store/auth/authThunks';
-import { emptyFiles } from 'store/gdrive/gdriveSlice';
+import { emptyFiles, setActiveFile } from 'store/gdrive/gdriveSlice';
 import Button from 'components/shared/Button/Button';
 
 import { Form } from './ProfileForm.styled';
@@ -36,6 +36,7 @@ const ProfileForm = () => {
     dispatch(emptyClusterTrash());
     dispatch(emptyElementTrash());
     dispatch(emptyFiles());
+    dispatch(setActiveFile(null));
   };
 
   return (
