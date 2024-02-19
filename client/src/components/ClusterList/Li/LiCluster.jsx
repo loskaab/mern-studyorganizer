@@ -45,8 +45,6 @@ const LiCluster = ({ el, sortByDate, setSortByDate }) => {
     return text.length <= 30 ? text : text.substring(0, 29).concat('...');
   };
 
-  const isInTrash = clusterTrash.find(el => el._id === _id);
-
   const elementCount = allElements.filter(el => el.cluster === _id).length;
 
   const handleFavorite = () => {
@@ -65,6 +63,7 @@ const LiCluster = ({ el, sortByDate, setSortByDate }) => {
   };
 
   const handleTrash = () => dispatch(setClusterTrash(el));
+  const isInTrash = clusterTrash.find(el => el._id === _id);
 
   const handleSort = () => {
     setSortByDate(!sortByDate);

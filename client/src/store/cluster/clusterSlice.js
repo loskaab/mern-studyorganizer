@@ -90,7 +90,7 @@ const clusterGroupsSlice = createSlice({
   },
 });
 
-// fulfilled active cluster slice
+// fulfilled active slice
 const clusterActiveSlice = createSlice({
   name: 'active',
   initialState: null,

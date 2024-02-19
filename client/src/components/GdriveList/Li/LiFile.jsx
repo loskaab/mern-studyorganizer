@@ -7,7 +7,11 @@ import { SiGoogledrive } from 'react-icons/si';
 
 import { getDate } from 'utils/helpers';
 import { useClusters, useGdrive } from 'utils/hooks';
-import { setActiveFile } from 'store/gdrive/gdriveSlice';
+import {
+  setActiveFile,
+  setGdriveCheck,
+  setGdriveTrash,
+} from 'store/gdrive/gdriveSlice';
 
 import {
   LiFile as Li,
@@ -21,10 +25,11 @@ import {
 } from './Li.styled';
 
 const LiFile = ({ el, sortByDate, setSortByDate }) => {
-  const { id, name, webViewLink, webContentLink, createdTime } = el;
   const dispatch = useDispatch();
   const { allClusters } = useClusters();
-  const { activeFile } = useGdrive();
+  const { activeFile, gdriveCheck, gdriveTrash } = useGdrive();
+
+  const { id, name, webViewLink, webContentLink, createdTime } = el;
 
   const trim = link => {
     const text = link.replace('https://drive.google.com/', '');
@@ -35,13 +40,13 @@ const LiFile = ({ el, sortByDate, setSortByDate }) => {
     dispatch(setActiveFile(el));
   };
 
-  const favorite = allClusters.some(el => el.gdriveId === id);
+  const isInClusters = allClusters.some(el => el.gdriveId === id);
 
-  const checked = false;
-  const handleChecked = () => console.log('checked');
+  const handleChecked = () => dispatch(setGdriveCheck(el));
+  const isInChecked = gdriveCheck.find(el => el.id === id);
 
-  const isInTrash = false;
-  const handleTrash = () => console.log('trash');
+  const handleTrash = () => dispatch(setGdriveTrash(el));
+  const isInTrash = gdriveTrash.find(el => el.id === id);
 
   const handleSort = () => {
     setSortByDate(!sortByDate);
@@ -54,8 +59,8 @@ const LiFile = ({ el, sortByDate, setSortByDate }) => {
 
   return (
     <Li id={active ? 'active-file' : null} $active={active}>
-      <LabelFavorite href={webContentLink} $hovered={favorite}>
-        <SiGoogledrive size={favorite ? '16px' : '15px'} />
+      <LabelFavorite href={webContentLink} $hovered={isInClusters}>
+        <SiGoogledrive size={isInClusters ? '16px' : '15px'} />
       </LabelFavorite>
 
       <FileName onClick={handleLinkClick}>{name}</FileName>
@@ -74,11 +79,11 @@ const LiFile = ({ el, sortByDate, setSortByDate }) => {
         <FiTrash2 size="16px" />
       </TrashBtn>
 
-      <LabelChecked $hovered={checked}>
+      <LabelChecked $hovered={isInChecked}>
         <input
           type="checkbox"
           name="checked"
-          checked={checked}
+          checked={isInChecked}
           onChange={handleChecked}
         />
         <FaCheck size="15px" />

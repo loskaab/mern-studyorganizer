@@ -25,12 +25,64 @@ const gdriveListFilesSlice = createSlice({
   },
 });
 
-// fulfilled active file slice
+// fulfilled active slice
 const fileActiveSlice = createSlice({
   name: 'active',
   initialState: null,
   reducers: {
     setActiveFile: (_, action) => action.payload,
+  },
+});
+
+// fulfilled filter slice
+const gdriveFilterSlice = createSlice({
+  name: 'filter',
+  initialState: '',
+  reducers: {
+    setGdriveFilter: (_, action) => action.payload,
+  },
+});
+
+// fulfilled select slice
+const gdriveSelectSlice = createSlice({
+  name: 'select',
+  initialState: '',
+  reducers: {
+    setGdriveSelect: (_, action) => action.payload,
+  },
+});
+
+// fulfilled check slice
+const gdriveCheckSlice = createSlice({
+  name: 'check',
+  initialState: [],
+  reducers: {
+    setGdriveCheck: (state, { payload }) => {
+      const isInCheck = state.find(el => el.id === payload.id);
+      if (isInCheck) {
+        return state.filter(el => el.id !== payload.id);
+      } else {
+        state.push(payload);
+      }
+    },
+    emptyGdriveCheck: () => [],
+  },
+});
+
+// fulfilled trash slice
+const gdriveTrashSlice = createSlice({
+  name: 'trash',
+  initialState: [],
+  reducers: {
+    setGdriveTrash: (state, { payload }) => {
+      const isInTrash = state.find(el => el.id === payload.id);
+      if (isInTrash) {
+        return state.filter(el => el.id !== payload.id);
+      } else {
+        state.push(payload);
+      }
+    },
+    emptyGdriveTrash: () => [],
   },
 });
 
@@ -61,6 +113,10 @@ const gdriveErrorSlice = createSlice({
 export const gdriveReducer = combineReducers({
   files: gdriveListFilesSlice.reducer,
   active: fileActiveSlice.reducer,
+  filter: gdriveFilterSlice.reducer,
+  select: gdriveSelectSlice.reducer,
+  check: gdriveCheckSlice.reducer,
+  trash: gdriveTrashSlice.reducer,
 
   isLoading: gdriveIsLoadingSlice.reducer,
   error: gdriveErrorSlice.reducer,
@@ -68,3 +124,7 @@ export const gdriveReducer = combineReducers({
 
 export const { emptyFiles } = gdriveListFilesSlice.actions;
 export const { setActiveFile } = fileActiveSlice.actions;
+export const { setGdriveFilter } = gdriveFilterSlice.actions;
+export const { setGdriveSelect } = gdriveSelectSlice.actions;
+export const { setGdriveCheck, emptyGdriveCheck } = gdriveCheckSlice.actions;
+export const { setGdriveTrash, emptyGdriveTrash } = gdriveTrashSlice.actions;
