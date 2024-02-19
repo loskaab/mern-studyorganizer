@@ -9,8 +9,9 @@ const fn = type => thunkArr.map(el => el[type]);
 // files
 
 const handleListFiles = (_, action) => {
-  const files = action.payload.files;
-  return files.filter(el => el.shared === true);
+  let files = action.payload.files;
+  files = files.filter(el => el.shared && !el.trashed);
+  return files;
 };
 
 // fulfilled files slice

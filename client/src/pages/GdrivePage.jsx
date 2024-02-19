@@ -8,11 +8,11 @@ import { themes } from 'styles/themes';
 
 const { s, m } = themes.indents;
 
-const GdrivePage = ({ token }) => {
+const GdrivePage = ({ tokenClient }) => {
   return (
     <FlexWrap $p={`0 ${m} ${s} ${s}`}>
       <GdriveList />
-      <GdriveEditBar token={token} />
+      <GdriveEditBar tokenClient={tokenClient} />
     </FlexWrap>
   );
 };
@@ -20,5 +20,5 @@ const GdrivePage = ({ token }) => {
 export default GdrivePage;
 
 GdrivePage.propTypes = {
-  token: PropTypes.object.isRequired,
+  tokenClient: PropTypes.object.isRequired,
 };

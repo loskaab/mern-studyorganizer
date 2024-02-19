@@ -26,7 +26,7 @@ const GdrivePage = lazy(() => import('pages/GdrivePage'));
 const App = () => {
   const dispatch = useDispatch();
   const { isLoggedIn, isRefreshing, isLoading } = useAuth();
-  const [token, setToken] = useState({}); // G-Drive Auth
+  const [tokenClient, setTokenClient] = useState({}); // G-Drive Auth
 
   useEffect(() => {
     loadWebFonts();
@@ -38,7 +38,7 @@ const App = () => {
 
   return (
     <>
-      {isLoggedIn && <GdriveAuth setToken={setToken} />}
+      {isLoggedIn && <GdriveAuth setTokenClient={setTokenClient} />}
 
       {!(isRefreshing || isLoading) && (
         <Routes>
@@ -53,7 +53,10 @@ const App = () => {
             <Route element={<PrivateRoutes />}>
               <Route path="cluster" element={<ClusterPage />} />
               <Route path="element/:id" element={<ElementPage />} />
-              <Route path="gdrive" element={<GdrivePage token={token} />} />
+              <Route
+                path="gdrive"
+                element={<GdrivePage tokenClient={tokenClient} />}
+              />
               <Route path="profile" element={<ProfilePage />} />
             </Route>
           </Route>

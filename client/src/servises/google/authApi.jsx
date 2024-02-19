@@ -4,7 +4,7 @@ const { VITE_GOOGLE_CLIENT_ID, VITE_GOOGLE_API_KEY } = import.meta.env;
 const DISC_DOC = 'https://www.googleapis.com/discovery/v1/apis/drive/v3/rest';
 const SCOPES = 'https://www.googleapis.com/auth/drive.metadata.readonly';
 
-const GdriveAuth = ({ setToken }) => {
+const GdriveAuth = ({ setTokenClient }) => {
   useEffect(() => {
     const gapi = document.getElementById('gapi');
     if (gapi) return;
@@ -35,21 +35,21 @@ const GdriveAuth = ({ setToken }) => {
 
     const script = document.createElement('script');
     script.src = 'https://accounts.google.com/gsi/client';
-    script.id = 'gis';
+    script.id = 'gisEl';
     script.async = true;
     script.defer = true;
     script.onload = gisLoaded;
     document.querySelector('body')?.appendChild(script);
     // Callback after Google Identity Services are loaded.
     function gisLoaded() {
-      const token = window.google.accounts.oauth2.initTokenClient({
+      const tokenClient = window.google.accounts.oauth2.initTokenClient({
         client_id: VITE_GOOGLE_CLIENT_ID,
         scope: SCOPES,
         callback: '', // defined later
       });
-      setToken(token);
+      setTokenClient(tokenClient);
     }
-  }, [setToken]);
+  }, [setTokenClient]);
 };
 
 export default GdriveAuth;
