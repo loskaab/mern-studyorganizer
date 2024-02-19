@@ -48,8 +48,7 @@ export const TitleBtn = styled.button`
   font-size: 24px;
   font-weight: 600;
 
-  &:hover,
-  &:hover svg {
+  &:hover {
     color: ${colors.hovered};
   }
 `;

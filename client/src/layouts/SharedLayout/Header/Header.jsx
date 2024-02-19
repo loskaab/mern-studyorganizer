@@ -6,7 +6,7 @@ import ClustersSearchBar from 'components/ClusterBars/ClusterSearchBar';
 import ElementSearchBar from 'components/ElementBars/ElementSearchBar';
 import ProfileBtn from 'layouts/SharedLayout/Header/ProfileBtn/ProfileBtn';
 import FlexWrap from 'components/shared/FlexWrap/FlexWrap';
-import { useClusters } from 'utils/hooks';
+import { useClusters, useGdrive } from 'utils/hooks';
 import { useAuth } from 'utils/hooks/useAuth';
 import { barW } from 'layouts/SharedLayout/SharedLayout';
 import { themes } from 'styles/themes';
@@ -20,14 +20,34 @@ const Header = ({ $height }) => {
   const navigate = useNavigate();
   const { isLoggedIn } = useAuth();
   const { activeCluster: ac } = useClusters();
+  const { activeFile: af } = useGdrive();
 
-  const isTitle = pathname !== '/' && ac?.group && ac?.title;
   const handleNavi = () => {
     if (pathname.includes('/cluster')) {
       navigate(`/element/${ac?._id}`, { replace: true });
     }
     if (pathname.includes('/element')) {
       navigate('/cluster', { replace: true });
+    }
+    if (pathname.includes('/gdrive')) {
+      const activeFileEl = document.getElementById('active-file');
+      const options = { block: 'center', behavior: 'smooth' };
+      activeFileEl.scrollIntoView(options);
+    }
+  };
+
+  const clusterTitle = () => {
+    const paths = ['cluster', 'element'];
+    const isTitle = paths.some(el => pathname.includes(el));
+    if (isTitle && ac?.group && ac?.title) {
+      return `${ac.group} ${ac.title}`;
+    }
+  };
+
+  const gdriveTitle = () => {
+    const isTitle = pathname === '/gdrive';
+    if (isTitle && af?.name) {
+      return af.name;
     }
   };
 
@@ -37,14 +57,15 @@ const Header = ({ $height }) => {
         <LogoLink />
         <Nav>
           <NavLink to="/">Home</NavLink>
-          {isLoggedIn && <NavLink to="gdrive">G-Drive</NavLink>}
+          {isLoggedIn && <NavLink to="/gdrive">G-Drive</NavLink>}
           {isLoggedIn && <NavLink to="/cluster">Cluster</NavLink>}
           {isLoggedIn && <NavLink to={`/element/${ac?._id}`}>Element</NavLink>}
         </Nav>
 
-        {isTitle && (
-          <TitleBtn onClick={handleNavi}>{`${ac.group} ${ac.title}`}</TitleBtn>
-        )}
+        <TitleBtn onClick={handleNavi}>
+          {clusterTitle()}
+          {gdriveTitle()}
+        </TitleBtn>
       </FlexWrap>
 
       <FlexWrap $w={`calc(100% - ${barW})`} $p={`0 0 0 ${s}`} $ai="center">

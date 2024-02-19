@@ -21,11 +21,10 @@ import {
 } from './Li.styled';
 
 const LiFile = ({ el, sortByDate, setSortByDate }) => {
+  const { id, name, webViewLink, webContentLink, createdTime } = el;
   const dispatch = useDispatch();
   const { allClusters } = useClusters();
   const { activeFile } = useGdrive();
-
-  const { id, name, webViewLink, webContentLink, createdTime } = el;
 
   const trim = link => {
     const text = link.replace('https://drive.google.com/', '');
@@ -51,8 +50,10 @@ const LiFile = ({ el, sortByDate, setSortByDate }) => {
       : toast.success('Ascending by Date');
   };
 
+  const active = id === activeFile?.id;
+
   return (
-    <Li $active={id === activeFile?.id}>
+    <Li id={active ? 'active-file' : null} $active={active}>
       <LabelFavorite href={webContentLink} $hovered={favorite}>
         <SiGoogledrive size={favorite ? '16px' : '15px'} />
       </LabelFavorite>
