@@ -14,7 +14,6 @@ import SharedLayout from 'layouts/SharedLayout/SharedLayout';
 
 import HomePage from 'pages/HomePage';
 import GooglePage from 'pages/GooglePage';
-import GdriveAuth from 'servises/google/authApi';
 const SignupPage = lazy(() => import('pages/SignupPage'));
 const SigninPage = lazy(() => import('pages/SigninPage'));
 const ForgotPage = lazy(() => import('pages/ForgotPage'));
@@ -25,8 +24,7 @@ const GdrivePage = lazy(() => import('pages/GdrivePage'));
 
 const App = () => {
   const dispatch = useDispatch();
-  const { isLoggedIn, isRefreshing, isLoading } = useAuth();
-  const [tokenClient, setTokenClient] = useState({}); // G-Drive Auth
+  const { isRefreshing, isLoading } = useAuth();
 
   useEffect(() => {
     loadWebFonts();
@@ -38,8 +36,6 @@ const App = () => {
 
   return (
     <>
-      {isLoggedIn && <GdriveAuth setTokenClient={setTokenClient} />}
-
       {!(isRefreshing || isLoading) && (
         <Routes>
           <Route path="/" element={<SharedLayout />}>
@@ -53,10 +49,7 @@ const App = () => {
             <Route element={<PrivateRoutes />}>
               <Route path="cluster" element={<ClusterPage />} />
               <Route path="element/:id" element={<ElementPage />} />
-              <Route
-                path="gdrive"
-                element={<GdrivePage tokenClient={tokenClient} />}
-              />
+              <Route path="gdrive" element={<GdrivePage />} />
               <Route path="profile" element={<ProfilePage />} />
             </Route>
           </Route>

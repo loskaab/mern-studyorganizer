@@ -1,17 +1,17 @@
-import PropTypes from 'prop-types';
-
 // import AddClusterForm from 'components/ClusterForms/ClusterAddForm';
 import GridWrap from 'components/shared/GridWrap/GridWrap';
+import GoogleAuth from 'servises/google/authApi';
+
 // import Modal from 'components/shared/Modal/Modal';
 import { themes } from 'styles/themes';
 
-import ListBtn from './EditBtns/ListBtn';
-import AddBtn from './EditBtns/AddBtn';
+// import ListBtn from './EditBtns/ListBtn';
+// import AddBtn from './EditBtns/AddBtn';
 // import DeleteBtn from './EditBtns/DeleteBtn';
 
 const { s, m } = themes.indents;
 
-const GdriveEditBar = ({ tokenClient }) => {
+const GdriveEditBar = () => {
   // const [isModal, setIsModal] = useState(false);
 
   return (
@@ -23,9 +23,7 @@ const GdriveEditBar = ({ tokenClient }) => {
         $high="bottom"
         $gtc="1fr"
       >
-        {/* {isTrashBtn ? <DeleteBtn /> : <span></span>} */}
-
-        <ListBtn tokenClient={tokenClient} />
+        <GoogleAuth signInBtn />
       </GridWrap>
 
       {/* {isModal && (
@@ -41,7 +39,3 @@ const GdriveEditBar = ({ tokenClient }) => {
 };
 
 export default GdriveEditBar;
-
-GdriveEditBar.propTypes = {
-  tokenClient: PropTypes.object.isRequired,
-};

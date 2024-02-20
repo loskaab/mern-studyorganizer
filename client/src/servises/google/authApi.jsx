@@ -1,55 +1,128 @@
-import { useEffect } from 'react';
+import PropTypes from 'prop-types';
+import { useState, useEffect, useCallback } from 'react';
+import { loadGapiInsideDOM, loadAuth2 } from 'gapi-script';
+import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
+
+import Button from 'components/shared/Button/Button';
+import { listFilesThunk } from 'store/gdrive/gdriveThunks';
+import { themes } from 'styles/themes';
+
+const { button } = themes.shadows;
 
 const { VITE_GOOGLE_CLIENT_ID, VITE_GOOGLE_API_KEY } = import.meta.env;
-const DISC_DOC = 'https://www.googleapis.com/discovery/v1/apis/drive/v3/rest';
-const SCOPES = 'https://www.googleapis.com/auth/drive.metadata.readonly';
+const DISCOVERY_DOC =
+  'https://www.googleapis.com/discovery/v1/apis/drive/v3/rest';
 
-const GdriveAuth = ({ setTokenClient }) => {
+const GoogleAuth = ({ signInBtn, signOutBtn }) => {
+  const dispatch = useDispatch();
+  const [user, setUser] = useState(null);
+  const [gapi, setGapi] = useState(null);
+
+  const attachSignin = useCallback((element, auth2) => {
+    auth2.attachClickHandler(
+      element,
+      {},
+      googleUser => updateUser(googleUser),
+      err => toast.error(err.message),
+    );
+  }, []);
+
+  const updateUser = currentUser => {
+    const name = currentUser.getBasicProfile().getName();
+    const email = currentUser.getBasicProfile().getEmail();
+    const image = currentUser.getBasicProfile().getImageUrl();
+    setUser({ name, email, image });
+  };
+
+  // load gapi
   useEffect(() => {
-    const gapi = document.getElementById('gapi');
-    if (gapi) return;
+    const loadGapi = async () => {
+      const newGapi = await loadGapiInsideDOM();
+      setGapi(newGapi);
+    };
+    loadGapi();
+  }, []);
 
-    const script = document.createElement('script');
-    script.src = 'https://apis.google.com/js/api.js';
-    script.id = 'gapi';
-    script.async = true;
-    script.defer = true;
-    script.onload = gapiLoaded;
-    document.querySelector('body')?.appendChild(script);
-    // Callback after api.js is loaded.
+  // load auth2
+  useEffect(() => {
+    if (!gapi) return;
+
+    if (!user) {
+      const setAuth2 = async () => {
+        const auth2 = await loadAuth2(gapi, VITE_GOOGLE_CLIENT_ID, '');
+        attachSignin(document.getElementById('customBtn'), auth2);
+      };
+      setAuth2();
+    }
+  }, [user, gapi, attachSignin]);
+
+  // keep user on Login button
+  useEffect(() => {
+    if (!gapi) return;
+
+    const setAuth2 = async () => {
+      const auth2 = await loadAuth2(gapi, VITE_GOOGLE_CLIENT_ID, '');
+      if (auth2.isSignedIn.get()) {
+        updateUser(auth2.currentUser.get());
+      } else {
+        attachSignin(document.getElementById('customBtn'), auth2);
+      }
+    };
+    setAuth2();
+  }, [attachSignin, gapi]);
+
+  // initialize G-Drive client
+  useEffect(() => {
+    if (!gapi) return;
+
     function gapiLoaded() {
       window.gapi.load('client', initializeGapiClient);
     }
-    // Callback after the API client is loaded. Loads the discovery doc to initialize the API.
     async function initializeGapiClient() {
       await window.gapi.client.init({
         apiKey: VITE_GOOGLE_API_KEY,
-        discoveryDocs: [DISC_DOC],
+        discoveryDocs: [DISCOVERY_DOC],
       });
     }
-  }, []);
+    gapiLoaded();
+  }, [dispatch, gapi]);
 
+  // list G-Drive files
   useEffect(() => {
-    const gis = document.getElementById('gis');
-    if (gis) return;
+    dispatch(listFilesThunk());
+  }, [user, dispatch]);
 
-    const script = document.createElement('script');
-    script.src = 'https://accounts.google.com/gsi/client';
-    script.id = 'gisEl';
-    script.async = true;
-    script.defer = true;
-    script.onload = gisLoaded;
-    document.querySelector('body')?.appendChild(script);
-    // Callback after Google Identity Services are loaded.
-    function gisLoaded() {
-      const tokenClient = window.google.accounts.oauth2.initTokenClient({
-        client_id: VITE_GOOGLE_CLIENT_ID,
-        scope: SCOPES,
-        callback: '', // defined later
-      });
-      setTokenClient(tokenClient);
-    }
-  }, [setTokenClient]);
+  const signOut = () => {
+    const auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(() => {
+      setUser(null);
+      toast.success('User signed out');
+    });
+  };
+
+  return (
+    <>
+      {signInBtn && (
+        <Button $s="m" $bs={button}>
+          <span id="customBtn">
+            {user ? user.email.replace('gmail.com', '') : 'Sign In'}
+          </span>
+        </Button>
+      )}
+
+      {signOutBtn && (
+        <Button onClick={signOut} $s="m" $bs={button}>
+          Sign Out
+        </Button>
+      )}
+    </>
+  );
 };
 
-export default GdriveAuth;
+export default GoogleAuth;
+
+GoogleAuth.propTypes = {
+  signInBtn: PropTypes.bool.isRequired,
+  signOutBtn: PropTypes.bool,
+};

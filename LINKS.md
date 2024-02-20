@@ -34,7 +34,7 @@
 - **[hh-mm-ss]**https://www.npmjs.com/package/hh-mm-ss
 - **[MaterialUI]**https://mui.com/
 - **[svg-symbol-sprite]**https://github.com/scriptex/svg-symbol-sprite
-- **[]**
+- **[gapi-script]**https://www.npmjs.com/package/gapi-script
 - **[]**
 - **[zustand]**https://github.com/pmndrs/zustand
 - **[redux]**https://redux.js.org
