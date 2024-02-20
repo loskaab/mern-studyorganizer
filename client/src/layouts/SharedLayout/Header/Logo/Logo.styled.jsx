@@ -4,6 +4,6 @@ import { themes } from 'styles/themes';
 
 const { indents } = themes;
 
-export const Link = styled.a`
-  margin-right: ${indents.m};
+export const LogoImg = styled.img`
+  /* margin-right: ${indents.s}; */
 `;

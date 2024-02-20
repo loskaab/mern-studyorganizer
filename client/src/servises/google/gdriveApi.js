@@ -1,5 +1,3 @@
-// auth
-
 // files
 export const listFiles = async () => {
   const { result } = await window.gapi.client.drive.files.list({

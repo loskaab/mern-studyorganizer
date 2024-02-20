@@ -19,6 +19,8 @@ export const StyledHeader = styled.header`
 
 export const Nav = styled.nav`
   margin-right: auto;
+  display: flex;
+  align-items: center;
 
   & a {
     padding: 2px 0;

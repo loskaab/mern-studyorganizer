@@ -11,7 +11,7 @@ const baseLiStyle = css`
   padding-inline: 4px;
   display: grid;
   grid-column-gap: 2px;
-  grid-template-columns: 1fr 30fr 20fr 1fr 1fr 1fr 4fr;
+  grid-template-columns: 1fr 30fr 25fr 1fr 1fr 1fr 4fr;
   grid-template-areas: '. title title . . . .';
   align-items: center;
   justify-items: left;
@@ -105,7 +105,7 @@ const baseLabelStyle = css`
   }
 `;
 
-export const LabelFavorite = styled.a`
+export const LabelFavorite = styled.div`
   ${baseLabelStyle}
   position: relative;
   padding-bottom: 2px;

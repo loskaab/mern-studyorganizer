@@ -1,10 +1,13 @@
 import PropTypes from 'prop-types';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import { FaCheck } from 'react-icons/fa';
 import { FiEdit3, FiTrash2 } from 'react-icons/fi';
 import { SiGoogledrive } from 'react-icons/si';
 
+import AddClusterForm from 'components/ClusterForms/ClusterAddForm';
+import Modal from 'components/shared/Modal/Modal';
 import { getDate } from 'utils/helpers';
 import { useClusters, useGdrive } from 'utils/hooks';
 import {
@@ -24,16 +27,21 @@ import {
   DateBtn,
 } from './Li.styled';
 
-const LiFile = ({ el, sortByDate, setSortByDate }) => {
+const LiFile = ({ el, group, setGroup, sortByDate, setSortByDate }) => {
   const dispatch = useDispatch();
   const { allClusters } = useClusters();
   const { activeFile, gdriveCheck, gdriveTrash } = useGdrive();
+  const [isModal, setIsModal] = useState(false);
 
-  const { id, name, webViewLink, webContentLink, createdTime } = el;
+  const { id, name, webViewLink, fullFileExtension, createdTime } = el;
 
   const trim = link => {
     const text = link.replace('https://drive.google.com/', '');
     return text.length <= 30 ? text : text.substring(0, 19).concat('...');
+  };
+
+  const handleFavoriteClick = () => {
+    setIsModal(true);
   };
 
   const handleLinkClick = () => {
@@ -59,7 +67,7 @@ const LiFile = ({ el, sortByDate, setSortByDate }) => {
 
   return (
     <Li id={active ? 'active-file' : null} $active={active}>
-      <LabelFavorite href={webContentLink} $hovered={isInClusters}>
+      <LabelFavorite onClick={handleFavoriteClick} $hovered={isInClusters}>
         <SiGoogledrive size={isInClusters ? '16px' : '15px'} />
       </LabelFavorite>
 
@@ -90,6 +98,18 @@ const LiFile = ({ el, sortByDate, setSortByDate }) => {
       </LabelChecked>
 
       <DateBtn onClick={handleSort}>{getDate(createdTime)}</DateBtn>
+
+      {isModal && (
+        <Modal onClick={() => setIsModal(false)}>
+          <AddClusterForm
+            cluster={webViewLink}
+            title={name.replace(`.${fullFileExtension}`, '')}
+            group={group}
+            setGroup={setGroup}
+            setIsModal={setIsModal}
+          />
+        </Modal>
+      )}
     </Li>
   );
 };
@@ -98,6 +118,8 @@ export default LiFile;
 
 LiFile.propTypes = {
   el: PropTypes.object,
+  group: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+  setGroup: PropTypes.func,
   sortByDate: PropTypes.bool,
   setSortByDate: PropTypes.func,
   $active: PropTypes.bool,

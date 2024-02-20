@@ -13,7 +13,7 @@ import CreatableSelect from 'components/shared/Select/CreatableSelect';
 
 import { Form, Label, Input, Hidden } from './ClusterForms.styled';
 
-const AddClusterForm = ({ cluster, group, setGroup, setIsModal }) => {
+const AddClusterForm = ({ cluster, title, group, setGroup, setIsModal }) => {
   const dispatch = useDispatch();
   const { clusterGroups } = useClusters();
 
@@ -25,7 +25,7 @@ const AddClusterForm = ({ cluster, group, setGroup, setIsModal }) => {
   } = useForm({
     mode: 'onBlur',
     resolver: yupResolver(titleSchema),
-    defaultValues: { cluster },
+    defaultValues: { cluster, title },
   });
 
   const onSubmit = data => {
@@ -81,6 +81,7 @@ export default AddClusterForm;
 
 AddClusterForm.propTypes = {
   cluster: PropTypes.string.isRequired,
+  title: PropTypes.string,
   group: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   setGroup: PropTypes.func.isRequired,
   setIsModal: PropTypes.func.isRequired,

@@ -9,6 +9,7 @@ import LiFile from './Li/LiFile';
 const GdriveList = () => {
   const { files } = useGdrive();
   const [sortByDate, setSortByDate] = useState(false);
+  const [group, setGroup] = useState('');
 
   const getFolders = () => {
     let folders = files.filter(el => el.mimeType.includes('folder'));
@@ -52,6 +53,8 @@ const GdriveList = () => {
                 <LiFile
                   key={file.id}
                   el={file}
+                  group={group}
+                  setGroup={setGroup}
                   sortByDate={sortByDate}
                   setSortByDate={setSortByDate}
                 />

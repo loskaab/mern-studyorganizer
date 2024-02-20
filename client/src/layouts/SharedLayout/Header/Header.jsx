@@ -1,16 +1,16 @@
 import PropTypes from 'prop-types';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 
-import LogoLink from 'layouts/SharedLayout/Header/LogoLink/LogoLink';
 import ClustersSearchBar from 'components/ClusterBars/ClusterSearchBar';
 import ElementSearchBar from 'components/ElementBars/ElementSearchBar';
-import ProfileBtn from 'layouts/SharedLayout/Header/ProfileBtn/ProfileBtn';
 import FlexWrap from 'components/shared/FlexWrap/FlexWrap';
 import { useClusters, useGdrive } from 'utils/hooks';
 import { useAuth } from 'utils/hooks/useAuth';
 import { barW } from 'layouts/SharedLayout/SharedLayout';
 import { themes } from 'styles/themes';
 
+import Logo from './Logo/Logo';
+import ProfileBtn from './ProfileBtn/ProfileBtn';
 import { StyledHeader, Nav, TitleBtn } from './Header.styled';
 
 const { s } = themes.indents;
@@ -54,9 +54,11 @@ const Header = ({ $height }) => {
   return (
     <StyledHeader $height={$height}>
       <FlexWrap $w={barW} $p={`0 ${s} 0 0`} $ai="center">
-        <LogoLink />
         <Nav>
-          <NavLink to="/">Home</NavLink>
+          <NavLink to="/">
+            <Logo />
+          </NavLink>
+
           {isLoggedIn && <NavLink to="/gdrive">G-Drive</NavLink>}
           {isLoggedIn && <NavLink to="/cluster">Cluster</NavLink>}
           {isLoggedIn && <NavLink to={`/element/${ac?._id}`}>Element</NavLink>}

@@ -1,18 +1,19 @@
 // import PropTypes from 'prop-types';
-import { useDispatch } from 'react-redux';
-import { toast } from 'react-toastify';
+
+// import { useDispatch } from 'react-redux';
+// import { toast } from 'react-toastify';
 
 import Button from 'components/shared/Button/Button';
-import { listFilesThunk } from 'store/gdrive/gdriveThunks';
+// import { listFilesThunk } from 'store/gdrive/gdriveThunks';
 import { themes } from 'styles/themes';
 
 const { button } = themes.shadows;
 
 const AddBtn = () => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   return (
-    <Button onClick={() => dispatch(listFilesThunk())} $s="m" $bs={button}>
+    <Button onClick={() => console.log('qwe')} $s="m" $bs={button}>
       Add
     </Button>
   );
@@ -21,6 +22,6 @@ const AddBtn = () => {
 export default AddBtn;
 
 // AddBtn.propTypes = {
-//   setClipboardText: PropTypes.func.isRequired,
+// setClipboardText: PropTypes.func.isRequired,
 //   setIsModal: PropTypes.func.isRequired,
 // };
