@@ -8,7 +8,6 @@ import { List } from './GdriveList.styled';
 
 const GdriveList = () => {
   const { files } = useGdrive();
-
   const [sortByDate, setSortByDate] = useState(false);
   const [group, setGroup] = useState('');
 
