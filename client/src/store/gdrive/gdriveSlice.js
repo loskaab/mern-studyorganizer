@@ -2,12 +2,11 @@ import { createSlice, isAnyOf, combineReducers } from '@reduxjs/toolkit';
 
 import * as TNK from './gdriveThunks';
 
-const thunkArr = [TNK.listFilesThunk];
+const thunkArr = [TNK.listFilesThunk, TNK.deleteFileThunk];
 
 const fn = type => thunkArr.map(el => el[type]);
 
 // files
-
 const handleListFiles = (_, action) => {
   let files = action.payload.files;
   files = files.filter(el => el.shared && !el.trashed);
@@ -15,7 +14,7 @@ const handleListFiles = (_, action) => {
 };
 
 // fulfilled files slice
-const gdriveListFilesSlice = createSlice({
+const gdriveFilesSlice = createSlice({
   name: 'files',
   initialState: [],
   reducers: {
@@ -23,6 +22,7 @@ const gdriveListFilesSlice = createSlice({
   },
   extraReducers: builder => {
     builder.addCase(TNK.listFilesThunk.fulfilled, handleListFiles);
+    builder.addCase(TNK.deleteFileThunk.fulfilled);
   },
 });
 
@@ -112,7 +112,7 @@ const gdriveErrorSlice = createSlice({
 });
 
 export const gdriveReducer = combineReducers({
-  files: gdriveListFilesSlice.reducer,
+  files: gdriveFilesSlice.reducer,
   active: fileActiveSlice.reducer,
   filter: gdriveFilterSlice.reducer,
   select: gdriveSelectSlice.reducer,
@@ -123,7 +123,7 @@ export const gdriveReducer = combineReducers({
   error: gdriveErrorSlice.reducer,
 });
 
-export const { emptyFiles } = gdriveListFilesSlice.actions;
+export const { emptyFiles } = gdriveFilesSlice.actions;
 export const { setActiveFile } = fileActiveSlice.actions;
 export const { setGdriveFilter } = gdriveFilterSlice.actions;
 export const { setGdriveSelect } = gdriveSelectSlice.actions;

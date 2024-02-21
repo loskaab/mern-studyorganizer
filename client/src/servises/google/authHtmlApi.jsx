@@ -6,8 +6,7 @@ import Button from 'components/shared/Button/Button';
 import { listFilesThunk } from 'store/gdrive/gdriveThunks';
 
 const { VITE_GOOGLE_CLIENT_ID, VITE_GOOGLE_API_KEY } = import.meta.env;
-const DISCOVERY_DOC =
-  'https://www.googleapis.com/discovery/v1/apis/drive/v3/rest';
+const DISC_DOC = 'https://www.googleapis.com/discovery/v1/apis/drive/v3/rest';
 const SCOPES = 'https://www.googleapis.com/auth/drive.metadata.readonly';
 
 const GoogleAuth = ({ signInBtn, signOutBtn }) => {
@@ -36,7 +35,7 @@ const GoogleAuth = ({ signInBtn, signOutBtn }) => {
     async function initializeGapiClient() {
       await window.gapi.client.init({
         apiKey: VITE_GOOGLE_API_KEY,
-        discoveryDocs: [DISCOVERY_DOC],
+        discoveryDocs: [DISC_DOC],
       });
     }
     setGapiInited(true);

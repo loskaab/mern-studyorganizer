@@ -13,6 +13,11 @@ const { button } = themes.shadows;
 const { VITE_GOOGLE_CLIENT_ID, VITE_GOOGLE_API_KEY } = import.meta.env;
 const DISCOVERY_DOC =
   'https://www.googleapis.com/discovery/v1/apis/drive/v3/rest';
+const SCOPES = [
+  'https://www.googleapis.com/auth/drive',
+  'https://www.googleapis.com/auth/drive.appdata',
+  'https://www.googleapis.com/auth/drive.file',
+].join(' ');
 
 const GoogleAuth = ({ signInBtn, signOutBtn }) => {
   const dispatch = useDispatch();
@@ -50,7 +55,7 @@ const GoogleAuth = ({ signInBtn, signOutBtn }) => {
 
     if (!user) {
       const setAuth2 = async () => {
-        const auth2 = await loadAuth2(gapi, VITE_GOOGLE_CLIENT_ID, '');
+        const auth2 = await loadAuth2(gapi, VITE_GOOGLE_CLIENT_ID, SCOPES);
         attachSignin(document.getElementById('customBtn'), auth2);
       };
       setAuth2();
@@ -62,7 +67,7 @@ const GoogleAuth = ({ signInBtn, signOutBtn }) => {
     if (!gapi) return;
 
     const setAuth2 = async () => {
-      const auth2 = await loadAuth2(gapi, VITE_GOOGLE_CLIENT_ID, '');
+      const auth2 = await loadAuth2(gapi, VITE_GOOGLE_CLIENT_ID, SCOPES);
       if (auth2.isSignedIn.get()) {
         updateUser(auth2.currentUser.get());
       } else {

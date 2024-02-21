@@ -1,4 +1,4 @@
-// files
+// list files
 export const listFiles = async () => {
   const { result } = await window.gapi.client.drive.files.list({
     pageSize: 1000,
@@ -8,4 +8,11 @@ export const listFiles = async () => {
     // q: 'shared = true',
   });
   return result;
+};
+
+// delete file
+export const deleteFile = fileId => {
+  return window.gapi.client.drive.files.delete({ fileId });
+  // .then(resp => console.log('Response', resp));
+  // .catch(err => console.log('Error', err));
 };

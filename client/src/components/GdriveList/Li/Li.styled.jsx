@@ -84,7 +84,7 @@ export const FileLink = styled.a`
 
   &::before {
     counter-increment: subsection;
-    content: counter(section) '.' counter(subsection) '. ';
+    content: counter(section) '.' counter(subsection) ' ';
     font-size: 14px;
     font-weight: 700;
     color: ${colors.black};

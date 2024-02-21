@@ -14,7 +14,7 @@ const DeleteBtn = () => {
   const { elementTrash } = useElements();
 
   const emptyTrash = () => {
-    if (!confirm('Are you sure you want to delete the selected Clusters?')) {
+    if (!confirm('Are you sure you want to delete the selected Element(s)?')) {
       return;
     }
     // delete trash elements

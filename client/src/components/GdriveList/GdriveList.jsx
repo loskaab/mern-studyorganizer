@@ -2,12 +2,13 @@ import { Fragment, useState } from 'react';
 
 import { useGdrive } from 'utils/hooks';
 
-import { List } from './GdriveList.styled';
 import LiFolder from './Li/LiFolder';
 import LiFile from './Li/LiFile';
+import { List } from './GdriveList.styled';
 
 const GdriveList = () => {
   const { files } = useGdrive();
+
   const [sortByDate, setSortByDate] = useState(false);
   const [group, setGroup] = useState('');
 

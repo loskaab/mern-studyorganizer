@@ -1,33 +1,40 @@
 import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
 
 import Button from 'components/shared/Button/Button';
-import * as clusterSlice from 'store/cluster/clusterSlice';
-import { deleteClusterThunk } from 'store/cluster/clusterThunks';
+import { useGdrive } from 'utils/hooks';
+import { deleteFileThunk, listFilesThunk } from 'store/gdrive/gdriveThunks';
 import { themes } from 'styles/themes';
-import { useClusters } from 'utils/hooks';
+import { emptyGdriveTrash, setActiveFile } from 'store/gdrive/gdriveSlice';
 
 const { button } = themes.shadows;
 
 const DeleteBtn = () => {
   const dispatch = useDispatch();
-  const { activeCluster, clusterTrash } = useClusters();
+  const { activeFile, gdriveTrash } = useGdrive();
 
-  const emptyTrash = () => {
-    if (!confirm('Are you sure you want to delete the selected Clusters?')) {
+  const handleDeleteFiles = async () => {
+    if (!confirm('Are you sure you want to delete the selected File(s)?')) {
       return;
     }
-    // delete trash clusters
-    dispatch(deleteClusterThunk(clusterTrash.map(el => el._id).join('&')))
-      .then(() => {
-        const trashId = clusterTrash.map(el => el._id);
-        const { _id } = activeCluster;
-        trashId.includes(_id) && dispatch(clusterSlice.setActiveCluster(null));
-      })
-      .then(() => dispatch(clusterSlice.emptyClusterTrash()));
+    // delete trash files
+    await gdriveTrash.forEach((el, i) => {
+      if (i !== gdriveTrash.length - 1) {
+        dispatch(deleteFileThunk(el.id)).catch(err => toast.error(err.message));
+      } else {
+        dispatch(deleteFileThunk(el.id))
+          .then(() => toast.success(`${i + 1} file(s) deleted`))
+          .then(() => dispatch(listFilesThunk()))
+          .catch(err => toast.error(err.message));
+      }
+    });
+    dispatch(emptyGdriveTrash());
+    const trashId = gdriveTrash.map(el => el.id);
+    trashId.includes(activeFile?.id) && dispatch(setActiveFile(null));
   };
 
   return (
-    <Button onClick={emptyTrash} $s="m" $bs={button}>
+    <Button onClick={handleDeleteFiles} $s="m" $bs={button}>
       Delete
     </Button>
   );

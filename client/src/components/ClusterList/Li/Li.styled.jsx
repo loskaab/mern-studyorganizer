@@ -34,7 +34,7 @@ export const LiGroup = styled.li`
 
     &::before {
       counter-increment: section;
-      content: 'Group ' counter(section) '. ';
+      content: 'Group ' counter(section) ' - ';
       text-transform: capitalize;
     }
   }
@@ -84,7 +84,7 @@ export const ClusterLink = styled.a`
 
   &::before {
     counter-increment: subsection;
-    content: counter(section) '.' counter(subsection) '. ';
+    content: counter(section) '.' counter(subsection) ' ';
     font-size: 14px;
     font-weight: 700;
     color: ${colors.black};

@@ -4,7 +4,7 @@ const { ctrlWrapper } = require('../../decorators');
 
 const getAll = ctrlWrapper(async (req, res) => {
   const owner = req.user._id;
-  const { page = 1, limit = 50000, ...query } = req.query;
+  const { page = 1, limit = 1000000, ...query } = req.query;
   const projection = '-updatedAt';
   const skip = (page - 1) * limit;
   const total = await Element.countDocuments({ owner, ...query });

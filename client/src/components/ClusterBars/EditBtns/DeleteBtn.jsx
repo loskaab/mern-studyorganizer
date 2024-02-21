@@ -13,7 +13,7 @@ const DeleteBtn = () => {
   const { activeCluster, clusterTrash } = useClusters();
 
   const emptyTrash = () => {
-    if (!confirm('Are you sure you want to delete the selected Clusters?')) {
+    if (!confirm('Are you sure you want to delete the selected Cluster(s)?')) {
       return;
     }
     // delete trash clusters
