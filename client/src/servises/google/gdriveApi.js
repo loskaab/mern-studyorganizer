@@ -13,6 +13,4 @@ export const listFiles = async () => {
 // delete file
 export const deleteFile = fileId => {
   return window.gapi.client.drive.files.delete({ fileId });
-  // .then(resp => console.log('Response', resp));
-  // .catch(err => console.log('Error', err));
 };

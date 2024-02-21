@@ -4,6 +4,7 @@ import { useGdrive } from 'utils/hooks';
 import { themes } from 'styles/themes';
 
 import DeleteBtn from './EditBtns/DeleteBtn';
+import RefreshBtn from './RefreshBtn/RefreshBtn';
 
 // import AddBtn from './EditBtns/AddBtn';
 
@@ -23,7 +24,9 @@ const GdriveEditBar = () => {
       $gtc="auto 1fr"
     >
       {isDeleteBtn && <DeleteBtn />}
-      <GoogleAuth signInBtn />
+      <GoogleAuth signInBtn>
+        <RefreshBtn />
+      </GoogleAuth>
     </GridWrap>
   );
 };

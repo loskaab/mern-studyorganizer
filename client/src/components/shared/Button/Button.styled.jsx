@@ -6,6 +6,7 @@ const { colors, breakpoints } = themes;
 
 // Base styles
 const baseStyles = css`
+  position: relative;
   width: ${({ $w }) => $w};
   height: ${({ $h }) => $h};
   display: flex;
@@ -13,10 +14,8 @@ const baseStyles = css`
   align-items: center;
 
   font-family: 'Roboto', sans-serif;
-
   border: 1px solid ${colors.accent};
   box-shadow: ${({ $bs }) => $bs};
-
   transition: color 250ms, border-color 250ms, background-color 250ms;
 
   &:disabled {
@@ -24,6 +23,11 @@ const baseStyles = css`
     color: ${colors.border};
     border-color: ${colors.border};
     background-color: ${colors.accent};
+  }
+
+  // change bg-color on child hoverd
+  &:has(div:hover) {
+    background-color: ${colors.white};
   }
 
   ${({ $s = 's' }) => {

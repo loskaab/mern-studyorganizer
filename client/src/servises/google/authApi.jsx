@@ -19,7 +19,7 @@ const SCOPES = [
   'https://www.googleapis.com/auth/drive.file',
 ].join(' ');
 
-const GoogleAuth = ({ signInBtn, signOutBtn }) => {
+const GoogleAuth = ({ signInBtn, signOutBtn, children }) => {
   const dispatch = useDispatch();
   const [user, setUser] = useState(null);
   const [gapi, setGapi] = useState(null);
@@ -109,10 +109,11 @@ const GoogleAuth = ({ signInBtn, signOutBtn }) => {
   return (
     <>
       {signInBtn && (
-        <Button $s="m" $bs={button}>
+        <Button onClick={e => e.currentTarget.blur()} $s="m" $bs={button}>
           <span id="customBtn">
-            {user ? user.email.replace('gmail.com', '') : 'Sign In'}
+            {user ? user.email.replace('@gmail.com', '') : 'Sign In'}
           </span>
+          {children}
         </Button>
       )}
 
@@ -130,4 +131,8 @@ export default GoogleAuth;
 GoogleAuth.propTypes = {
   signInBtn: PropTypes.bool.isRequired,
   signOutBtn: PropTypes.bool,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]),
 };

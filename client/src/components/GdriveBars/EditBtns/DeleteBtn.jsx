@@ -4,8 +4,8 @@ import { toast } from 'react-toastify';
 import Button from 'components/shared/Button/Button';
 import { useClusters, useGdrive } from 'utils/hooks';
 import { deleteFileThunk, listFilesThunk } from 'store/gdrive/gdriveThunks';
-import { themes } from 'styles/themes';
 import { emptyGdriveTrash, setActiveFile } from 'store/gdrive/gdriveSlice';
+import { themes } from 'styles/themes';
 
 const { button } = themes.shadows;
 
