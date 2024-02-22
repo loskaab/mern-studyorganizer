@@ -24,3 +24,14 @@ export const deleteFileThunk = createAsyncThunk(
     }
   },
 );
+
+export const getFileThunk = createAsyncThunk(
+  'files/get',
+  async ({ fileId, fileName }, thunkAPI) => {
+    try {
+      return await API.getFile({ fileId, fileName });
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  },
+);

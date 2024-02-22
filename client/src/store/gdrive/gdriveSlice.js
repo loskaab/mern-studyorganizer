@@ -2,16 +2,21 @@ import { createSlice, isAnyOf, combineReducers } from '@reduxjs/toolkit';
 
 import * as TNK from './gdriveThunks';
 
-const thunkArr = [TNK.listFilesThunk, TNK.deleteFileThunk];
+const thunkArr = [TNK.listFilesThunk, TNK.getFileThunk, TNK.deleteFileThunk];
 
 const fn = type => thunkArr.map(el => el[type]);
 
-// files
+// list files
 const handleListFiles = (_, action) => {
   let files = action.payload.files;
   files = files.filter(el => el.shared && !el.trashed);
   return files;
 };
+
+// get file
+// const handleGetFile = (_, action) => {
+//   const data = action.payload;
+// };
 
 // fulfilled files slice
 const gdriveFilesSlice = createSlice({
@@ -22,6 +27,7 @@ const gdriveFilesSlice = createSlice({
   },
   extraReducers: builder => {
     builder.addCase(TNK.listFilesThunk.fulfilled, handleListFiles);
+    builder.addCase(TNK.getFileThunk.fulfilled);
     builder.addCase(TNK.deleteFileThunk.fulfilled);
   },
 });
@@ -53,22 +59,6 @@ const gdriveSelectSlice = createSlice({
   },
 });
 
-// fulfilled check slice
-const gdriveCheckSlice = createSlice({
-  name: 'check',
-  initialState: [],
-  reducers: {
-    setGdriveCheck: (state, { payload }) => {
-      const isInCheck = state.find(el => el.id === payload.id);
-      if (isInCheck) {
-        return state.filter(el => el.id !== payload.id);
-      } else {
-        state.push(payload);
-      }
-    },
-    emptyGdriveCheck: () => [],
-  },
-});
 
 // fulfilled trash slice
 const gdriveTrashSlice = createSlice({
@@ -116,7 +106,6 @@ export const gdriveReducer = combineReducers({
   active: fileActiveSlice.reducer,
   filter: gdriveFilterSlice.reducer,
   select: gdriveSelectSlice.reducer,
-  check: gdriveCheckSlice.reducer,
   trash: gdriveTrashSlice.reducer,
 
   isLoading: gdriveIsLoadingSlice.reducer,
@@ -127,5 +116,4 @@ export const { emptyFiles } = gdriveFilesSlice.actions;
 export const { setActiveFile } = fileActiveSlice.actions;
 export const { setGdriveFilter } = gdriveFilterSlice.actions;
 export const { setGdriveSelect } = gdriveSelectSlice.actions;
-export const { setGdriveCheck, emptyGdriveCheck } = gdriveCheckSlice.actions;
 export const { setGdriveTrash, emptyGdriveTrash } = gdriveTrashSlice.actions;

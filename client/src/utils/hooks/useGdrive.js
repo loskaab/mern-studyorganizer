@@ -7,7 +7,6 @@ export const useGdrive = () => {
   const activeFile = useSelector(selectors.selectActiveFile);
   const gdriveFilter = useSelector(selectors.selectGdriveFilter);
   const gdriveSelect = useSelector(selectors.selectGdriveSelect);
-  const gdriveCheck = useSelector(selectors.selectGdriveCheck);
   const gdriveTrash = useSelector(selectors.selectGdriveTrash);
 
   const isLoading = useSelector(selectors.selectIsLoading);
@@ -18,7 +17,6 @@ export const useGdrive = () => {
     activeFile,
     gdriveFilter,
     gdriveSelect,
-    gdriveCheck,
     gdriveTrash,
 
     isLoading,

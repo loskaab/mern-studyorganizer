@@ -122,24 +122,7 @@ export const LabelFavorite = styled.div`
   }
 `;
 
-export const LabelChecked = styled.label`
-  ${baseLabelStyle}
-  opacity: ${({ $hovered }) => ($hovered ? 1 : 0)};
-
-  & svg {
-    transition: border-color 250ms, color 250ms;
-    padding: 1px;
-    border: 2px solid ${colors.border};
-    border-radius: 50%;
-    color: ${({ $hovered }) => ($hovered ? colors.border : 'transparent')};
-  }
-  &:hover svg {
-    border-color: ${colors.placeholder};
-    color: ${({ $hovered }) => ($hovered ? colors.placeholder : 'transparent')};
-  }
-`;
-
-// date, edit, trash buttons
+// date, edit, trash, download buttons
 
 const baseBtnStyle = css`
   display: flex;
@@ -174,14 +157,20 @@ export const DateBtn = styled.button`
   font-size: 14px;
 `;
 
-export const TrashBtn = styled.button`
+export const DownloadBtn = styled.button`
   ${baseBtnStyle}
 
-  opacity: ${({ $hovered }) => ($hovered ? 1 : 0)};
+  opacity: 0;
 `;
 
 export const EditBtn = styled.button`
   ${baseBtnStyle}
 
   opacity: 0;
+`;
+
+export const TrashBtn = styled.button`
+  ${baseBtnStyle}
+
+  opacity: ${({ $hovered }) => ($hovered ? 1 : 0)};
 `;

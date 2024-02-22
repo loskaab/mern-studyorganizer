@@ -35,7 +35,7 @@
 - **[MaterialUI]**https://mui.com/
 - **[svg-symbol-sprite]**https://github.com/scriptex/svg-symbol-sprite
 - **[gapi-script]**https://www.npmjs.com/package/gapi-script
-- **[]**
+- **[file-saver]**https://www.npmjs.com/package/file-saver?activeTab=readme
 - **[zustand]**https://github.com/pmndrs/zustand
 - **[redux]**https://redux.js.org
 - **[react-redux]**https://react-redux.js.org

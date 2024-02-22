@@ -34,7 +34,7 @@ const AddBtn = ({ setClipboardText, setIsModal }) => {
   };
   return (
     <Button onClick={addCluster} $s="m" $bs={button}>
-      Add
+      add
     </Button>
   );
 };

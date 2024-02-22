@@ -19,7 +19,6 @@ import {
   setActiveFile,
   setGdriveFilter,
   setGdriveSelect,
-  emptyGdriveCheck,
   emptyGdriveTrash,
 } from 'store/gdrive/gdriveSlice';
 import { logoutThunk } from 'store/auth/authThunks';
@@ -49,7 +48,6 @@ const ProfileForm = () => {
     dispatch(setActiveFile(null));
     dispatch(setGdriveFilter(''));
     dispatch(setGdriveSelect([]));
-    dispatch(emptyGdriveCheck());
     dispatch(emptyGdriveTrash());
   };
 

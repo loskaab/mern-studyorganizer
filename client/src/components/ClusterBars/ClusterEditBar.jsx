@@ -17,7 +17,8 @@ const ClusterEditBar = () => {
   const [clipboardText, setClipboardText] = useState('');
   const [group, setGroup] = useState('');
 
-  const isTrashBtn = clusterTrash.length > 0;
+  const isDeleteBtn = clusterTrash.length > 0 ? ' 1fr' : '';
+  const gtc = '1fr' + isDeleteBtn;
 
   return (
     <>
@@ -26,9 +27,9 @@ const ClusterEditBar = () => {
         $pos="fixed"
         $side="right"
         $high="bottom"
-        $gtc="1fr 1fr"
+        $gtc={gtc}
       >
-        {isTrashBtn ? <DeleteBtn /> : <span></span>}
+        {isDeleteBtn && <DeleteBtn />}
         <AddBtn setClipboardText={setClipboardText} setIsModal={setIsModal} />
       </GridWrap>
 

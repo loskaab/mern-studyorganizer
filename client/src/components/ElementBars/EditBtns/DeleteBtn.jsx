@@ -29,7 +29,7 @@ const DeleteBtn = () => {
 
   return (
     <Button onClick={emptyTrash} $s="m" $bs={button}>
-      Delete
+      delete
     </Button>
   );
 };

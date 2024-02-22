@@ -13,7 +13,8 @@ const { s, m } = themes.indents;
 const GdriveEditBar = () => {
   const { gdriveTrash } = useGdrive();
 
-  const isDeleteBtn = gdriveTrash.length > 0;
+  const isDeleteBtn = gdriveTrash.length > 0 ? ' 1fr' : '';
+  const gtc = 'auto' + isDeleteBtn;
 
   return (
     <GridWrap
@@ -21,7 +22,7 @@ const GdriveEditBar = () => {
       $pos="fixed"
       $side="right"
       $high="bottom"
-      $gtc="auto 1fr"
+      $gtc={gtc}
     >
       {isDeleteBtn && <DeleteBtn />}
       <GoogleAuth signInBtn>

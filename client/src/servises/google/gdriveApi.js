@@ -1,3 +1,5 @@
+import { saveAs } from 'file-saver';
+
 // list files
 export const listFiles = async () => {
   const { result } = await window.gapi.client.drive.files.list({
@@ -13,4 +15,15 @@ export const listFiles = async () => {
 // delete file
 export const deleteFile = fileId => {
   return window.gapi.client.drive.files.delete({ fileId });
+};
+
+// get file
+export const getFile = async ({ fileId, fileName }) => {
+  const { body } = await window.gapi.client.drive.files.get({
+    fileId,
+    alt: 'media',
+  });
+
+  const blob = new Blob([body], { type: 'plain/text' });
+  saveAs(blob, fileName);
 };

@@ -33,7 +33,7 @@ const AddBtn = () => {
 
   return (
     <Button onClick={addElement} $s="m" $bs={button}>
-      Add
+      add
     </Button>
   );
 };
