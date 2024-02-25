@@ -28,6 +28,14 @@ const ClusterList = () => {
     dispatch(fetchElementsThunk());
   }, [dispatch]);
 
+  useEffect(() => {
+    const activeFileEl = document.getElementById('active-cluster');
+    const scrollOnActive = () => {
+      activeFileEl?.scrollIntoView({ block: 'center', behavior: 'smooth' });
+    };
+    scrollOnActive();
+  }, []);
+
   // clusters filter+selector (trash/filter/favorite/checked)
   const getClusters = () => {
     // trash

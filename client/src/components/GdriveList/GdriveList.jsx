@@ -1,4 +1,4 @@
-import { Fragment, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 
 import { useGdrive } from 'utils/hooks';
 
@@ -10,6 +10,14 @@ const GdriveList = () => {
   const { files } = useGdrive();
   const [sortByDate, setSortByDate] = useState(false);
   const [group, setGroup] = useState('');
+
+  useEffect(() => {
+    const activeFileEl = document.getElementById('active-file');
+    const scrollOnActive = () => {
+      activeFileEl?.scrollIntoView({ block: 'center', behavior: 'smooth' });
+    };
+    scrollOnActive();
+  }, []);
 
   const getFolders = () => {
     let folders = files.filter(el => el.mimeType.includes('folder'));

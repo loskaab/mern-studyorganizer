@@ -78,8 +78,10 @@ const LiCluster = ({ el, sortByDate, setSortByDate }) => {
     dispatch(updateClusterThunk({ _id, checked: !checked }));
   };
 
+  const active = _id === activeCluster?._id;
+
   return (
-    <Li $active={_id === activeCluster?._id}>
+    <Li id={active ? 'active-cluster' : null} $active={active}>
       <LabelFavorite $hovered={favorite}>
         <input
           type="checkbox"

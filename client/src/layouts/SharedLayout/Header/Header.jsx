@@ -22,17 +22,14 @@ const Header = ({ $height }) => {
   const { activeCluster: ac } = useClusters();
   const { activeFile: af } = useGdrive();
 
-  const activeFileEl = document.getElementById('active-file');
-
-  const scrollOnActive = () => {
-    activeFileEl?.scrollIntoView({ block: 'center', behavior: 'smooth' });
-  };
-
-  const scrollOnTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
   const scroll = () => {
+    const activeFileEl = document.getElementById('active-file');
+    const scrollOnActive = () => {
+      activeFileEl?.scrollIntoView({ block: 'center', behavior: 'smooth' });
+    };
+    const scrollOnTop = () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
     const positionY = activeFileEl?.getBoundingClientRect().y;
     const isVisible = window.innerHeight > positionY;
     isVisible ? scrollOnTop() : scrollOnActive();
