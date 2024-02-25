@@ -60,9 +60,7 @@ const Header = ({ $height }) => {
 
   const gdriveTitle = () => {
     const isTitle = pathname === '/gdrive';
-    if (isTitle && af?.name) {
-      return af.name;
-    }
+    if (isTitle && af?.name) return af.name;
   };
 
   return (
@@ -73,11 +71,7 @@ const Header = ({ $height }) => {
             <Logo />
           </NavLink>
 
-          {isLoggedIn && (
-            <NavLink to="/gdrive" onClick={scrollOnActive()}>
-              G-Drive
-            </NavLink>
-          )}
+          {isLoggedIn && <NavLink to="/gdrive">G-Drive</NavLink>}
           {isLoggedIn && <NavLink to="/cluster">Cluster</NavLink>}
           {isLoggedIn && <NavLink to={`/element/${ac?._id}`}>Element</NavLink>}
         </Nav>
