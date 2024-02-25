@@ -22,7 +22,13 @@ const Header = ({ $height }) => {
   const { activeCluster: ac } = useClusters();
   const { activeFile: af } = useGdrive();
 
-  const handleNavi = () => {
+  const scrollOnActive = () => {
+    const activeFileEl = document.getElementById('active-file');
+    const options = { block: 'center', behavior: 'smooth' };
+    activeFileEl && activeFileEl.scrollIntoView(options);
+  };
+
+  const handleNavigate = () => {
     if (pathname.includes('/cluster')) {
       navigate(`/element/${ac?._id}`, { replace: true });
     }
@@ -30,9 +36,7 @@ const Header = ({ $height }) => {
       navigate('/cluster', { replace: true });
     }
     if (pathname.includes('/gdrive')) {
-      const activeFileEl = document.getElementById('active-file');
-      const options = { block: 'center', behavior: 'smooth' };
-      activeFileEl.scrollIntoView(options);
+      scrollOnActive();
     }
   };
 
@@ -59,12 +63,16 @@ const Header = ({ $height }) => {
             <Logo />
           </NavLink>
 
-          {isLoggedIn && <NavLink to="/gdrive">G-Drive</NavLink>}
+          {isLoggedIn && (
+            <NavLink to="/gdrive" onClick={scrollOnActive()}>
+              G-Drive
+            </NavLink>
+          )}
           {isLoggedIn && <NavLink to="/cluster">Cluster</NavLink>}
           {isLoggedIn && <NavLink to={`/element/${ac?._id}`}>Element</NavLink>}
         </Nav>
 
-        <TitleBtn onClick={handleNavi}>
+        <TitleBtn onClick={handleNavigate}>
           {clusterTitle()}
           {gdriveTitle()}
         </TitleBtn>

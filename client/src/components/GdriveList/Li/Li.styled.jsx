@@ -157,13 +157,13 @@ export const DateBtn = styled.button`
   font-size: 14px;
 `;
 
-export const DownloadBtn = styled.button`
+export const CopyBtn = styled.button`
   ${baseBtnStyle}
 
   opacity: 0;
 `;
 
-export const EditBtn = styled.button`
+export const DownloadBtn = styled.button`
   ${baseBtnStyle}
 
   opacity: 0;

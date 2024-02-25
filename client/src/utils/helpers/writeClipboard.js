@@ -15,7 +15,7 @@ export const writeClipboard = async text => {
   if (text) {
     navigator.clipboard
       .writeText(text)
-      // .then(() => toast.success(`Copied: ${text}`))
+      .then(() => toast.success(`Copied: ${text}`))
       .catch(err => toast.error(err.message));
   }
 };

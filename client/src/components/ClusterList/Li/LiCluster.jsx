@@ -52,19 +52,19 @@ const LiCluster = ({ el, sortByDate, setSortByDate }) => {
     dispatch(updateClusterThunk({ _id, favorite: !favorite }));
   };
 
-  const handleLinkClick = () => {
+  const handleLink = () => {
     dispatch(setActiveCluster(el));
     if (el?._id === activeCluster?._id) {
       navigate(`/element/${_id}`, { replace: true });
     }
   };
 
+  const handleTrash = () => dispatch(setClusterTrash(el));
+  const isInTrash = clusterTrash.find(el => el._id === _id);
+
   const handleChecked = () => {
     dispatch(updateClusterThunk({ _id, checked: !checked }));
   };
-
-  const handleTrash = () => dispatch(setClusterTrash(el));
-  const isInTrash = clusterTrash.find(el => el._id === _id);
 
   const handleSort = () => {
     setSortByDate(!sortByDate);
@@ -85,7 +85,7 @@ const LiCluster = ({ el, sortByDate, setSortByDate }) => {
         <TiStar size="20px" />
       </LabelFavorite>
 
-      <TitleLink onClick={handleLinkClick}>{title}</TitleLink>
+      <TitleLink onClick={handleLink}>{title}</TitleLink>
 
       <ClusterLink href={cluster} target="_blank" rel="noopener noreferrer">
         {trim(cluster)}

@@ -24,6 +24,6 @@ export const getFile = async ({ fileId, fileName }) => {
     alt: 'media',
   });
 
-  const blob = new Blob([body], { type: 'plain/text' });
+  const blob = new Blob([body], { type: 'text/plain' });
   saveAs(blob, fileName);
 };

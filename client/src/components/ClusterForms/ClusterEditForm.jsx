@@ -6,6 +6,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { toast } from 'react-toastify';
 
 import { useClusters } from 'utils/hooks';
+import { getGdiveId } from 'utils/helpers/getGdriveId';
 import { addGroupThunk, updateClusterThunk } from 'store/cluster/clusterThunks';
 import { titleSchema } from 'utils/validation';
 import ButtonClr from 'components/shared/Button/ButtonClr';
@@ -32,7 +33,10 @@ const EditClusterForm = ({ el, setIsModal }) => {
   });
 
   const onSubmit = async data => {
-    dispatch(updateClusterThunk({ _id, ...data, group: stateGroup.value }));
+    const gdriveId = getGdiveId(data.cluster);
+    dispatch(
+      updateClusterThunk({ _id, ...data, group: stateGroup.value, gdriveId }),
+    );
     setIsModal(false);
   };
 
