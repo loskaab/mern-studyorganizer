@@ -57,6 +57,7 @@ const LiFile = ({ el, group, setGroup, sortByDate, setSortByDate }) => {
 
   const handleCopy = async () => {
     await writeClipboard(el.webViewLink);
+    dispatch(setActiveFile(el));
     navigate('/cluster', { replace: true });
   };
 

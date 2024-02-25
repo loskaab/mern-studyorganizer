@@ -59,18 +59,23 @@ const LiCluster = ({ el, sortByDate, setSortByDate }) => {
     }
   };
 
-  const handleTrash = () => dispatch(setClusterTrash(el));
-  const isInTrash = clusterTrash.find(el => el._id === _id);
-
-  const handleChecked = () => {
-    dispatch(updateClusterThunk({ _id, checked: !checked }));
-  };
-
   const handleSort = () => {
     setSortByDate(!sortByDate);
     sortByDate
       ? toast.success('Ascending by Title')
       : toast.success('Ascending by Date');
+  };
+
+  const handleEdit = () => {
+    dispatch(setActiveCluster(el));
+    setIsModal('edit');
+  };
+
+  const handleTrash = () => dispatch(setClusterTrash(el));
+  const isInTrash = clusterTrash.find(el => el._id === _id);
+
+  const handleCheck = () => {
+    dispatch(updateClusterThunk({ _id, checked: !checked }));
   };
 
   return (
@@ -93,7 +98,7 @@ const LiCluster = ({ el, sortByDate, setSortByDate }) => {
 
       <CountSpan>{elementCount > 0 && elementCount}</CountSpan>
 
-      <EditBtn onClick={() => setIsModal('edit')}>
+      <EditBtn onClick={handleEdit}>
         <FiEdit3 size="15px" />
       </EditBtn>
 
@@ -106,7 +111,7 @@ const LiCluster = ({ el, sortByDate, setSortByDate }) => {
           type="checkbox"
           name="checked"
           checked={checked}
-          onChange={handleChecked}
+          onChange={handleCheck}
         />
         <FaCheck size="15px" />
       </LabelChecked>
