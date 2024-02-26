@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 
 // import schemas from 'utils/validation/yupSchemas';
 import { btn_submit } from 'styles/common/Buttons.module.scss';
-import { previewImage } from 'utils/helpers/previewImage';
+import { previewImage } from 'utils/helpers';
 
 import css from './Forms.module.scss';
 

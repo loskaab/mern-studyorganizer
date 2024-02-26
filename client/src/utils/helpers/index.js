@@ -1,5 +1,7 @@
 export * from 'utils/helpers/getAbbreviation';
 export * from 'utils/helpers/getDate';
+export * from 'utils/helpers/getGdriveId';
+export * from 'utils/helpers/getMediaLink';
 export * from 'utils/helpers/getUnique';
 export * from 'utils/helpers/previewImage';
 export * from 'utils/helpers/readClipboard';

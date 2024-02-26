@@ -1,5 +1,6 @@
 import { useLocation } from 'react-router-dom';
 
+import { getMediaLink } from 'utils/helpers';
 import { useClusters, useGdrive } from 'utils/hooks';
 
 import { Iframe } from './ElementFrame.styled';
@@ -9,11 +10,7 @@ const ElementFrame = () => {
   const { activeCluster } = useClusters();
   const { activeFile } = useGdrive();
 
-  const getLink = link =>
-    link?.replace('watch?v=', 'embed/').replace('/view', '/preview');
-  // .replace('drive/folders/', 'embeddedfolderview?id=');
-  // .replace('?usp=drive_link', '#list');
-  const elementLink = getLink(
+  const elementLink = getMediaLink(
     pathname.includes('gdrive')
       ? activeFile?.webViewLink
       : activeCluster?.cluster,
@@ -25,7 +22,7 @@ const ElementFrame = () => {
         width="100%"
         height={elementLink?.includes('embed/') ? '50%' : '100%'}
         src={`${elementLink}#view=FitH&toolbar=1&page=${1}`}
-      ></Iframe>
+      />
     )
   );
 };

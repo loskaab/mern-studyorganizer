@@ -6,7 +6,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { toast } from 'react-toastify';
 
 import { useClusters } from 'utils/hooks';
-import { getGdiveId } from 'utils/helpers/getGdriveId';
+import { getGdiveId } from 'utils/helpers';
 import { addGroupThunk, updateClusterThunk } from 'store/cluster/clusterThunks';
 import { titleSchema } from 'utils/validation';
 import ButtonClr from 'components/shared/Button/ButtonClr';

@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-import { baseBtnStyles } from '../Li.styled';
+import { baseBtnStyles } from '../LiElement.styled';
 
 import { themes } from 'styles/themes';
 
@@ -34,10 +34,24 @@ export const Textarea = styled.textarea`
 `;
 
 export const Divider = styled.div`
-  height: calc(100% - 8px);
-  width: 1px;
-  justify-self: center;
-  border: 1px solid ${colors.borderLight};
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+
+  &::after {
+    content: '';
+    height: calc(100% - 8px);
+    width: 1px;
+    border: 1px solid ${colors.borderLight};
+    transition: border-color 250ms;
+  }
+
+  &:hover::after {
+    border-color: ${colors.placeholder};
+  }
 `;
 
 // buttons
@@ -77,4 +91,23 @@ export const SpeakBtn = styled.button`
   &:focus {
     background-color: ${colors.backgroundHoverd};
   }
+`;
+
+const baseAudioStyle = css`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+`;
+
+export const Iframe = styled.iframe`
+  ${baseAudioStyle}
+
+  height: 60px;
+  border-radius: 30px;
+`;
+
+export const Audio = styled.audio`
+  ${baseAudioStyle}
 `;

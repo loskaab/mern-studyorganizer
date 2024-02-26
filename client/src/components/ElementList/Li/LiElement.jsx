@@ -19,10 +19,10 @@ import {
   LabelChecked,
   TrashBtn,
   EditBtn,
-} from './Li.styled';
+} from './LiElement.styled';
 import ElEditForm from './Element/ElEditForm';
 
-const LiElement = ({ el }) => {
+const LiElement = ({ el, sortByDate, setSortByDate }) => {
   const dispatch = useDispatch();
   const { elementTrash } = useElements();
   const [isForm, setIsForm] = useState(false);
@@ -74,7 +74,13 @@ const LiElement = ({ el }) => {
       </FlexWrap>
 
       {isForm && <ElEditForm el={el} isForm={isForm} setIsForm={setIsForm} />}
-      {!isForm && <Element el={el} />}
+      {!isForm && (
+        <Element
+          el={el}
+          sortByDate={sortByDate}
+          setSortByDate={setSortByDate}
+        />
+      )}
 
       <FlexWrap $h="100%" $p="0" $fd="column">
         <TrashBtn $hovered={isInTrash} onClick={handleTrash}>
@@ -91,4 +97,8 @@ const LiElement = ({ el }) => {
 
 export default LiElement;
 
-LiElement.propTypes = { el: PropTypes.object };
+LiElement.propTypes = {
+  el: PropTypes.object,
+  sortByDate: PropTypes.bool,
+  setSortByDate: PropTypes.func,
+};

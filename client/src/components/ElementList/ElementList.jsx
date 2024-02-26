@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { useClusters, useElements } from 'utils/hooks';
@@ -6,7 +6,7 @@ import { fetchElementsThunk } from 'store/element/elementThunks';
 
 import ElementLangBar from 'components/ElementBars/ElementLangBar';
 
-import LiElement from './Li/Li';
+import LiElement from './Li/LiElement';
 import { List } from './ElementList.styled';
 
 const ElementList = () => {
@@ -14,8 +14,11 @@ const ElementList = () => {
   const { activeCluster } = useClusters();
   const { allElements, elementTrash } = useElements();
   const { elementFilter } = useElements();
+
   let { elementSelect } = useElements();
   elementSelect = !elementSelect ? [] : elementSelect;
+
+  const [sortByDate, setSortByDate] = useState(false);
 
   useEffect(() => {
     dispatch(fetchElementsThunk());
@@ -52,12 +55,21 @@ const ElementList = () => {
       }
       return filtredFavorite;
     })
-    .sort((a, b) => b.createdAt.localeCompare(a.createdAt));
+    .sort(
+      sortByDate
+        ? (a, b) => b.createdAt.localeCompare(a.createdAt)
+        : (a, b) => a.createdAt.localeCompare(b.createdAt),
+    );
 
   return (
     <List>
       {filtredElements.map(element => (
-        <LiElement key={element._id} el={element} />
+        <LiElement
+          key={element._id}
+          el={element}
+          sortByDate={sortByDate}
+          setSortByDate={setSortByDate}
+        />
       ))}
 
       <ElementLangBar />
