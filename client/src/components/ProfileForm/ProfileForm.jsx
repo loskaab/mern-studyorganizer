@@ -17,6 +17,7 @@ import {
 import {
   emptyFiles,
   setActiveFile,
+  setGdriveFolders,
   setGdriveFilter,
   setGdriveSelect,
   emptyGdriveTrash,
@@ -46,6 +47,7 @@ const ProfileForm = () => {
 
     dispatch(emptyFiles());
     dispatch(setActiveFile(null));
+    dispatch(setGdriveFolders([]));
     dispatch(setGdriveFilter(''));
     dispatch(setGdriveSelect([]));
     dispatch(emptyGdriveTrash());

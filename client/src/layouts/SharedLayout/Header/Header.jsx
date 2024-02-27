@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 
+import GdriveSearchBar from 'components/GdriveBars/GdriveSearchBar';
 import ClustersSearchBar from 'components/ClusterBars/ClusterSearchBar';
 import ElementSearchBar from 'components/ElementBars/ElementSearchBar';
 import FlexWrap from 'components/shared/FlexWrap/FlexWrap';
@@ -80,6 +81,7 @@ const Header = ({ $height }) => {
       </FlexWrap>
 
       <FlexWrap $w={`calc(100% - ${barW})`} $p={`0 0 0 ${s}`} $ai="center">
+        {pathname === '/gdrive' && <GdriveSearchBar />}
         {pathname === '/cluster' && <ClustersSearchBar />}
         {pathname.includes('/element/') && <ElementSearchBar />}
         {isLoggedIn && <ProfileBtn />}

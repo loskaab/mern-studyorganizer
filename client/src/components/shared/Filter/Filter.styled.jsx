@@ -9,12 +9,14 @@ const offsetY = `calc(${heightSize} * 1)`;
 
 export const FilterDiv = styled.div`
   width: 100%;
+  height: 100%;
   position: relative;
   display: inline-block;
 
   input {
     width: 100%;
-    height: 38px; // ${heightSize};
+    height: 100%;
+    min-height: 38px; // ${heightSize};
     padding-inline: ${offsetY};
 
     border: 1px solid transparent;

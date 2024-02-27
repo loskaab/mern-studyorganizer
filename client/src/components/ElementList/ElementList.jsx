@@ -12,8 +12,7 @@ import { List } from './ElementList.styled';
 const ElementList = () => {
   const dispatch = useDispatch();
   const { activeCluster } = useClusters();
-  const { allElements, elementTrash } = useElements();
-  const { elementFilter } = useElements();
+  const { allElements, elementTrash, elementFilter } = useElements();
 
   let { elementSelect } = useElements();
   elementSelect = !elementSelect ? [] : elementSelect;

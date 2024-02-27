@@ -13,11 +13,6 @@ const handleListFiles = (_, action) => {
   return files;
 };
 
-// get file
-// const handleGetFile = (_, action) => {
-//   const data = action.payload;
-// };
-
 // fulfilled files slice
 const gdriveFilesSlice = createSlice({
   name: 'files',
@@ -29,6 +24,15 @@ const gdriveFilesSlice = createSlice({
     builder.addCase(TNK.listFilesThunk.fulfilled, handleListFiles);
     builder.addCase(TNK.getFileThunk.fulfilled);
     builder.addCase(TNK.deleteFileThunk.fulfilled);
+  },
+});
+
+// fulfilled folders slice
+const gdriveFoldersSlice = createSlice({
+  name: 'folders',
+  initialState: [],
+  reducers: {
+    setGdriveFolders: (_, action) => action.payload,
   },
 });
 
@@ -58,7 +62,6 @@ const gdriveSelectSlice = createSlice({
     setGdriveSelect: (_, action) => action.payload,
   },
 });
-
 
 // fulfilled trash slice
 const gdriveTrashSlice = createSlice({
@@ -104,6 +107,7 @@ const gdriveErrorSlice = createSlice({
 export const gdriveReducer = combineReducers({
   files: gdriveFilesSlice.reducer,
   active: fileActiveSlice.reducer,
+  folders: gdriveFoldersSlice.reducer,
   filter: gdriveFilterSlice.reducer,
   select: gdriveSelectSlice.reducer,
   trash: gdriveTrashSlice.reducer,
@@ -114,6 +118,7 @@ export const gdriveReducer = combineReducers({
 
 export const { emptyFiles } = gdriveFilesSlice.actions;
 export const { setActiveFile } = fileActiveSlice.actions;
+export const { setGdriveFolders } = gdriveFoldersSlice.actions;
 export const { setGdriveFilter } = gdriveFilterSlice.actions;
 export const { setGdriveSelect } = gdriveSelectSlice.actions;
 export const { setGdriveTrash, emptyGdriveTrash } = gdriveTrashSlice.actions;
