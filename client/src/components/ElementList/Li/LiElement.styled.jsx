@@ -25,6 +25,10 @@ export const Li = styled.li`
 
   transition: box-shadow 250ms, border-color 250ms;
 
+  &#active-element {
+    border: 1px solid ${colors.border};
+  }
+
   &:hover {
     border-color: ${colors.border};
     box-shadow: ${shadows.back};

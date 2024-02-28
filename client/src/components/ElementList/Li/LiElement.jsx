@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { TiStar } from 'react-icons/ti';
@@ -24,11 +24,24 @@ import ElEditForm from './Element/ElEditForm';
 
 const LiElement = ({ el, sortByDate, setSortByDate }) => {
   const dispatch = useDispatch();
-  const { elementTrash } = useElements();
+  const { elementTrash, activeElement } = useElements();
   const [isForm, setIsForm] = useState(false);
 
-  const { _id, favorite, checked } = el;
+  const { _id, element, favorite, checked } = el;
   const isInTrash = elementTrash.find(el => el._id === _id);
+
+  const active = element === activeElement;
+
+  useEffect(() => {
+    const activeElementEl = document.getElementById('active-element');
+    const scrollOnActive = () => {
+      activeElementEl?.scrollIntoView({
+        block: 'center',
+        behavior: 'smooth',
+      });
+    };
+    scrollOnActive();
+  }, []);
 
   const handleFavorite = () => {
     dispatch(updateElementThunk({ _id, favorite: !favorite }));
@@ -50,7 +63,7 @@ const LiElement = ({ el, sortByDate, setSortByDate }) => {
   };
 
   return (
-    <Li>
+    <Li id={active ? 'active-element' : null}>
       <FlexWrap $h="100%" $p="0" $fd="column">
         <LabelFavorite $hovered={favorite}>
           <input

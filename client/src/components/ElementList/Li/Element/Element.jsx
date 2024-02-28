@@ -1,12 +1,15 @@
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 
-import { useClusters } from 'utils/hooks';
+import { setActiveElement } from 'store/element/elementSlice';
 import { getMediaLink, speakText, writeClipboard } from 'utils/helpers';
+import { useClusters, useElements } from 'utils/hooks';
 
 import { GridWrap, Divider, SpeakBtn, Iframe, Audio } from './Element.styled';
 
 const Element = ({ el, sortByDate, setSortByDate }) => {
+  const dispatch = useDispatch();
   const { activeCluster } = useClusters();
   const { element, caption } = el;
 
@@ -17,6 +20,7 @@ const Element = ({ el, sortByDate, setSortByDate }) => {
       rate: activeCluster.rate,
     });
     await writeClipboard(element);
+    dispatch(setActiveElement(element));
     msg && toast.error(msg);
   };
 
