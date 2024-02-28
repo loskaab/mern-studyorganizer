@@ -28,8 +28,8 @@ const Element = ({ el, sortByDate, setSortByDate }) => {
   const handleSort = () => {
     setSortByDate(!sortByDate);
     sortByDate
-      ? toast.success('Descending by Date')
-      : toast.success('Ascending by Date');
+      ? toast.success('Ascending by Date')
+      : toast.success('Descending by Date');
   };
 
   const isAudio = caption.endsWith('mp3');
