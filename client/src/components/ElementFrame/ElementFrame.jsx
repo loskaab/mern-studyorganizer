@@ -17,7 +17,7 @@ const ElementFrame = () => {
       : activeCluster?.cluster,
   );
 
-  const page = activeElement.split(/\s+/)[0].replace('[', '').replace(']', '');
+  const page = activeElement?.split(/\s+/)[0].replace('[', '').replace(']', '');
 
   return (
     elementLink && (

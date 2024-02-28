@@ -10,6 +10,7 @@ import {
 } from 'store/cluster/clusterSlice';
 import {
   cleanElement,
+  setActiveElement,
   setElementFilter,
   setElementSelect,
   emptyElementTrash,
@@ -41,6 +42,7 @@ const ProfileForm = () => {
     dispatch(emptyClusterTrash());
 
     dispatch(cleanElement());
+    dispatch(setActiveElement(null));
     dispatch(setElementFilter(''));
     dispatch(setElementSelect([]));
     dispatch(emptyElementTrash());

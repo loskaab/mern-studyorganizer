@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 
 import { setActiveElement } from 'store/element/elementSlice';
 import { getMediaLink, speakText, writeClipboard } from 'utils/helpers';
-import { useClusters, useElements } from 'utils/hooks';
+import { useClusters } from 'utils/hooks';
 
 import { GridWrap, Divider, SpeakBtn, Iframe, Audio } from './Element.styled';
 
