@@ -10,7 +10,7 @@ import { FiEdit3, FiTrash2 } from 'react-icons/fi';
 import FlexWrap from 'components/shared/FlexWrap/FlexWrap';
 import { useElements } from 'utils/hooks';
 import { updateElementThunk } from 'store/element/elementThunks';
-import { setElementTrash } from 'store/element/elementSlice';
+import { setElementTrash, setActiveElement } from 'store/element/elementSlice';
 
 import Element from './Element/Element';
 import {
@@ -63,7 +63,10 @@ const LiElement = ({ el, sortByDate, setSortByDate }) => {
   };
 
   return (
-    <Li id={active ? 'active-element' : null}>
+    <Li
+      id={active ? 'active-element' : null}
+      onClick={() => dispatch(setActiveElement(element))}
+    >
       <FlexWrap $h="100%" $p="0" $fd="column">
         <LabelFavorite $hovered={favorite}>
           <input
