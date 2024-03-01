@@ -15,5 +15,8 @@ router.use('/clusters', clustersRouter);
 router.use('/clustergroups', clusterGroupsRouter);
 router.use('/elements', elementsRouter);
 router.use('/elementgroups', elementGroupsRouter);
+router.use('/ping', (req, res) => {
+  res.status(200).json({ message: 'It is alive' });
+});
 
 module.exports = router;

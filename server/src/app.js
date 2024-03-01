@@ -43,9 +43,7 @@ app.use(missingRouteHandler);
 app.use(globalErrorHandler);
 
 // Prevent onrender.com from sleep
-cron.schedule('*/10 * * * *', () => {
-  // eslint-disable-next-line no-console
-  console.log('running a task every 10 minutes');
-});
+
+cron.schedule('*/2 * * * *', () => {});
 
 module.exports = app;
