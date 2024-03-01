@@ -4,7 +4,6 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const logger = require('morgan');
-const cron = require('node-cron');
 
 const routes = require('./routes');
 const { logFile } = require('./utils');
@@ -41,9 +40,5 @@ app.use(missingRouteHandler);
 
 // Global error 500: 'Internal Server Error',
 app.use(globalErrorHandler);
-
-// Prevent onrender.com from sleep
-
-cron.schedule('*/2 * * * *', () => {});
 
 module.exports = app;
