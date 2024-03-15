@@ -21,8 +21,8 @@ const token = {
 
 // response interseptor
 apiClient.interceptors.response.use(
-  response => {
-    const { message, result } = response.data;
+  resp => {
+    const { message, result } = resp.data;
 
     !message?.includes('Found') && message && toast.success(message);
 
@@ -31,31 +31,31 @@ apiClient.interceptors.response.use(
       store.getState().auth.user.verificationCode !== 'google' &&
       toast.success(`Logged in: ${result.user.email}`);
 
-    return response;
+    return resp;
   },
-  async error => {
-    if (error.response.status === 401) {
+  async err => {
+    if (err.response.status === 401) {
       try {
         const { refreshToken } = store.getState().auth.user;
         if (!refreshToken) {
-          return Promise.reject(error);
+          return Promise.reject(err);
         }
         apiClient.defaults.headers.common['refreshtoken'] = refreshToken;
-        error.config.headers.refreshtoken = `${refreshToken}`;
+        err.config.headers.refreshtoken = `${refreshToken}`;
         const { data } = await apiClient.post('/auth/refresh');
         const { accessToken } = data.result.user;
 
         token.set(accessToken);
         await store.dispatch(authenticate(data));
-        error.config.headers.Authorization = `Bearer ${accessToken}`;
+        err.config.headers.Authorization = `Bearer ${accessToken}`;
 
-        return apiClient(error.config);
-      } catch (error) {
-        return Promise.reject(error);
+        return apiClient(err.config);
+      } catch (err) {
+        return Promise.reject(err);
       }
     }
-    toast.error(error.response.data.message);
-    return Promise.reject(error);
+    toast.error(err.response.data.message);
+    return Promise.reject(err);
   },
 );
 

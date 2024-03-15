@@ -43,7 +43,7 @@ const AddClusterForm = ({ cluster, title, group, setGroup, setIsModal }) => {
       toast.error('Title is required');
     } else {
       dispatch(addGroupThunk({ clusterGroup: groupValue }));
-      setGroup({ group: groupValue, label: groupValue });
+      setGroup({ value: groupValue, label: groupValue });
     }
   };
 

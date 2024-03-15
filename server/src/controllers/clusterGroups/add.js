@@ -13,7 +13,9 @@ const add = ctrlWrapper(async (req, res) => {
   const newClusterGroup = await ClusterGroup.create({ ...req.body, owner });
   if (!newClusterGroup) throw HttpError(403);
 
-  res.status(201).json({ message: 'Created', result: { group: filterValues(newClusterGroup) } });
+  res
+    .status(201)
+    .json({ message: 'Group created', result: { group: filterValues(newClusterGroup) } });
 });
 
 module.exports = add;

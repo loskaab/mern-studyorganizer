@@ -1,6 +1,10 @@
-const { User } = require('../../models');
+const jwt = require('jsonwebtoken');
+
+const { Session, User } = require('../../models');
 const { ctrlWrapper } = require('../../decorators');
 const { HttpError } = require('../../utils');
+
+const { TOKEN_ACCESS_SECRET, TOKEN_REFRESH_SECRET } = process.env;
 
 const verifyEmail = ctrlWrapper(async (req, res) => {
   const { verificationCode } = req.body;
@@ -22,7 +26,16 @@ const verifyEmail = ctrlWrapper(async (req, res) => {
   const newUser = await User.findByIdAndUpdate(user._id, candidate, { new: true });
   if (!newUser) throw HttpError(403, `Failed to verify ${user.email}`);
 
-  res.status(200).json({ message: `Email verified`, result: { user: newUser } });
+  // Log in
+  const session = await Session.create({ uid: newUser._id });
+  const payload = { uid: newUser._id, sid: session._id };
+  const accessToken = jwt.sign(payload, TOKEN_ACCESS_SECRET, { expiresIn: '60s' });
+  const refreshToken = jwt.sign(payload, TOKEN_REFRESH_SECRET, { expiresIn: '7d' });
+
+  res.status(200).json({
+    message: `Email verified, logged in: ${newUser.email}`,
+    result: { user: { ...newUser._doc, accessToken, refreshToken } },
+  });
 });
 
 module.exports = verifyEmail;

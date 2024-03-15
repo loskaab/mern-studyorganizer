@@ -27,16 +27,8 @@ const login = ctrlWrapper(async (req, res) => {
   } else {
     const session = await Session.create({ uid: user._id });
     const payload = { uid: user._id, sid: session._id };
-
     const accessToken = jwt.sign(payload, TOKEN_ACCESS_SECRET, { expiresIn: '60s' });
     const refreshToken = jwt.sign(payload, TOKEN_REFRESH_SECRET, { expiresIn: '7d' });
-
-    // const newUser = await User.findByIdAndUpdate(
-    //   user._id,
-    //   { accessToken, refreshToken },
-    //   { new: true },
-    // );
-    // if (!newUser) throw HttpError(403);
 
     res.status(200).json({
       message: `Logged in: ${user.email}`,

@@ -29,13 +29,6 @@ const register = ctrlWrapper(async (req, res) => {
   });
   if (!user) throw HttpError(403, 'Failed to sign up');
 
-  // const session = await Session.create({ uid: user._id });
-  // const payload = { uid: user._id, sid: session._id };
-
-  // const refreshToken = jwt.sign(payload, TOKEN_REFRESH_SECRET, { expiresIn: '7d' });
-  // const newUser = await User.findByIdAndUpdate(user._id, { refreshToken }, { new: true });
-
-  // if (!newUser) throw HttpError(403);
   res.status(201).json({
     message: `Verification code sent to ${user.email}`,
     result: { user: { ...user._doc, verificationCode: verificationCode?.split(' ')[1] } },

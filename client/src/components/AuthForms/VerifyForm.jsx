@@ -35,8 +35,7 @@ const VerifyForm = ({ userEmail }) => {
     dispatch(verifyEmailThunk(values))
       .unwrap() // .then(pld =>  console.log(pld))
       .catch(err => err.includes('401') && toast.error('Unauthorized'))
-      .then(() => dispatch(getUserThunk()))
-      .then(() => dispatch(addGroupThunk({ clusterGroup: 'Common' })));
+      .then(() => dispatch(getUserThunk()));
 
     actions.resetForm();
   };
