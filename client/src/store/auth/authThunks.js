@@ -68,12 +68,12 @@ export const resetPassThunk = createAsyncThunk(
   },
 );
 
-export const refreshUserThunk = createAsyncThunk(
-  'auth/refresh',
+export const getUserThunk = createAsyncThunk(
+  'users/get',
   async (_, thunkAPI) => {
     const persistedToken = thunkAPI.getState().auth.user.accessToken;
     try {
-      return await API.refreshUser(persistedToken);
+      return await API.getUser(persistedToken);
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { Route, Routes, Navigate } from 'react-router-dom';
 
 import { loadWebFonts } from 'styles/loadWebFonts';
-import { refreshUserThunk } from 'store/auth/authThunks';
+import { getUserThunk } from 'store/auth/authThunks';
 import { useAuth } from 'utils/hooks/useAuth';
 import PublicRoutes from 'routes/PublicRoutes';
 import PrivateRoutes from 'routes/PrivateRoutes';
@@ -31,7 +31,7 @@ const App = () => {
   }, []);
 
   // useEffect(() => {
-  //   dispatch(refreshUserThunk());
+  //   dispatch(getUserThunk());
   // }, [dispatch]);
 
   return (

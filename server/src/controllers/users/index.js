@@ -1,7 +1,9 @@
-const updateProfile = require('./updateProfile');
 const deleteProfile = require('./deleteProfile');
+const getProfile = require('./getProfile');
+const updateProfile = require('./updateProfile');
 
 module.exports = {
-  updateProfile,
   deleteProfile,
+  getProfile,
+  updateProfile,
 };

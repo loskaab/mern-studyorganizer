@@ -1,6 +1,6 @@
 const { ctrlWrapper } = require('../../decorators');
 
-const getUser = ctrlWrapper(async (req, res) => {
+const getProfile = ctrlWrapper(async (req, res) => {
   const { user } = req;
 
   res.status(200).json({
@@ -8,4 +8,4 @@ const getUser = ctrlWrapper(async (req, res) => {
   });
 });
 
-module.exports = getUser;
+module.exports = getProfile;

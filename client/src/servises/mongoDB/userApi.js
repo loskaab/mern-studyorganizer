@@ -1,5 +1,6 @@
 import { apiClient, token } from './apiClient';
 
+// Auth
 export const register = async credentials => {
   const { data } = await apiClient.post('/auth/register', credentials);
   token.set(data.result.user.accessToken);
@@ -33,9 +34,10 @@ export const resetPass = async credentials => {
   return data;
 };
 
-export const refreshUser = async persistedToken => {
+// Profile
+export const getUser = async persistedToken => {
   token.set(persistedToken);
-  const { data } = await apiClient.get('/auth/refresh');
+  const { data } = await apiClient.get('/users/current');
   return data;
 };
 

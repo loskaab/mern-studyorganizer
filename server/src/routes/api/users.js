@@ -8,6 +8,8 @@ const router = express.Router();
 
 router.use(authenticate);
 
+router.get('/current', ctrl.users.getProfile);
+
 router.patch(
   '/update',
   upload.single('avatar'),

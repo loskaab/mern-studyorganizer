@@ -13,11 +13,14 @@ const thunkArr = [
   TNK.resetPassThunk,
   TNK.updateUserThunk,
   TNK.deleteUserThunk,
-  TNK.refreshUserThunk,
+  TNK.getUserThunk,
 ];
 const fn = type => thunkArr.map(el => el[type]);
 
-const handleLoginSucsess = (_, action) => action.payload.result.user;
+const handleLoginSucsess = (state, action) => {
+  const { user } = action.payload.result;
+  return { ...state, ...user };
+};
 
 const handleLogoutSucsess = () => userInitialState;
 
@@ -40,7 +43,7 @@ const authUserSlice = createSlice({
       .addCase(TNK.loginThunk.fulfilled, handleLoginSucsess)
       .addCase(TNK.logoutThunk.fulfilled, handleLogoutSucsess)
       // auth from localStorage
-      .addCase(TNK.refreshUserThunk.fulfilled, handleLoginSucsess)
+      .addCase(TNK.getUserThunk.fulfilled, handleLoginSucsess)
       // verify email
       .addCase(TNK.verifyEmailThunk.fulfilled, handleLoginSucsess)
       // reset password

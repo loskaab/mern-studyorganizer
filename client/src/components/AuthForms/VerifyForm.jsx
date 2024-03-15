@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 
 import { verifySchema } from 'utils/validation';
-import { refreshUserThunk, verifyEmailThunk } from 'store/auth/authThunks';
+import { getUserThunk, verifyEmailThunk } from 'store/auth/authThunks';
 import { addGroupThunk } from 'store/cluster/clusterThunks';
 
 import SignBtn from './AuthBtns/SignBtn';
@@ -35,7 +35,7 @@ const VerifyForm = ({ userEmail }) => {
     dispatch(verifyEmailThunk(values))
       .unwrap() // .then(pld =>  console.log(pld))
       .catch(err => err.includes('401') && toast.error('Unauthorized'))
-      .then(() => dispatch(refreshUserThunk()))
+      .then(() => dispatch(getUserThunk()))
       .then(() => dispatch(addGroupThunk({ clusterGroup: 'Common' })));
 
     actions.resetForm();
