@@ -1,12 +1,12 @@
 const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
+// const jwt = require('jsonwebtoken');
 
 // const gravatar = require('gravatar');
 const { User } = require('../../models');
 const { HttpError, randomNumber, sendMail, createMsg } = require('../../utils');
 const { ctrlWrapper } = require('../../decorators');
 
-const { TOKEN_REFRESH_SECRET } = process.env;
+// const { TOKEN_REFRESH_SECRET } = process.env;
 
 const register = ctrlWrapper(async (req, res) => {
   const { name, email, password } = req.body;
@@ -29,14 +29,16 @@ const register = ctrlWrapper(async (req, res) => {
   });
   if (!user) throw HttpError(403, 'Failed to sign up');
 
-  const id = user._id;
-  const refreshToken = jwt.sign({ id }, TOKEN_REFRESH_SECRET, { expiresIn: '7d' });
-  const newUser = await User.findByIdAndUpdate(id, { refreshToken }, { new: true });
+  // const session = await Session.create({ uid: user._id });
+  // const payload = { uid: user._id, sid: session._id };
 
-  if (!newUser) throw HttpError(403);
+  // const refreshToken = jwt.sign(payload, TOKEN_REFRESH_SECRET, { expiresIn: '7d' });
+  // const newUser = await User.findByIdAndUpdate(user._id, { refreshToken }, { new: true });
+
+  // if (!newUser) throw HttpError(403);
   res.status(201).json({
     message: `Verification code sent to ${user.email}`,
-    result: { user: { ...newUser._doc, verificationCode: verificationCode?.split(' ')[1] } },
+    result: { user: { ...user._doc, verificationCode: verificationCode?.split(' ')[1] } },
   });
 });
 

@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 
 const { HttpError } = require('../utils');
-const { User } = require('../models');
+const { Session, User } = require('../models');
 
 const { TOKEN_ACCESS_SECRET } = process.env;
 
@@ -14,9 +14,10 @@ const authenticate = async (req, res, next) => {
   }
 
   try {
-    const { id } = jwt.verify(accessToken, TOKEN_ACCESS_SECRET);
-    const user = await User.findById(id);
-    if (!user || !user.accessToken || user.accessToken !== accessToken) {
+    const { uid, sid } = jwt.verify(accessToken, TOKEN_ACCESS_SECRET);
+    const user = await User.findById(uid);
+    const session = await Session.findById(sid);
+    if (!user || !session) {
       next(HttpError(401));
     }
 

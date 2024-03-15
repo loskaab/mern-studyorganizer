@@ -45,11 +45,21 @@
 - **[WebSpeechAPI]**https://developer.mozilla.org/ru/docs/Web/API/Web_Speech_API/Using_the_Web_Speech_API
 - **[lint-images]**https://ausi.github.io/respimagelint/
 - **[@svgr/webpack]**https://www.npmjs.com/package/@svgr/webpack
+- **[react-speech-kit]**https://github.com/MikeyParton/react-speech-kit?tab=readme-ov-file
+- **[]**
+- **[]**
+- **[]**
+- **[]**
+- **[]**
 
 - **[multer-storage-cloudinary]**https://www.npmjs.com/package/multer-storage-cloudinary
 - **[chardet]**https://www.npmjs.com/package/chardet
 - **[gdriveApi]**https://developers.google.com/drive/api/reference/rest/v3/drives/list?hl=ru
 - **[node-cron]**https://www.npmjs.com/package/node-cron
+- **[]**
+- **[]**
+- **[]**
+- **[]**
 - **[]**
 - **[]**
 - **[]**

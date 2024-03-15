@@ -42,7 +42,6 @@ apiClient.interceptors.response.use(
         }
         apiClient.defaults.headers.common['refreshtoken'] = refreshToken;
         error.config.headers.refreshtoken = `${refreshToken}`;
-
         const { data } = await apiClient.post('/auth/refresh');
         const { accessToken } = data.result.user;
 

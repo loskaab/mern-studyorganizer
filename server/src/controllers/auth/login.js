@@ -1,7 +1,7 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
-const { User } = require('../../models');
+const { Session, User } = require('../../models');
 const { HttpError, sendMail, createMsg } = require('../../utils');
 const { ctrlWrapper } = require('../../decorators');
 
@@ -25,16 +25,29 @@ const login = ctrlWrapper(async (req, res) => {
       result: { user: { ...user._doc, verificationCode: verificationCode?.split(' ')[1] } },
     });
   } else {
-    const id = user._id;
-    const accessToken = jwt.sign({ id }, TOKEN_ACCESS_SECRET, { expiresIn: '60s' });
-    const refreshToken = jwt.sign({ id }, TOKEN_REFRESH_SECRET, { expiresIn: '7d' });
+    const session = await Session.create({ uid: user._id });
+    const payload = { uid: user._id, sid: session._id };
 
-    const newUser = await User.findByIdAndUpdate(id, { accessToken, refreshToken }, { new: true });
-    if (!newUser) throw HttpError(403);
+    const accessToken = jwt.sign(payload, TOKEN_ACCESS_SECRET, { expiresIn: '60s' });
+    const refreshToken = jwt.sign(payload, TOKEN_REFRESH_SECRET, { expiresIn: '7d' });
+
+    // const newUser = await User.findByIdAndUpdate(
+    //   user._id,
+    //   { accessToken, refreshToken },
+    //   { new: true },
+    // );
+    // if (!newUser) throw HttpError(403);
 
     res.status(200).json({
-      message: `Logged in: ${newUser.email}`,
-      result: { user: { ...newUser._doc, verificationCode: verificationCode?.split(' ')[1] } },
+      message: `Logged in: ${user.email}`,
+      result: {
+        user: {
+          ...user._doc,
+          refreshToken,
+          accessToken,
+          verificationCode: verificationCode?.split(' ')[1],
+        },
+      },
     });
   }
 });

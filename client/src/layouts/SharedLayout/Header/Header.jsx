@@ -10,9 +10,9 @@ import { useAuth } from 'utils/hooks/useAuth';
 import { barW } from 'layouts/SharedLayout/SharedLayout';
 import { themes } from 'styles/themes';
 
+import { StyledHeader, Nav, TitleBtn } from './Header.styled';
 import Logo from './Logo/Logo';
 import ProfileBtn from './ProfileBtn/ProfileBtn';
-import { StyledHeader, Nav, TitleBtn } from './Header.styled';
 
 const { s } = themes.indents;
 

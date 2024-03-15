@@ -13,8 +13,8 @@ const userSchema = new Schema(
     name: { type: String, minlength: length(4), required },
     email: { type: String, unique: true, match: regex(regExp.EMAIL.name), required },
     password: { type: String, minlength: length(6), required },
-    accessToken: { type: String, default: null },
-    refreshToken: { type: String, default: null },
+    // accessToken: { type: String, default: null },
+    // refreshToken: { type: String, default: null },
     verifiedEmail: { type: Boolean, default: false, required },
     verificationCode: { type: String, default: null },
 

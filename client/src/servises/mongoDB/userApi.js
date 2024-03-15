@@ -35,7 +35,7 @@ export const resetPass = async credentials => {
 
 export const refreshUser = async persistedToken => {
   token.set(persistedToken);
-  const { data } = await apiClient.get('/auth/refresh'); // users/refresh ????
+  const { data } = await apiClient.get('/auth/refresh');
   return data;
 };
 

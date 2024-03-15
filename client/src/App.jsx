@@ -1,4 +1,4 @@
-import { useEffect, useState, lazy } from 'react';
+import { useEffect, lazy } from 'react';
 import { useDispatch } from 'react-redux';
 import { Route, Routes, Navigate } from 'react-router-dom';
 
@@ -23,16 +23,16 @@ const ElementPage = lazy(() => import('pages/ElementPage'));
 const GdrivePage = lazy(() => import('pages/GdrivePage'));
 
 const App = () => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const { isRefreshing, isLoading } = useAuth();
 
   useEffect(() => {
     loadWebFonts();
   }, []);
 
-  useEffect(() => {
-    dispatch(refreshUserThunk());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(refreshUserThunk());
+  // }, [dispatch]);
 
   return (
     <>
