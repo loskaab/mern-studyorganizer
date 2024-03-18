@@ -8,7 +8,7 @@ const MainLayout = ({ children }) => {
   return (
     <div>
       <LinkMern
-        href="https://github.com/Belka-S/mern-starter"
+        href="https://github.com/Belka-S/mern-study-organizer"
         target="_blank"
         rel="noreferrer"
       >
