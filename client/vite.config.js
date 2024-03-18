@@ -20,5 +20,5 @@ export default defineConfig({
     alias: { ...dirPaths }, // src: '/src', components: '/src/components',
   },
   server: { open: '/', port: 3000 },
-  base: '/mern-study-organizer',
+  base: '/mern-studyorganizer',
 });
