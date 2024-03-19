@@ -135,6 +135,4 @@ LiCluster.propTypes = {
   el: PropTypes.object,
   sortByDate: PropTypes.bool,
   setSortByDate: PropTypes.func,
-  // $active: PropTypes.bool,
-  // $hovered: PropTypes.bool,
 };

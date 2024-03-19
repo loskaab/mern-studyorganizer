@@ -1,9 +1,7 @@
 import { useEffect, lazy } from 'react';
-import { useDispatch } from 'react-redux';
 import { Route, Routes, Navigate } from 'react-router-dom';
 
 import { loadWebFonts } from 'styles/loadWebFonts';
-import { getUserThunk } from 'store/auth/authThunks';
 import { useAuth } from 'utils/hooks/useAuth';
 import PublicRoutes from 'routes/PublicRoutes';
 import PrivateRoutes from 'routes/PrivateRoutes';
@@ -23,16 +21,11 @@ const ElementPage = lazy(() => import('pages/ElementPage'));
 const GdrivePage = lazy(() => import('pages/GdrivePage'));
 
 const App = () => {
-  // const dispatch = useDispatch();
   const { isRefreshing, isLoading } = useAuth();
 
   useEffect(() => {
     loadWebFonts();
   }, []);
-
-  // useEffect(() => {
-  //   dispatch(getUserThunk());
-  // }, [dispatch]);
 
   return (
     <>

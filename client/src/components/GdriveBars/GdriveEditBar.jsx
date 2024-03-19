@@ -6,8 +6,6 @@ import { themes } from 'styles/themes';
 import DeleteBtn from './EditBtns/DeleteBtn';
 import RefreshBtn from './RefreshBtn/RefreshBtn';
 
-// import AddBtn from './EditBtns/AddBtn';
-
 const { s, m } = themes.indents;
 
 const GdriveEditBar = () => {

@@ -28,7 +28,6 @@ export const Label = styled.label`
   & pre {
     font-size: 10px;
   }
-  // &::first-letter { text-transform: uppercase; }
 `;
 
 const baseFieldStyles = css`

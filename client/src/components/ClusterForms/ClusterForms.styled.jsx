@@ -3,8 +3,6 @@ import styled, { css } from 'styled-components';
 import { themes } from 'styles/themes';
 import { visuallyHidden } from 'styles/utils/hidden.styled';
 
-// import Select from 'components/shared/Select/Select';
-
 const { colors, indents, shadows } = themes;
 
 export const Form = styled.form`

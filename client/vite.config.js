@@ -17,7 +17,7 @@ const dirPaths = dirNames.reduce(
 export default defineConfig({
   plugins: [react()],
   resolve: {
-    alias: { ...dirPaths }, // src: '/src', components: '/src/components',
+    alias: { ...dirPaths },
   },
   server: { open: '/', port: 3000 },
   base: '/mern-studyorganizer',

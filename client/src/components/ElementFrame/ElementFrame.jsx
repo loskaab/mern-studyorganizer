@@ -33,7 +33,3 @@ const ElementFrame = () => {
 };
 
 export default ElementFrame;
-
-// <audio controls>
-//   <source src={`${elementLink}`} type="audio/mp3" />
-// </audio>
