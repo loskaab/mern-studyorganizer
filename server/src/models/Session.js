@@ -4,20 +4,20 @@ const { mongooseError } = require('../utils');
 
 const required = [true, 'Required field!'];
 
+const expireAfterSeconds = 24 * 60 * 60;
+
 const sessionSchema = new Schema(
   {
     uid: { type: Schema.Types.ObjectId, required },
     expiresAt: {
       type: Date,
-      expires: '1d',
-      default:  new Date(Date.now() + 24 * 60 * 60 * 1000),
+      expires: expireAfterSeconds,
+      default: new Date(Date.now() + expireAfterSeconds * 1000),
+      index: true,
     },
   },
   { versionKey: false, timestamps: true },
 );
-
-// Add index
-// sessionSchema.index({ createdAt: 1 }, { expireAfterSeconds: 60 });
 
 // Change error status
 sessionSchema.post('save', mongooseError);
