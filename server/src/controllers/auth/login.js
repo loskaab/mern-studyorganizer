@@ -25,9 +25,7 @@ const login = ctrlWrapper(async (req, res) => {
       result: { user: { ...user._doc, verificationCode: verificationCode?.split(' ')[1] } },
     });
   } else {
-      const exdate = new Date();
-    exdate.setDate(exdate.getDate() + 2);
-    const session = await Session.create({ uid: user._id, expiresAt: exdate });
+    const session = await Session.create({ uid: user._id});
     
     const payload = { uid: user._id, sid: session._id };
     const accessToken = jwt.sign(payload, TOKEN_ACCESS_SECRET, { expiresIn: '60s' });
