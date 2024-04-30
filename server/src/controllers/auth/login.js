@@ -2,7 +2,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 const { Session, User } = require('../../models');
-const { HttpError, sendMail, createMsg } = require('../../utils');
+const { HttpError, sendMail, createMsg, expiresAt } = require('../../utils');
 const { ctrlWrapper } = require('../../decorators');
 
 const { TOKEN_ACCESS_SECRET, TOKEN_REFRESH_SECRET } = process.env;
@@ -25,8 +25,6 @@ const login = ctrlWrapper(async (req, res) => {
       result: { user: { ...user._doc, verificationCode: verificationCode?.split(' ')[1] } },
     });
   } else {
-    const expiresAt = new Date();
-    expiresAt.setDate(expiresAt.getDate() + 2);
     const session = await Session.create({ uid: user._id, expiresAt });
     
     const payload = { uid: user._id, sid: session._id };
