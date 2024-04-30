@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 
 const { Session, User } = require('../../models');
 const { ctrlWrapper } = require('../../decorators');
-const { HttpError } = require('../../utils');
+const { HttpError, expiresAt } = require('../../utils');
 
 const { TOKEN_ACCESS_SECRET, TOKEN_REFRESH_SECRET } = process.env;
 
@@ -27,8 +27,6 @@ const verifyEmail = ctrlWrapper(async (req, res) => {
   if (!newUser) throw HttpError(403, `Failed to verify ${user.email}`);
 
   // Log in
-  const expiresAt = new Date();
-  expiresAt.setDate(expiresAt.getDate() + 2);
   const session = await Session.create({ uid: newUser._id, expiresAt });
   
   const payload = { uid: newUser._id, sid: session._id };
