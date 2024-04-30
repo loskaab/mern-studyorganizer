@@ -7,7 +7,7 @@ const required = [true, 'Required field!'];
 const sessionSchema = new Schema(
   {
     uid: { type: Schema.Types.ObjectId, required },
-    expiresAt: { type: Date, expires: 60 * 60 * 24 * 2 },
+    expiresAt: { type: Date, expires: '2d' },
   },
   { versionKey: false, timestamps: true },
 );
