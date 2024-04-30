@@ -1,5 +1,6 @@
 const cloudinary = require('./cloudinary');
 const createMsg = require('./createMsg');
+const expiresAt = require('./expiresAt');
 const filterValues = require('./filterValues');
 const HttpError = require('./HttpError');
 const joiError = require('./joiError');
@@ -15,6 +16,7 @@ const sendMail = require('./sendMail');
 module.exports = {
   cloudinary,
   createMsg,
+  expiresAt,
   filterValues,
   HttpError,
   joiError,
