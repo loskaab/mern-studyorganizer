@@ -11,7 +11,7 @@ const google = async (req, res) => {
   const { _id: uid } = req.user;
 
 
-  const session = await Session.create({ uid, expiresAt });  
+  const session = await Session.create({ uid, expiresAt: expiresAt() });  
   const payload = { uid, sid: session._id };
 
   const accessToken = jwt.sign(payload, TOKEN_ACCESS_SECRET, { expiresIn: '60s' });
