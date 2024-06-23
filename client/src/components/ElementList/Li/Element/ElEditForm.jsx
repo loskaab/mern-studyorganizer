@@ -33,6 +33,11 @@ const ElementEditForm = ({ el, isForm, setIsForm }) => {
 
   useEffect(() => {
     const handleKeyDown = e => {
+    if (e.key === '+') {
+        e.preventDefault();
+        await translateElement();
+        handleSubmit(onSubmit)();
+      }
       if (e.key === 'Enter') {
         e.preventDefault();
         handleSubmit(onSubmit)();
