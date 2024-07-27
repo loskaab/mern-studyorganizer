@@ -17,15 +17,15 @@ export const GridDiv = styled.div`
   align-items: ${({ $ai }) => $ai};
   justify-items: ${({ $jc }) => $jc};
 
-  grid-template-columns: repeat(
+  /* grid-template-columns: repeat(
     auto-fit,
     minmax(${({ $mm = '300px' }) => $mm}, 1fr)
-  );
+  ); */
 
   grid-row-gap: ${({ $rg = '10px' }) => $rg};
   grid-column-gap: ${({ $cg = '20px' }) => $cg};
 
-  @media screen and (width >= ${breakpoints.tablet}) {
-    grid-template-columns: ${({ $gtc }) => $gtc};
-  }
+  /* @media screen and (width >= ${breakpoints.mobile}) { */
+  grid-template-columns: ${({ $gtc }) => $gtc};
+  /* } */
 `;

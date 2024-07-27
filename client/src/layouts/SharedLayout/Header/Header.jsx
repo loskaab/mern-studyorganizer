@@ -7,16 +7,15 @@ import ElementSearchBar from 'components/ElementBars/ElementSearchBar';
 import FlexWrap from 'components/shared/FlexWrap/FlexWrap';
 import { useClusters, useGdrive } from 'utils/hooks';
 import { useAuth } from 'utils/hooks/useAuth';
-import { barW } from 'layouts/SharedLayout/SharedLayout';
 import { themes } from 'styles/themes';
 
-import { StyledHeader, Nav, TitleBtn } from './Header.styled';
+import { StyledHeader, Nav, TitleBtn, LogoBtn } from './Header.styled';
 import Logo from './Logo/Logo';
 import ProfileBtn from './ProfileBtn/ProfileBtn';
 
 const { s } = themes.indents;
 
-const Header = ({ $height }) => {
+const Header = ({ $height, barW, setBarW }) => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const { isLoggedIn } = useAuth();
@@ -63,21 +62,22 @@ const Header = ({ $height }) => {
 
   return (
     <StyledHeader $height={$height}>
-      <FlexWrap $w={barW} $p={`0 ${s} 0 0`} $ai="center">
+      <FlexWrap $w={barW > '45%' ? barW : '45%'} $p={`0 ${s} 0 0`} $ai="center">
+        <LogoBtn
+          onClick={() => (barW === '30%' ? setBarW('50%') : setBarW('30%'))}
+        >
+          <Logo />
+        </LogoBtn>
         <Nav>
-          <NavLink to="/">
-            <Logo />
-          </NavLink>
-
           {isLoggedIn && <NavLink to="/gdrive">G-Drive</NavLink>}
           {isLoggedIn && <NavLink to="/cluster">Cluster</NavLink>}
-          {isLoggedIn && <NavLink to={`/element/${ac?._id}`}>Element</NavLink>}
+          {isLoggedIn && (
+            <TitleBtn onClick={handleNavigate}>
+              {clusterTitle()}
+              {gdriveTitle()}
+            </TitleBtn>
+          )}
         </Nav>
-
-        <TitleBtn onClick={handleNavigate}>
-          {clusterTitle()}
-          {gdriveTitle()}
-        </TitleBtn>
       </FlexWrap>
 
       <FlexWrap $w={`calc(100% - ${barW})`} $p={`0 0 0 ${s}`} $ai="center">
@@ -94,4 +94,6 @@ export default Header;
 
 Header.propTypes = {
   $height: PropTypes.string.isRequired,
+  barW: PropTypes.string.isRequired,
+  setBarW: PropTypes.func.isRequired,
 };

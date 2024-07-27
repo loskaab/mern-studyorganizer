@@ -71,7 +71,7 @@ const ElementList = () => {
         />
       ))}
 
-      <ElementLangBar />
+      <ElementLangBar filtredElements={filtredElements} />
     </List>
   );
 };

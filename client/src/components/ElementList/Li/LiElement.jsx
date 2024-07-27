@@ -40,7 +40,9 @@ const LiElement = ({ el, sortByDate, setSortByDate }) => {
         behavior: 'smooth',
       });
     };
-    scrollOnActive();
+    activeElementEl
+      ? scrollOnActive()
+      : window.scrollTo(0, document.body.scrollHeight);
   }, []);
 
   const handleFavorite = () => {
@@ -78,9 +80,15 @@ const LiElement = ({ el, sortByDate, setSortByDate }) => {
           <TiStar size="20px" />
         </LabelFavorite>
 
-        <EditBtn onClick={handleEdit}>
-          <FiEdit3 size="15px" />
-        </EditBtn>
+        <LabelChecked $hovered={checked}>
+          <input
+            type="checkbox"
+            name="checked"
+            checked={checked}
+            onChange={handleChecked}
+          />
+          <FaCheck size="15px" />
+        </LabelChecked>
       </FlexWrap>
 
       {isForm && <ElEditForm el={el} isForm={isForm} setIsForm={setIsForm} />}
@@ -93,19 +101,13 @@ const LiElement = ({ el, sortByDate, setSortByDate }) => {
       )}
 
       <FlexWrap $h="100%" $p="0" $fd="column">
-        <LabelChecked $hovered={checked}>
-          <input
-            type="checkbox"
-            name="checked"
-            checked={checked}
-            onChange={handleChecked}
-          />
-          <FaCheck size="15px" />
-        </LabelChecked>
-
         <TrashBtn $hovered={isInTrash} onClick={handleTrash}>
           <FiTrash2 size="16px" />
         </TrashBtn>
+
+        <EditBtn onClick={handleEdit}>
+          <FiEdit3 size="15px" />
+        </EditBtn>
       </FlexWrap>
     </Li>
   );

@@ -58,24 +58,24 @@ const smallStyles = css`
   }
 `;
 const mediumStyles = css`
-  min-width: 100px;
+  min-width: 80px;
   padding: 4px 12px;
   border-radius: 14px;
   font-size: 14px;
   @media screen and (width > ${breakpoints.tablet}) {
-    min-width: 120px;
+    min-width: 100px;
     padding: 8px 16px;
     border-radius: 18px;
     font-size: 16px;
   }
 `;
 const largeStyles = css`
-  min-width: 140px;
+  min-width: 100px;
   padding: 6px 16px;
   border-radius: 20px;
   font-size: 14px;
   @media screen and (width > ${breakpoints.tablet}) {
-    min-width: 160px;
+    min-width: 120px;
     padding: 12px 20px;
     border-radius: 24px;
     font-size: 18px;

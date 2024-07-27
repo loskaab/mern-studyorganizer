@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import { Formik } from 'formik';
 import { Fragment, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import LinkRoute from 'components/AuthForms/AuthLinks/LinkRoute';
@@ -26,6 +27,7 @@ import {
 const initialValues = { email: '', password: '' };
 
 const SigninForm = ({ setIsFM, setEmail }) => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [toggle, setToggle] = useState('password');
 
@@ -49,6 +51,7 @@ const SigninForm = ({ setIsFM, setEmail }) => {
   const onSubmit = (values, actions) => {
     dispatch(loginThunk(values))
       .unwrap() // .then(pld => setIsVM(!pld.result.user.verifiedEmail))
+      .then(() => navigate('/cluster', { replace: true }))
       .catch(err => err.includes('401') && toast.error('Unauthorized'));
 
     actions.resetForm();

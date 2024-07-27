@@ -13,8 +13,6 @@ const userSchema = new Schema(
     name: { type: String, minlength: length(4), required },
     email: { type: String, unique: true, match: regex(regExp.EMAIL.name), required },
     password: { type: String, minlength: length(6), required },
-    // accessToken: { type: String, default: null },
-    // refreshToken: { type: String, default: null },
     verifiedEmail: { type: Boolean, default: false, required },
     verificationCode: { type: String, default: null },
 
@@ -27,7 +25,7 @@ const userSchema = new Schema(
     birthday: { type: String, default: '' },
     about: { type: String, default: '' },
     lang: { type: String, default: 'en' },
-    rate: { type: String, default: 1 },
+    rate: { type: String, default: 0.75 },
 
     role: { type: String, enum: roleList, default: 'user' },
   },

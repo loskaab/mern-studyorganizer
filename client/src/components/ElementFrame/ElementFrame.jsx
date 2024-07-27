@@ -17,16 +17,15 @@ const ElementFrame = () => {
       : activeCluster?.cluster,
   );
 
-  const page = activeElement
-    ? activeElement.split(/\s+/)[0].replace('[', '').replace(']', '')
-    : 1;
+  // const page = activeElement ? activeElement.split(/\s+/)[0].replace('[', '').replace(']', '') : 1;
 
   return (
     elementLink && (
       <Iframe
         width="100%"
         height={elementLink?.includes('embed/') ? '50%' : '100%'}
-        src={`${elementLink}#view=FitH&toolbar=1&page=${page}`}
+        // src={`${elementLink}#view=FitH&toolbar=1&page=${page}`}
+        src={`${elementLink}#view=FitH&toolbar`}
       />
     )
   );

@@ -12,7 +12,7 @@ const clusterSchema = new Schema(
     group: { type: String, required },
     gdriveId: { type: String },
     lang: { type: String, default: 'de' },
-    rate: { type: String, default: 0.75 },
+    rate: { type: String, default: 0.5 },
     favorite: { type: Boolean, default: false },
     checked: { type: Boolean, default: false },
 
