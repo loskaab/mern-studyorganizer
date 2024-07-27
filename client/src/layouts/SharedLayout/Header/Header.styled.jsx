@@ -27,6 +27,7 @@ export const Nav = styled.nav`
     margin-right: ${indents.m};
     border-radius: ${indents.xs};
     text-decoration: none;
+    white-space: nowrap;
     color: ${colors.black};
     text-decoration: none;
     font-weight: 700;
@@ -45,12 +46,22 @@ export const TitleBtn = styled.button`
   background-color: transparent;
   border-color: transparent;
   transition: color 250ms;
-  color: ${colors.black};
+  color: ${colors.accent};
+  white-space: nowrap;
 
-  font-size: 24px;
-  font-weight: 600;
+  font-size: 18px;
+  font-weight: 700;
 
   &:hover {
     color: ${colors.hovered};
   }
+`;
+
+export const LogoBtn = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  background-color: transparent;
+  border-color: transparent;
 `;

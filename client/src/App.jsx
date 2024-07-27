@@ -32,7 +32,7 @@ const App = () => {
       {!(isRefreshing || isLoading) && (
         <Routes>
           <Route path="/" element={<SharedLayout />}>
-            <Route index element={<HomePage />} />
+            <Route index element={<SigninPage />} />
             <Route element={<PublicRoutes />}>
               <Route path="signup" element={<SignupPage />} />
               <Route path="signin" element={<SigninPage />} />

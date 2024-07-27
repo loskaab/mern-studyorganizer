@@ -21,11 +21,16 @@ const Element = ({ el, sortByDate, setSortByDate }) => {
   };
 
   const speakCaption = () => {
-    const msg = speakText({ text: caption, lang: el.lang });
+    const msg = speakText({ text: caption, lang: el.lang, rate: el.rate });
     msg && toast.error(msg);
   };
 
   const handleSort = () => {
+    window.scrollTo({
+      left: 0,
+      top: document.body.scrollHeight,
+      behavior: 'smooth',
+    });
     setSortByDate(!sortByDate);
     sortByDate
       ? toast.success('Ascending by Date')

@@ -1,4 +1,4 @@
-import { Suspense } from 'react';
+import { Suspense, useState } from 'react';
 import { Outlet } from 'react-router-dom';
 
 import GridWrap from 'components/shared/GridWrap/GridWrap';
@@ -10,12 +10,13 @@ import { themes } from 'styles/themes';
 
 const { xl } = themes.indents;
 const barH = `calc(100vh - ${xl})`;
-export const barW = '55%';
 
 const SharedLayout = () => {
+  const [barW, setBarW] = useState('50%');
+
   return (
     <>
-      <Header $height={xl} />
+      <Header $height={xl} barW={barW} setBarW={setBarW} />
 
       <SideBar $side="left" $width={barW} $height={barH} $offY={xl} />
 
