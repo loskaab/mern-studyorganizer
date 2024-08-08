@@ -10,7 +10,7 @@ const elementSchema = new Schema(
     caption: { type: String, default: '' },
     lang: { type: String, default: 'en' },
     favorite: { type: Boolean, default: false },
-    checked: { type: Boolean, default: false },
+    checked: { type: Boolean, default: true },
     group: { type: String, default: '' },
     cluster: { type: String, default: '' },
 
