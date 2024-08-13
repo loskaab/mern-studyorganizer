@@ -8,6 +8,8 @@ const addSchema = validateBody(
     element: Joi.string().required(),
     caption: Joi.string(),
     cluster: Joi.string().required(),
+    favorite: Joi.boolean(),
+    checked: Joi.boolean(),
   }),
 );
 
